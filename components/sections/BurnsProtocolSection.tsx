@@ -16,13 +16,15 @@ export default function BurnsProtocolSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-6"
         >
-          <SectionLabel>YOUR JOURNEY</SectionLabel>
+          <SectionLabel className="text-teal-light">YOUR JOURNEY</SectionLabel>
           <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-white mt-3">
             The Burns Protocol
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto mt-4">
-            Our proprietary 6-step process has been nationally recognized for
-            delivering predictable, beautiful, and lasting results.
+            Dr. Burns&apos; proprietary 6-step process for consistently
+            creating healthy, beautiful, and natural-looking Dream
+            Smiles. Developed over 30+ years and now taught to
+            doctors across the United States.
           </p>
           <div className="mt-4">
             <span className="inline-block bg-teal/20 text-teal-light text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full border border-teal/30">
@@ -50,7 +52,7 @@ export default function BurnsProtocolSection() {
           </motion.div>
 
           {/* Right — 6-step timeline */}
-          <div className="space-y-8">
+          <div className="space-y-0">
             {burnsProtocolSteps.map((step, i) => (
               <motion.div
                 key={i}
@@ -58,10 +60,10 @@ export default function BurnsProtocolSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="flex gap-5"
+                className="flex gap-5 timeline-line pb-8"
               >
                 {/* Step Number */}
-                <div className="shrink-0 w-10 h-10 rounded-full border-2 border-teal flex items-center justify-center text-teal font-bold text-sm">
+                <div className="shrink-0 w-10 h-10 rounded-full border-2 border-teal flex items-center justify-center text-teal font-bold text-sm bg-charcoal relative z-10">
                   {step.number}
                 </div>
 

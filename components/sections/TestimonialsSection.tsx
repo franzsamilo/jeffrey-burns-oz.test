@@ -55,11 +55,6 @@ export default function TestimonialsSection() {
                 ))}
               </div>
 
-              {/* Quote */}
-              <p className="text-warm-gray text-sm leading-relaxed italic mb-4">
-                &ldquo;{testimonial.quote}&rdquo;
-              </p>
-
               {/* Attribution */}
               <p className="font-semibold text-charcoal text-sm">
                 {testimonial.name}

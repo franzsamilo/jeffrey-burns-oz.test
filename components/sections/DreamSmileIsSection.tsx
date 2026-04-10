@@ -24,7 +24,7 @@ export default function DreamSmileIsSection() {
           </p>
           <p className="mt-4 text-lg">
             Say goodbye to{" "}
-            <span className="line-through text-coral">hiding your mouth</span>{" "}
+            <span className="line-through decoration-coral decoration-2 text-coral">hiding your mouth</span>{" "}
             and say <strong>hello to...</strong>
           </p>
         </motion.div>
@@ -56,7 +56,7 @@ export default function DreamSmileIsSection() {
 
               {/* Text */}
               <div className="w-full md:w-1/2 flex flex-col justify-center">
-                <div className="relative">
+                <div>
                   <div className="w-12 h-1 bg-teal rounded-full mb-4" />
                   <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-charcoal">
                     {benefit.text}

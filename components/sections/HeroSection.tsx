@@ -8,8 +8,14 @@ import { heroContent } from "@/lib/constants";
 export default function HeroSection() {
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      {/* Background placeholder — swap for <Image> when asset ready */}
+      {/* Background placeholder — swap for real hero-bg.webp when ready */}
       <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-charcoal/95 to-charcoal/80" />
+      {/* Placeholder label so it's clear an image goes here */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <span className="text-white/[0.04] font-[family-name:var(--font-montserrat)] text-sm uppercase tracking-widest">
+          Hero Background Photo
+        </span>
+      </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 py-24 md:py-32 w-full">

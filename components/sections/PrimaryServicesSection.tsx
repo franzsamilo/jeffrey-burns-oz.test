@@ -36,7 +36,7 @@ export default function PrimaryServicesSection() {
                 {service.title} Image
               </div>
 
-              <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-charcoal mb-3">
+              <h3 className="font-[family-name:var(--font-montserrat)] text-sm font-bold uppercase tracking-wider text-charcoal mb-3">
                 {service.title}
               </h3>
               <p className="text-warm-gray text-sm leading-relaxed mb-5">

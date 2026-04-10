@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Button from "@/components/ui/Button";
 import { PHONE_NUMBER, PHONE_HREF } from "@/lib/constants";
 
@@ -74,17 +74,20 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      {mobileOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-white shadow-lg px-6 py-4"
-        >
-          <Button variant="solid" href={PHONE_HREF} className="w-full">
-            Call Us {PHONE_NUMBER}
-          </Button>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="md:hidden bg-white shadow-lg px-6 py-4"
+          >
+            <Button variant="solid" href={PHONE_HREF} className="w-full">
+              Call Us {PHONE_NUMBER}
+            </Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

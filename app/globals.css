@@ -20,6 +20,7 @@
   --radius-pill: 9999px;
 }
 
+/* ─── Base ─── */
 html {
   scroll-behavior: smooth;
 }
@@ -31,7 +32,7 @@ body {
   min-height: 100vh;
 }
 
-/* Skip to content link for accessibility */
+/* ─── Skip-to-content (accessibility) ─── */
 .skip-to-content {
   position: absolute;
   top: -2.5rem;
@@ -43,7 +44,173 @@ body {
   border-radius: var(--radius-pill);
   transition: top 0.2s;
 }
-
 .skip-to-content:focus {
   top: 1rem;
+}
+
+/* ─── Noise / grain texture overlay ─── */
+.noise-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  z-index: 1;
+}
+
+.noise-overlay-light::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  z-index: 1;
+}
+
+/* ─── Decorative dot grid (for atmospheric sections) ─── */
+.dot-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image: radial-gradient(circle, var(--color-teal) 1px, transparent 1px);
+  background-size: 24px 24px;
+  z-index: 1;
+}
+
+/* ─── Subtle divider between sections ─── */
+.section-divider {
+  position: relative;
+}
+.section-divider::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80%, 900px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #E5E5E5 30%, #E5E5E5 70%, transparent);
+}
+
+/* ─── Custom radio for quiz ─── */
+.quiz-radio {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #D1D5DB;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+.quiz-radio:checked {
+  border-color: var(--color-teal);
+  background: white;
+}
+.quiz-radio:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-teal);
+}
+.quiz-radio:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+/* ─── Teal decorative accent bar ─── */
+.accent-bar {
+  position: relative;
+}
+.accent-bar::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: -6px;
+  width: 48px;
+  height: calc(100% + 12px);
+  background: var(--color-teal);
+  opacity: 0.12;
+  border-radius: 4px;
+  z-index: -1;
+}
+
+/* ─── Timeline connector line ─── */
+.timeline-line {
+  position: relative;
+}
+.timeline-line::before {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 40px;
+  bottom: -32px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-teal), transparent);
+  opacity: 0.25;
+}
+.timeline-line:last-child::before {
+  display: none;
+}
+
+/* ─── Keyframe animations ─── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Placeholder image improvements ─── */
+.placeholder-img {
+  background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 50%, #E2E8F0 100%);
+  background-size: 200% 200%;
+  animation: shimmer 8s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94A3B8;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: var(--font-body), sans-serif;
+}
+
+/* ─── Glass card effect ─── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ─── Selection color ─── */
+::selection {
+  background: var(--color-teal);
+  color: white;
 }

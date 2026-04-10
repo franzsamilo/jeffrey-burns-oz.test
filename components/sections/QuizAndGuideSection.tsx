@@ -50,7 +50,7 @@ export default function QuizAndGuideSection() {
                     value={option}
                     checked={selected === i}
                     onChange={() => setSelected(i)}
-                    className="accent-[#7FB5B0] w-4 h-4"
+                    className="quiz-radio"
                   />
                   <span className="text-sm text-dark-slate">{option}</span>
                 </label>
@@ -72,11 +72,29 @@ export default function QuizAndGuideSection() {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="hidden lg:flex justify-center"
           >
+            {/* Styled book cover matching the design */}
             <div
-              className="bg-slate-200 rounded-lg flex items-center justify-center text-slate-400 text-sm shadow-lg p-4 text-center"
+              className="bg-gradient-to-br from-teal-dark via-teal to-teal-dark rounded-lg overflow-hidden shadow-lg relative"
               style={{ width: 260, height: 370 }}
             >
-              {guideContent.bookTitle}
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                <div className="w-10 h-px bg-white/40 mb-4" />
+                <p className="font-[family-name:var(--font-montserrat)] text-[9px] uppercase tracking-[0.15em] text-white/60 mb-3">
+                  The Complete Handbook on
+                </p>
+                <h4 className="font-[family-name:var(--font-playfair)] text-xl text-white font-bold leading-tight mb-2">
+                  Dental Implants
+                </h4>
+                <p className="font-[family-name:var(--font-dancing-script)] text-lg text-teal-light/80">
+                  DreamSmile
+                </p>
+                <div className="w-10 h-px bg-white/40 mt-4 mb-4" />
+                <p className="font-[family-name:var(--font-montserrat)] text-[8px] uppercase tracking-[0.15em] text-white/50">
+                  by Dr. Jeffrey S. Burns, DDS
+                </p>
+              </div>
+              {/* Spine line */}
+              <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-white/10" />
             </div>
           </motion.div>
 

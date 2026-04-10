@@ -29,7 +29,7 @@ export default function WarrantySection() {
         </motion.div>
 
         {/* Warranty Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center max-w-4xl mx-auto">
           {warrantyTiers.map((tier, i) => (
             <motion.div
               key={i}
@@ -37,10 +37,10 @@ export default function WarrantySection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className={`rounded-xl p-8 text-center relative ${
+              className={`rounded-xl text-center relative ${
                 tier.recommended
-                  ? "bg-teal-dark text-white shadow-xl scale-105 py-10"
-                  : "bg-white text-charcoal shadow-md"
+                  ? "bg-teal-dark text-white shadow-xl py-12 px-8 md:-my-4 z-10"
+                  : "bg-white text-charcoal shadow-md py-8 px-8"
               }`}
             >
               {tier.recommended && (
@@ -50,12 +50,20 @@ export default function WarrantySection() {
                   </span>
                 </div>
               )}
+
+              {/* Tier label */}
+              <p className={`text-[10px] uppercase tracking-[0.2em] font-bold mb-1 ${
+                tier.recommended ? "text-white/50" : "text-warm-gray"
+              }`}>
+                {tier.name.toUpperCase()}
+              </p>
+
               <h3
-                className={`font-[family-name:var(--font-playfair)] text-2xl font-bold mb-6 ${
+                className={`font-[family-name:var(--font-playfair)] text-xl font-bold mb-6 ${
                   tier.recommended ? "text-white" : "text-charcoal"
                 }`}
               >
-                {tier.name}
+                DreamSmile {tier.name}
               </h3>
               <div className="space-y-4">
                 <div>
