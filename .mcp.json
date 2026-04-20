@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "wordpress-playground": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@wp-playground/mcp"]
+    }
+  }
+}

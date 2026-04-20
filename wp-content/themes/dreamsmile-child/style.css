@@ -1,0 +1,54 @@
+/*
+Theme Name: DreamSmile Child
+Template: twentytwentyfive
+Description: Custom child theme for Dr. Jeffrey S. Burns DreamSmile dental implant landing page. A long-scroll, conversion-focused single page port of the Next.js reference build.
+Author: Franz Samilo
+Version: 1.0.0
+Requires at least: 6.5
+Tested up to: 6.7
+Requires PHP: 7.4
+Text Domain: dreamsmile-child
+*/
+
+:root {
+  --ds-teal: #7FB5B0;
+  --ds-teal-dark: #5A9A93;
+  --ds-teal-light: #A8D5D0;
+  --ds-charcoal: #3A3A3A;
+  --ds-dark-slate: #4A4A4A;
+  --ds-warm-gray: #6B6B6B;
+  --ds-light-gray: #F5F5F3;
+  --ds-off-white: #FAFAF8;
+  --ds-coral: #E88B7A;
+  --ds-gold: #F5A623;
+  --ds-red: #D9534F;
+  --ds-pill-radius: 9999px;
+  --ds-card-radius: 12px;
+  --ds-max-width: 1200px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--ds-dark-slate);
+  background: var(--ds-off-white);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  color: var(--ds-charcoal);
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+
+a { color: var(--ds-teal); text-decoration: none; transition: color .2s ease; }
+a:hover { color: var(--ds-teal-dark); }
+
+::selection { background: var(--ds-teal); color: #fff; }
+
+img { max-width: 100%; height: auto; display: block; }
