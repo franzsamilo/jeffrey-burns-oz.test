@@ -1941,11 +1941,20 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-frustrations__cta { text-align: center; margin-top: 56px; }
 
-/* ─── Testimonials (teal italic heading, landscape photos) ─────────────── */
+/* ─── Testimonials — 3-of-5 carousel, landscape 16:9 with custom play btn ─── */
 
-.ds-testimonials { background: #fff; padding-block: 80px; }
+.ds-testimonials {
+  background: #fff;
+  padding-block: 80px;
+  position: relative;
+  overflow: hidden;
+}
 @media (min-width: 768px) { .ds-testimonials { padding-block: 96px; } }
-.ds-testimonials__head { text-align: center; margin-bottom: 48px; }
+
+.ds-testimonials__head {
+  text-align: center;
+  margin-bottom: 40px;
+}
 .ds-testimonials__title {
   font-family: 'Amiri', 'Playfair Display', serif;
   font-style: italic;
@@ -1960,64 +1969,201 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   margin-top: 10px;
   font-size: 14px;
 }
-.ds-testimonials__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 28px;
+
+.ds-testi-rail {
+  --visible: 3;
+  --gap: 24px;
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 0 32px;
+  outline: none;
 }
-@media (min-width: 768px) {
-  .ds-testimonials__grid { grid-template-columns: repeat(3, 1fr); }
-}
-.ds-testimonial { text-align: center; }
-.ds-testimonial__photo {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  margin: 0 auto 16px;
-  background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #94A3B8;
-  font-size: 12px;
+.ds-testi-rail:focus-visible { outline: 2px solid var(--ds-teal); outline-offset: 8px; border-radius: 20px; }
+@media (max-width: 899px) { .ds-testi-rail { --visible: 2; --gap: 20px; } }
+@media (max-width: 599px) { .ds-testi-rail { --visible: 1; --gap: 16px; } }
+
+.ds-testi-rail__viewport {
   overflow: hidden;
+  margin-inline: 60px;
 }
-/* Video testimonial card — vertical TikTok clip letterboxed on a dark frame. */
-.ds-testimonial__video {
+@media (max-width: 699px) { .ds-testi-rail__viewport { margin-inline: 0; } }
+
+.ds-testi-rail__track {
+  display: flex;
+  gap: var(--gap);
+  transition: transform .4s cubic-bezier(.2,.9,.3,1);
+  will-change: transform;
+  align-items: flex-start;
+}
+
+.ds-testi-card {
+  flex: 0 0 calc((100% - (var(--visible) - 1) * var(--gap)) / var(--visible));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+/* Meta sits tight under the frame — stars → name → role with small gaps. */
+.ds-testi-card__meta {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.ds-testi-card__frame {
   position: relative;
   width: 100%;
-  max-width: 280px;
-  aspect-ratio: 9 / 16;
-  margin: 0 auto 16px;
+  aspect-ratio: 16 / 9;
   background: #0F172A;
-  border-radius: 14px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 18px 36px -16px rgba(58, 58, 58, 0.22);
+  box-shadow: 0 14px 28px -14px rgba(15, 23, 42, 0.28), 0 4px 10px -4px rgba(15, 23, 42, 0.12);
+  transition: transform .25s ease, box-shadow .25s ease;
 }
-.ds-testimonial__video video {
+.ds-testi-card:hover .ds-testi-card__frame {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 40px -16px rgba(15, 23, 42, 0.38), 0 6px 14px -6px rgba(15, 23, 42, 0.16);
+}
+.ds-testi-card__frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.08) 0%, rgba(15, 23, 42, 0.28) 100%);
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+.ds-testi-card.is-playing .ds-testi-card__frame::before { opacity: 0; }
+.ds-testi-card__video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   background: #0F172A;
   display: block;
 }
-.ds-testimonial .ds-stars { justify-content: center; margin-bottom: 10px; }
-.ds-testimonial__name {
+.ds-testi-card.is-playing .ds-testi-card__video { object-fit: contain; }
+
+/* Centered play-button overlay (white ring + white triangle) */
+.ds-testi-card__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  z-index: 2;
+  transition: background .2s ease, transform .2s ease, border-color .2s ease, opacity .3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+.ds-testi-card__play svg { width: 22px; height: 22px; margin-left: 3px; }
+.ds-testi-card__play:hover {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--ds-charcoal);
+  transform: translate(-50%, -50%) scale(1.08);
+  border-color: #fff;
+}
+.ds-testi-card.is-playing .ds-testi-card__play { opacity: 0; pointer-events: none; }
+
+.ds-testi-card .ds-stars {
+  display: inline-flex;
+  gap: 3px;
+  color: var(--ds-gold);
+}
+.ds-testi-card .ds-stars svg { width: 18px; height: 18px; fill: currentColor; }
+.ds-testi-card__name {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   color: var(--ds-charcoal);
   font-size: 14px;
+  line-height: 1.3;
   margin: 0;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
-.ds-testimonial__title {
-  color: var(--ds-warm-gray);
+.ds-testi-card__role {
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px;
+  color: var(--ds-warm-gray);
   margin: 2px 0 0;
+  line-height: 1.3;
 }
-.ds-testimonials__cta { text-align: center; margin-top: 48px; }
+
+/* Arrow navs — positioned outside the viewport on desktop, inside on mobile */
+.ds-testi-rail__nav {
+  position: absolute;
+  /* top: is set by JS to frame-center; fallback to roughly 1/3 down the rail */
+  top: 30%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 99px;
+  background: #fff;
+  border: 1px solid rgba(127, 181, 176, 0.3);
+  color: var(--ds-charcoal);
+  cursor: pointer;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  box-shadow: 0 12px 28px -12px rgba(15, 23, 42, 0.28), 0 2px 8px rgba(15, 23, 42, 0.06);
+  transition: background .2s ease, color .2s ease, transform .2s ease, border-color .2s ease, opacity .2s ease;
+}
+.ds-testi-rail__nav:hover:not([disabled]) {
+  background: var(--ds-teal);
+  color: #fff;
+  border-color: var(--ds-teal);
+  transform: translateY(-50%) scale(1.06);
+}
+.ds-testi-rail__nav:focus-visible {
+  outline: 2px solid var(--ds-teal);
+  outline-offset: 3px;
+}
+.ds-testi-rail__nav[disabled] { opacity: 0.35; cursor: default; }
+.ds-testi-rail__nav svg { width: 22px; height: 22px; }
+.ds-testi-rail__nav--prev { left: 0; }
+.ds-testi-rail__nav--next { right: 0; }
+@media (max-width: 699px) {
+  .ds-testi-rail__nav { top: auto; bottom: -4px; transform: none; width: 40px; height: 40px; }
+  .ds-testi-rail__nav:hover:not([disabled]) { transform: scale(1.06); }
+  .ds-testi-rail__nav svg { width: 18px; height: 18px; }
+  .ds-testi-rail__nav--prev { left: 8px; }
+  .ds-testi-rail__nav--next { right: 8px; }
+  .ds-testi-rail { padding-bottom: 56px; }
+}
+
+/* Dots indicator */
+.ds-testi-rail__dots {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.ds-testi-rail__dots button {
+  width: 9px;
+  height: 9px;
+  border-radius: 99px;
+  border: 0;
+  background: #C9D2D1;
+  padding: 0;
+  cursor: pointer;
+  transition: width .28s ease, background .28s ease, transform .2s ease;
+}
+.ds-testi-rail__dots button:hover { background: var(--ds-teal-light); transform: scale(1.15); }
+.ds-testi-rail__dots button.is-active { background: var(--ds-teal); width: 30px; }
+
+/* CTA below the carousel */
+.ds-testimonials__cta { text-align: center; margin-top: 40px; }
 .ds-testimonials__cta .ds-btn--outlined {
   border: 1.5px solid var(--ds-teal);
   color: var(--ds-teal-dark);
@@ -2026,6 +2172,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 .ds-testimonials__cta .ds-btn--outlined:hover {
   background: var(--ds-teal);
   color: #fff;
+  border-color: var(--ds-teal);
 }
 
 /* ─── About Dr. Burns (dark charcoal per mockup) ───────────────────────── */

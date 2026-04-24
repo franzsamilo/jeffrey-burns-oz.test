@@ -234,7 +234,7 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&destination=' . rawurle
     <div class="ds-loc-testimonials__media ds-reveal">
       <video
         class="ds-loc-testimonials__video"
-        src="<?php echo esc_url( $base . '/Danny-Spain-BA-TikTok.mp4' ); ?>"
+        src="<?php echo esc_url( $base . '/02_04_ANGELA_15_V1.mp4' ); ?>"
         preload="metadata"
         playsinline
         muted
