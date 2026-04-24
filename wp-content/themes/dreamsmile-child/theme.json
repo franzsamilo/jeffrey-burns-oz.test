@@ -30,6 +30,11 @@
       "fluid": true,
       "fontFamilies": [
         {
+          "fontFamily": "'Amiri', 'Playfair Display', serif",
+          "name": "Amiri",
+          "slug": "amiri"
+        },
+        {
           "fontFamily": "'Playfair Display', serif",
           "name": "Playfair Display",
           "slug": "playfair"
@@ -81,7 +86,7 @@
     "elements": {
       "heading": {
         "typography": {
-          "fontFamily": "var(--wp--preset--font-family--playfair)",
+          "fontFamily": "var(--wp--preset--font-family--amiri)",
           "lineHeight": "1.2"
         },
         "color": { "text": "var(--wp--preset--color--charcoal)" }

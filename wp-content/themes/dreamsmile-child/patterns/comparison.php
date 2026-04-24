@@ -30,8 +30,9 @@ $chain_rows = [
     <div class="ds-comparison__head ds-reveal">
       <span class="ds-label">SEE THE DIFFERENCE</span>
       <h2 class="ds-comparison__title">
-        The <span class="ds-script">DreamSmile</span> vs. Dental Chains
+        The <span class="ds-comparison__title-emph">DreamSmile</span> vs. Dental Chains
       </h2>
+      <div class="ds-comparison__divider" aria-hidden="true"><span></span><svg viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2.5"/></svg><span></span></div>
       <p class="ds-comparison__subtitle">Not all dental implant smiles are created equal.</p>
     </div>
 

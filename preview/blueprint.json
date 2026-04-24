@@ -1,7 +1,7 @@
 {
   "$schema": "https://playground.wordpress.net/blueprint-schema.json",
   "meta": {
-    "title": "DreamSmile by Dr. Jeffrey S. Burns, DDS — Preview",
+    "title": "DreamSmile by Dr. Jeffrey S. Burns, DDS — Preview (v2)",
     "description": "Marketing landing page for the DreamSmile dental implant service.",
     "author": "franzsamilo"
   },
@@ -29,7 +29,7 @@
     },
     {
       "step": "runPHP",
-      "code": "<?php require('/wordpress/wp-load.php'); $pages = ['Home', 'Dental Implants', 'Locations', 'New Patients']; $home_id = 0; foreach ($pages as $title) { $slug = sanitize_title($title); $existing = get_page_by_path($slug); if ($existing) { $id = $existing->ID; } else { $id = wp_insert_post(['post_title' => $title, 'post_name' => $slug, 'post_type' => 'page', 'post_status' => 'publish', 'post_content' => '']); } if ($title === 'Home') { $home_id = $id; } } update_option('show_on_front', 'page'); update_option('page_on_front', $home_id); flush_rewrite_rules(); echo 'Pages created. Front page: ' . $home_id; ?>"
+      "code": "<?php require('/wordpress/wp-load.php'); $pages = [ ['Home', ''], ['Dental Implants', ''], ['Locations', ''], ['New Patients', ''], ['Implant Cost & Financing', '<!-- wp:pattern {\"slug\":\"dreamsmile/implant-cost\"} /-->'], ['Implant Procedures Overview', '<!-- wp:pattern {\"slug\":\"dreamsmile/implant-procedures\"} /-->'], ['Implant FAQs', '<!-- wp:pattern {\"slug\":\"dreamsmile/implant-faqs\"} /-->'], ['Harrisonburg', '<!-- wp:pattern {\"slug\":\"dreamsmile/single-location\"} /-->'], ['Winchester', '<!-- wp:pattern {\"slug\":\"dreamsmile/single-location\"} /-->'], ['Broadway', '<!-- wp:pattern {\"slug\":\"dreamsmile/single-location\"} /-->'], ['Bridgewater', '<!-- wp:pattern {\"slug\":\"dreamsmile/single-location\"} /-->'], ['Luray', '<!-- wp:pattern {\"slug\":\"dreamsmile/single-location\"} /-->'], ['Woodstock', '<!-- wp:pattern {\"slug\":\"dreamsmile/single-location\"} /-->'], ['Elkton', '<!-- wp:pattern {\"slug\":\"dreamsmile/single-location\"} /-->'], ['Timberville', '<!-- wp:pattern {\"slug\":\"dreamsmile/single-location\"} /-->'] ]; $slug_overrides = [ 'Implant Cost & Financing' => 'implant-cost', 'Implant Procedures Overview' => 'implant-procedures', 'Implant FAQs' => 'implant-faqs' ]; $home_id = 0; foreach ($pages as $entry) { list($title, $content) = $entry; $slug = isset($slug_overrides[$title]) ? $slug_overrides[$title] : sanitize_title($title); $existing = get_page_by_path($slug); $id = $existing ? $existing->ID : 0; if ($existing) { wp_update_post(['ID' => $id, 'post_content' => $content]); } else { $id = wp_insert_post(['post_title' => $title, 'post_name' => $slug, 'post_type' => 'page', 'post_status' => 'publish', 'post_content' => $content]); } if ($title === 'Home') { $home_id = $id; } } update_option('show_on_front', 'page'); update_option('page_on_front', $home_id); flush_rewrite_rules(); echo 'Pages created. Front: ' . $home_id; ?>"
     }
   ]
 }

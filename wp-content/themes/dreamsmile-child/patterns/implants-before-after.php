@@ -7,10 +7,12 @@
 defined( 'ABSPATH' ) || exit;
 $base = get_stylesheet_directory_uri() . '/assets/arrange';
 
+// Video clips are vertical (TikTok 9:16). They letterbox inside the 16/9
+// stage with dark padding — preserves full frame.
 $shots = [
-  [ 'before-after-1.jpg', 'DreamSmile transformation — patient 1', 'Michael R.', 'Full Upper Restoration' ],
-  [ 'before-after-2.jpg', 'DreamSmile transformation — patient 2', 'Sarah B.',   'Full Arch Dental Implants' ],
-  [ 'before-after-3.jpg', 'DreamSmile transformation — patient 3', 'James D.',   'Implant-Supported Smile' ],
+  [ 'Joe-Vile-BA-TikTok.mp4',    'DreamSmile transformation — Joe Vile',    'Joe Vile',    'DreamSmile Transformation' ],
+  [ 'Carol-Sliver-BA-TikTok.mp4', 'DreamSmile transformation — Carol Sliver', 'Carol Sliver', 'DreamSmile Transformation' ],
+  [ 'Danny-Spain-BA-TikTok.mp4', 'DreamSmile transformation — Danny Spain', 'Danny Spain', 'DreamSmile Transformation' ],
 ];
 $count = count( $shots );
 ?>
@@ -20,7 +22,7 @@ $count = count( $shots );
     <div class="ds-before-after__head ds-reveal">
       <span class="ds-label">REAL RESULTS</span>
       <h2 class="ds-before-after__title">Real Patients. Real Transformations.</h2>
-      <p class="ds-before-after__sub">Scroll through a few of our favorite DreamSmile transformations.</p>
+      <p class="ds-before-after__sub">Watch a few of our favorite DreamSmile transformations in their own words.</p>
     </div>
 
     <div class="ds-ba" data-ds-carousel data-count="<?php echo (int) $count; ?>" aria-roledescription="carousel">
@@ -28,7 +30,15 @@ $count = count( $shots );
         <div class="ds-ba__track" data-ds-carousel-track>
           <?php foreach ( $shots as $i => $s ) : ?>
             <figure class="ds-ba__slide<?php echo $i === 0 ? ' is-active' : ''; ?>" data-index="<?php echo (int) $i; ?>" aria-roledescription="slide" aria-label="<?php echo (int) ( $i + 1 ); ?> of <?php echo (int) $count; ?>">
-              <img src="<?php echo esc_url( $base . '/' . $s[0] ); ?>" alt="<?php echo esc_attr( $s[1] ); ?>" loading="lazy" />
+              <video
+                class="ds-ba__video"
+                src="<?php echo esc_url( $base . '/' . $s[0] ); ?>"
+                preload="metadata"
+                playsinline
+                muted
+                controls
+                aria-label="<?php echo esc_attr( $s[1] ); ?>"
+              ></video>
               <figcaption class="ds-ba__cap">
                 <span class="ds-ba__name"><?php echo esc_html( $s[2] ); ?></span>
                 <span class="ds-ba__proc"><?php echo esc_html( $s[3] ); ?></span>

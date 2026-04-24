@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
 $surgical = get_stylesheet_directory_uri() . '/assets/arrange/surgical-photo-burns.png';
 
 $steps = [
-  [ 1, 'DreamSmile Assessment',        'A comprehensive evaluation of your oral health, goals, and candidacy for dental implants. We take advanced 3D imaging and develop your personalized treatment plan.' ],
+  [ 1, 'DreamSmile Assessment',         'A comprehensive evaluation of your oral health, goals, and candidacy for dental implants. We take advanced 3D imaging and develop your personalized treatment plan.' ],
   [ 2, 'DreamSmile Design Day',         'Using digital smile design technology, we create a preview of your new smile. You&rsquo;ll see your results before treatment even begins.' ],
   [ 3, 'DreamSmile Creation Day',       'The day your new smile begins to take shape. With our on-staff anesthesiologist, you&rsquo;ll be comfortable and safe throughout the entire procedure.' ],
   [ 4, 'DreamSmile Refinement',         'Fine-tuning every detail to ensure your smile looks and feels perfect. We don&rsquo;t settle for &ldquo;good enough&rdquo; &mdash; we aim for exceptional.' ],

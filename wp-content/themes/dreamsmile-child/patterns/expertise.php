@@ -11,18 +11,21 @@ defined( 'ABSPATH' ) || exit;
   <div class="ds-wrap">
     <div class="ds-expertise__head ds-reveal">
       <h2 class="ds-expertise__title">Nationally Recognized Expertise you can Trust</h2>
-      <div><span class="ds-pill">AS SEEN ON TV</span></div>
+      <div><span class="ds-pill">A MOMENT TO REMEMBER</span></div>
+      <p class="ds-expertise__caption">A patient brought Dr. Burns flowers after her DreamSmile reveal &mdash; a small moment that says more than any review.</p>
     </div>
 
     <div class="ds-expertise__video ds-reveal">
-      <div class="ds-expertise__video-placeholder" role="button" aria-label="Play TV segment">
-        <div class="ds-expertise__video-scrim" aria-hidden="true"></div>
-        <div class="ds-expertise__play">
-          <span class="ds-expertise__play-btn" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </span>
-          <span>Watch TV Segment</span>
-        </div>
+      <div class="ds-expertise__video-frame">
+        <video
+          class="ds-expertise__video-el"
+          src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/Flowers-from-Patient-TikTok.mp4' ); ?>"
+          preload="metadata"
+          playsinline
+          muted
+          controls
+          aria-label="A patient brings Dr. Burns flowers after her DreamSmile reveal"
+        ></video>
       </div>
     </div>
 

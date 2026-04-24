@@ -60,25 +60,20 @@ defined( 'ABSPATH' ) || exit;
     </div>
 
     <div class="ds-awards__right ds-reveal">
-      <div class="ds-awards__video" role="button" tabindex="0" aria-label="Play Dr. Burns intro video">
-        <div class="ds-awards__video-gradient" aria-hidden="true"></div>
-
+      <div class="ds-awards__video ds-awards__video--has-clip">
         <span class="ds-awards__tv-chip">
-          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          <span>AS SEEN ON TV</span>
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14v7M3 9v6l9 5 9-5V9"/></svg>
+          <span>DR. BURNS LECTURES NATIONWIDE</span>
         </span>
-
-        <div class="ds-awards__play">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-
-        <div class="ds-awards__video-meta">
-          <span class="ds-awards__video-title">Meet Dr. Burns</span>
-          <span class="ds-awards__video-sub">
-            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            <span>2 min &middot; A personal intro to the DreamSmile approach</span>
-          </span>
-        </div>
+        <video
+          class="ds-awards__video-el"
+          src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/Dr.-Burns-Lecture-10-25-25-TikTok.mp4' ); ?>"
+          preload="metadata"
+          playsinline
+          muted
+          controls
+          aria-label="Dr. Burns lecture clip"
+        ></video>
       </div>
     </div>
   </div>

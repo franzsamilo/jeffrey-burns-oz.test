@@ -22,7 +22,7 @@ Open this URL in the same browser tab where Playground is currently running:
 ```
 https://playground.wordpress.net/scope:loyal-old-town/wp-content/uploads/dreamsmile-bundle/dreamsmile-child.zip
 ```
-That downloads **`dreamsmile-child.zip`** (~22 MB) — it contains the entire theme **including the location photos and hero images that only live on the Playground**.
+That downloads **`dreamsmile-child.zip`** (~43 MB for v2 — larger than v1 because it now bundles the 5 patient/lecture videos) — it contains the entire theme **including the location photos, hero images, and video clips that only live on the Playground**.
 
 > If your Playground site slug isn't `loyal-old-town`, swap that part of the URL.
 

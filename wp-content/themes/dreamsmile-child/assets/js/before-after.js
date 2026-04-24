@@ -19,32 +19,65 @@
       var autoTimer = null;
       var paused    = false;
 
+      function playVideo(v) {
+        if (!v) return;
+        try { v.currentTime = 0; } catch (e) {}
+        var p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(function () {});
+      }
+
+      function pauseVideo(v) {
+        if (!v) return;
+        try { v.pause(); } catch (e) {}
+      }
+
       function render(next) {
-        slides.forEach(function (s, idx) { s.classList.toggle('is-active', idx === next); });
-        dots.forEach(function (d, idx)   { d.classList.toggle('is-active', idx === next); });
+        slides.forEach(function (s, idx) {
+          var isActive = idx === next;
+          s.classList.toggle('is-active', isActive);
+          var v = s.querySelector('video');
+          if (isActive) playVideo(v); else pauseVideo(v);
+        });
+        dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === next); });
         if (counterEl) counterEl.textContent = String(next + 1);
         index = next;
+        restartAuto();
       }
 
       function go(delta) {
         var next = ((index + delta) % total + total) % total;
         render(next);
-        restartAuto();
       }
 
       function setTo(i) {
         render(((i % total) + total) % total);
-        restartAuto();
       }
 
+      // Auto-advance: if current slide has a video, wait for 'ended' (bound below).
+      // Otherwise fall back to a 6s timer. For mixed carousels this keeps both working.
       function restartAuto() {
-        if (autoTimer) clearInterval(autoTimer);
+        if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
         if (paused) return;
+        var current = slides[index];
+        if (current && current.querySelector('video')) return; // video's 'ended' drives advance
         autoTimer = setInterval(function () {
           var next = (index + 1) % total;
           render(next);
         }, 6000);
       }
+
+      // Bind video 'ended' once per slide — advance only if the ending video
+      // is the one currently active and the carousel isn't paused by hover.
+      slides.forEach(function (s, idx) {
+        var v = s.querySelector('video');
+        if (!v) return;
+        v.addEventListener('ended', function () {
+          if (paused) return;
+          if (idx !== index) return;
+          var next = (index + 1) % total;
+          render(next);
+        });
+      });
 
       if (prevBtn) prevBtn.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); go(-1); });
       if (nextBtn) nextBtn.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); go(1);  });
@@ -74,7 +107,6 @@
       }
 
       render(0);
-      restartAuto();
     });
   }
 

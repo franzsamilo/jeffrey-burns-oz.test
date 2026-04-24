@@ -8,14 +8,14 @@ defined( 'ABSPATH' ) || exit;
 $base = get_stylesheet_directory_uri() . '/assets/arrange';
 
 $locations = [
-  [ 'Harrisonburg', '1234 Main St, Harrisonburg, VA', 'Harrisonburg-8locations.jpg' ],
-  [ 'Winchester',   '555 Valley Ave, Winchester, VA',  'Winchester-8locations.jpg'   ],
-  [ 'Broadway',     '22 Center St, Broadway, VA',      'Broadway-8locations.jpg'     ],
-  [ 'Bridgewater',  '101 College Dr, Bridgewater, VA', 'Bridgewater-8locations.jpg'  ],
-  [ 'Luray',        '44 Cave Rd, Luray, VA',           'Luray-8locations.jpg'        ],
-  [ 'Woodstock',    '77 Court St, Woodstock, VA',      'Woodstock-8locations.jpg'    ],
-  [ 'Elkton',       '88 Route 33, Elkton, VA',         'Elkton-8locations.jpg'       ],
-  [ 'Timberville',  '12 Orchard Ln, Timberville, VA',  'Timberville-8locations.jpg'  ],
+  [ 'Harrisonburg', '1234 Main St, Harrisonburg, VA', 'Harrisonburg-8locations.jpg', 'harrisonburg' ],
+  [ 'Winchester',   '555 Valley Ave, Winchester, VA',  'Winchester-8locations.jpg',  'winchester'   ],
+  [ 'Broadway',     '22 Center St, Broadway, VA',      'Broadway-8locations.jpg',    'broadway'     ],
+  [ 'Bridgewater',  '101 College Dr, Bridgewater, VA', 'Bridgewater-8locations.jpg', 'bridgewater'  ],
+  [ 'Luray',        '44 Cave Rd, Luray, VA',           'Luray-8locations.jpg',       'luray'        ],
+  [ 'Woodstock',    '77 Court St, Woodstock, VA',      'Woodstock-8locations.jpg',   'woodstock'    ],
+  [ 'Elkton',       '88 Route 33, Elkton, VA',         'Elkton-8locations.jpg',      'elkton'       ],
+  [ 'Timberville',  '12 Orchard Ln, Timberville, VA',  'Timberville-8locations.jpg', 'timberville'  ],
 ];
 ?>
 <!-- wp:html -->
@@ -36,7 +36,7 @@ $locations = [
           <div class="ds-location-card__body">
             <h3 class="ds-location-card__name"><?php echo esc_html( $loc[0] ); ?></h3>
             <p class="ds-location-card__addr"><?php echo esc_html( $loc[1] ); ?></p>
-            <a href="#" class="ds-btn ds-btn--outlined ds-btn--sm">Learn More &rarr;</a>
+            <a href="/<?php echo esc_attr( $loc[3] ); ?>/" class="ds-btn ds-btn--outlined ds-btn--sm">Learn More &rarr;</a>
           </div>
         </article>
       <?php endforeach; ?>
