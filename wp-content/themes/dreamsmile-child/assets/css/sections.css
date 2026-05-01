@@ -450,53 +450,43 @@ body.admin-bar .ds-navbar { top: 32px; }
 /* ─── Quiz & Guide — bottom-aligned triptych, center invades hero ─────── */
 
 .ds-quiz-section {
-  background: var(--ds-light-gray);
-  padding-block: 48px;
+  /* No block bg — section overlaps the hero, so hero shows through where
+     there's no card. The cards/iPad render on top via z-index. */
+  background: transparent;
+  padding-block: 24px;
   position: relative;
   overflow: visible;
   z-index: 5;
 }
 @media (min-width: 768px) {
-  .ds-quiz-section { padding-block: 80px 64px; }
-  /* Bottom-align all 3 columns — same bottom line. The side cards (Quiz +
-     Guide) and the center iPad image all invade up into the hero above
-     while keeping their bottom edges flush. The iPad sits a touch lower
-     than the cards so its tablet form reads as "popping out" of the row. */
+  .ds-quiz-section {
+    padding-block: 32px 40px;
+    margin-top: -80px;
+  }
   .ds-quiz-grid { align-items: end; }
   .ds-quiz-card-wrap,
-  .ds-guide-card,
+  .ds-guide-card { position: relative; z-index: 20; }
   .ds-quiz-ipad {
-    transform: translateY(-160px);
-    margin-bottom: -160px;
+    position: relative;
+    z-index: 30;
   }
-  .ds-quiz-card-wrap { z-index: 20; position: relative; }
-  .ds-quiz-card { min-height: 420px; }
-  .ds-guide-card { min-height: 240px; }
+  .ds-quiz-card { min-height: 360px; }
+  .ds-guide-card { min-height: 360px; }
 }
 @media (min-width: 1024px) {
-  .ds-quiz-card-wrap,
-  .ds-guide-card,
-  .ds-quiz-ipad {
-    transform: translateY(-180px);
-    margin-bottom: -180px;
+  .ds-quiz-section {
+    padding-block: 40px 48px;
+    margin-top: -120px;
   }
-  .ds-quiz-card { min-height: 460px; }
-  .ds-guide-card { min-height: 260px; }
+  .ds-quiz-card { min-height: 420px; }
+  .ds-guide-card { min-height: 420px; }
 }
 
 /* Hero needs to allow children to escape its bottom bound */
 .ds-hero { overflow: visible !important; }
 main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 
-.ds-quiz-section__bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(700px 280px at 15% 0%, rgba(127, 181, 176, 0.12), transparent 60%),
-    radial-gradient(600px 240px at 85% 100%, rgba(127, 181, 176, 0.08), transparent 60%);
-  z-index: 0;
-}
+.ds-quiz-section__bg { display: none; }
 .ds-quiz-section .ds-wrap { position: relative; z-index: 1; }
 
 .ds-quiz-grid {
@@ -507,7 +497,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 @media (min-width: 768px) {
   .ds-quiz-grid {
-    grid-template-columns: 1.05fr 0.9fr 1fr;
+    grid-template-columns: 1fr 1.4fr 0.95fr;
     gap: 24px;
     align-items: end;
   }
@@ -515,7 +505,12 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   .ds-quiz-ipad      { order: 2; }
   .ds-guide-card     { order: 3; }
 }
-@media (min-width: 1024px) { .ds-quiz-grid { gap: 28px; } }
+@media (min-width: 1024px) {
+  .ds-quiz-grid {
+    grid-template-columns: 1fr 1.45fr 0.95fr;
+    gap: 32px;
+  }
+}
 
 /* ─── LEFT: Quiz card ───────────────────────────────────────────────────── */
 
@@ -577,11 +572,18 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 4px 0;
+  padding: 6px 10px;
+  margin: 0 -10px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: color .15s ease;
+  transition: background-color .15s ease, color .15s ease;
 }
 .ds-quiz-card__option:hover .ds-quiz-card__option-label { color: var(--ds-teal-dark); }
+.ds-quiz-card__option--checked { background: rgba(127, 181, 176, 0.10); }
+.ds-quiz-card__option--checked .ds-quiz-card__option-label {
+  color: var(--ds-teal-dark);
+  font-weight: 600;
+}
 .ds-quiz-radio {
   appearance: none;
   width: 16px;
@@ -627,16 +629,16 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 .ds-quiz-card__rule {
   position: absolute;
   left: 0;
-  right: 38%;
+  right: 0;
   bottom: 0;
-  height: 6px;
+  height: 8px;
   background: var(--ds-teal);
-  border-top-right-radius: 4px;
 }
 .ds-quiz-card__next-wrap .ds-btn {
   position: relative;
   z-index: 1;
-  box-shadow: 0 8px 18px -8px rgba(90, 154, 147, 0.55);
+  box-shadow: 0 10px 22px -10px rgba(90, 154, 147, 0.6);
+  transform: translateY(2px);
 }
 
 /* ─── CENTER: iPad / book preview (no card chrome) ─────────────────────── */
@@ -671,46 +673,51 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   filter: drop-shadow(0 22px 28px rgba(58, 58, 58, 0.20)) drop-shadow(0 6px 12px rgba(58, 58, 58, 0.10));
 }
 @media (min-width: 1024px) {
-  .ds-quiz-ipad img { max-height: 520px; }
+  .ds-quiz-ipad img { max-height: 600px; }
 }
 
 /* ─── RIGHT: Guide CTA card ────────────────────────────────────────────── */
 
+/* Mirrors the quiz card's chrome (white bg + soft shadow + teal accent rule)
+   so the two cards read as siblings — the rule sits at the TOP of the guide
+   card, echoing the rule at the BOTTOM of the quiz card. */
 .ds-guide-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center;
+  text-align: center;
   gap: 14px;
-  padding: 28px 24px;
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(127, 181, 176, 0.18);
+  padding: 32px 28px;
+  background: #fff;
   border-radius: 14px;
-  box-shadow: 0 10px 24px -18px rgba(58, 58, 58, 0.18);
+  box-shadow:
+    0 18px 36px -16px rgba(58, 58, 58, 0.18),
+    0 4px 10px -4px rgba(58, 58, 58, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
   position: relative;
   overflow: hidden;
 }
 .ds-guide-card::before {
   content: "";
   position: absolute;
-  bottom: -60px;
-  right: -50px;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle at center, rgba(127, 181, 176, 0.14), transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: var(--ds-teal);
 }
 .ds-guide-card > * { position: relative; z-index: 1; }
 .ds-guide-card__label {
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ds-teal-dark);
   line-height: 1.35;
+  max-width: 22ch;
+  margin-top: 8px;
 }
 .ds-guide-card__heading {
   font-family: 'Montserrat', sans-serif;
@@ -719,10 +726,10 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   color: var(--ds-warm-gray);
   margin: 0;
   line-height: 1.5;
-  max-width: 30ch;
+  max-width: 24ch;
 }
 .ds-guide-card__cta {
-  align-self: flex-start;
+  align-self: center;
   margin-top: 4px;
 }
 
@@ -807,10 +814,10 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-is-section__title {
   font-family: 'Amiri', 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 3.2vw, 2rem);
-  color: var(--ds-charcoal);
+  font-size: clamp(1.75rem, 3.6vw, 2.4rem);
+  color: var(--ds-teal);
   margin: 0 0 10px;
-  font-weight: 600;
+  font-weight: 700;
 }
 .ds-is-section__lede {
   color: var(--ds-warm-gray);
@@ -825,12 +832,10 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-is-section__lede--tagline strong { color: var(--ds-charcoal); font-weight: 700; }
 .ds-is-section__strike {
-  text-decoration: line-through;
-  text-decoration-color: var(--ds-coral);
-  text-decoration-thickness: 2px;
-  color: var(--ds-coral);
+  color: var(--ds-teal);
+  font-style: italic;
 }
-.ds-is-section__hello { font-weight: 700; color: var(--ds-charcoal); }
+.ds-is-section__hello { font-weight: 700; color: var(--ds-teal); font-style: italic; }
 
 .ds-is-rows {
   display: flex;

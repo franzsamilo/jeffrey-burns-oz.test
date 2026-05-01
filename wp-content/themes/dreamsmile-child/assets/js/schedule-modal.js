@@ -3,13 +3,18 @@
 
   function init() {
     var modal = document.querySelector('[data-ds-modal]');
+
+    // Always expose the API so callers (quiz.js etc.) can rely on it; the
+    // methods no-op when the modal markup isn't on the page.
+    window.DSScheduleModal = { open: open, close: close };
+
     if (!modal) return;
 
-    var panel   = modal.querySelector('.ds-modal__panel');
     var form    = modal.querySelector('[data-ds-modal-form]');
     var success = modal.querySelector('[data-ds-modal-success]');
 
     function open() {
+      if (!modal) return;
       modal.removeAttribute('hidden');
       requestAnimationFrame(function () { modal.classList.add('is-open'); });
       document.documentElement.style.overflow = 'hidden';
@@ -18,6 +23,7 @@
     }
 
     function close() {
+      if (!modal) return;
       modal.classList.remove('is-open');
       document.documentElement.style.overflow = '';
       setTimeout(function () {
@@ -48,8 +54,8 @@
     document.addEventListener('click', function (e) {
       var trigger = e.target.closest(triggers);
       if (!trigger) return;
-      // Still allow the quiz card on the homepage to anchor-scroll to itself
-      // only when we're already on the homepage AND the click target is inside the quiz card itself.
+      // Clicks inside the quiz card belong to the quiz flow (quiz.js), which
+      // calls DSScheduleModal.open() itself after validating an answer.
       if (trigger.closest('[data-ds-quiz]')) return;
       e.preventDefault();
       open();

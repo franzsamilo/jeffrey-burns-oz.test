@@ -57,7 +57,7 @@ $quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/quiz-card.png
       <aside class="ds-guide-card ds-reveal">
         <span class="ds-guide-card__label">WANT TO LEARN MORE ABOUT DENTAL IMPLANTS?</span>
         <p class="ds-guide-card__heading">Download the FREE Pricing &amp; Information Guide</p>
-        <a href="#guide" class="ds-btn ds-btn--outlined ds-btn--sm ds-guide-card__cta">GET THE FREE GUIDE</a>
+        <a href="#" data-ds-schedule class="ds-btn ds-btn--outlined ds-btn--sm ds-guide-card__cta">GET THE FREE GUIDE</a>
       </aside>
 
     </div>

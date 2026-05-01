@@ -3187,9 +3187,21 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 
 /* ─── Shared: Page-specific final CTA (subpages) ─────────────────────────── */
 .ds-subpage-cta {
-  background: var(--ds-off-white);
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(127, 181, 176, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(127, 181, 176, 0.10) 0%, transparent 50%),
+    var(--ds-charcoal);
   padding: 72px 0 88px;
-  border-top: 1px solid rgba(127, 181, 176, 0.16);
+  border-top: 1px solid rgba(127, 181, 176, 0.18);
+  color: #fff;
+}
+.ds-subpage-cta .ds-label {
+  color: #fff;
+  background: rgba(127, 181, 176, 0.22);
+  border: 1px solid rgba(127, 181, 176, 0.45);
+  padding: 6px 12px;
+  border-radius: 99px;
+  letter-spacing: 0.18em;
 }
 @media (min-width: 768px) { .ds-subpage-cta { padding: 88px 0 104px; } }
 .ds-subpage-cta__inner {
@@ -3203,8 +3215,8 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 }
 .ds-subpage-cta__title {
   font-family: 'Amiri', 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  color: var(--ds-charcoal);
+  font-size: clamp(1.65rem, 3.2vw, 2.25rem);
+  color: #fff;
   margin: 4px 0 0;
   line-height: 1.2;
   font-weight: 700;
@@ -3212,7 +3224,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 .ds-subpage-cta__sub {
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
-  color: var(--ds-warm-gray);
+  color: rgba(255, 255, 255, 0.78);
   line-height: 1.6;
   margin: 0;
   max-width: 520px;
@@ -3225,3 +3237,50 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   margin-top: 8px;
 }
 
+
+
+/* === Subpage hierarchy pass (overlay tweaks) === */
+
+.ds-subhero__title {
+  font-weight: 700 !important;
+  font-size: clamp(2rem, 4.4vw, 3rem) !important;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.ds-subhero__title .ds-italic { color: var(--ds-teal-dark); }
+
+.ds-cost-factors__title::after,
+.ds-cost-financing__title::after,
+.ds-proc-types__title::after,
+.ds-proc-why__title::after,
+.ds-faq__title::after,
+.ds-loc-why__title::after,
+.ds-loc-services__title::after,
+.ds-loc-map__title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin: 14px auto 0;
+  background: var(--ds-teal);
+  border-radius: 999px;
+}
+.ds-loc-map__head .ds-loc-map__title::after { margin-left: 0; margin-right: auto; }
+.ds-proc-why__title::after { margin-left: 0; margin-right: auto; }
+.ds-cost-factors__head, .ds-cost-financing__head, .ds-proc-types__head, .ds-faq__head { text-align: center; }
+
+.ds-cost-factor-card:first-child {
+  border-left: 3px solid var(--ds-teal);
+  background: linear-gradient(90deg, rgba(127, 181, 176, 0.06), transparent 60%);
+}
+
+.ds-subpage-cta .ds-btn--outlined {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.65);
+  background: transparent;
+}
+.ds-subpage-cta .ds-btn--outlined:hover {
+  background: #fff;
+  color: var(--ds-charcoal);
+  border-color: #fff;
+}

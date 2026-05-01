@@ -29,7 +29,9 @@
         }
         return;
       }
-      window.location.href = '#guide';
+      if (window.DSScheduleModal && typeof window.DSScheduleModal.open === 'function') {
+        window.DSScheduleModal.open();
+      }
     });
   }
 })();

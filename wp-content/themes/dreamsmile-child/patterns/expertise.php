@@ -19,12 +19,12 @@ defined( 'ABSPATH' ) || exit;
       <div class="ds-expertise__video-frame">
         <video
           class="ds-expertise__video-el"
-          src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/Flowers-from-Patient-TikTok.mp4' ); ?>"
+          src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/out.mp4' ); ?>"
           preload="metadata"
           playsinline
           muted
           controls
-          aria-label="A patient brings Dr. Burns flowers after her DreamSmile reveal"
+          aria-label="Dr. Burns — nationally recognized expertise in dental implants"
         ></video>
       </div>
     </div>
