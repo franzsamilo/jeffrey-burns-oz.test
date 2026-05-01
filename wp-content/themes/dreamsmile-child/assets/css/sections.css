@@ -1,5 +1,5 @@
 /* ==========================================================================
-   DreamSmile Sections — vanilla CSS port of the Next.js/Tailwind build
+   DreamSmile Sections â€” vanilla CSS port of the Next.js/Tailwind build
    ==========================================================================
    Conventions:
    - `.ds-` prefix everywhere
@@ -10,7 +10,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-/* ─── WP overrides (kill TT5 default spacing + admin-bar offset) ───────── */
+/* â”€â”€â”€ WP overrides (kill TT5 default spacing + admin-bar offset) â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 main.ds-main,
 .wp-block-group.ds-main {
@@ -24,7 +24,7 @@ body.admin-bar .ds-navbar { top: 32px; }
   body.admin-bar .ds-navbar { top: 46px; }
 }
 
-/* ─── Utilities ─────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Utilities â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-wrap {
   max-width: var(--ds-max-width);
@@ -71,7 +71,7 @@ body.admin-bar .ds-navbar { top: 32px; }
 }
 .ds-skip:focus { top: 1rem; }
 
-/* ─── Buttons ───────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-btn {
   display: inline-block;
@@ -113,7 +113,7 @@ body.admin-bar .ds-navbar { top: 32px; }
 .ds-btn--sm { padding: 8px 24px; font-size: 12px; }
 .ds-btn--block { display: block; width: 100%; }
 
-/* ─── Check item (used in hero, patient promise) ────────────────────────── */
+/* â”€â”€â”€ Check item (used in hero, patient promise) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-check {
   display: flex;
@@ -136,7 +136,7 @@ body.admin-bar .ds-navbar { top: 32px; }
 
 .ds-check--on-dark .ds-check__text { color: rgba(255, 255, 255, 0.9); }
 
-/* ─── Navbar ────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Navbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-navbar {
   position: fixed;
@@ -184,13 +184,13 @@ body.admin-bar .ds-navbar { top: 32px; }
 .ds-navbar.is-scrolled .ds-navbar__logo { color: var(--ds-charcoal); }
 .ds-navbar.is-scrolled .ds-navbar__sub { color: var(--ds-warm-gray); }
 
-/* Transparent-nav state: solid teal pill with white border halo — pops on dark hero. */
+/* Transparent-nav state: solid teal pill with white border halo â€” pops on dark hero. */
 .ds-navbar__cta {
   color: #fff;
   border-color: #fff;
 }
 .ds-navbar__cta:hover { background: #fff; color: var(--ds-charcoal); border-color: #fff; }
-/* Scrolled state: flip to outlined — transparent bg, teal text, teal border. */
+/* Scrolled state: flip to outlined â€” transparent bg, teal text, teal border. */
 .ds-navbar.is-scrolled .ds-navbar__cta {
   background: transparent;
   color: var(--ds-teal);
@@ -232,7 +232,7 @@ body.admin-bar .ds-navbar { top: 32px; }
 .ds-navbar__mobile.is-open { display: block; }
 .ds-navbar__mobile-cta { display: block; width: 100%; }
 
-/* ─── Footer ────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Footer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-footer {
   background: var(--ds-charcoal);
@@ -332,7 +332,7 @@ body.admin-bar .ds-navbar { top: 32px; }
   color: rgba(255, 255, 255, 0.3);
 }
 
-/* ─── Hero ──────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-hero {
   position: relative;
@@ -399,7 +399,7 @@ body.admin-bar .ds-navbar { top: 32px; }
   user-select: none;
 }
 
-/* ─── Sub-hero variant (inner pages) ─────────────────────────────────────── */
+/* â”€â”€â”€ Sub-hero variant (inner pages) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 /* Reuses .ds-hero structure; adds label, subtitle, CTA row, slightly less tall */
 
 .ds-hero--sub { min-height: 64vh; }
@@ -447,39 +447,39 @@ body.admin-bar .ds-navbar { top: 32px; }
   align-items: center;
 }
 
-/* ─── Quiz & Guide — bottom-aligned triptych, center invades hero ─────── */
+/* â”€â”€â”€ Quiz & Guide â€” bottom-aligned triptych, center invades hero â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-quiz-section {
-  /* No block bg — section overlaps the hero, so hero shows through where
-     there's no card. The cards/iPad render on top via z-index. */
-  background: transparent;
-  padding-block: 24px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(127, 181, 176, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 90% 100%, rgba(127, 181, 176, 0.04) 0%, transparent 50%),
+    #F1F3F2;
+  padding-block: 32px;
   position: relative;
   overflow: visible;
   z-index: 5;
 }
 @media (min-width: 768px) {
   .ds-quiz-section {
-    padding-block: 32px 40px;
-    margin-top: -80px;
+    padding-block: 48px 64px;
+    margin-top: -50px;
   }
-  .ds-quiz-grid { align-items: end; }
-  .ds-quiz-card-wrap,
-  .ds-guide-card { position: relative; z-index: 20; }
-  .ds-quiz-ipad {
-    position: relative;
-    z-index: 30;
-  }
-  .ds-quiz-card { min-height: 360px; }
-  .ds-guide-card { min-height: 360px; }
+  /* Top-aligned â€” quiz card extends down further than iPad + guide */
+  .ds-quiz-grid { align-items: start; }
+  .ds-quiz-card-wrap { position: relative; z-index: 20; }
+  /* iPad in front of the guide ribbon (which sits behind it) */
+  .ds-quiz-ipad  { position: relative; z-index: 30; }
+  .ds-guide-card { position: relative; z-index: 10; }
+  .ds-quiz-card { min-height: 420px; }
+  .ds-guide-card { min-height: 240px; align-self: center; }
 }
 @media (min-width: 1024px) {
   .ds-quiz-section {
-    padding-block: 40px 48px;
-    margin-top: -120px;
+    padding-block: 56px 80px;
+    margin-top: -70px;
   }
-  .ds-quiz-card { min-height: 420px; }
-  .ds-guide-card { min-height: 420px; }
+  .ds-quiz-card { min-height: 480px; }
+  .ds-guide-card { min-height: 280px; }
 }
 
 /* Hero needs to allow children to escape its bottom bound */
@@ -497,37 +497,55 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 @media (min-width: 768px) {
   .ds-quiz-grid {
-    grid-template-columns: 1fr 1.4fr 0.95fr;
-    gap: 24px;
-    align-items: end;
+    grid-template-columns: 1.4fr 1fr 0.9fr;
+    column-gap: 0;
+    row-gap: 24px;
   }
-  .ds-quiz-card-wrap { order: 1; }
-  .ds-quiz-ipad      { order: 2; }
+  .ds-quiz-card-wrap { order: 1; margin-right: 36px; }
+  .ds-quiz-ipad      { order: 2; margin-right: 0; }
   .ds-guide-card     { order: 3; }
 }
 @media (min-width: 1024px) {
   .ds-quiz-grid {
-    grid-template-columns: 1fr 1.45fr 0.95fr;
-    gap: 32px;
+    grid-template-columns: 1.5fr 1.05fr 0.95fr;
   }
+  .ds-quiz-card-wrap { margin-right: 48px; }
+  .ds-quiz-ipad      { margin-right: 0; }
 }
 
-/* ─── LEFT: Quiz card ───────────────────────────────────────────────────── */
+/* â”€â”€â”€ LEFT: Quiz card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-quiz-card-wrap { display: flex; }
 .ds-quiz-card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 24px 24px 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FCFEFE 100%);
+  border-radius: 16px;
+  padding: 28px 28px 0;
   width: 100%;
   box-shadow:
-    0 18px 36px -16px rgba(58, 58, 58, 0.22),
-    0 4px 10px -4px rgba(58, 58, 58, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    0 28px 56px -20px rgba(58, 58, 58, 0.28),
+    0 6px 14px -6px rgba(58, 58, 58, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.ds-quiz-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 36px 64px -22px rgba(58, 58, 58, 0.34),
+    0 8px 18px -6px rgba(58, 58, 58, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+/* Decorative teal corner accent â€” subtle teal glow at top-right */
+.ds-quiz-card::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 120px; height: 120px;
+  background: radial-gradient(circle at top right, rgba(127, 181, 176, 0.16), transparent 70%);
+  pointer-events: none;
 }
 .ds-quiz-card__label {
   font-family: 'Montserrat', sans-serif;
@@ -612,7 +630,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   color: var(--ds-dark-slate);
   transition: color .15s ease;
 }
-/* Bottom rule + Next button ─ teal underscore bar pinned to card bottom-left,
+/* Bottom rule + Next button â”€ teal underscore bar pinned to card bottom-left,
    Next button overlaps it on the right (matches Figma). */
 .ds-quiz-card__next-wrap {
   margin-top: auto;
@@ -641,7 +659,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   transform: translateY(2px);
 }
 
-/* ─── CENTER: iPad / book preview (no card chrome) ─────────────────────── */
+/* â”€â”€â”€ CENTER: iPad / book preview (no card chrome) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-quiz-ipad {
   margin: 0;
@@ -668,45 +686,49 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   max-width: 100%;
   width: auto;
   height: auto;
-  max-height: 460px;
+  max-height: 360px;
   display: block;
-  filter: drop-shadow(0 22px 28px rgba(58, 58, 58, 0.20)) drop-shadow(0 6px 12px rgba(58, 58, 58, 0.10));
+  margin-inline: auto;
+  filter: drop-shadow(0 24px 32px rgba(58, 58, 58, 0.22)) drop-shadow(0 6px 14px rgba(58, 58, 58, 0.10));
+  transition: transform .3s ease, filter .3s ease;
+}
+.ds-quiz-ipad:hover img {
+  transform: translateY(-3px) scale(1.015);
+  filter: drop-shadow(0 30px 42px rgba(58, 58, 58, 0.26)) drop-shadow(0 8px 18px rgba(58, 58, 58, 0.12));
 }
 @media (min-width: 1024px) {
-  .ds-quiz-ipad img { max-height: 600px; }
+  .ds-quiz-ipad img { max-height: 440px; }
 }
 
-/* ─── RIGHT: Guide CTA card ────────────────────────────────────────────── */
+/* â”€â”€â”€ RIGHT: Guide CTA card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 /* Mirrors the quiz card's chrome (white bg + soft shadow + teal accent rule)
-   so the two cards read as siblings — the rule sits at the TOP of the guide
+   so the two cards read as siblings â€” the rule sits at the TOP of the guide
    card, echoing the rule at the BOTTOM of the quiz card. */
 .ds-guide-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 14px;
-  padding: 32px 28px;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow:
-    0 18px 36px -16px rgba(58, 58, 58, 0.18),
-    0 4px 10px -4px rgba(58, 58, 58, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  align-items: flex-start;
+  text-align: left;
+  gap: 12px;
+  padding: 28px 28px 28px 0;
+  background: #DCE0DF;
+  border-radius: 12px;
   position: relative;
-  overflow: hidden;
+  /* Extend the gray ribbon leftward behind the iPad */
+  margin-left: -80px;
+  padding-left: 100px;
+  z-index: 1;
 }
-.ds-guide-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background: var(--ds-teal);
+@media (min-width: 1024px) {
+  .ds-guide-card {
+    margin-left: -120px;
+    padding-left: 140px;
+  }
 }
+.ds-guide-card::before { display: none; }
+.ds-guide-card::before { content: none; }
 .ds-guide-card > * { position: relative; z-index: 1; }
 .ds-guide-card__label {
   font-family: 'Montserrat', sans-serif;
@@ -745,7 +767,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   .ds-quiz-ipad img { max-height: 360px; }
 }
 
-/* ─── Introducing DreamSmile ────────────────────────────────────────────── */
+/* â”€â”€â”€ Introducing DreamSmile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-intro-section { background: #fff; padding-block: 80px; }
 @media (min-width: 768px) { .ds-intro-section { padding-block: 96px; } }
@@ -795,7 +817,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 .ds-photo-placeholder--video { aspect-ratio: 16 / 9; }
 .ds-photo-placeholder--square { aspect-ratio: 1 / 1; }
 
-/* ─── DreamSmile Is — compact editorial zigzag (cap image width, tight gaps) ── */
+/* â”€â”€â”€ DreamSmile Is â€” compact editorial zigzag (cap image width, tight gaps) â”€â”€ */
 
 .ds-is-section {
   background: linear-gradient(180deg, #FFFFFF 0%, #F4FAF9 100%);
@@ -921,7 +943,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   margin: 0;
 }
 
-/* Legacy standalone section — kept harmless in case pattern is referenced elsewhere */
+/* Legacy standalone section â€” kept harmless in case pattern is referenced elsewhere */
 .ds-see-yourself {
   text-align: center;
   margin-top: 0;
@@ -935,7 +957,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   margin: 0;
 }
 
-/* ─── Expertise (dark charcoal — mid-page grey break per PDF theme 4) ──── */
+/* â”€â”€â”€ Expertise (dark charcoal â€” mid-page grey break per PDF theme 4) â”€â”€â”€â”€ */
 
 .ds-expertise {
   background: var(--ds-charcoal);
@@ -980,7 +1002,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   max-width: 620px;
   line-height: 1.55;
 }
-/* Video frame — vertical TikTok clip letterboxed inside a 9/16 dark stage. */
+/* Video frame â€” vertical TikTok clip letterboxed inside a 9/16 dark stage. */
 .ds-expertise__video-frame {
   background: #0F172A;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -999,7 +1021,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   background: #0F172A;
   display: block;
 }
-/* Legacy placeholder — kept in case any other page still references it. */
+/* Legacy placeholder â€” kept in case any other page still references it. */
 .ds-expertise__video-placeholder {
   background: linear-gradient(135deg, #4a4a4a, #2e2e2e, #4a4a4a);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1092,7 +1114,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-read-reviews:hover { text-decoration: underline; }
 
-/* Stats row — inset card inside the dark Expertise section */
+/* Stats row â€” inset card inside the dark Expertise section */
 .ds-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1139,7 +1161,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-stat__icon svg { width: 24px; height: 24px; color: var(--ds-teal); }
 
-/* ─── Primary Services (light teal wash per mockup) ────────────────────── */
+/* â”€â”€â”€ Primary Services (light teal wash per mockup) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-services {
   background: linear-gradient(180deg, #F2F8F7 0%, #EAF3F1 100%);
@@ -1190,7 +1212,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   margin-inline: 8px;
 }
 
-/* ─── Comparison (mockup-true: DreamSmile dominates) ───────────────────── */
+/* â”€â”€â”€ Comparison (mockup-true: DreamSmile dominates) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-comparison { background: var(--ds-light-gray); padding-block: 80px; }
 @media (min-width: 768px) { .ds-comparison { padding-block: 96px; } }
@@ -1203,7 +1225,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   margin: 12px 0 12px;
   line-height: 1.15;
 }
-/* Mockup uses bold serif "The DreamSmile" — same family, full weight, no script */
+/* Mockup uses bold serif "The DreamSmile" â€” same family, full weight, no script */
 .ds-comparison__title .ds-comparison__title-emph {
   font-family: 'Amiri', 'Playfair Display', serif;
   font-weight: 700;
@@ -1282,7 +1304,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   height: 100%;
 }
 
-/* Primary (DreamSmile) — heavy teal outline, slight teal wash, lifted */
+/* Primary (DreamSmile) â€” heavy teal outline, slight teal wash, lifted */
 .ds-compare-card--primary {
   border: 2px solid var(--ds-teal);
   box-shadow:
@@ -1385,7 +1407,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-comparison__cta .ds-btn:hover { background: #2d2d2d; }
 
-/* ─── Burns Protocol ────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Burns Protocol â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-protocol {
   background: var(--ds-charcoal);
@@ -1503,7 +1525,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-step__link:hover { color: var(--ds-teal-light); }
 
-/* ─── Warranty ──────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Warranty â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-warranty {
   position: relative;
@@ -1613,7 +1635,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-warranty__cta { text-align: center; margin-top: 56px; }
 
-/* ─── Patient Promise ───────────────────────────────────────────────────── */
+/* â”€â”€â”€ Patient Promise â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-promise {
   position: relative;
@@ -1672,7 +1694,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   gap: 20px;
 }
 
-/* ─── Frustrations (dark charcoal, per mockup) ─────────────────────────── */
+/* â”€â”€â”€ Frustrations (dark charcoal, per mockup) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-frustrations {
   background: var(--ds-charcoal);
@@ -1732,7 +1754,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-frustrations__cta { text-align: center; margin-top: 56px; }
 
-/* ─── Testimonials — 3-of-5 carousel, landscape 16:9 with custom play btn ─── */
+/* â”€â”€â”€ Testimonials â€” 3-of-5 carousel, landscape 16:9 with custom play btn â”€â”€â”€ */
 
 .ds-testimonials {
   background: #fff;
@@ -1795,7 +1817,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   align-items: center;
   text-align: center;
 }
-/* Meta sits tight under the frame — stars → name → role with small gaps. */
+/* Meta sits tight under the frame â€” stars â†’ name â†’ role with small gaps. */
 .ds-testi-card__meta {
   margin-top: 18px;
   display: flex;
@@ -1890,7 +1912,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   line-height: 1.3;
 }
 
-/* Arrow navs — positioned outside the viewport on desktop, inside on mobile */
+/* Arrow navs â€” positioned outside the viewport on desktop, inside on mobile */
 .ds-testi-rail__nav {
   position: absolute;
   /* top: is set by JS to frame-center; fallback to roughly 1/3 down the rail */
@@ -1966,7 +1988,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   border-color: var(--ds-teal);
 }
 
-/* ─── About Dr. Burns (dark charcoal per mockup) ───────────────────────── */
+/* â”€â”€â”€ About Dr. Burns (dark charcoal per mockup) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-about {
   background: var(--ds-charcoal);
@@ -2061,7 +2083,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   font-style: normal;
 }
 
-/* ─── Scroll reveal ─────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Scroll reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-reveal {
   opacity: 0;
@@ -2076,7 +2098,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   .ds-reveal, .ds-reveal.is-visible { transition: none; opacity: 1; transform: none; }
 }
 
-/* ─── Real asset support (images + icons) ───────────────────────────────── */
+/* â”€â”€â”€ Real asset support (images + icons) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 /* Navbar logo: hand-set Playfair + small italic teal "J." sitting top-left of "burns" */
 .ds-navbar__logo {
@@ -2101,7 +2123,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 .ds-navbar.is-scrolled .ds-navbar__logo { color: var(--ds-charcoal); }
 .ds-navbar.is-scrolled .ds-navbar__logo-j { color: var(--ds-teal); }
 
-/* Introducing DreamSmile — 4 patient cards */
+/* Introducing DreamSmile â€” 4 patient cards */
 .ds-intro-card {
   width: 100%;
   aspect-ratio: 3 / 4;
@@ -2110,9 +2132,9 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   display: block;
 }
 
-/* DreamSmile Is — pill+image rows: media styling defined earlier; kept here as no-op */
+/* DreamSmile Is â€” pill+image rows: media styling defined earlier; kept here as no-op */
 
-/* Primary Services — 3 cards */
+/* Primary Services â€” 3 cards */
 .ds-service-card__media img {
   width: 100%;
   aspect-ratio: 3 / 2;
@@ -2121,7 +2143,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   display: block;
 }
 
-/* Burns Protocol — photo fills steps column on desktop, bounded portrait below */
+/* Burns Protocol â€” photo fills steps column on desktop, bounded portrait below */
 .ds-protocol__grid { align-items: stretch; }
 
 /* Mobile default: bounded portrait */
@@ -2158,7 +2180,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   }
 }
 
-/* About Dr. Burns — photo fills bio column naturally, no arbitrary min/max */
+/* About Dr. Burns â€” photo fills bio column naturally, no arbitrary min/max */
 .ds-about__grid { align-items: stretch; }
 .ds-about__photo {
   width: 100%;
@@ -2174,7 +2196,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   .ds-about__photo { aspect-ratio: auto; max-height: none; }
 }
 
-/* Credential badges — icon + text pair */
+/* Credential badges â€” icon + text pair */
 .ds-about__credential {
   display: inline-flex;
   align-items: center;
@@ -2193,7 +2215,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   display: block;
 }
 
-/* Frustrations — uniform custom SVG icons (on dark bg) */
+/* Frustrations â€” uniform custom SVG icons (on dark bg) */
 .ds-frustration-card__icon {
   width: 44px;
   height: 44px;
@@ -2216,7 +2238,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   color: #fff;
 }
 
-/* Patient Promise — framed image section (text/CTA are in the image) */
+/* Patient Promise â€” framed image section (text/CTA are in the image) */
 .ds-promise-image {
   padding: 64px 24px;
   background: linear-gradient(180deg, var(--ds-off-white) 0%, #EDF3F2 100%);
@@ -2236,7 +2258,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   .ds-promise-image__bg { border-radius: 12px; }
 }
 
-/* Warranty — framed image section (tiers + CTA are in the image) */
+/* Warranty â€” framed image section (tiers + CTA are in the image) */
 .ds-warranty-image {
   padding: 64px 24px;
   background: linear-gradient(180deg, #F0F5F4 0%, var(--ds-off-white) 100%);
