@@ -14,16 +14,8 @@ $cats = [
   'candidacy' => 'Am I a Candidate?',
 ];
 
-$faqs = [
-  [ 'pain',      'Is the procedure painful?',       'Most patients are surprised at how comfortable the procedure is. With our on-staff anesthesiologist and modern techniques, you&rsquo;ll be relaxed and pain-free throughout. Mild soreness in the days after is normal and easily managed.' ],
-  [ 'timing',    'How long do implants last?',      'With proper care, dental implants are designed to last a lifetime. Our DreamSmile implants come with industry-leading warranties &mdash; up to lifetime coverage on the implant itself.' ],
-  [ 'timing',    'What is the healing time?',       'Initial healing takes 1&ndash;2 weeks for soft tissue, with full integration of the implant into the bone taking 3&ndash;6 months. We&rsquo;ll provide a temporary smile so you&rsquo;re never without teeth during healing.' ],
-  [ 'candidacy', 'What if I smoke?',                'Smoking can affect implant success and healing. We&rsquo;ll discuss this with you in your consultation and may recommend stopping for a period before and after surgery to ensure the best outcome.' ],
-  [ 'candidacy', 'Do implants look natural?',       'Absolutely. Each DreamSmile is custom-designed to match your face, smile, and personality. Most people can&rsquo;t tell the difference between an implant and a natural tooth.' ],
-  [ 'cost',      'Does insurance help with cost?',  'Many insurance plans cover part of the cost. We work directly with most major providers and offer flexible financing through Cherry Credit and Care Credit to make your DreamSmile affordable.' ],
-  [ 'candidacy', 'Am I a candidate with bone loss?','Most patients are candidates. Dr. Burns&rsquo; 3D imaging and bone-grafting techniques open up options many other offices can&rsquo;t offer &mdash; even for patients who&rsquo;ve been told &ldquo;no&rdquo; elsewhere.' ],
-  [ 'cost',      'Is there a warranty?',            'Yes &mdash; every DreamSmile is backed by our Silver, Gold, or Platinum warranty. The Platinum tier covers your teeth for life.' ],
-];
+// FAQ data is shared with the FAQPage JSON-LD schema in functions.php.
+$faqs = ds_faq_data();
 ?>
 <!-- wp:html -->
 <section class="ds-hero ds-hero--sub" id="hero">

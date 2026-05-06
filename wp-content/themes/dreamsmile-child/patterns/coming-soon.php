@@ -13,7 +13,7 @@ $title = get_the_title() ?: 'Coming Soon';
 <section class="ds-coming">
   <div class="ds-wrap ds-coming__inner ds-reveal">
     <span class="ds-label">IN PROGRESS</span>
-    <h1 class="ds-coming__title"><?php echo esc_html( $title ); ?></h1>
+    <h2 class="ds-coming__title"><?php echo esc_html( $title ); ?></h2>
     <p class="ds-coming__sub">This page is being prepared. In the meantime, take the 60-second eligibility quiz or give us a call &mdash; Dr. Burns would love to hear from you.</p>
     <div class="ds-coming__ctas">
       <a href="/#quiz" class="ds-btn ds-btn--solid">Take the Quiz</a>

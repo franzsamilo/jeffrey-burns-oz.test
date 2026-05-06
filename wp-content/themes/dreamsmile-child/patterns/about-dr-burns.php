@@ -8,17 +8,10 @@ defined( 'ABSPATH' ) || exit;
 $casual = get_stylesheet_directory_uri() . '/assets/arrange/casual-photo-burns.png';
 
 $icons = [
-  'flag' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <path d="M5 13l4 4L19 7"/></svg>',
-
-  'teach' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <path d="M5 13l4 4L19 7"/></svg>',
-
-  'trophy' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <path d="M5 13l4 4L19 7"/></svg>',
-
-  'book' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <path d="M5 13l4 4L19 7"/></svg>',
+  'flag'   => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V4"/><path d="M4 4h12l-2.5 4L16 12H4"/></svg>',
+  'teach'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 4 2 10l10 6 10-6z"/><path d="M6 12v5c2 2 4 3 6 3s4-1 6-3v-5"/></svg>',
+  'trophy' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10v4a5 5 0 01-10 0V4Z"/><path d="M7 6H4a1 1 0 00-1 1v1a4 4 0 004 4"/><path d="M17 6h3a1 1 0 011 1v1a4 4 0 01-4 4"/><path d="M12 13v4"/><path d="M9 21h6"/></svg>',
+  'book'   => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 016.5 3H19a1 1 0 011 1v16a1 1 0 01-1 1H6.5A2.5 2.5 0 014 18.5z"/><path d="M4 18.5A2.5 2.5 0 016.5 16H20"/></svg>',
 ];
 
 $credentials = [

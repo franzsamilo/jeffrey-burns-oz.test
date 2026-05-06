@@ -1261,7 +1261,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 @media (min-width: 1024px) {
   .ds-comparison__grid {
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 28px;
   }
 }
@@ -1323,7 +1323,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   .ds-compare-card--muted {
     align-self: stretch;
     transform: scale(0.97);
-    transform-origin: left center;
+    transform-origin: center center;
     opacity: 0.92;
   }
 }
@@ -1331,7 +1331,8 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 .ds-compare-card__badge {
   position: absolute;
   top: -14px;
-  left: 28px;
+  left: 50%;
+  transform: translateX(-50%);
   background: var(--ds-teal);
   color: #fff;
   font-size: 11px;
@@ -1341,6 +1342,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   padding: 6px 16px;
   border-radius: var(--ds-pill-radius);
   box-shadow: 0 8px 16px -4px rgba(90, 154, 147, 0.5);
+  white-space: nowrap;
 }
 
 .ds-compare-card__title {
@@ -2278,3 +2280,10 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   .ds-warranty-image__bg { border-radius: 12px; }
 }
 
+
+/* DREAMSMILE-COMPARISON-CENTER-V2 */
+.ds-compare-card--primary .ds-compare-card__title,
+.ds-compare-card--primary .ds-compare-card__kicker {
+  text-align: center;
+}
+/* /DREAMSMILE-COMPARISON-CENTER-V2 */

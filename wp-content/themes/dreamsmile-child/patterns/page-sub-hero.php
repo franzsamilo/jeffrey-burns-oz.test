@@ -26,11 +26,11 @@ $variants = [
   'locations' => [
     'label'    => 'LOCATIONS',
     'title'    => 'Dental Implants Near <em>Harrisonburg, VA</em> &mdash; Expert Results You Can Trust.',
-    'subtitle' => 'Eight convenient locations, one team of specialists &mdash; led by Dr. Burns himself.',
+    'subtitle' => 'One Harrisonburg office, serving patients from across the Shenandoah Valley &mdash; led personally by Dr. Burns.',
     'cta1'     => [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz' ],
     'cta2'     => [ 'label' => 'Free Consultation',     'href' => '/#quiz' ],
     'bg'       => $base . '/Harrison-Hero.jpg',
-    'alt'      => 'The Harrisonburg, VA office',
+    'alt'      => 'Dr. Burns&rsquo;s dental implant office in Harrisonburg, VA',
   ],
   'new-patients' => [
     'label'    => 'NEW PATIENTS',

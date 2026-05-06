@@ -4,121 +4,90 @@
  * Slug: dreamsmile/single-location
  * Categories: dreamsmile
  *
- * Renders a complete city-specific dental implants page. Detects the current
- * page slug via WP and pulls city-specific data from $LOCATIONS below.
- * Used by all 8 location pages (Harrisonburg, Winchester, Broadway, etc.).
+ * Renders an SEO-targeted city landing page for Dr. Burns' dental implant
+ * practice.
+ *
+ * IMPORTANT: Dr. Burns has ONE physical office. These 8 city subpages
+ * (Harrisonburg, Winchester, Broadway, Bridgewater, Luray, Woodstock,
+ * Elkton, Timberville) are LOCAL-SEO LANDING PAGES using "Near [City]"
+ * framing. The address, hours, phone, review count, and testimonial
+ * content are SHARED across every page and reflect the single real
+ * practice (see ds_office_data() in functions.php).
+ *
+ * Per-city data only carries SEO-relevant context: city name, a city-flavor
+ * image, a brief "why patients from [City] choose us" line, and a
+ * driving-context line for the directions/map section.
  */
 defined( 'ABSPATH' ) || exit;
-$base = get_stylesheet_directory_uri() . '/assets/arrange';
+$base   = get_stylesheet_directory_uri() . '/assets/arrange';
+$office = ds_office_data();
 
-/**
- * Per-city data. `local_why` + `parking` customize 2 of the 4 "why" cards so
- * each city feels local instead of template. `maps_q` is the Google Maps query.
- */
+/** Per-city SEO landing-page content. All cities point to the same real office. */
 $LOCATIONS = [
   'harrisonburg' => [
     'name'      => 'Harrisonburg',
     'state'     => 'VA',
-    'address'   => '1234 Main St, Harrisonburg, VA 22801',
-    'years'     => '30',
-    'reviews'   => '130',
-    'landmark'  => 'JMU and downtown Harrisonburg',
     'image'     => 'Harrisonburg-8locations.jpg',
     'hero_bg'   => 'Harrison-Hero.jpg',
-    'local_why' => 'Five minutes from JMU campus and the Court Square &mdash; easy from any direction.',
-    'parking'   => 'Free on-site parking, wheelchair-accessible entry from Main St.',
-    'maps_q'    => '1234 Main St, Harrisonburg, VA 22801',
+    'local_why' => 'Conveniently located near JMU and downtown Harrisonburg &mdash; an easy stop on the way to or from work, school, or errands.',
+    'travel'    => 'Right here in Harrisonburg &mdash; minutes from JMU and Court Square.',
+    'is_home'   => true,
   ],
   'winchester' => [
     'name'      => 'Winchester',
     'state'     => 'VA',
-    'address'   => '555 Valley Ave, Winchester, VA 22601',
-    'years'     => '25',
-    'reviews'   => '95',
-    'landmark'  => 'Old Town Winchester',
     'image'     => 'Winchester-8locations.jpg',
     'hero_bg'   => 'Winchester-8locations.jpg',
-    'local_why' => 'Minutes from Old Town Winchester and the walking mall &mdash; convenient from anywhere in the valley.',
-    'parking'   => 'Free on-site parking, accessible entry from Valley Avenue.',
-    'maps_q'    => '555 Valley Ave, Winchester, VA 22601',
+    'local_why' => 'Patients from Winchester regularly make the drive south for Dr. Burns&rsquo;s implant expertise &mdash; the level of specialized care is hard to find anywhere else in the valley.',
+    'travel'    => 'A scenic drive south on I-81 from Winchester &mdash; easy highway access the whole way.',
   ],
   'broadway' => [
     'name'      => 'Broadway',
     'state'     => 'VA',
-    'address'   => '22 Center St, Broadway, VA 22815',
-    'years'     => '20',
-    'reviews'   => '60',
-    'landmark'  => 'downtown Broadway',
     'image'     => 'Broadway-8locations.jpg',
     'hero_bg'   => 'Broadway-8locations.jpg',
-    'local_why' => 'Right off Rt. 259 in the heart of Broadway &mdash; serving Timberville, Linville, and the north valley.',
-    'parking'   => 'Free on-site lot, street-level entry.',
-    'maps_q'    => '22 Center St, Broadway, VA 22815',
+    'local_why' => 'A short drive from Broadway, Timberville, and the north valley &mdash; close enough to keep follow-ups simple.',
+    'travel'    => 'Quick trip down Rt. 259 from Broadway to our Harrisonburg office.',
   ],
   'bridgewater' => [
     'name'      => 'Bridgewater',
     'state'     => 'VA',
-    'address'   => '101 College Dr, Bridgewater, VA 22812',
-    'years'     => '20',
-    'reviews'   => '50',
-    'landmark'  => 'Bridgewater College',
     'image'     => 'Bridgewater-8locations.jpg',
     'hero_bg'   => 'Bridgewater-8locations.jpg',
-    'local_why' => 'A short walk from Bridgewater College &mdash; welcoming students, faculty, and families alike.',
-    'parking'   => 'Free on-site parking, step-free access.',
-    'maps_q'    => '101 College Dr, Bridgewater, VA 22812',
+    'local_why' => 'Just up the road from Bridgewater &mdash; we welcome students, faculty, and families from the College and surrounding community.',
+    'travel'    => 'A quick drive north from Bridgewater College to Harrisonburg.',
   ],
   'luray' => [
     'name'      => 'Luray',
     'state'     => 'VA',
-    'address'   => '44 Cave Rd, Luray, VA 22835',
-    'years'     => '20',
-    'reviews'   => '45',
-    'landmark'  => 'Luray Caverns',
     'image'     => 'Luray-8locations.jpg',
     'hero_bg'   => 'Luray-8locations.jpg',
-    'local_why' => 'Right off Rt. 211 near Luray Caverns &mdash; serving the Page County community.',
-    'parking'   => 'Free on-site parking, ground-floor entry.',
-    'maps_q'    => '44 Cave Rd, Luray, VA 22835',
+    'local_why' => 'Patients from Luray and Page County make the trip for the Burns Protocol &mdash; the same trusted process from consult through final reveal.',
+    'travel'    => 'Across the mountain from Luray on Rt. 211 &mdash; a beautiful drive to the office.',
   ],
   'woodstock' => [
     'name'      => 'Woodstock',
     'state'     => 'VA',
-    'address'   => '77 Court St, Woodstock, VA 22664',
-    'years'     => '20',
-    'reviews'   => '55',
-    'landmark'  => 'historic Woodstock',
     'image'     => 'Woodstock-8locations.jpg',
     'hero_bg'   => 'Woodstock-8locations.jpg',
-    'local_why' => 'Steps from Main Street and the Shenandoah County Courthouse &mdash; easy parking and access.',
-    'parking'   => 'Free on-site parking, accessible entry.',
-    'maps_q'    => '77 Court St, Woodstock, VA 22664',
+    'local_why' => 'A simple drive from Woodstock and Shenandoah County &mdash; same office, same doctor, every visit.',
+    'travel'    => 'South on I-81 from Woodstock &mdash; about a half-hour to our Harrisonburg office.',
   ],
   'elkton' => [
     'name'      => 'Elkton',
     'state'     => 'VA',
-    'address'   => '88 Route 33, Elkton, VA 22827',
-    'years'     => '20',
-    'reviews'   => '40',
-    'landmark'  => 'Shenandoah National Park',
     'image'     => 'Elkton-8locations.jpg',
     'hero_bg'   => 'Elkton-8locations.jpg',
-    'local_why' => 'Right on Rt. 33 near the entrance to Shenandoah National Park &mdash; serving Rockingham County.',
-    'parking'   => 'Free on-site parking, step-free entry.',
-    'maps_q'    => '88 Route 33, Elkton, VA 22827',
+    'local_why' => 'Right next door to Elkton and Rockingham County &mdash; close enough that even multi-step implant treatment fits easily into your week.',
+    'travel'    => 'A short trip west on Rt. 33 from Elkton to our Harrisonburg office.',
   ],
   'timberville' => [
     'name'      => 'Timberville',
     'state'     => 'VA',
-    'address'   => '12 Orchard Ln, Timberville, VA 22853',
-    'years'     => '20',
-    'reviews'   => '42',
-    'landmark'  => 'the heart of the Shenandoah Valley',
     'image'     => 'Timberville-8locations.jpg',
     'hero_bg'   => 'Timberville-8locations.jpg',
-    'local_why' => 'In the heart of the valley &mdash; serving Timberville, Broadway, and the surrounding orchards.',
-    'parking'   => 'Free on-site parking, accessible entry.',
-    'maps_q'    => '12 Orchard Ln, Timberville, VA 22853',
+    'local_why' => 'Patients from Timberville and the orchard country travel down for the level of implant care Dr. Burns provides &mdash; well worth the short drive.',
+    'travel'    => 'A quick drive south from Timberville along Rt. 11 to our Harrisonburg office.',
   ],
 ];
 
@@ -131,6 +100,7 @@ if ( is_page() ) {
   }
 }
 $loc = isset( $LOCATIONS[ $slug ] ) ? $LOCATIONS[ $slug ] : reset( $LOCATIONS );
+$is_home_city = ! empty( $loc['is_home'] );
 
 // Graceful fallback if per-city image is missing on disk
 $loc_image_path = trailingslashit( get_stylesheet_directory() ) . 'assets/arrange/' . $loc['image'];
@@ -139,8 +109,13 @@ $loc_image_url  = file_exists( $loc_image_path )
   : $base . '/hero-image.png'; // fallback to existing hero-image.png
 
 $why_cards = [
-  [ 'pin',    'Close to ' . $loc['name'],      esc_html( $loc['local_why'] ), false ],
-  [ 'car',    'Easy Parking &amp; Access',       esc_html( $loc['parking'] ),   false ],
+  [
+    'pin',
+    $is_home_city ? 'In ' . $loc['name'] : 'Easy Drive from ' . $loc['name'],
+    esc_html( $loc['local_why'] ),
+    false,
+  ],
+  [ 'car',    'Easy Parking &amp; Access',       esc_html( $office['parking'] ), false ],
   [ 'cpu',    'Modern In-House Technology',      '3D imaging, digital smile design, and the latest implant tech &mdash; all under one roof.', false ],
   [ 'tooth',  'Specialized Implant Care',        'Decades of focused implant experience. This is what we do, every day.', false ],
 ];
@@ -167,8 +142,16 @@ $svg = [
 ];
 
 $schedule_attr = ' data-ds-schedule-location="' . esc_attr( $loc['name'] ) . '"';
-$maps_embed    = 'https://www.google.com/maps?q=' . rawurlencode( $loc['maps_q'] ) . '&output=embed';
-$maps_dir      = 'https://www.google.com/maps/dir/?api=1&destination=' . rawurlencode( $loc['maps_q'] );
+
+// Map embed: always shows the real office. Directions link is FROM the city TO the office,
+// so visitors get a true picture of the drive.
+$maps_embed = 'https://www.google.com/maps?q=' . rawurlencode( $office['maps_q'] ) . '&output=embed';
+$maps_dir   = $is_home_city
+  ? 'https://www.google.com/maps/dir/?api=1&destination=' . rawurlencode( $office['maps_q'] )
+  : 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode( $loc['name'] . ', ' . $loc['state'] ) . '&destination=' . rawurlencode( $office['maps_q'] );
+
+// SEO H1: "in [City]" only when the office is actually in that city; otherwise "Near [City]".
+$hero_prefix = $is_home_city ? 'in' : 'Near';
 ?>
 <!-- wp:html -->
 <section class="ds-loc-hero">
@@ -177,28 +160,28 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&destination=' . rawurle
       <div class="ds-loc-hero__copy ds-reveal">
         <div class="ds-loc-hero__badge">
           <?php echo $svg['star']; ?>
-          <span><strong>5.0</strong> &middot; <?php echo esc_html( $loc['reviews'] ); ?>+ reviews in <?php echo esc_html( $loc['name'] ); ?></span>
+          <span><strong>5.0</strong> &middot; <?php echo esc_html( $office['reviews'] ); ?>+ verified patient reviews</span>
         </div>
-        <h1 class="ds-loc-hero__title">Dental Implants in <?php echo esc_html( $loc['name'] ); ?>, <?php echo esc_html( $loc['state'] ); ?> &mdash; <span class="ds-italic">Expert Results You Can Trust.</span></h1>
-        <p class="ds-loc-hero__sub">Serving patients from <?php echo esc_html( $loc['name'] ); ?> for over <?php echo esc_html( $loc['years'] ); ?> years. Dr. Burns personally handles every case.</p>
+        <h1 class="ds-loc-hero__title">Dental Implants <?php echo esc_html( $hero_prefix ); ?> <?php echo esc_html( $loc['name'] ); ?>, <?php echo esc_html( $loc['state'] ); ?> &mdash; <span class="ds-italic">Expert Results You Can Trust.</span></h1>
+        <p class="ds-loc-hero__sub">Serving patients from <?php echo esc_html( $loc['name'] ); ?> and surrounding areas for over <?php echo esc_html( $office['years'] ); ?> years. Dr. Burns personally handles every case at our Harrisonburg, VA office.</p>
         <div class="ds-loc-hero__meta">
           <span class="ds-loc-hero__meta-item">
             <?php echo $svg['pin']; ?>
-            <span><?php echo esc_html( $loc['address'] ); ?></span>
+            <span><?php echo esc_html( $office['address'] ); ?></span>
           </span>
           <span class="ds-loc-hero__meta-item">
             <?php echo $svg['phone']; ?>
-            <a href="tel:+15407408937">(540) 740-8937</a>
+            <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>"><?php echo esc_html( $office['phone'] ); ?></a>
           </span>
         </div>
         <div class="ds-loc-hero__ctas">
-          <a href="#schedule" class="ds-btn ds-btn--solid"<?php echo $schedule_attr; ?>>Schedule Free Consult</a>
-          <a href="tel:+15407408937" class="ds-btn ds-btn--outlined">Call Now</a>
+          <a href="#quiz" class="ds-btn ds-btn--solid"<?php echo $schedule_attr; ?>>Schedule Free Consult</a>
+          <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" class="ds-btn ds-btn--outlined">Call Now</a>
         </div>
       </div>
       <div class="ds-loc-hero__media ds-reveal">
         <img src="<?php echo esc_url( $loc_image_url ); ?>"
-             alt="DreamSmile <?php echo esc_attr( $loc['name'] ); ?> dental office"
+             alt="DreamSmile dental implants &mdash; serving <?php echo esc_attr( $loc['name'] ); ?>, <?php echo esc_attr( $loc['state'] ); ?>"
              loading="lazy"
              onerror="this.onerror=null; this.src='<?php echo esc_url( $base . '/hero-image.png' ); ?>'" />
       </div>
@@ -209,7 +192,7 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&destination=' . rawurle
 <section class="ds-loc-why">
   <div class="ds-wrap">
     <div class="ds-loc-why__head ds-reveal">
-      <span class="ds-label">WHY CHOOSE THIS LOCATION</span>
+      <span class="ds-label">WHY PATIENTS FROM <?php echo esc_html( strtoupper( $loc['name'] ) ); ?> CHOOSE DR. BURNS</span>
       <h2 class="ds-loc-why__title">Close to home. <span class="ds-italic">Built for your comfort.</span></h2>
     </div>
     <div class="ds-loc-why__grid">
@@ -229,8 +212,8 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&destination=' . rawurle
 <section class="ds-loc-testimonials">
   <div class="ds-wrap">
     <span class="ds-label">PATIENT STORIES</span>
-    <h2 class="ds-loc-testimonials__title ds-reveal">Patients from <?php echo esc_html( $loc['name'] ); ?>, in their own words.</h2>
-    <p class="ds-loc-testimonials__sub ds-reveal">Shared testimonial &mdash; city-specific stories coming soon.</p>
+    <h2 class="ds-loc-testimonials__title ds-reveal">Real patients. <span class="ds-italic">Real DreamSmiles.</span></h2>
+    <p class="ds-loc-testimonials__sub ds-reveal">Hear directly from a DreamSmile patient about their experience with Dr. Burns.</p>
     <div class="ds-loc-testimonials__media ds-reveal">
       <video
         class="ds-loc-testimonials__video"
@@ -267,19 +250,28 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&destination=' . rawurle
   <div class="ds-wrap">
     <div class="ds-loc-map__head ds-reveal">
       <span class="ds-label">MAP &amp; DIRECTIONS</span>
-      <h2 class="ds-loc-map__title">Visit us in <?php echo esc_html( $loc['name'] ); ?>.</h2>
+      <h2 class="ds-loc-map__title">
+        <?php if ( $is_home_city ) : ?>
+          Visit us in <?php echo esc_html( $loc['name'] ); ?>.
+        <?php else : ?>
+          Visit us &mdash; a short drive from <?php echo esc_html( $loc['name'] ); ?>.
+        <?php endif; ?>
+      </h2>
+      <?php if ( ! empty( $loc['travel'] ) ) : ?>
+        <p class="ds-loc-map__travel"><?php echo $loc['travel']; ?></p>
+      <?php endif; ?>
     </div>
     <div class="ds-loc-map__grid">
       <div class="ds-loc-map__info ds-reveal">
-        <h3 class="ds-loc-map__city"><?php echo esc_html( $loc['name'] ); ?>, <?php echo esc_html( $loc['state'] ); ?></h3>
-        <p class="ds-loc-map__addr"><?php echo esc_html( $loc['address'] ); ?></p>
-        <p class="ds-loc-map__hours">Mon&ndash;Fri &middot; 8 am &ndash; 5 pm</p>
+        <h3 class="ds-loc-map__city"><?php echo esc_html( $office['home_city'] ); ?>, <?php echo esc_html( $office['home_state'] ); ?></h3>
+        <p class="ds-loc-map__addr"><?php echo esc_html( $office['address'] ); ?></p>
+        <p class="ds-loc-map__hours"><?php echo $office['hours']; ?></p>
         <div class="ds-loc-map__ctas">
           <a href="<?php echo esc_url( $maps_dir ); ?>" target="_blank" rel="noopener" class="ds-btn ds-btn--solid ds-btn--sm">
             <?php echo $svg['dir']; ?>
-            <span>Get Directions</span>
+            <span><?php echo $is_home_city ? 'Get Directions' : 'Directions from ' . esc_html( $loc['name'] ); ?></span>
           </a>
-          <a href="tel:+15407408937" class="ds-btn ds-btn--outlined-white ds-btn--sm">
+          <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" class="ds-btn ds-btn--outlined-white ds-btn--sm">
             <?php echo $svg['phone']; ?>
             <span>Call Office</span>
           </a>
@@ -288,7 +280,7 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&destination=' . rawurle
       <div class="ds-loc-map__embed ds-reveal">
         <iframe
           src="<?php echo esc_url( $maps_embed ); ?>"
-          title="Map of <?php echo esc_attr( $loc['name'] ); ?>, <?php echo esc_attr( $loc['state'] ); ?>"
+          title="Map of Dr. Burns&rsquo;s dental implant office in <?php echo esc_attr( $office['home_city'] ); ?>, <?php echo esc_attr( $office['home_state'] ); ?>"
           loading="lazy"
           allowfullscreen
           referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -303,8 +295,8 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&destination=' . rawurle
       <h2 class="ds-loc-cta__title">Your New Smile Starts Here.</h2>
       <p class="ds-loc-cta__sub">Free consultation &middot; No obligations &middot; Direct line to Dr. Burns</p>
       <div class="ds-loc-cta__ctas">
-        <a href="#" class="ds-btn ds-btn--solid"<?php echo $schedule_attr; ?>>Schedule</a>
-        <a href="tel:+15407408937" class="ds-btn ds-btn--outlined">Call (540) 740-8937</a>
+        <a href="#quiz" class="ds-btn ds-btn--solid"<?php echo $schedule_attr; ?>>Schedule</a>
+        <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" class="ds-btn ds-btn--outlined">Call <?php echo esc_html( $office['phone'] ); ?></a>
       </div>
     </div>
   </div>

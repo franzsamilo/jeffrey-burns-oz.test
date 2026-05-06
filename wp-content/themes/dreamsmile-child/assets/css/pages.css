@@ -1711,12 +1711,27 @@
 }
 .ds-location-card__media {
   flex-shrink: 0;
+  position: relative;
 }
 .ds-location-card__media img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
+}
+.ds-location-card__pin {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--ds-teal);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 5px 12px;
+  border-radius: var(--ds-pill-radius, 999px);
+  box-shadow: 0 6px 14px -4px rgba(90, 154, 147, 0.5);
 }
 .ds-location-card__media .ds-photo-placeholder {
   aspect-ratio: 4 / 3;
@@ -2408,6 +2423,13 @@
   line-height: 1.2;
   text-transform: none;
   letter-spacing: 0;
+}
+.ds-loc-map__travel {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95rem;
+  font-style: italic;
+  margin: 8px 0 0;
+  max-width: 56ch;
 }
 .ds-loc-map__grid {
   display: grid;
