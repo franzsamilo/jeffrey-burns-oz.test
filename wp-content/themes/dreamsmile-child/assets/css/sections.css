@@ -2287,3 +2287,9 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   text-align: center;
 }
 /* /DREAMSMILE-COMPARISON-CENTER-V2 */
+
+/* DREAMSMILE-EXPERTISE-LANDSCAPE */
+.ds-expertise__video { max-width: 800px !important; }
+.ds-expertise__video-frame { aspect-ratio: 16 / 9 !important; }
+.ds-expertise__video-el { object-fit: cover !important; }
+/* /DREAMSMILE-EXPERTISE-LANDSCAPE */

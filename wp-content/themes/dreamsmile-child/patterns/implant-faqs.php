@@ -20,7 +20,7 @@ $faqs = ds_faq_data();
 <!-- wp:html -->
 <section class="ds-hero ds-hero--sub" id="hero">
   <div class="ds-hero__bg" role="img" aria-label="Dental implant FAQs — Dr. Burns answering patient questions"
-       style="background-image: linear-gradient(135deg, rgba(58,58,58,0.92) 0%, rgba(58,58,58,0.7) 50%, rgba(58,58,58,0.5) 100%), url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/new-patients-hero.jpg' ); ?>'); background-size: cover; background-position: center;">
+       style="background-image: linear-gradient(135deg, rgba(58,58,58,0.92) 0%, rgba(58,58,58,0.7) 50%, rgba(58,58,58,0.5) 100%), url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/implant-faqs-hero.jpg' ); ?>'); background-size: cover; background-position: center;">
   </div>
   <div class="ds-hero__inner">
     <div class="ds-hero__content ds-reveal">
