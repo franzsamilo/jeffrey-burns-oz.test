@@ -79,7 +79,7 @@ $chain_rows = [
       </div>
     </div>
 
-    <div class="ds-comparison__cta ds-reveal" style="margin-top: 56px;">
+    <div class="ds-comparison__cta ds-reveal">
       <a href="#quiz" class="ds-btn ds-btn--solid">SEE IF YOU&rsquo;RE ELIGIBLE FOR DENTAL IMPLANTS</a>
     </div>
   </div>

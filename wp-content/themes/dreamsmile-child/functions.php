@@ -31,6 +31,14 @@ add_action( 'after_setup_theme', function () {
     add_theme_support( 'html5', [ 'search-form', 'gallery', 'caption', 'style', 'script' ] );
 } );
 
+/**
+ * Keep the WP admin bar off the public-facing pages so the fixed
+ * .ds-navbar sits flush at the top of the viewport (the bar's 46px
+ * mobile height was creating a gap above the nav in the Playground
+ * preview, which auto-logs the viewer in).
+ */
+add_filter( 'show_admin_bar', '__return_false' );
+
 /** ────────────────────────────────────────────────────────────────────────
  *  SEO INFRASTRUCTURE — per-page meta + JSON-LD, single-Dentist schema with
  *  areaServed for the 8 SEO communities. Location subpages do NOT declare

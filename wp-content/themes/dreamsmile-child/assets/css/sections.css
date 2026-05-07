@@ -2293,3 +2293,90 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 .ds-expertise__video-frame { aspect-ratio: 16 / 9 !important; }
 .ds-expertise__video-el { object-fit: cover !important; }
 /* /DREAMSMILE-EXPERTISE-LANDSCAPE */
+
+/* ==========================================================================
+   DREAMSMILE-MOBILE-V1 — phone-only responsive fixes (≤767px)
+   Patches stats grid, hero watermark overlap, footer glow overflow,
+   comparison/about padding squeeze, warranty tier transition zone.
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  /* Stats — stack 3-col → 1-col, swap column borders for top borders */
+  .ds-stats {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+    gap: 18px;
+  }
+  .ds-stat + .ds-stat {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 18px;
+  }
+
+  /* Hero — kill min-height + watermark on phones, trim vertical padding */
+  .ds-hero { min-height: auto; }
+  .ds-hero__watermark { display: none; }
+  .ds-hero__inner { padding: 72px 20px 88px; }
+
+  /* Footer — fixed 600px glow overflows narrow viewports */
+  .ds-footer__glow { width: min(100%, 360px); height: 140px; }
+
+  /* Comparison cards — heavy padding squeezes 360px screens */
+  .ds-compare-card { padding: 28px 20px; }
+  .ds-compare-card__badge { top: -12px; font-size: 10px; padding: 4px 10px; }
+  .ds-comparison__cta { margin-top: 36px; }
+
+  /* About — quote padding/max-width too generous on phones */
+  .ds-about__quote {
+    padding: 22px 18px 22px 52px;
+    max-width: 100%;
+  }
+
+  /* Guide card — kill desktop-only "extend ribbon left" trick (margin-left:-80px
+     was hanging the card off the viewport edge on phones). Re-center the layout
+     and beef up the CTA so the card reads as its own thing on mobile, not a
+     leftover sibling of the quiz card. */
+  .ds-guide-card {
+    margin-left: 0;
+    padding: 28px 22px 26px;
+    text-align: center;
+    align-items: center;
+    background: linear-gradient(135deg, #DCE0DF 0%, #E8ECEB 100%);
+    border-radius: 14px;
+    gap: 14px;
+    box-shadow: 0 12px 28px -18px rgba(58, 58, 58, 0.18);
+  }
+  .ds-guide-card__label {
+    max-width: 100%;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    margin-top: 0;
+  }
+  .ds-guide-card__heading {
+    max-width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ds-charcoal);
+    line-height: 1.35;
+  }
+  .ds-guide-card__cta {
+    align-self: stretch;
+    width: 100%;
+    margin-top: 6px;
+    padding-block: 12px;
+    background: var(--ds-teal);
+    color: #fff;
+    border-color: var(--ds-teal);
+  }
+  .ds-guide-card__cta:hover {
+    background: var(--ds-teal-dark);
+    border-color: var(--ds-teal-dark);
+    color: #fff;
+  }
+}
+
+/* Warranty recommended tier — neutralise -16px lift through tablet zone */
+@media (max-width: 899px) {
+  .ds-tier--recommended { margin-block: 0; }
+}
+/* /DREAMSMILE-MOBILE-V1 */

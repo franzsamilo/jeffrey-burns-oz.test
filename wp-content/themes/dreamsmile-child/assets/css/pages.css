@@ -4713,3 +4713,50 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 /* The featured card no longer needs to overflow now that the badge sits inside */
 .ds-proc-type-card.is-featured { overflow: hidden !important; }
 /* /DREAMSMILE-PROC-BADGE-V2 */
+
+/* ==========================================================================
+   DREAMSMILE-MOBILE-V1 — phone-only responsive fixes (≤767px)
+   Sub-pages: FAQ accordion padding, sticky cost media, Meet Dr. Burns
+   badge, schedule-modal form, before/after caption padding.
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  /* FAQ accordion — tight padding for narrow phones */
+  .ds-faq-item__q { padding: 16px 18px; gap: 12px; font-size: 14px; }
+  .ds-faq-item__a { padding: 0 18px 18px; }
+
+  /* Cost factors media — sticky top:96px collides with mobile nav, drop to static */
+  .ds-cost-factors__media { position: static; top: auto; }
+
+  /* Meet Dr. Burns badge — shrink + reposition so it stays inside frame edge */
+  .ds-meet-card__badge {
+    bottom: -10px;
+    left: -10px;
+    width: 72px;
+    height: 72px;
+    box-shadow: 0 12px 24px -8px rgba(90, 154, 147, 0.5), 0 0 0 4px #fff;
+  }
+  .ds-meet-card__badge-num { font-size: 22px; }
+  .ds-meet-card__badge-num sup { font-size: 11px; }
+  .ds-meet-card__badge-label { font-size: 8px; letter-spacing: 0.18em; }
+
+  /* Schedule modal — shrink form/success padding for small viewports */
+  .ds-modal__form,
+  .ds-modal__success {
+    padding: 22px 18px 20px;
+    gap: 12px;
+  }
+
+  /* Before/After carousel caption — reduce padding, smaller nav buttons */
+  .ds-ba__cap { padding: 18px 18px 16px; gap: 4px; }
+  .ds-ba__nav { width: 38px; height: 38px; }
+  .ds-ba__nav svg { width: 16px; height: 16px; }
+  .ds-ba__nav--prev { left: 8px; }
+  .ds-ba__nav--next { right: 8px; }
+}
+
+/* Phones <480px — extra-tight spacing for the locations grid */
+@media (max-width: 480px) {
+  .ds-locations__grid { padding-inline: 0; gap: 18px; }
+}
+/* /DREAMSMILE-MOBILE-V1 */
