@@ -113,6 +113,15 @@ $article_title = $svc['sub_hero']['label'] ?? '';
     </div>
   </div>
 </header>
+
+<?php if ( ! empty( $svc['sub_hero']['bg'] ) ) :
+    $fig_src = get_stylesheet_directory_uri() . '/assets/arrange/' . $svc['sub_hero']['bg'];
+    $fig_alt = $svc['sub_hero']['alt'] ?? '';
+?>
+<figure class="ds-article-figure ds-reveal">
+  <img src="<?php echo esc_url( $fig_src ); ?>" alt="<?php echo esc_attr( $fig_alt ); ?>" loading="lazy" />
+</figure>
+<?php endif; ?>
 <?php else : ?>
 <aside class="ds-service__context ds-reveal" aria-label="Service category">
   <div class="ds-wrap">

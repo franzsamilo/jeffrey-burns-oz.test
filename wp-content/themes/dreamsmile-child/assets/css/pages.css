@@ -5941,6 +5941,52 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   font-size: 13px;
 }
 
+/* Featured image — sits between the editorial hero and the body. Wider
+   than the reading column for that magazine "full-bleed" feel. */
+.ds-article-figure {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 40px 24px 0;
+}
+.ds-article-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Drop cap on the first paragraph of the first article section. */
+.ds-service--article .ds-np-steps__list .ds-np-step:first-of-type .ds-np-step__body p:first-of-type::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 0.9;
+  float: left;
+  padding: 6px 10px 0 0;
+  color: var(--ds-charcoal, #3A3A3A);
+}
+
+/* Article pages skip the dark sub-hero, so the navbar's default white-text
+   state vanishes against the editorial white background. Force the
+   navbar into its solid-light scrolled treatment from page-load. */
+body:has(.ds-article-hero) .ds-navbar {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+body:has(.ds-article-hero) .ds-navbar__nav a,
+body:has(.ds-article-hero) .ds-navbar__dropdown-trigger,
+body:has(.ds-article-hero) .ds-navbar__logo-j,
+body:has(.ds-article-hero) .ds-navbar__logo-name { color: var(--ds-charcoal, #3A3A3A); }
+body:has(.ds-article-hero) .ds-navbar__sub { color: var(--ds-warm-gray, #6B6B6B); }
+body:has(.ds-article-hero) .ds-navbar__nav a:hover,
+body:has(.ds-article-hero) .ds-navbar__dropdown-trigger:hover { color: var(--ds-teal-dark, #5A9A93); }
+body:has(.ds-article-hero) .ds-navbar__toggle span { background: var(--ds-charcoal, #3A3A3A); }
+
 /* Editorial body — narrower reading column, no numbered cards, no pillar
    chips. Steps become flowing subsections; references are right-aligned
    below the prose. */
@@ -5978,7 +6024,21 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 }
 .ds-service--article .ds-np-step::before { display: none !important; }
 .ds-service--article .ds-np-step__num {
-  display: none;
+  display: inline-block;
+  position: static;
+  width: auto;
+  height: auto;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0 0 10px;
+  font-family: 'JetBrains Mono', 'Menlo', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  color: var(--ds-teal-dark, #5A9A93);
 }
 .ds-service--article .ds-np-step__body h3 {
   font-family: 'Playfair Display', serif;
