@@ -2,6 +2,10 @@
 
 This folder packages everything you need to publish a one-click Playground link your teammates can open in their browser to see your live work.
 
+> **Working live in the Playground?** Always use the OPFS-persisted site **`loyal-old-town`** — it survives tab reloads and is where the location photos / sub-hero images that don't live in the GH release zip are stored. The default fresh-tab site (e.g. `loyal-classic-road`) is **temporary** and wipes on reload, so any install/overlay work there is lost the moment the tab refreshes.
+>
+> To resume the OPFS site, open `https://playground.wordpress.net/?mcp=yes&mcp-port=<port>` then in the Playground site list (top-left) click `loyal-old-town`. Verify the active site before doing any theme install or page-creation work.
+
 ---
 
 ## What you'll end up with

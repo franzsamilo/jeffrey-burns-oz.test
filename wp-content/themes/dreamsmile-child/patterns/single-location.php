@@ -7,12 +7,13 @@
  * Renders an SEO-targeted city landing page for Dr. Burns' dental implant
  * practice.
  *
- * IMPORTANT: Dr. Burns has ONE physical office. These 8 city subpages
- * (Harrisonburg, Winchester, Broadway, Bridgewater, Luray, Woodstock,
- * Elkton, Timberville) are LOCAL-SEO LANDING PAGES using "Near [City]"
- * framing. The address, hours, phone, review count, and testimonial
- * content are SHARED across every page and reflect the single real
- * practice (see ds_office_data() in functions.php).
+ * IMPORTANT: Dr. Burns has ONE physical office at 9626 South Congress St,
+ * New Market, VA 22844. These 8 city subpages (Harrisonburg, Winchester,
+ * Broadway, Bridgewater, Luray, Woodstock, Elkton, Timberville) are
+ * LOCAL-SEO LANDING PAGES using "Near [City]" framing. The address, hours,
+ * phone, review count, and testimonial content are SHARED across every
+ * page and reflect the single real practice (see ds_office_data() in
+ * functions.php).
  *
  * Per-city data only carries SEO-relevant context: city name, a city-flavor
  * image, a brief "why patients from [City] choose us" line, and a
@@ -29,9 +30,8 @@ $LOCATIONS = [
     'state'     => 'VA',
     'image'     => 'Harrisonburg-8locations.jpg',
     'hero_bg'   => 'Harrison-Hero.jpg',
-    'local_why' => 'Conveniently located near JMU and downtown Harrisonburg &mdash; an easy stop on the way to or from work, school, or errands.',
-    'travel'    => 'Right here in Harrisonburg &mdash; minutes from JMU and Court Square.',
-    'is_home'   => true,
+    'local_why' => 'Patients from Harrisonburg, JMU, and Rockingham County trust Dr. Burns for the Burns Protocol &mdash; just a quick trip up I-81 to our New Market office.',
+    'travel'    => 'A short drive north on I-81 from Harrisonburg &mdash; easy highway access the whole way to our New Market office.',
   ],
   'winchester' => [
     'name'      => 'Winchester',
@@ -39,23 +39,23 @@ $LOCATIONS = [
     'image'     => 'Winchester-8locations.jpg',
     'hero_bg'   => 'Winchester-8locations.jpg',
     'local_why' => 'Patients from Winchester regularly make the drive south for Dr. Burns&rsquo;s implant expertise &mdash; the level of specialized care is hard to find anywhere else in the valley.',
-    'travel'    => 'A scenic drive south on I-81 from Winchester &mdash; easy highway access the whole way.',
+    'travel'    => 'A scenic drive south on I-81 from Winchester to our New Market office &mdash; easy highway access the whole way.',
   ],
   'broadway' => [
     'name'      => 'Broadway',
     'state'     => 'VA',
     'image'     => 'Broadway-8locations.jpg',
     'hero_bg'   => 'Broadway-8locations.jpg',
-    'local_why' => 'A short drive from Broadway, Timberville, and the north valley &mdash; close enough to keep follow-ups simple.',
-    'travel'    => 'Quick trip down Rt. 259 from Broadway to our Harrisonburg office.',
+    'local_why' => 'A short drive from Broadway and the central valley &mdash; close enough to keep follow-ups simple.',
+    'travel'    => 'Quick trip up Rt. 11 from Broadway to our New Market office.',
   ],
   'bridgewater' => [
     'name'      => 'Bridgewater',
     'state'     => 'VA',
     'image'     => 'Bridgewater-8locations.jpg',
     'hero_bg'   => 'Bridgewater-8locations.jpg',
-    'local_why' => 'Just up the road from Bridgewater &mdash; we welcome students, faculty, and families from the College and surrounding community.',
-    'travel'    => 'A quick drive north from Bridgewater College to Harrisonburg.',
+    'local_why' => 'A straightforward drive north on I-81 from Bridgewater &mdash; we welcome students, faculty, and families from the College and the surrounding community.',
+    'travel'    => 'A quick drive north on I-81 from Bridgewater to our New Market office.',
   ],
   'luray' => [
     'name'      => 'Luray',
@@ -63,7 +63,7 @@ $LOCATIONS = [
     'image'     => 'Luray-8locations.jpg',
     'hero_bg'   => 'Luray-8locations.jpg',
     'local_why' => 'Patients from Luray and Page County make the trip for the Burns Protocol &mdash; the same trusted process from consult through final reveal.',
-    'travel'    => 'Across the mountain from Luray on Rt. 211 &mdash; a beautiful drive to the office.',
+    'travel'    => 'Across the valley from Luray to our New Market office &mdash; a beautiful drive on Rt. 211 W and Rt. 11.',
   ],
   'woodstock' => [
     'name'      => 'Woodstock',
@@ -71,23 +71,23 @@ $LOCATIONS = [
     'image'     => 'Woodstock-8locations.jpg',
     'hero_bg'   => 'Woodstock-8locations.jpg',
     'local_why' => 'A simple drive from Woodstock and Shenandoah County &mdash; same office, same doctor, every visit.',
-    'travel'    => 'South on I-81 from Woodstock &mdash; about a half-hour to our Harrisonburg office.',
+    'travel'    => 'A quick drive south on I-81 from Woodstock to our New Market office &mdash; about 15 minutes.',
   ],
   'elkton' => [
     'name'      => 'Elkton',
     'state'     => 'VA',
     'image'     => 'Elkton-8locations.jpg',
     'hero_bg'   => 'Elkton-8locations.jpg',
-    'local_why' => 'Right next door to Elkton and Rockingham County &mdash; close enough that even multi-step implant treatment fits easily into your week.',
-    'travel'    => 'A short trip west on Rt. 33 from Elkton to our Harrisonburg office.',
+    'local_why' => 'A scenic drive from Elkton and east Rockingham County &mdash; close enough that even multi-step implant treatment fits easily into your week.',
+    'travel'    => 'A short trip up Rt. 33 to I-81 north from Elkton to our New Market office.',
   ],
   'timberville' => [
     'name'      => 'Timberville',
     'state'     => 'VA',
     'image'     => 'Timberville-8locations.jpg',
     'hero_bg'   => 'Timberville-8locations.jpg',
-    'local_why' => 'Patients from Timberville and the orchard country travel down for the level of implant care Dr. Burns provides &mdash; well worth the short drive.',
-    'travel'    => 'A quick drive south from Timberville along Rt. 11 to our Harrisonburg office.',
+    'local_why' => 'Patients from Timberville and the orchard country travel over for the level of implant care Dr. Burns provides &mdash; well worth the short drive.',
+    'travel'    => 'A quick drive east from Timberville to our New Market office &mdash; minutes away.',
   ],
 ];
 
@@ -163,7 +163,7 @@ $hero_prefix = $is_home_city ? 'in' : 'Near';
           <span><strong>5.0</strong> &middot; <?php echo esc_html( $office['reviews'] ); ?>+ verified patient reviews</span>
         </div>
         <h1 class="ds-loc-hero__title">Dental Implants <?php echo esc_html( $hero_prefix ); ?> <?php echo esc_html( $loc['name'] ); ?>, <?php echo esc_html( $loc['state'] ); ?> &mdash; <span class="ds-italic">Expert Results You Can Trust.</span></h1>
-        <p class="ds-loc-hero__sub">Serving patients from <?php echo esc_html( $loc['name'] ); ?> and surrounding areas for over <?php echo esc_html( $office['years'] ); ?> years. Dr. Burns personally handles every case at our Harrisonburg, VA office.</p>
+        <p class="ds-loc-hero__sub">Serving patients from <?php echo esc_html( $loc['name'] ); ?> and surrounding areas for over <?php echo esc_html( $office['years'] ); ?> years. Dr. Burns personally handles every case at our New Market, VA office.</p>
         <div class="ds-loc-hero__meta">
           <span class="ds-loc-hero__meta-item">
             <?php echo $svg['pin']; ?>

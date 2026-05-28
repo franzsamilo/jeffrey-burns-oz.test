@@ -1,9 +1,24 @@
+<!--
+  Universal page template — fallback for any WP page without a specific
+  page-{slug}.html template. All 25+ service-detail pages (single
+  implants, GD/Cosmetic children, preventative-care subpages, financing,
+  etc.) route through here. The service-detail pattern reads the current
+  slug from ds_service_pages() and renders the body content; if the slug
+  is not registered, it returns nothing and post-content takes over.
+
+  Pages with their own page-{slug}.html templates (front-page, dental-
+  implants, locations, new-patients, contact, general-dentistry,
+  cosmetic-dentistry, meet-dr-burns) bypass this file entirely.
+-->
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
 <!-- wp:group {"tagName":"main","className":"ds-main","layout":{"type":"default"}} -->
 <main id="top" class="wp-block-group ds-main">
 
+<!-- wp:pattern {"slug":"dreamsmile/page-sub-hero"} /-->
+<!-- wp:pattern {"slug":"dreamsmile/service-detail"} /-->
 <!-- wp:post-content {"layout":{"type":"default"}} /-->
+<!-- wp:pattern {"slug":"dreamsmile/about-dr-burns"} /-->
 
 </main>
 <!-- /wp:group -->

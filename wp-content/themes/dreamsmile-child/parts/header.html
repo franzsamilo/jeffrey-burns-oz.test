@@ -10,9 +10,90 @@
 
     <nav class="ds-navbar__nav" aria-label="Primary">
       <a href="/">Home</a>
-      <a href="/dental-implants/">Dental Implants</a>
+
+      <div class="ds-navbar__dropdown ds-navbar__dropdown--mega" data-ds-dropdown>
+        <button type="button" class="ds-navbar__dropdown-trigger" aria-haspopup="true" aria-expanded="false" data-ds-dropdown-trigger>
+          Services
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="ds-navbar__dropdown-menu ds-navbar__mega" role="menu">
+          <div class="ds-navbar__mega-col">
+            <a href="/dental-implants/" class="ds-navbar__mega-head" role="menuitem">
+              <span>Dental Implants</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </a>
+            <ul class="ds-navbar__mega-list">
+              <li><a href="/single-dental-implants/" role="menuitem">Single Dental Implants</a></li>
+              <li><a href="/implant-supported-bridges/" role="menuitem">Implant-Supported Bridges</a></li>
+              <li><a href="/full-mouth-dental-implants/" role="menuitem">Full-Mouth Dental Implants</a></li>
+              <li><a href="/implant-supported-dentures/" role="menuitem">Implant-Supported Dentures</a></li>
+              <li><a href="/how-dental-implants-work/" role="menuitem">How Dental Implants Work</a></li>
+            </ul>
+            <p class="ds-navbar__mega-quick">
+              <a href="/implant-cost/" role="menuitem">Cost &amp; Financing</a><span aria-hidden="true">·</span><a href="/implant-procedures/" role="menuitem">Procedures</a><span aria-hidden="true">·</span><a href="/implant-faqs/" role="menuitem">FAQs</a>
+            </p>
+          </div>
+
+          <div class="ds-navbar__mega-col">
+            <a href="/general-dentistry/" class="ds-navbar__mega-head" role="menuitem">
+              <span>General Dentistry</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </a>
+            <ul class="ds-navbar__mega-list">
+              <li><a href="/dental-crowns/" role="menuitem">Dental Crowns</a></li>
+              <li><a href="/dental-bridges/" role="menuitem">Dental Bridges</a></li>
+              <li><a href="/tooth-extraction/" role="menuitem">Tooth Extraction</a></li>
+              <li><a href="/root-canal/" role="menuitem">Root Canal</a></li>
+              <li><a href="/wisdom-teeth-removal/" role="menuitem">Wisdom Teeth Removal</a></li>
+              <li><a href="/bone-grafting/" role="menuitem">Bone Grafting</a></li>
+            </ul>
+            <p class="ds-navbar__mega-quick ds-navbar__mega-quick--also">
+              <span class="ds-navbar__mega-also-label">Also:</span>
+              <a href="/pediatric-dentistry/" role="menuitem">Pediatric</a><span aria-hidden="true">·</span><a href="/full-dentures/" role="menuitem">Full Dentures</a><span aria-hidden="true">·</span><a href="/partial-dentures/" role="menuitem">Partial Dentures</a>
+            </p>
+          </div>
+
+          <div class="ds-navbar__mega-col">
+            <span class="ds-navbar__mega-head ds-navbar__mega-head--dual">Cosmetic &amp; Restorative</span>
+            <ul class="ds-navbar__mega-list">
+              <li><a href="/porcelain-veneers/" role="menuitem">Porcelain Veneers</a></li>
+              <li><a href="/teeth-whitening/" role="menuitem">Teeth Whitening</a></li>
+              <li><a href="/clear-braces/" role="menuitem">Clear Braces</a></li>
+              <li><a href="/dental-fillings/" role="menuitem">Dental Fillings</a></li>
+            </ul>
+            <p class="ds-navbar__mega-foot">
+              <a href="/cosmetic-dentistry/" role="menuitem">→ Cosmetic Hub</a>
+              <a href="/restorative-care/" role="menuitem">→ Restorative Hub</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
       <a href="/locations/">Locations</a>
       <a href="/new-patients/">New Patients</a>
+
+      <div class="ds-navbar__dropdown" data-ds-dropdown>
+        <button type="button" class="ds-navbar__dropdown-trigger" aria-haspopup="true" aria-expanded="false" data-ds-dropdown-trigger>
+          Resources
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="ds-navbar__dropdown-menu" role="menu">
+          <a href="/new-patients/#forms" role="menuitem">
+            <strong>New Patient Forms</strong>
+            <span>Download or request the forms before your visit</span>
+          </a>
+          <a href="/financing/" role="menuitem">
+            <strong>Financing &amp; Insurance</strong>
+            <span>Cherry, CareCredit, Sunbit &amp; insurance details</span>
+          </a>
+          <a href="/patient-education/" role="menuitem">
+            <strong>Patient Education</strong>
+            <span>Articles, recovery tips &amp; what to expect</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="/contact/">Contact</a>
     </nav>
 
     <a href="#quiz" class="ds-btn ds-btn--solid ds-btn--sm ds-navbar__cta">Schedule</a>
@@ -24,12 +105,60 @@
 
   <div class="ds-navbar__mobile" data-ds-nav-mobile hidden>
     <a href="/">Home</a>
-    <a href="/dental-implants/">Dental Implants</a>
-    <a href="/implant-cost/">Cost &amp; Financing</a>
-    <a href="/implant-procedures/">Procedures</a>
-    <a href="/implant-faqs/">FAQs</a>
+
+    <div class="ds-navbar__mobile-acc" data-ds-mobile-acc>
+      <button type="button" class="ds-navbar__mobile-acc-trigger" aria-expanded="false" data-ds-mobile-acc-trigger>
+        Services
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="ds-navbar__mobile-acc-panel" data-ds-mobile-acc-panel hidden>
+        <a href="/dental-implants/" class="ds-navbar__mobile-acc-head">Dental Implants</a>
+        <a href="/single-dental-implants/" class="ds-navbar__mobile-sub">Single Implants</a>
+        <a href="/implant-supported-bridges/" class="ds-navbar__mobile-sub">Implant-Supported Bridges</a>
+        <a href="/full-mouth-dental-implants/" class="ds-navbar__mobile-sub">Full-Mouth Implants</a>
+        <a href="/implant-supported-dentures/" class="ds-navbar__mobile-sub">Implant-Supported Dentures</a>
+        <a href="/how-dental-implants-work/" class="ds-navbar__mobile-sub">How Implants Work</a>
+        <a href="/implant-cost/" class="ds-navbar__mobile-sub ds-navbar__mobile-sub--muted">Cost &amp; Financing</a>
+        <a href="/implant-procedures/" class="ds-navbar__mobile-sub ds-navbar__mobile-sub--muted">Procedures</a>
+        <a href="/implant-faqs/" class="ds-navbar__mobile-sub ds-navbar__mobile-sub--muted">FAQs</a>
+
+        <a href="/general-dentistry/" class="ds-navbar__mobile-acc-head">General Dentistry</a>
+        <a href="/dental-crowns/" class="ds-navbar__mobile-sub">Dental Crowns</a>
+        <a href="/dental-bridges/" class="ds-navbar__mobile-sub">Dental Bridges</a>
+        <a href="/tooth-extraction/" class="ds-navbar__mobile-sub">Tooth Extraction</a>
+        <a href="/root-canal/" class="ds-navbar__mobile-sub">Root Canal</a>
+        <a href="/wisdom-teeth-removal/" class="ds-navbar__mobile-sub">Wisdom Teeth Removal</a>
+        <a href="/bone-grafting/" class="ds-navbar__mobile-sub">Bone Grafting</a>
+        <a href="/pediatric-dentistry/" class="ds-navbar__mobile-sub ds-navbar__mobile-sub--muted">Pediatric Dentistry</a>
+        <a href="/full-dentures/" class="ds-navbar__mobile-sub ds-navbar__mobile-sub--muted">Full Dentures</a>
+        <a href="/partial-dentures/" class="ds-navbar__mobile-sub ds-navbar__mobile-sub--muted">Partial Dentures</a>
+
+        <span class="ds-navbar__mobile-acc-head">Cosmetic &amp; Restorative</span>
+        <a href="/porcelain-veneers/" class="ds-navbar__mobile-sub">Porcelain Veneers</a>
+        <a href="/teeth-whitening/" class="ds-navbar__mobile-sub">Teeth Whitening</a>
+        <a href="/clear-braces/" class="ds-navbar__mobile-sub">Clear Braces</a>
+        <a href="/dental-fillings/" class="ds-navbar__mobile-sub">Dental Fillings</a>
+        <a href="/cosmetic-dentistry/" class="ds-navbar__mobile-sub ds-navbar__mobile-sub--hub">→ Cosmetic Hub</a>
+        <a href="/restorative-care/" class="ds-navbar__mobile-sub ds-navbar__mobile-sub--hub">→ Restorative Hub</a>
+      </div>
+    </div>
+
     <a href="/locations/">Locations</a>
     <a href="/new-patients/">New Patients</a>
+
+    <div class="ds-navbar__mobile-acc" data-ds-mobile-acc>
+      <button type="button" class="ds-navbar__mobile-acc-trigger" aria-expanded="false" data-ds-mobile-acc-trigger>
+        Resources
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="ds-navbar__mobile-acc-panel" data-ds-mobile-acc-panel hidden>
+        <a href="/new-patients/#forms" class="ds-navbar__mobile-sub">New Patient Forms</a>
+        <a href="/financing/" class="ds-navbar__mobile-sub">Financing &amp; Insurance</a>
+        <a href="/patient-education/" class="ds-navbar__mobile-sub">Patient Education</a>
+      </div>
+    </div>
+
+    <a href="/contact/">Contact</a>
     <a href="#quiz" class="ds-btn ds-btn--solid ds-navbar__mobile-cta">Schedule</a>
   </div>
 </header>

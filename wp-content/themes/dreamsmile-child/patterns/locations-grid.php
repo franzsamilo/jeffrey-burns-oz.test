@@ -23,13 +23,13 @@ $ds_locations_fallback = $base . '/hero-image.png';
  * matching SEO landing page.
  */
 $locations = [
-  [ 'Harrisonburg', 'Our home community',                       'Harrisonburg-8locations.jpg', 'harrisonburg', true  ],
-  [ 'Winchester',   'Serving Winchester &amp; Frederick County', 'Winchester-8locations.jpg',   'winchester',   false ],
-  [ 'Broadway',     'Serving Broadway &amp; the north valley',  'Broadway-8locations.jpg',     'broadway',     false ],
-  [ 'Bridgewater',  'Serving Bridgewater &amp; the College',    'Bridgewater-8locations.jpg',  'bridgewater',  false ],
-  [ 'Luray',        'Serving Luray &amp; Page County',          'Luray-8locations.jpg',        'luray',        false ],
-  [ 'Woodstock',    'Serving Woodstock &amp; Shenandoah County', 'Woodstock-8locations.jpg',    'woodstock',    false ],
-  [ 'Elkton',       'Serving Elkton &amp; Rockingham County',   'Elkton-8locations.jpg',       'elkton',       false ],
+  [ 'Harrisonburg', 'Serving Harrisonburg &amp; Rockingham County',  'Harrisonburg-8locations.jpg', 'harrisonburg', false ],
+  [ 'Winchester',   'Serving Winchester &amp; Frederick County',     'Winchester-8locations.jpg',   'winchester',   false ],
+  [ 'Broadway',     'Serving Broadway &amp; the central valley',     'Broadway-8locations.jpg',     'broadway',     false ],
+  [ 'Bridgewater',  'Serving Bridgewater &amp; the College',         'Bridgewater-8locations.jpg',  'bridgewater',  false ],
+  [ 'Luray',        'Serving Luray &amp; Page County',               'Luray-8locations.jpg',        'luray',        false ],
+  [ 'Woodstock',    'Serving Woodstock &amp; Shenandoah County',     'Woodstock-8locations.jpg',    'woodstock',    false ],
+  [ 'Elkton',       'Serving Elkton &amp; east Rockingham',          'Elkton-8locations.jpg',       'elkton',       false ],
   [ 'Timberville',  'Serving Timberville &amp; the orchard country', 'Timberville-8locations.jpg', 'timberville', false ],
 ];
 ?>
@@ -39,7 +39,7 @@ $locations = [
     <div class="ds-locations__head ds-reveal">
       <span class="ds-label">COMMUNITIES WE SERVE</span>
       <h2 class="ds-locations__title">One Office. The Whole Shenandoah Valley.</h2>
-      <p class="ds-locations__sub">Dr. Burns&rsquo;s dental implant practice is based in <?php echo esc_html( $office['home_city'] ); ?>, <?php echo esc_html( $office['home_state'] ); ?> &mdash; serving patients across the valley with the same premium care, regardless of where you call home.</p>
+      <p class="ds-locations__sub">Dr. Burns&rsquo;s dental implant practice is based at <strong>9626 South Congress St, <?php echo esc_html( $office['home_city'] ); ?>, <?php echo esc_html( $office['home_state'] ); ?></strong> &mdash; centrally located on I-81, serving patients across the valley with the same premium care, regardless of where you call home.</p>
     </div>
 
     <div class="ds-locations__grid">

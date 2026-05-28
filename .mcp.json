@@ -2,8 +2,10 @@
   "mcpServers": {
     "wordpress-playground": {
       "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "@wp-playground/mcp"]
+      "command": "node",
+      "args": [
+        "C:\\Users\\Franz Samilo\\AppData\\Local\\npm-cache\\_npx\\480b27f9e385279e\\node_modules\\@wp-playground\\mcp\\index.js"
+      ]
     }
   }
 }

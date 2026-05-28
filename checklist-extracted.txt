@@ -1,0 +1,107 @@
+Live Site (Checklist if present in current Live Site)Please refer to this document for the listed menu items: https://docs.google.com/document/d/16o8QFN8rlmX99Rd1yw9wrI8wRuqSIGQNMmI4jZLXZpA/edit?tab=t.0
+
+
+Attached links may serve as reference for the content.
+
+PAGES:
+Dental Implants
+Dental Implants [https://www.jeffreyburns.com/restorative-dentistry/dental-implants/]
+*single dental implants and how they work 
+Might it be this ? [https://www.jeffreyburns.com/restorative-dentistry/dental-implants/overview-of-implant-placement/]✳️combine the info from the above link with info from sources like this: https://www.perio.org/for-patients/periodontal-treatments-and-procedures/dental-implant-procedures/single-tooth-dental-implants/
+*implant supported bridges  
+✳️ take info from here:https://my.clevelandclinic.org/health/treatments/10921-dental-bridges
+
+*how dental implants work
+Might it be this? Same link as single dental implants [https://www.jeffreyburns.com/restorative-dentistry/dental-implants/overview-of-implant-placement/]✳️ take info from here instead of the single dental implants https://www.fda.gov/medical-devices/dental-devices/dental-implants-what-you-should-know 
+Brief description of Full Mouth Dental Implants and Implant Supported Dentures and Link to these two dental implant pages (which will be more in depth
+Full Mouth Dental Implants
+Maybe this? [https://www.jeffreyburns.com/restorative-dentistry/dental-implants/missing-all-upper-or-lower-teeth/] ////take some of the info here and put it towards the bottom of the page…as it should be like “how we can help you” - Use the info from the link below or other relevant sources as the main information. [make sure to paraphrase to avoid outright copyrighting, or provide references to your sources]✳️Combine with info from here: https://www.perio.org/for-patients/periodontal-treatments-and-procedures/dental-implant-procedures/full-mouth-dental-implants/ 
+Implant Supported Dentures
+Reference this: https://my.clevelandclinic.org/health/treatments/24303-implant-supported-dentures  (implant retained dentures is different from implant supported dentures)
+General Dentistry (Other Services)
+General Dentistry (https://www.flossseattle.com/why-floss/what-is-general-dentistry) - the services that fall under general dentistry can be listed here (in the document link provided at the top: 
+General Dentistry
+Pediatric Dental Care
+Dental Bridges *talk about traditional bridges vs implant bridges
+Dental Crowns
+Wisdom Teeth Removal
+Tooth Extraction
+Root Canal
+Bone Grafting
+Dentures *full and partial dentures
+Pediatric Dental Care [https://www.jeffreyburns.com/preventative-care/child-dentistry/]
+Dental Bridges *talk about traditional bridges vs implant bridges
+[https://www.jeffreyburns.com/restorative-dentistry/dental-bridges/]
+Note: no mention of traditional bridges vs implant bridges
+✳️take some info from here or other relevant sources: https://www.harlemdentistry.com/blog/implant-bridge-vs-traditional-bridge 
+Dental Crowns [https://www.jeffreyburns.com/restorative-dentistry/dental-crowns/]
+Wisdom Teeth Removal [https://www.jeffreyburns.com/preventative-care/wisdom-teeth-removal/]
+Tooth Extraction - https://www.jeffreyburns.com/preventative-care/tooth-extractions/
+Root Canal [https://www.jeffreyburns.com/restorative-dentistry/root-canal/]
+Bone GraftingTake some info from here: https://my.clevelandclinic.org/health/treatments/21727-dental-bone-graft and combine with some relevant info from here: https://www.jeffreyburns.com/restorative-dentistry/l-prf-grafting-and-osstell-idx/
+
+Dentures *full and partial dentures [https://www.jeffreyburns.com/restorative-dentistry/dentures/]
+Partial Dentures: [https://www.jeffreyburns.com/restorative-dentistry/dentures/partial-dentures/]
+Full Dentures Reference here: https://my.clevelandclinic.org/health/treatments/10900-dentures 
+Cosmetic Dentistry [https://www.jeffreyburns.com/cosmetic-dentistry-4/]
+Porcelain Veneers [https://www.jeffreyburns.com/cosmetic-dentistry-4/porcelain-veneers/]
+Teeth Whitening [https://www.jeffreyburns.com/cosmetic-dentistry-4/teeth-whitening/]
+Clear Braces [https://www.jeffreyburns.com/cosmetic-dentistry-4/clear-braces/]
+Meet Dr. Burns [https://www.jeffreyburns.com/about-us/dr-jeffrey-burns/]
+Resources *These pages will not be a direct response, they are just extra information for the patients. They will be able to be accessed from the menu drop down.
+New Patient Forms
+Live New Patients page but no forms [https://www.jeffreyburns.com/patient-information/new-patients/]
+Financing/Insurance [https://www.jeffreyburns.com/patient-information/insurance/cherry-credit/]
+Patient Education (which is what we will name the “blog”)
+Live Blog page [https://www.jeffreyburns.com/blog/]
+Live Patient Education page (not much content) [https://www.jeffreyburns.com/patient-information/patient-education/]
+
+Contact [https://www.jeffreyburns.com/contact-us/]
+Note image below for devs (include these):
+
+
+Subpages/Blog pages
+Anesthesia [https://www.jeffreyburns.com/patient-information/anesthesia/]
+Dental Exams and Check-Ups [https://www.jeffreyburns.com/preventative-care/dental-exams-and-check-ups/]
+Oral Hygiene [https://www.jeffreyburns.com/preventative-care/oral-hygiene/]
+Teeth Cleaning [https://www.jeffreyburns.com/preventative-care/teeth-cleaning/]
+Dental Sealants [https://www.jeffreyburns.com/preventative-care/dental-sealants/]
+Gum disease treatment 
+No content link: https://www.jeffreyburns.com/preventative-care/gum-disease-treatment/
+Links below have content:
+Deep Teeth Cleaning [https://www.jeffreyburns.com/preventative-care/gum-disease-treatment/deep-teeth-cleaning/]
+Periodontal Maintenance [https://www.jeffreyburns.com/preventative-care/gum-disease-treatment/periodontal-maintenance/]
+Restorative Care
+https://www.jeffreyburns.com/restorative-dentistry/]
+Dental Fillings [https://www.jeffreyburns.com/restorative-dentistry/dental-fillings/]
+
+
+
+
+
+Summary as of 5/07/2026
+
+Here's a summary of the sites listed in the Updated Page list but are not in the current live site. Please see the checklist docs link for more detailed context.
+
+1. Dental Implants Page
+  a. Dental Implants
+    - Single Dental Implants
+    - Implant Supported Bridges
+    - How dental implants work
+    - Brief description of Full Mouth Dental Implants and Implant Supported Dentures
+  b. Full Mouth Dental Implants
+  c. Implant Supported Dentures
+
+2. General Dentistry
+  a. General Dentistry
+  b. Dental Bridges
+  c. Tooth Extraction
+  d. Bone Grafting
+  e. Dentures
+    - Full Dentures
+
+3. Resources
+  a. New Patient Forms
+
+4. Subpages/blog pages
+  a. Restorative Care

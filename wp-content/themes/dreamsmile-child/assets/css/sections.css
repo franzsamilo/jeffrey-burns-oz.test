@@ -2217,6 +2217,35 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   display: block;
 }
 
+/* "Learn more about Dr. Burns" CTA — every-page about section deep-link */
+.ds-about__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 22px;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ds-teal-dark);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(127, 181, 176, 0.5);
+  padding-bottom: 4px;
+  transition: color .15s ease, border-color .15s ease, gap .18s ease;
+}
+.ds-about__more svg {
+  flex-shrink: 0;
+  transition: transform .18s ease;
+}
+.ds-about__more:hover {
+  color: var(--ds-teal);
+  border-bottom-color: var(--ds-teal);
+  gap: 10px;
+}
+.ds-about__more:hover svg { transform: translateX(2px); }
+
 /* Frustrations â€” uniform custom SVG icons (on dark bg) */
 .ds-frustration-card__icon {
   width: 44px;

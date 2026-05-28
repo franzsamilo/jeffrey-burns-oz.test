@@ -40,6 +40,95 @@ add_action( 'after_setup_theme', function () {
 add_filter( 'show_admin_bar', '__return_false' );
 
 /** ────────────────────────────────────────────────────────────────────────
+ *  ONE-SHOT PAGE SEEDER — mirrors preview/blueprint.json runPHP.
+ *  When the OPFS Playground site receives an updated theme zip, this
+ *  ensures the 30+ new WP pages from the 2026-05-07 IA expansion exist
+ *  without re-installing from the blueprint. Idempotent (uses
+ *  get_page_by_path() to skip existing pages), gated by a versioned
+ *  option so it only runs once per release.
+ *  ──────────────────────────────────────────────────────────────────────── */
+
+add_action( 'init', function () {
+    $version = 'ds_pages_seeded_2026_05_10';
+    if ( get_option( $version ) ) { return; }
+    if ( ! function_exists( 'wp_insert_post' ) ) { return; }
+
+    $pages = [
+        'Home', 'Dental Implants', 'Locations', 'New Patients', 'Contact',
+        'General Dentistry', 'Cosmetic Dentistry', 'Meet Dr. Burns',
+        'Restorative Care', 'Gum Disease Treatment', 'Resources',
+        'Implant Cost & Financing', 'Implant Procedures Overview', 'Implant FAQs',
+        'Single Dental Implants', 'Implant Supported Bridges', 'How Dental Implants Work',
+        'Full Mouth Dental Implants', 'Implant Supported Dentures',
+        'Dental Bridges', 'Tooth Extraction', 'Bone Grafting', 'Full Dentures',
+        'Partial Dentures', 'Pediatric Dentistry', 'Dental Crowns', 'Root Canal',
+        'Wisdom Teeth Removal',
+        'Porcelain Veneers', 'Teeth Whitening', 'Clear Braces',
+        'Anesthesia & Sedation', 'Dental Exams', 'Oral Hygiene', 'Teeth Cleaning',
+        'Dental Sealants', 'Deep Teeth Cleaning', 'Periodontal Maintenance',
+        'Dental Fillings', 'Financing & Insurance', 'Patient Education',
+        'Harrisonburg', 'Winchester', 'Broadway', 'Bridgewater',
+        'Luray', 'Woodstock', 'Elkton', 'Timberville',
+    ];
+
+    $slug_overrides = [
+        'Implant Cost & Financing'    => 'implant-cost',
+        'Implant Procedures Overview' => 'implant-procedures',
+        'Implant FAQs'                => 'implant-faqs',
+        'Meet Dr. Burns'              => 'meet-dr-burns',
+        'Anesthesia & Sedation'       => 'anesthesia',
+        'Financing & Insurance'       => 'financing',
+        'Gum Disease Treatment'       => 'gum-disease',
+    ];
+
+    $content_overrides = [
+        'implant-cost'         => '<!-- wp:pattern {"slug":"dreamsmile/implant-cost"} /-->',
+        'implant-procedures'   => '<!-- wp:pattern {"slug":"dreamsmile/implant-procedures"} /-->',
+        'implant-faqs'         => '<!-- wp:pattern {"slug":"dreamsmile/implant-faqs"} /-->',
+        'harrisonburg'         => '<!-- wp:pattern {"slug":"dreamsmile/single-location"} /-->',
+        'winchester'           => '<!-- wp:pattern {"slug":"dreamsmile/single-location"} /-->',
+        'broadway'             => '<!-- wp:pattern {"slug":"dreamsmile/single-location"} /-->',
+        'bridgewater'          => '<!-- wp:pattern {"slug":"dreamsmile/single-location"} /-->',
+        'luray'                => '<!-- wp:pattern {"slug":"dreamsmile/single-location"} /-->',
+        'woodstock'            => '<!-- wp:pattern {"slug":"dreamsmile/single-location"} /-->',
+        'elkton'               => '<!-- wp:pattern {"slug":"dreamsmile/single-location"} /-->',
+        'timberville'          => '<!-- wp:pattern {"slug":"dreamsmile/single-location"} /-->',
+    ];
+
+    $home_id = 0;
+    foreach ( $pages as $title ) {
+        $slug = $slug_overrides[ $title ] ?? sanitize_title( $title );
+        $existing = get_page_by_path( $slug );
+        if ( $existing ) {
+            $id = $existing->ID;
+            // Refresh content for pages that need a specific pattern;
+            // leave service-detail pages (which intentionally have empty
+            // content) alone so a re-seed doesn't clobber any wp-admin edits.
+            if ( isset( $content_overrides[ $slug ] ) && trim( $existing->post_content ) === '' ) {
+                wp_update_post( [ 'ID' => $id, 'post_content' => $content_overrides[ $slug ] ] );
+            }
+        } else {
+            $id = wp_insert_post( [
+                'post_title'   => $title,
+                'post_name'    => $slug,
+                'post_type'    => 'page',
+                'post_status'  => 'publish',
+                'post_content' => $content_overrides[ $slug ] ?? '',
+            ] );
+        }
+        if ( 'Home' === $title && $id ) { $home_id = $id; }
+    }
+
+    if ( $home_id && ! get_option( 'page_on_front' ) ) {
+        update_option( 'show_on_front', 'page' );
+        update_option( 'page_on_front', $home_id );
+    }
+
+    update_option( $version, time() );
+    flush_rewrite_rules();
+}, 5 );
+
+/** ────────────────────────────────────────────────────────────────────────
  *  SEO INFRASTRUCTURE — per-page meta + JSON-LD, single-Dentist schema with
  *  areaServed for the 8 SEO communities. Location subpages do NOT declare
  *  their own LocalBusiness entities (that would read as multiple practices).
@@ -61,14 +150,14 @@ function ds_seo_data( $slug = null ) {
     $base   = get_stylesheet_directory_uri() . '/assets/arrange';
 
     $cities = [
-        'harrisonburg' => [ 'name' => 'Harrisonburg', 'prefix' => 'in',   'preview' => 'Dr. Burns&rsquo;s dental implant practice in the heart of Harrisonburg, VA. 30+ years of experience, the Burns Protocol, and a free consultation.', 'image' => 'Harrison-Hero.jpg' ],
-        'winchester'   => [ 'name' => 'Winchester',   'prefix' => 'Near', 'preview' => 'Dental implant patients from Winchester, VA trust Dr. Burns for the Burns Protocol. A scenic drive south to our Harrisonburg office &mdash; free consultation.', 'image' => 'Winchester-8locations.jpg' ],
-        'broadway'     => [ 'name' => 'Broadway',     'prefix' => 'Near', 'preview' => 'Dental implant patients from Broadway and the north Shenandoah Valley &mdash; short drive to Dr. Burns&rsquo;s Harrisonburg practice. Free consultation.', 'image' => 'Broadway-8locations.jpg' ],
-        'bridgewater'  => [ 'name' => 'Bridgewater',  'prefix' => 'Near', 'preview' => 'Bridgewater, VA dental implant patients &mdash; Dr. Burns&rsquo;s practice is just up the road in Harrisonburg. 30+ years of experience, free consultation.', 'image' => 'Bridgewater-8locations.jpg' ],
-        'luray'        => [ 'name' => 'Luray',        'prefix' => 'Near', 'preview' => 'Page County dental implant patients trust Dr. Burns. Across the mountain on Rt. 211 to our Harrisonburg, VA practice. Free consultation.', 'image' => 'Luray-8locations.jpg' ],
-        'woodstock'    => [ 'name' => 'Woodstock',    'prefix' => 'Near', 'preview' => 'Shenandoah County dental implant patients &mdash; Dr. Burns&rsquo;s practice is a half-hour south on I-81 from Woodstock. Free consultation.', 'image' => 'Woodstock-8locations.jpg' ],
-        'elkton'       => [ 'name' => 'Elkton',       'prefix' => 'Near', 'preview' => 'Elkton and Rockingham County dental implant patients &mdash; Dr. Burns&rsquo;s practice is a short trip west on Rt. 33 in Harrisonburg, VA.', 'image' => 'Elkton-8locations.jpg' ],
-        'timberville'  => [ 'name' => 'Timberville',  'prefix' => 'Near', 'preview' => 'Timberville and orchard-country dental implant patients &mdash; quick drive south to Dr. Burns&rsquo;s Harrisonburg, VA practice. Free consultation.', 'image' => 'Timberville-8locations.jpg' ],
+        'harrisonburg' => [ 'name' => 'Harrisonburg', 'prefix' => 'Near', 'preview' => 'Harrisonburg dental implant patients trust Dr. Burns. A short drive north on I-81 to our New Market, VA office &mdash; 30+ years of experience, the Burns Protocol, and a free consultation.', 'image' => 'Harrison-Hero.jpg' ],
+        'winchester'   => [ 'name' => 'Winchester',   'prefix' => 'Near', 'preview' => 'Dental implant patients from Winchester, VA trust Dr. Burns for the Burns Protocol. A scenic drive south on I-81 to our New Market office &mdash; free consultation.', 'image' => 'Winchester-8locations.jpg' ],
+        'broadway'     => [ 'name' => 'Broadway',     'prefix' => 'Near', 'preview' => 'Dental implant patients from Broadway and the central Shenandoah Valley &mdash; a quick drive up Rt. 11 to Dr. Burns&rsquo;s New Market office. Free consultation.', 'image' => 'Broadway-8locations.jpg' ],
+        'bridgewater'  => [ 'name' => 'Bridgewater',  'prefix' => 'Near', 'preview' => 'Bridgewater, VA dental implant patients &mdash; Dr. Burns&rsquo;s practice is a short drive north on I-81 in New Market. 30+ years of experience, free consultation.', 'image' => 'Bridgewater-8locations.jpg' ],
+        'luray'        => [ 'name' => 'Luray',        'prefix' => 'Near', 'preview' => 'Page County dental implant patients trust Dr. Burns. A short drive across the valley to our New Market, VA practice. Free consultation.', 'image' => 'Luray-8locations.jpg' ],
+        'woodstock'    => [ 'name' => 'Woodstock',    'prefix' => 'Near', 'preview' => 'Shenandoah County dental implant patients &mdash; Dr. Burns&rsquo;s practice is a quick drive south on I-81 from Woodstock to New Market. Free consultation.', 'image' => 'Woodstock-8locations.jpg' ],
+        'elkton'       => [ 'name' => 'Elkton',       'prefix' => 'Near', 'preview' => 'Elkton and east Rockingham County dental implant patients &mdash; Dr. Burns&rsquo;s practice is a short trip up I-81 in New Market, VA.', 'image' => 'Elkton-8locations.jpg' ],
+        'timberville'  => [ 'name' => 'Timberville',  'prefix' => 'Near', 'preview' => 'Timberville and orchard-country dental implant patients &mdash; quick drive east to Dr. Burns&rsquo;s New Market, VA practice. Free consultation.', 'image' => 'Timberville-8locations.jpg' ],
     ];
 
     if ( isset( $cities[ $slug ] ) ) {
@@ -86,18 +175,18 @@ function ds_seo_data( $slug = null ) {
 
     $map = [
         'home' => [
-            'title' => 'DreamSmile Dental Implants in Harrisonburg, VA | ' . $brand,
-            'description' => 'Permanent dental implant solutions from a nationally recognized specialist with 30+ years of experience. Schedule your free consultation with Dr. Jeffrey S. Burns, DDS.',
+            'title' => 'DreamSmile Dental Implants in New Market, VA | ' . $brand,
+            'description' => 'Permanent dental implant solutions from a nationally recognized specialist with 30+ years of experience. Serving the Shenandoah Valley from our New Market, VA office. Schedule your free consultation with Dr. Jeffrey S. Burns, DDS.',
             'og_image' => $base . '/hero-image.png', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'home',
         ],
         'dental-implants' => [
-            'title' => 'Dental Implants in Harrisonburg, VA &mdash; The Burns Protocol | ' . $brand,
-            'description' => 'Permanent, natural-looking dental implants placed personally by Dr. Burns. Single, multi-tooth, and full-arch implants &mdash; all under one roof in Harrisonburg, VA.',
+            'title' => 'Dental Implants in New Market, VA &mdash; The Burns Protocol | ' . $brand,
+            'description' => 'Permanent, natural-looking dental implants placed personally by Dr. Burns. Single, multi-tooth, and full-arch implants &mdash; all under one roof in New Market, VA.',
             'og_image' => $base . '/dental-implants-hero.jpg', 'og_type' => 'article', 'robots' => 'index, follow', 'page_type' => 'service',
         ],
         'implant-cost' => [
-            'title' => 'Dental Implant Cost & Financing | ' . $brand . ' Harrisonburg, VA',
-            'description' => 'Transparent, all-inclusive dental implant pricing in Harrisonburg, VA. No hidden fees. Flexible financing for single, multi-tooth, and full-arch implants.',
+            'title' => 'Dental Implant Cost & Financing | ' . $brand . ' New Market, VA',
+            'description' => 'Transparent, all-inclusive dental implant pricing in New Market, VA. No hidden fees. Flexible financing for single, multi-tooth, and full-arch implants.',
             'og_image' => $base . '/dental-implants-hero.jpg', 'og_type' => 'article', 'robots' => 'index, follow', 'page_type' => 'service',
         ],
         'implant-procedures' => [
@@ -106,27 +195,63 @@ function ds_seo_data( $slug = null ) {
             'og_image' => $base . '/dental-implants-hero.jpg', 'og_type' => 'article', 'robots' => 'index, follow', 'page_type' => 'service',
         ],
         'implant-faqs' => [
-            'title' => 'Dental Implant FAQs | ' . $brand . ' Harrisonburg, VA',
+            'title' => 'Dental Implant FAQs | ' . $brand . ' New Market, VA',
             'description' => 'Answers to the most common dental implant questions &mdash; pain, recovery, longevity, cost, candidacy. Direct from Dr. Burns and his 30+ years of experience.',
             'og_image' => $base . '/new-patients-hero.jpg', 'og_type' => 'article', 'robots' => 'index, follow', 'page_type' => 'faq',
         ],
         'locations' => [
-            'title' => 'Dental Implants Near Harrisonburg, VA &mdash; Communities We Serve | ' . $brand,
-            'description' => 'Dr. Burns&rsquo;s dental implant practice serves patients across the Shenandoah Valley from his Harrisonburg, VA office. See the communities we serve.',
+            'title' => 'Dental Implants Across the Shenandoah Valley &mdash; Communities We Serve | ' . $brand,
+            'description' => 'Dr. Burns&rsquo;s dental implant practice serves patients across the Shenandoah Valley from his New Market, VA office. See the communities we serve.',
             'og_image' => $base . '/Harrison-Hero.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'locations-index',
         ],
         'new-patients' => [
             'title' => 'New Patients | DreamSmile Dental Implants &mdash; ' . $brand,
-            'description' => 'Welcome to DreamSmile. Get started with your free consultation, new patient forms, and what to expect on your first visit with Dr. Burns in Harrisonburg, VA.',
+            'description' => 'Welcome to DreamSmile. Get started with your free consultation, new patient forms, and what to expect on your first visit with Dr. Burns in New Market, VA.',
             'og_image' => $base . '/new-patients-hero.jpg', 'og_type' => 'article', 'robots' => 'index, follow', 'page_type' => 'page',
+        ],
+        'contact' => [
+            'title' => 'Contact &mdash; DreamSmile by Dr. Jeffrey S. Burns, DDS &middot; New Market, VA',
+            'description' => 'Visit Dr. Burns at 9626 South Congress St, New Market, VA. Call (540) 740-8937 or schedule your free consultation. Office hours Mon&ndash;Thu, 8&nbsp;AM&nbsp;&ndash;&nbsp;3&nbsp;PM.',
+            'og_image' => $base . '/hero-image.png', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'contact',
+        ],
+        'general-dentistry' => [
+            'title' => 'General Dentistry in New Market, VA | ' . $brand,
+            'description' => 'Comprehensive general dentistry from Dr. Jeffrey S. Burns, DDS &mdash; serving New Market, Harrisonburg, and the Shenandoah Valley. Bridges, crowns, extractions, root canals, and more, all in one office.',
+            'og_image' => $base . '/general-dentistry.png', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'service',
+        ],
+        'cosmetic-dentistry' => [
+            'title' => 'Cosmetic Dentistry in New Market, VA | ' . $brand,
+            'description' => 'Cosmetic dentistry by a nationally recognized AACD-award-winning specialist &mdash; veneers, whitening, and clear braces designed to give you the smile you actually want.',
+            'og_image' => $base . '/cosmetic-dentistry.png', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'service',
+        ],
+        'meet-dr-burns' => [
+            'title' => 'Meet Dr. Jeffrey S. Burns, DDS &mdash; Nationally Recognized Implant Specialist',
+            'description' => '30+ years placing dental implants. AACD award recipient. Creator of the Burns Protocol. Teaches dentists nationwide. Gives every implant patient his personal cell number. Meet the specialist behind DreamSmile.',
+            'og_image' => $base . '/casual-photo-burns.png', 'og_type' => 'profile', 'robots' => 'index, follow', 'page_type' => 'about',
         ],
     ];
 
     if ( isset( $map[ $slug ] ) ) { return $map[ $slug ]; }
 
+    // Fallback: service-detail pages (5 implant deep-dives, GD/Cosmetic
+    // children, preventative-care subpages, financing, etc.) — single
+    // source of truth in inc/service-pages.php.
+    $services = ds_service_pages();
+    if ( isset( $services[ $slug ] ) ) {
+        $svc = $services[ $slug ];
+        return [
+            'title'       => $svc['seo']['title']       ?? ( $svc['sub_hero']['label'] . ' | ' . $brand ),
+            'description' => $svc['seo']['description'] ?? wp_strip_all_tags( $svc['sub_hero']['subtitle'] ?? '' ),
+            'og_image'    => $base . '/' . ( $svc['sub_hero']['bg'] ?? 'hero-image.png' ),
+            'og_type'     => 'article',
+            'robots'      => 'index, follow',
+            'page_type'   => 'service',
+        ];
+    }
+
     return [
         'title' => wp_get_document_title(),
-        'description' => 'A Dream Smile You Never Have to Hide. 30+ years of dental implant experience with ' . $brand . ' in Harrisonburg, VA.',
+        'description' => 'A Dream Smile You Never Have to Hide. 30+ years of dental implant experience with ' . $brand . ' in New Market, VA.',
         'og_image' => $base . '/hero-image.png', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'page',
     ];
 }
@@ -240,7 +365,7 @@ add_filter( 'robots_txt', function ( $output, $public ) {
 function ds_parse_address_for_schema( $address ) {
     $parts = array_map( 'trim', explode( ',', (string) $address ) );
     $street = $parts[0] ?? '';
-    $city   = $parts[1] ?? 'Harrisonburg';
+    $city   = $parts[1] ?? 'New Market';
     $rest   = $parts[2] ?? 'VA';
     $tokens = preg_split( '/\s+/', trim( $rest ) ) ?: [];
     $region = $tokens[0] ?? 'VA';
@@ -264,19 +389,40 @@ function ds_faq_data() {
 }
 
 /**
- * Shared real-practice data — single physical practice in Harrisonburg, VA.
+ * Shared real-practice data — single physical practice in New Market, VA.
  * The 8 location subpages all reference this same address. TODO: replace
  * placeholder address + review count with real values.
  */
+/**
+ * Master config for all single-service pages (5 implant deep-dives, 9
+ * General Dentistry children, 3 Cosmetic children, Restorative Care
+ * children, Preventative-care subpages, Financing, Patient Education).
+ *
+ * Each entry powers:
+ *   - Hero metadata (page-sub-hero.php fallback when slug not in $variants)
+ *   - SEO meta (ds_seo_data() fallback when slug not in $map)
+ *   - Body content (patterns/service-detail.php universal renderer)
+ *
+ * Adding a new service page = add an entry here + create the WP page.
+ * No new pattern, template, or per-slug code required.
+ */
+function ds_service_pages() {
+    static $cache = null;
+    if ( null === $cache ) {
+        $cache = require trailingslashit( get_stylesheet_directory() ) . 'inc/service-pages.php';
+    }
+    return $cache;
+}
+
 function ds_office_data() {
     return [
-        'address'    => '1234 Main St, Harrisonburg, VA 22801', // TODO: real address
-        'maps_q'     => '1234 Main St, Harrisonburg, VA 22801', // TODO: real address
-        'hours'      => 'Mon&ndash;Fri &middot; 8 am &ndash; 5 pm',
+        'address'    => '9626 South Congress St, New Market, VA 22844',
+        'maps_q'     => '9626 South Congress St, New Market, VA 22844',
+        'hours'      => 'Mon&ndash;Thu &middot; 8 am &ndash; 3 pm',
         'reviews'    => '200', // TODO: verified site-wide review count
         'years'      => '30',
         'parking'    => 'Free on-site parking with step-free, ADA-accessible entry.',
-        'home_city'  => 'Harrisonburg',
+        'home_city'  => 'New Market',
         'home_state' => 'VA',
         'phone'      => '(540) 740-8937',
         'phone_tel'  => '+15407408937',
@@ -322,4 +468,71 @@ function ds_render_about_section() {
       </div>
     </section>
     <?php
+}
+
+/**
+ * The 8 service-detail slugs that are treated as blog articles under
+ * /patient-education/. service-detail.php renders extra article-style
+ * chrome (breadcrumb, read-time, related-articles) when the current
+ * slug is in this list. The two parent hubs (gum-disease, restorative-care)
+ * are intentionally excluded — they have their own hub layouts.
+ */
+function ds_pated_article_slugs() {
+    return [
+        'anesthesia',
+        'dental-exams',
+        'oral-hygiene',
+        'teeth-cleaning',
+        'dental-sealants',
+        'deep-teeth-cleaning',
+        'periodontal-maintenance',
+        'dental-fillings',
+    ];
+}
+
+function ds_pated_is_article( $slug ) {
+    return in_array( $slug, ds_pated_article_slugs(), true );
+}
+
+/**
+ * Estimate read-time in whole minutes for a service-pages entry, used
+ * by both the /patient-education/ index card and the article-header
+ * meta strip. 200 wpm baseline, floored at 2 min so short pieces don't
+ * read as "0 min".
+ */
+function ds_pated_read_minutes( array $svc ) {
+    $words = 0;
+    if ( ! empty( $svc['intro']['sub'] ) )   { $words += str_word_count( wp_strip_all_tags( $svc['intro']['sub'] ) ); }
+    if ( ! empty( $svc['intro']['title'] ) ) { $words += str_word_count( wp_strip_all_tags( $svc['intro']['title'] ) ); }
+    if ( ! empty( $svc['steps']['list'] ) ) {
+        foreach ( $svc['steps']['list'] as $s ) {
+            $words += str_word_count( wp_strip_all_tags( $s['desc']  ?? '' ) );
+            $words += str_word_count( wp_strip_all_tags( $s['title'] ?? '' ) );
+        }
+    }
+    if ( ! empty( $svc['why']['cards'] ) ) {
+        foreach ( $svc['why']['cards'] as $c ) {
+            $words += str_word_count( wp_strip_all_tags( $c['desc'] ?? '' ) );
+        }
+    }
+    return max( 2, (int) ceil( $words / 200 ) );
+}
+
+/**
+ * Group → list of article slugs, mirroring the /patient-education/
+ * index. Drives the "Related articles" footer on each article page.
+ */
+function ds_pated_groups() {
+    return [
+        'preventive'  => [ 'anesthesia', 'dental-exams', 'oral-hygiene', 'teeth-cleaning', 'dental-sealants' ],
+        'gum-health'  => [ 'deep-teeth-cleaning', 'periodontal-maintenance' ],
+        'restorative' => [ 'dental-fillings' ],
+    ];
+}
+
+function ds_pated_group_for_slug( $slug ) {
+    foreach ( ds_pated_groups() as $gid => $slugs ) {
+        if ( in_array( $slug, $slugs, true ) ) { return $gid; }
+    }
+    return null;
 }

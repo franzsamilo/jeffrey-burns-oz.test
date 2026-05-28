@@ -20,6 +20,11 @@ $credentials = [
   [ 'trophy', 'AACD Award Recipient' ],
   [ 'book',   'Published Author' ],
 ];
+
+// Hide the deep-dive CTA when we're already on /meet-dr-burns/ — pointing
+// to the page you're on is noise.
+$current_slug = ( is_page() && ( $cp = get_post() ) ) ? $cp->post_name : '';
+$show_more    = $current_slug !== 'meet-dr-burns';
 ?>
 <!-- wp:html -->
 <section class="ds-about" id="about">
@@ -48,6 +53,13 @@ $credentials = [
             </span>
           <?php endforeach; ?>
         </div>
+
+        <?php if ( $show_more ) : ?>
+        <a href="/meet-dr-burns/" class="ds-about__more">
+          Learn more about Dr.&nbsp;Burns
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+        </a>
+        <?php endif; ?>
       </div>
     </div>
 

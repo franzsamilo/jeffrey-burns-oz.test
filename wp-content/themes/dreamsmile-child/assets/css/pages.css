@@ -50,6 +50,357 @@
   text-decoration: none;
 }
 .ds-navbar__mobile a:last-child { border-bottom: 0; }
+.ds-navbar__mobile-group { padding: 8px 0 6px; }
+.ds-navbar__mobile-group-label {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ds-teal-dark);
+  padding: 6px 0 4px;
+}
+.ds-navbar__mobile-sub { padding-left: 14px !important; font-size: 13px !important; color: var(--ds-warm-gray) !important; }
+
+/* ─── Services dropdown (desktop only) ───────────────────────────────────── */
+.ds-navbar__dropdown { position: relative; }
+.ds-navbar__dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 0;
+  padding: 8px 4px;
+  font: inherit;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  position: relative;
+  transition: color .2s ease;
+}
+.ds-navbar__dropdown-trigger:hover,
+.ds-navbar__dropdown-trigger[aria-expanded="true"] { color: #fff; }
+.ds-navbar.is-scrolled .ds-navbar__dropdown-trigger { color: var(--ds-charcoal); }
+.ds-navbar.is-scrolled .ds-navbar__dropdown-trigger:hover,
+.ds-navbar.is-scrolled .ds-navbar__dropdown-trigger[aria-expanded="true"] { color: var(--ds-teal); }
+body:has(.ds-loc-hero) .ds-navbar__dropdown-trigger,
+body:has(.ds-subhero) .ds-navbar__dropdown-trigger { color: var(--ds-charcoal); }
+.ds-navbar__dropdown-trigger svg { transition: transform .25s ease; }
+.ds-navbar__dropdown-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+.ds-navbar__dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: #fff;
+  border: 1px solid #ECECEA;
+  border-radius: 14px;
+  padding: 8px;
+  min-width: 320px;
+  box-shadow: 0 18px 48px rgba(0,0,0,0.12);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
+  z-index: 100;
+}
+.ds-navbar__dropdown:hover .ds-navbar__dropdown-menu,
+.ds-navbar__dropdown:focus-within .ds-navbar__dropdown-menu,
+.ds-navbar__dropdown[data-open="true"] .ds-navbar__dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity .18s ease, transform .18s ease, visibility 0s linear 0s;
+}
+/* Bridge the gap so cursor can move from trigger to menu without losing hover */
+.ds-navbar__dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: transparent;
+}
+.ds-navbar__dropdown-menu a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--ds-charcoal);
+  transition: background .15s ease, color .15s ease;
+}
+.ds-navbar__dropdown-menu a::after { display: none; }
+.ds-navbar__dropdown-menu a:hover {
+  background: var(--ds-light-gray);
+  color: var(--ds-teal-dark);
+}
+.ds-navbar__dropdown-menu a strong {
+  display: block;
+  font-family: 'Amiri', 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ds-charcoal);
+  margin-bottom: 2px;
+}
+.ds-navbar__dropdown-menu a:hover strong { color: var(--ds-teal-dark); }
+.ds-navbar__dropdown-menu a span {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: var(--ds-warm-gray);
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+/* ─── Nav: Services Mega-Menu ────────────────────────────────────────────── */
+.ds-navbar__dropdown--mega .ds-navbar__dropdown-menu.ds-navbar__mega {
+  /* Wider panel + grid-based columns */
+  min-width: 720px;
+  padding: 22px 22px 18px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr 0.95fr;
+  gap: 28px;
+  border-radius: 16px;
+  border-top: 2px solid rgba(127, 181, 176, 0.55);
+}
+.ds-navbar__mega-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.ds-navbar__mega-head {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 4px 10px !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ds-teal-dark) !important;
+  border-bottom: 1px solid #ECECEA;
+  border-radius: 0 !important;
+  background: transparent !important;
+  text-decoration: none;
+  transition: color .15s ease, border-color .15s ease, transform .15s ease;
+}
+.ds-navbar__mega-head svg {
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateX(-3px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.ds-navbar__mega-head:hover {
+  color: var(--ds-teal) !important;
+  background: transparent !important;
+  border-bottom-color: var(--ds-teal);
+}
+.ds-navbar__mega-head:hover svg {
+  opacity: 1;
+  transform: translateX(0);
+}
+.ds-navbar__mega-head--dual {
+  /* Non-link header (Cosmetic & Restorative bundle has no single hub) */
+  cursor: default;
+}
+.ds-navbar__mega-head--dual:hover { color: var(--ds-teal-dark) !important; border-bottom-color: #ECECEA; }
+
+.ds-navbar__mega-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.ds-navbar__mega-list li { margin: 0; }
+.ds-navbar__mega-list a {
+  display: block !important;
+  padding: 8px 10px !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ds-charcoal) !important;
+  border-radius: 6px;
+  text-decoration: none;
+  letter-spacing: -0.005em;
+  transition: background .12s ease, color .12s ease, padding .15s ease;
+}
+.ds-navbar__mega-list a::after { display: none; }
+.ds-navbar__mega-list a:hover {
+  background: rgba(127, 181, 176, 0.08) !important;
+  color: var(--ds-teal-dark) !important;
+  padding-left: 14px !important;
+}
+
+.ds-navbar__mega-quick {
+  margin: 6px 0 0 !important;
+  padding: 10px 10px 0 !important;
+  border-top: 1px dashed #E8E8E5;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: var(--ds-warm-gray);
+  line-height: 1.6;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.ds-navbar__mega-quick a {
+  display: inline !important;
+  padding: 0 !important;
+  background: transparent !important;
+  color: var(--ds-warm-gray) !important;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 0 !important;
+  transition: color .12s ease;
+}
+.ds-navbar__mega-quick a::after { display: none; }
+.ds-navbar__mega-quick a:hover {
+  color: var(--ds-teal-dark) !important;
+  background: transparent !important;
+  padding-left: 0 !important;
+}
+.ds-navbar__mega-quick span[aria-hidden="true"] {
+  color: #C9CCCC;
+  font-size: 10px;
+  user-select: none;
+}
+.ds-navbar__mega-also-label {
+  font-size: 10.5px !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ds-teal-dark);
+  margin-right: 4px;
+}
+
+.ds-navbar__mega-foot {
+  margin: auto 0 0 !important;
+  padding: 12px 4px 0 !important;
+  border-top: 1px dashed #E8E8E5;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ds-navbar__mega-foot a {
+  display: inline-block !important;
+  padding: 4px 0 !important;
+  background: transparent !important;
+  color: var(--ds-teal-dark) !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-radius: 0 !important;
+  transition: transform .15s ease, color .15s ease;
+}
+.ds-navbar__mega-foot a::after { display: none; }
+.ds-navbar__mega-foot a:hover {
+  color: var(--ds-teal) !important;
+  background: transparent !important;
+  transform: translateX(3px);
+  padding-left: 0 !important;
+}
+
+/* On smaller laptop widths, allow the mega panel to nudge left so it doesn't clip */
+@media (max-width: 1180px) {
+  .ds-navbar__dropdown--mega .ds-navbar__dropdown-menu.ds-navbar__mega {
+    left: auto;
+    right: 0;
+    transform: translateX(0) translateY(-6px);
+  }
+  .ds-navbar__dropdown--mega:hover .ds-navbar__dropdown-menu,
+  .ds-navbar__dropdown--mega:focus-within .ds-navbar__dropdown-menu,
+  .ds-navbar__dropdown--mega[data-open="true"] .ds-navbar__dropdown-menu {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* ─── Nav: Mobile Accordion (Services / Resources groups) ────────────────── */
+.ds-navbar__mobile-acc { border-bottom: 1px solid #EFEEEB; }
+.ds-navbar__mobile-acc:last-child { border-bottom: 0; }
+.ds-navbar__mobile-acc-trigger {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 16px !important;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ds-charcoal);
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background .15s ease, color .15s ease;
+}
+.ds-navbar__mobile-acc-trigger:hover { background: rgba(127, 181, 176, 0.06); }
+.ds-navbar__mobile-acc-trigger svg { transition: transform .25s ease; flex-shrink: 0; }
+.ds-navbar__mobile-acc-trigger[aria-expanded="true"] {
+  color: var(--ds-teal-dark);
+  background: rgba(127, 181, 176, 0.06);
+}
+.ds-navbar__mobile-acc-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+.ds-navbar__mobile-acc-panel {
+  padding: 4px 0 12px;
+  background: rgba(245, 245, 243, 0.55);
+  animation: ds-acc-fade .22s ease;
+}
+@keyframes ds-acc-fade {
+  from { opacity: 0; transform: translateY(-2px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ds-navbar__mobile-acc-head {
+  display: block;
+  padding: 10px 16px 4px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--ds-teal-dark) !important;
+  border-bottom: 0 !important;
+  text-decoration: none;
+}
+a.ds-navbar__mobile-acc-head:hover { background: transparent; }
+.ds-navbar__mobile-acc-head + .ds-navbar__mobile-sub { margin-top: 0; }
+.ds-navbar__mobile-acc-panel .ds-navbar__mobile-sub {
+  display: block;
+  padding: 9px 16px 9px 28px !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--ds-charcoal) !important;
+  border-bottom: 0 !important;
+  text-decoration: none;
+  transition: background .12s ease, color .12s ease, padding .15s ease;
+}
+.ds-navbar__mobile-acc-panel .ds-navbar__mobile-sub:hover {
+  background: rgba(127, 181, 176, 0.08);
+  color: var(--ds-teal-dark) !important;
+  padding-left: 32px !important;
+}
+.ds-navbar__mobile-acc-panel .ds-navbar__mobile-sub--muted {
+  color: var(--ds-warm-gray) !important;
+  font-size: 13px !important;
+}
+.ds-navbar__mobile-acc-panel .ds-navbar__mobile-sub--hub {
+  color: var(--ds-teal-dark) !important;
+  font-weight: 600 !important;
+  margin-top: 2px;
+}
 
 /* ─── Sub-Hero (inner page header) ───────────────────────────────────────── */
 
@@ -3253,6 +3604,255 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 .ds-implants-nav-card__cta svg { width: 14px; height: 14px; transition: transform .2s ease; }
 .ds-implants-nav-card:hover .ds-implants-nav-card__cta svg { transform: translateX(3px); }
 
+/* ─── Service Detail: per-category visual differentiation ──────────────── */
+/* Wrapper added in service-detail.php; per-category accents scope below. */
+.ds-service { display: block; }
+
+/* Context strip — category breadcrumb + tagline at top of every service page */
+.ds-service__context {
+  background: linear-gradient(180deg, #FAFAF8 0%, #fff 100%);
+  border-bottom: 1px solid #ECEAE5;
+  padding: 14px 0;
+  font-family: 'Montserrat', sans-serif;
+}
+.ds-service__context .ds-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+.ds-service__context-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ds-warm-gray);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: color .15s ease, gap .18s ease;
+}
+.ds-service__context-link svg { transition: transform .18s ease; }
+.ds-service__context-link:hover {
+  color: var(--ds-teal-dark);
+  gap: 10px;
+}
+.ds-service__context-link:hover svg { transform: translateX(-2px); }
+.ds-service__context-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.ds-service__context-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ds-charcoal);
+  position: relative;
+  padding-left: 14px;
+}
+.ds-service__context-label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--ds-teal);
+  transition: background .2s ease, transform .2s ease;
+}
+.ds-service__context-tag {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--ds-warm-gray);
+  letter-spacing: 0;
+}
+
+/* IMPLANTS — precision/premium. Teal-dark accent, sharper edges, metallic line. */
+.ds-service--implants .ds-service__context {
+  background: linear-gradient(180deg, #F2F7F6 0%, #fff 100%);
+  border-bottom-color: rgba(127, 181, 176, 0.35);
+}
+.ds-service--implants .ds-service__context-label::before { background: var(--ds-teal-dark); border-radius: 0; height: 10px; width: 4px; }
+.ds-service--implants .ds-np-welcome__title .ds-italic,
+.ds-service--implants .ds-np-steps__title .ds-italic { color: var(--ds-teal-dark); }
+.ds-service--implants .ds-np-step__num {
+  background: linear-gradient(135deg, var(--ds-teal-dark) 0%, var(--ds-teal) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+.ds-service--implants .ds-implants-nav-card { border-top: 2px solid var(--ds-teal-dark); }
+
+/* GENERAL — comprehensive/comfort. Warmer tones, rounded soft cards. */
+.ds-service--general .ds-service__context {
+  background: linear-gradient(180deg, #FAF7F4 0%, #fff 100%);
+  border-bottom-color: rgba(184, 159, 130, 0.25);
+}
+.ds-service--general .ds-service__context-label::before {
+  background: #B89F82;
+  border-radius: 50%;
+}
+.ds-service--general .ds-implants-nav-card {
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fff 0%, #FAF7F4 100%);
+}
+
+/* COSMETIC — refined/aesthetic. Gold accent + slight shimmer on labels. */
+.ds-service--cosmetic .ds-service__context {
+  background: linear-gradient(180deg, #FAF7F0 0%, #fff 100%);
+  border-bottom-color: rgba(208, 178, 110, 0.35);
+}
+.ds-service--cosmetic .ds-service__context-label::before {
+  background: linear-gradient(135deg, #D0B26E 0%, #E8D29A 100%);
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+.ds-service--cosmetic .ds-np-welcome__title .ds-italic { color: #B8985A; font-style: italic; }
+.ds-service--cosmetic .ds-implants-nav-card {
+  border-radius: 14px;
+  border-image: linear-gradient(135deg, rgba(208, 178, 110, 0.4), rgba(127, 181, 176, 0.2)) 1;
+}
+.ds-service--cosmetic .ds-label {
+  background: linear-gradient(90deg, var(--ds-teal-dark), #B8985A);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* RESTORATIVE — earthy/foundational. Sienna brown accent. */
+.ds-service--restore .ds-service__context {
+  background: linear-gradient(180deg, #F8F5F1 0%, #fff 100%);
+  border-bottom-color: rgba(155, 122, 95, 0.25);
+}
+.ds-service--restore .ds-service__context-label::before {
+  background: #9B7A5F;
+  border-radius: 3px;
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+}
+.ds-service--restore .ds-implants-nav-card {
+  border-bottom: 2px solid rgba(155, 122, 95, 0.35);
+}
+
+/* PREVENTATIVE — calm/sage. Mint-sage accent, lighter. */
+.ds-service--prevent .ds-service__context {
+  background: linear-gradient(180deg, #F2F8F4 0%, #fff 100%);
+  border-bottom-color: rgba(140, 175, 145, 0.30);
+}
+.ds-service--prevent .ds-service__context-label::before {
+  background: #8CAF91;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(140, 175, 145, 0.15);
+}
+.ds-service--prevent .ds-np-step__num { color: #6E9876; }
+.ds-service--prevent .ds-implants-nav-card {
+  border-radius: 18px;
+  background: rgba(242, 248, 244, 0.4);
+}
+
+/* RESOURCE — neutral/utilitarian. Warm gray accent. */
+.ds-service--resource .ds-service__context-label::before {
+  background: var(--ds-warm-gray);
+  border-radius: 0;
+  width: 12px;
+  height: 2px;
+  top: calc(50% - 1px);
+  transform: none;
+}
+
+@media (max-width: 700px) {
+  .ds-service__context .ds-wrap { gap: 10px; }
+  .ds-service__context-tag { display: none; }
+}
+
+/* ─── Shared: Clinical References (subpages) ─────────────────────────── */
+.ds-np-refs {
+  padding-block: 64px;
+  background: linear-gradient(180deg, var(--ds-off-white, #FAFAF8) 0%, #fff 100%);
+  border-top: 1px solid #ECEAE5;
+}
+.ds-np-refs .ds-wrap { max-width: 880px; margin: 0 auto; padding-inline: 24px; }
+.ds-np-refs__head { text-align: center; margin: 0 auto 28px; }
+.ds-np-refs__head .ds-label {
+  display: inline-block;
+  font-family: var(--ds-font-body), "Montserrat", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ds-teal-dark);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.ds-np-refs__title {
+  font-family: var(--ds-font-display), "Playfair Display", serif;
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  line-height: 1.25;
+  color: var(--ds-charcoal, #3A3A3A);
+  margin: 0 0 14px;
+}
+.ds-np-refs__sub {
+  color: var(--ds-warm-gray);
+  font-size: 0.97rem;
+  line-height: 1.65;
+  margin: 0;
+  text-align: left;
+}
+.ds-np-refs__list {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.ds-np-refs__item a {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 18px;
+  border: 1px solid #E5E2DC;
+  border-radius: 8px;
+  background: #fff;
+  text-decoration: none;
+  color: var(--ds-charcoal);
+  transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.ds-np-refs__item a:hover {
+  border-color: var(--ds-teal);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 10px rgba(127, 181, 176, 0.12);
+}
+.ds-np-refs__src-title { font-weight: 600; font-size: 0.95rem; line-height: 1.35; }
+.ds-np-refs__src-org {
+  font-family: var(--ds-font-body), "Montserrat", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ds-warm-gray);
+  text-transform: uppercase;
+}
+.ds-np-refs__disclaimer {
+  margin: 22px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ds-warm-gray);
+  text-align: center;
+  font-style: italic;
+}
+@media (max-width: 600px) {
+  .ds-np-refs { padding-block: 48px; }
+  .ds-np-refs__item a { padding: 12px 14px; }
+}
+
 /* ─── Shared: Page-specific final CTA (subpages) ─────────────────────────── */
 .ds-subpage-cta {
   background:
@@ -4760,3 +5360,634 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   .ds-locations__grid { padding-inline: 0; gap: 18px; }
 }
 /* /DREAMSMILE-MOBILE-V1 */
+
+/* ─────────────────────────────────────────────────────────────
+   PHASE A NEW PAGES — minimal additions
+   These pages reuse the existing theme components
+   (.ds-implants-nav, .ds-loc-map, .ds-subpage-cta, .ds-np-welcome,
+   .ds-np-before, .ds-np-steps). Below are just the modifiers and
+   one bespoke component the new patterns need.
+   ───────────────────────────────────────────────────────────── */
+
+/* Italic-span color in the title contexts the new patterns use
+   (each existing section already declared its own scoped .ds-italic
+   rule; these add the same treatment for the contexts we now reuse). */
+.ds-implants-nav__title .ds-italic,
+.ds-loc-map__title .ds-italic,
+.ds-np-welcome__title .ds-italic,
+.ds-np-steps__title .ds-italic,
+.ds-np-before__title .ds-italic,
+.ds-cities-bar__title .ds-italic {
+  color: var(--ds-teal-dark);
+  font-style: italic;
+  font-weight: 600;
+}
+.ds-subpage-cta__title .ds-italic {
+  color: var(--ds-teal-light);
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* Implants-nav grid modifiers — let the same card system render
+   different shapes (3x3 wide grid for GD, 2x2 quad for Meet Dr. Burns). */
+@media (min-width: 768px) {
+  .ds-implants-nav--wide .ds-implants-nav__grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1100px;
+  }
+  .ds-implants-nav--quad .ds-implants-nav__grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 920px;
+  }
+}
+
+/* Tag pill on cosmetic-hub featured card ("MOST REQUESTED").
+   Sits in the top-right corner; uses the existing teal token. */
+.ds-implants-nav-card { position: relative; }
+.ds-implants-nav-card__tag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--ds-teal);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 99px;
+  line-height: 1;
+}
+
+/* Cities bar — Contact-page only, preserves the legacy live-site
+   "left-rail city links" UX in the DreamSmile design language.
+   Sits between the .ds-loc-map block and the planning-tips grid. */
+.ds-cities-bar {
+  background: var(--ds-off-white);
+  padding: 64px 0 56px;
+  border-top: 1px solid rgba(127, 181, 176, 0.16);
+}
+@media (min-width: 768px) { .ds-cities-bar { padding: 88px 0 72px; } }
+.ds-cities-bar .ds-wrap { max-width: var(--ds-max-width); margin: 0 auto; padding: 0 24px; }
+.ds-cities-bar__head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.ds-cities-bar__title {
+  font-family: 'Amiri', 'Playfair Display', serif;
+  font-size: clamp(1.45rem, 2.8vw, 1.85rem);
+  color: var(--ds-charcoal);
+  font-weight: 700;
+  margin: 4px 0 0;
+  line-height: 1.25;
+}
+.ds-cities-bar__sub {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--ds-warm-gray);
+  font-size: 14px;
+  margin: 0;
+}
+.ds-cities-bar__list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  max-width: 720px;
+}
+@media (min-width: 600px) { .ds-cities-bar__list { grid-template-columns: repeat(4, 1fr); } }
+.ds-cities-bar__list a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #fff;
+  border: 1px solid rgba(127, 181, 176, 0.22);
+  border-radius: 99px;
+  color: var(--ds-charcoal);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  text-align: left;
+  transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+}
+.ds-cities-bar__list a:hover {
+  background: var(--ds-teal);
+  border-color: var(--ds-teal);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.ds-cities-bar__pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ds-teal-dark);
+  flex-shrink: 0;
+  transition: color .18s ease;
+}
+.ds-cities-bar__pin svg { width: 14px; height: 14px; }
+.ds-cities-bar__list a:hover .ds-cities-bar__pin { color: #fff; }
+
+/* Outlined-on-white-bg button — the dark .ds-btn--outlined-white
+   doesn't exist on the white .ds-cta sections we reuse; map it back to
+   the standard outlined treatment so calls don't render invisible. */
+.ds-subpage-cta .ds-btn--outlined,
+.ds-cities-bar .ds-btn--outlined { /* no-op marker: existing styles already handle this. */ }
+/* /DREAMSMILE-PHASE-A-COMPONENT-REUSE */
+
+/* ─────────────────────────────────────────────────────────────
+   NEW PATIENT FORMS section (lives inside /new-patients/)
+   2-column: download/print PDFs on the left, request-digital
+   form on the right. Small bespoke styling — the section is
+   too form-heavy to repurpose an existing component.
+   ───────────────────────────────────────────────────────────── */
+.ds-np-forms {
+  background: var(--ds-off-white);
+  padding-block: 80px;
+}
+.ds-np-forms .ds-wrap { max-width: var(--ds-max-width); margin: 0 auto; padding: 0 24px; }
+.ds-np-forms__head { text-align: center; max-width: 720px; margin: 0 auto 40px; }
+.ds-np-forms__head .ds-label {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ds-teal-dark);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.ds-np-forms__title {
+  font-family: 'Amiri', 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+  color: var(--ds-charcoal);
+  font-weight: 700;
+  margin: 0 0 14px;
+  line-height: 1.2;
+}
+.ds-np-forms__title .ds-italic { color: var(--ds-teal-dark); font-style: italic; font-weight: 600; }
+.ds-np-forms__sub { color: var(--ds-warm-gray); font-size: 16px; line-height: 1.6; margin: 0; }
+
+.ds-np-forms__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) { .ds-np-forms__grid { grid-template-columns: 1fr 1fr; gap: 28px; } }
+
+.ds-np-forms-card {
+  background: #fff;
+  border: 1px solid #ECECEA;
+  border-radius: var(--ds-card-radius);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 8px 24px -16px rgba(58, 58, 58, 0.16);
+}
+.ds-np-forms-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(127, 181, 176, 0.14);
+  color: var(--ds-teal-dark);
+}
+.ds-np-forms-card__icon svg { width: 24px; height: 24px; }
+.ds-np-forms-card__title {
+  font-family: 'Amiri', 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ds-charcoal);
+  margin: 0;
+}
+.ds-np-forms-card__desc {
+  font-size: 14px;
+  color: var(--ds-warm-gray);
+  line-height: 1.6;
+  margin: 0;
+}
+.ds-np-forms-card__list {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ds-np-forms-card__list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--ds-teal-dark);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .18s ease, color .18s ease;
+}
+.ds-np-forms-card__list a:hover {
+  background: rgba(127, 181, 176, 0.10);
+  color: var(--ds-teal);
+}
+.ds-np-forms-card__list a svg { color: var(--ds-teal-dark); }
+.ds-np-forms-card__hint {
+  font-size: 12.5px;
+  color: var(--ds-warm-gray);
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+.ds-np-forms-card__hint em { font-style: italic; }
+
+.ds-np-forms-form { display: flex; flex-direction: column; gap: 12px; margin: 6px 0 0; }
+.ds-np-forms-field { display: flex; flex-direction: column; gap: 4px; }
+.ds-np-forms-field span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ds-charcoal);
+  font-weight: 600;
+}
+.ds-np-forms-field em { font-style: italic; font-weight: 400; color: var(--ds-warm-gray); }
+.ds-np-forms-field input {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid #DCDCDA;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ds-charcoal);
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.ds-np-forms-field input:focus {
+  outline: none;
+  border-color: var(--ds-teal);
+  box-shadow: 0 0 0 3px rgba(127, 181, 176, 0.16);
+}
+.ds-np-forms-form__note {
+  font-size: 12px;
+  color: var(--ds-warm-gray);
+  margin: 6px 0 0;
+  line-height: 1.5;
+}
+
+.ds-np-forms__assist {
+  text-align: center;
+  margin: 32px auto 0;
+  max-width: 640px;
+  font-size: 14px;
+  color: var(--ds-warm-gray);
+}
+.ds-np-forms__assist a { color: var(--ds-teal-dark); font-weight: 600; }
+.ds-np-forms__assist a:hover { color: var(--ds-teal); text-decoration: underline; }
+/* /DREAMSMILE-NP-FORMS */
+
+
+/* ==========================================================================
+   DREAMSMILE — Patient Education / Blog Index
+   Blog-style article cards on /patient-education/. Reuses the .ds-wrap and
+   .ds-label tokens, adds editorial card styling distinct from the
+   .ds-implants-nav-card service grid (no icon, type-led, monospace read-time).
+   ========================================================================== */
+
+.ds-pated-intro {
+  background: var(--ds-off-white, #FAFAF8);
+  padding: 80px 0 56px;
+}
+.ds-pated-intro__head { max-width: 780px; }
+.ds-pated-intro__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 500;
+  color: var(--ds-charcoal);
+  margin: 12px 0 16px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.ds-pated-intro__title .ds-italic { font-style: italic; font-weight: 500; }
+.ds-pated-intro__sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ds-dark-slate, #4A4A4A);
+  margin: 0 0 28px;
+}
+.ds-pated-intro__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.ds-pated-intro__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid #E5E5E3;
+  border-radius: 999px;
+  background: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ds-warm-gray);
+}
+.ds-pated-intro__meta-item svg { color: var(--ds-teal-dark); }
+
+.ds-pated-group {
+  padding: 56px 0;
+  border-top: 1px solid #ECECEA;
+}
+.ds-pated-group:first-of-type { border-top: 0; }
+.ds-pated-group__head { max-width: 720px; margin-bottom: 32px; }
+.ds-pated-group__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 500;
+  color: var(--ds-charcoal);
+  margin: 8px 0 12px;
+  line-height: 1.25;
+}
+.ds-pated-group__sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ds-warm-gray);
+  margin: 0;
+}
+.ds-pated-group__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.ds-pated-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ECECEA;
+  border-radius: 12px;
+  padding: 24px 24px 22px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  position: relative;
+}
+.ds-pated-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(58, 58, 58, 0.08);
+  border-color: #DDDDD9;
+}
+.ds-pated-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-family: 'Montserrat', sans-serif;
+}
+.ds-pated-card__cat {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ds-teal-dark);
+}
+.ds-pated-card__cat--guide { color: var(--ds-charcoal); }
+.ds-pated-card__dot {
+  display: inline-block;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--ds-warm-gray);
+  opacity: 0.45;
+}
+.ds-pated-card__time {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'JetBrains Mono', 'Menlo', monospace;
+  font-size: 11px;
+  color: var(--ds-warm-gray);
+}
+.ds-pated-card__time svg { opacity: 0.6; }
+.ds-pated-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ds-charcoal);
+  margin: 0 0 10px;
+  letter-spacing: -0.005em;
+}
+.ds-pated-card__preview {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ds-dark-slate);
+  margin: 0 0 18px;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ds-pated-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ds-teal-dark);
+  margin-top: auto;
+}
+.ds-pated-card__cta svg { transition: transform .18s ease; }
+.ds-pated-card:hover .ds-pated-card__cta svg { transform: translateX(3px); }
+.ds-pated-card:hover .ds-pated-card__cta { color: var(--ds-teal); }
+
+.ds-pated-card--guide {
+  background: linear-gradient(160deg, #F5F5F3 0%, #FAFAF8 100%);
+  border-color: #DCDCD8;
+}
+.ds-pated-card--guide .ds-pated-card__title { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 600; }
+
+.ds-pated-ask {
+  background: var(--ds-charcoal);
+  color: #fff;
+  padding: 72px 0 80px;
+  margin-top: 24px;
+}
+.ds-pated-ask__inner { max-width: 780px; margin: 0 auto; text-align: center; }
+.ds-pated-ask .ds-label { color: var(--ds-teal-light, #A8D5D0); }
+.ds-pated-ask__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 3.4vw, 34px);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 12px 0 14px;
+}
+.ds-pated-ask__sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.78);
+  margin: 0 0 24px;
+}
+.ds-pated-ask__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+@media (max-width: 720px) {
+  .ds-pated-intro { padding: 56px 0 40px; }
+  .ds-pated-group { padding: 40px 0; }
+  .ds-pated-group__grid { grid-template-columns: 1fr; }
+  .ds-pated-card { padding: 20px 20px 18px; }
+  .ds-pated-ask { padding: 56px 0 64px; }
+}
+/* /DREAMSMILE-PATED */
+
+
+/* ==========================================================================
+   DREAMSMILE — Patient Education ARTICLE chrome
+   Added to service-detail.php when the slug is one of the 8 article slugs.
+   Breadcrumb header + related-articles footer. The article body itself
+   continues to use the standard .ds-np-welcome / .ds-np-steps / .ds-implants-nav
+   primitives so the design system stays single-source.
+   ========================================================================== */
+
+.ds-article-header {
+  padding: 18px 0;
+  background: #fff;
+  border-bottom: 1px solid #ECECEA;
+}
+.ds-article-header .ds-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.ds-article-header__crumbs {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+}
+.ds-article-header__crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--ds-teal-dark);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: color .15s ease;
+}
+.ds-article-header__crumb:hover { color: var(--ds-teal); }
+.ds-article-header__crumb--current {
+  color: var(--ds-warm-gray);
+  font-weight: 500;
+  letter-spacing: 0.005em;
+}
+.ds-article-header__crumb--current:hover { color: var(--ds-warm-gray); }
+.ds-article-header__sep {
+  color: var(--ds-warm-gray);
+  opacity: 0.4;
+  font-weight: 300;
+}
+.ds-article-header__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: var(--ds-warm-gray);
+}
+.ds-article-header__cat {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ds-teal-dark);
+  font-size: 11px;
+}
+.ds-article-header__dot {
+  display: inline-block;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--ds-warm-gray);
+  opacity: 0.45;
+}
+.ds-article-header__time {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'JetBrains Mono', 'Menlo', monospace;
+  font-size: 11px;
+}
+.ds-article-header__time svg { opacity: 0.6; }
+.ds-article-header__reviewed {
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* Tighter typography in the article body — service-detail.php still
+   renders .ds-np-* primitives, but inside .ds-service--article we trim
+   line-heights, reduce all-caps shouting, and let prose breathe. */
+.ds-service--article .ds-np-welcome { padding: 56px 0 40px; }
+.ds-service--article .ds-np-welcome__title { font-size: clamp(28px, 4vw, 38px); }
+.ds-service--article .ds-np-welcome__sub { font-size: 16px; line-height: 1.7; max-width: 740px; }
+.ds-service--article .ds-np-steps { padding: 24px 0 56px; }
+.ds-service--article .ds-np-steps__title { font-size: clamp(22px, 3vw, 28px); }
+.ds-service--article .ds-np-steps__list { max-width: 780px; margin: 0 auto; }
+.ds-service--article .ds-np-step p { font-size: 15px; line-height: 1.7; }
+.ds-service--article .ds-implants-nav { padding: 32px 0 56px; }
+.ds-service--article .ds-implants-nav__title { font-size: clamp(22px, 3vw, 28px); }
+
+.ds-article-related {
+  background: #FAFAF8;
+  padding: 64px 0 72px;
+  border-top: 1px solid #ECECEA;
+}
+.ds-article-related__head { margin-bottom: 28px; max-width: 720px; }
+.ds-article-related__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 500;
+  color: var(--ds-charcoal);
+  margin: 8px 0 0;
+}
+.ds-article-related__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+.ds-article-related__index {
+  margin-top: 28px;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .ds-article-header .ds-wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .ds-article-related { padding: 48px 0 56px; }
+  .ds-article-related__grid { grid-template-columns: 1fr; }
+}
+/* /DREAMSMILE-ARTICLE */
+

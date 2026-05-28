@@ -43,6 +43,7 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
     <ul class="ds-np-nav__list">
       <li><a href="#first-visit"><span class="ds-np-nav__dot" aria-hidden="true"></span>Your First Visit</a></li>
       <li><a href="#before-visit"><span class="ds-np-nav__dot" aria-hidden="true"></span>What to Bring</a></li>
+      <li><a href="#forms"><span class="ds-np-nav__dot" aria-hidden="true"></span>Patient Forms</a></li>
       <li><a href="#comfort"><span class="ds-np-nav__dot" aria-hidden="true"></span>Comfort &amp; Sedation</a></li>
       <li><a href="#payment"><span class="ds-np-nav__dot" aria-hidden="true"></span>Insurance &amp; Financing</a></li>
       <li><a href="#np-faqs"><span class="ds-np-nav__dot" aria-hidden="true"></span>FAQs</a></li>
@@ -55,7 +56,7 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
     <div class="ds-np-welcome__head ds-reveal">
       <span class="ds-label">WELCOME</span>
       <h2 class="ds-np-welcome__title">Welcome to <span class="ds-italic">DreamSmile Dentistry.</span></h2>
-      <p class="ds-np-welcome__sub">If this is your first time visiting Dr. Burns&rsquo;s practice in Harrisonburg, VA, you&rsquo;re already in good hands. Here&rsquo;s exactly what to expect &mdash; no surprises, no hidden steps, no high-pressure sales pitch.</p>
+      <p class="ds-np-welcome__sub">If this is your first time visiting Dr. Burns&rsquo;s practice in New Market, VA, you&rsquo;re already in good hands. Here&rsquo;s exactly what to expect &mdash; no surprises, no hidden steps, no high-pressure sales pitch.</p>
     </div>
     <div class="ds-np-welcome__pillars ds-reveal">
       <div class="ds-np-pillar">
@@ -73,7 +74,7 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
     </div>
     <figure class="ds-np-welcome__banner ds-reveal">
       <img src="<?php echo esc_url( $np_welcome_banner ); ?>"
-           alt="DreamSmile Dentistry &mdash; Dr. Burns&rsquo;s practice in Harrisonburg, VA"
+           alt="DreamSmile Dentistry &mdash; Dr. Burns&rsquo;s practice in New Market, VA"
            loading="lazy"
            onerror="this.style.display='none'" />
     </figure>
@@ -153,6 +154,70 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
           <li><strong>Someone you trust</strong><span>A friend or family member is welcome to sit in for the consultation</span></li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="ds-np-forms" id="forms">
+  <div class="ds-wrap">
+    <div class="ds-np-forms__head ds-reveal">
+      <span class="ds-label">NEW PATIENT FORMS</span>
+      <h2 class="ds-np-forms__title">Save 10&ndash;15 minutes at check-in &mdash; <span class="ds-italic">fill the forms in advance</span>.</h2>
+      <p class="ds-np-forms__sub">Most new patients prefer to send their forms in before the visit. You can either download and print, or fill out the short request form below and we&rsquo;ll email you a secure online version.</p>
+    </div>
+
+    <div class="ds-np-forms__grid">
+
+      <article class="ds-np-forms-card ds-reveal">
+        <span class="ds-np-forms-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        </span>
+        <h3 class="ds-np-forms-card__title">Download &amp; Print</h3>
+        <p class="ds-np-forms-card__desc">Print, fill out by hand, and bring to your visit (or email back to us). PDF format, opens in any browser.</p>
+        <ul class="ds-np-forms-card__list">
+          <li><a href="#" data-ds-form-pdf="patient-info"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Patient Information</a></li>
+          <li><a href="#" data-ds-form-pdf="medical-history"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Medical History</a></li>
+          <li><a href="#" data-ds-form-pdf="insurance"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Insurance Authorization</a></li>
+          <li><a href="#" data-ds-form-pdf="hipaa"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> HIPAA Acknowledgement</a></li>
+        </ul>
+        <p class="ds-np-forms-card__hint"><em>PDF links go live once forms are uploaded by the office. In the meantime, request a digital version on the right.</em></p>
+      </article>
+
+      <article class="ds-np-forms-card ds-reveal">
+        <span class="ds-np-forms-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.12 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.11L8.1 9.91a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.72 2z"/></svg>
+        </span>
+        <h3 class="ds-np-forms-card__title">Request Digital Forms</h3>
+        <p class="ds-np-forms-card__desc">Send us your name and email and we&rsquo;ll email you secure online versions to fill out from any device. Faster than printing.</p>
+        <form class="ds-np-forms-form" data-ds-forms-request action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <!-- TODO: replace action URL with the chosen backend (Formspree / Web3Forms / WP REST + wp_mail). See open-questions memory entry #1. -->
+          <label class="ds-np-forms-field">
+            <span>Full Name</span>
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label class="ds-np-forms-field">
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label class="ds-np-forms-field">
+            <span>Phone <em>(optional)</em></span>
+            <input type="tel" name="phone" autocomplete="tel" />
+          </label>
+          <input type="hidden" name="_subject" value="DreamSmile &mdash; New Patient Forms Request" />
+          <button type="submit" class="ds-btn ds-btn--solid ds-btn--block">Email Me the Forms</button>
+          <p class="ds-np-forms-form__note">We&rsquo;ll send the secure form link within one business day. Your info is never sold or shared.</p>
+        </form>
+      </article>
+
+    </div>
+
+    <div class="ds-np-forms__assist ds-reveal">
+      <p>
+        Prefer to do everything in the office? That&rsquo;s fine too &mdash; arrive 15 minutes early and we&rsquo;ll have a tablet ready. Questions about the forms?
+        <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>">Call <?php echo esc_html( $office['phone'] ); ?></a>
+        or
+        <a href="/contact/">visit our contact page</a>.
+      </p>
     </div>
   </div>
 </section>
