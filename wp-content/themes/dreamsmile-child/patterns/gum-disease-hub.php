@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Gum Disease Treatment Hub
+ * Title: Gum Disease Treatment
  * Slug: dreamsmile/gum-disease-hub
  * Categories: dreamsmile
  *

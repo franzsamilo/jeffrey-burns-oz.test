@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Resources Hub
+ * Title: Resources
  * Slug: dreamsmile/resources-hub
  * Categories: dreamsmile
  *

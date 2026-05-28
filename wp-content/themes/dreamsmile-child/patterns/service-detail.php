@@ -85,29 +85,34 @@ $article_title = $svc['sub_hero']['label'] ?? '';
 <!-- wp:html -->
 <div class="ds-service ds-service--<?php echo esc_attr( $category ); ?><?php echo $is_article ? ' ds-service--article' : ''; ?>" data-ds-category="<?php echo esc_attr( $category ); ?>">
 
-<?php if ( $is_article ) : ?>
-<aside class="ds-article-header ds-reveal" aria-label="Article navigation">
+<?php if ( $is_article ) :
+  $article_lede = $svc['intro']['sub'] ?? ( $svc['sub_hero']['subtitle'] ?? '' );
+?>
+<header class="ds-article-hero" aria-label="Article header">
   <div class="ds-wrap">
-    <nav class="ds-article-header__crumbs" aria-label="Breadcrumb">
-      <a href="/patient-education/" class="ds-article-header__crumb">
-        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    <nav class="ds-article-hero__crumbs ds-reveal" aria-label="Breadcrumb">
+      <a href="/patient-education/" class="ds-article-hero__crumb">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
         <span>Patient Education</span>
       </a>
-      <span class="ds-article-header__sep" aria-hidden="true">/</span>
-      <span class="ds-article-header__crumb ds-article-header__crumb--current"><?php echo esc_html( ucwords( strtolower( $article_title ) ) ); ?></span>
     </nav>
-    <div class="ds-article-header__meta">
-      <span class="ds-article-header__cat"><?php echo esc_html( $cm['label'] ); ?></span>
-      <span class="ds-article-header__dot" aria-hidden="true"></span>
-      <span class="ds-article-header__time">
-        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    <span class="ds-label ds-article-hero__cat ds-reveal"><?php echo esc_html( $cm['label'] ); ?></span>
+    <h1 class="ds-article-hero__title ds-reveal"><?php echo esc_html( ucwords( strtolower( $article_title ) ) ); ?></h1>
+    <?php if ( $article_lede ) : ?>
+      <p class="ds-article-hero__lede ds-reveal"><?php echo wp_strip_all_tags( $article_lede ); ?></p>
+    <?php endif; ?>
+    <div class="ds-article-hero__meta ds-reveal">
+      <span class="ds-article-hero__byline">By Dr.&nbsp;Burns&rsquo;s office</span>
+      <span class="ds-article-hero__dot" aria-hidden="true">·</span>
+      <span class="ds-article-hero__time">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         <?php echo (int) $read_min; ?>&nbsp;min&nbsp;read
       </span>
-      <span class="ds-article-header__dot" aria-hidden="true"></span>
-      <span class="ds-article-header__reviewed">Reviewed by Dr.&nbsp;Burns&rsquo;s office</span>
+      <span class="ds-article-hero__dot" aria-hidden="true">·</span>
+      <span class="ds-article-hero__reviewed">Plain&#8209;English, clinically reviewed</span>
     </div>
   </div>
-</aside>
+</header>
 <?php else : ?>
 <aside class="ds-service__context ds-reveal" aria-label="Service category">
   <div class="ds-wrap">
@@ -123,7 +128,7 @@ $article_title = $svc['sub_hero']['label'] ?? '';
 </aside>
 <?php endif; ?>
 
-<?php if ( $intro ) : ?>
+<?php if ( $intro && ! $is_article ) : ?>
 <section class="ds-np-welcome">
   <div class="ds-wrap">
     <div class="ds-np-welcome__head ds-reveal">
@@ -168,7 +173,7 @@ $article_title = $svc['sub_hero']['label'] ?? '';
 </section>
 <?php endif; ?>
 
-<?php if ( $why && ! empty( $why['cards'] ) ) :
+<?php if ( $why && ! empty( $why['cards'] ) && ! $is_article ) :
     $count = count( $why['cards'] );
     $grid_mod = ( $count === 4 ) ? ' ds-implants-nav--quad' : ( ( $count >= 5 ) ? ' ds-implants-nav--wide' : '' );
 ?>

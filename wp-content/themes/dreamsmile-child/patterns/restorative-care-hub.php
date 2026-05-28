@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Restorative Care Hub
+ * Title: Restorative Care
  * Slug: dreamsmile/restorative-care-hub
  * Categories: dreamsmile
  *

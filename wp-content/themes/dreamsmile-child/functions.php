@@ -229,6 +229,26 @@ function ds_seo_data( $slug = null ) {
             'description' => '30+ years placing dental implants. AACD award recipient. Creator of the Burns Protocol. Teaches dentists nationwide. Gives every implant patient his personal cell number. Meet the specialist behind DreamSmile.',
             'og_image' => $base . '/casual-photo-burns.png', 'og_type' => 'profile', 'robots' => 'index, follow', 'page_type' => 'about',
         ],
+        'restorative-care' => [
+            'title' => 'Restorative Care in New Market, VA | ' . $brand,
+            'description' => 'Fillings, crowns, bridges, root canals, extractions, and implants &mdash; every restorative option you might need, planned and performed by the same doctor.',
+            'og_image' => $base . '/restorative-care-hero.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'service',
+        ],
+        'gum-disease' => [
+            'title' => 'Gum Disease Treatment in New Market, VA | ' . $brand,
+            'description' => 'Catch gum disease early and stay ahead of it. Deep teeth cleaning and periodontal maintenance from Dr. Burns&rsquo;s New Market, VA practice.',
+            'og_image' => $base . '/gum-disease-hero.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'service',
+        ],
+        'resources' => [
+            'title' => 'Patient Resources | ' . $brand,
+            'description' => 'Forms, financing, and patient-education articles &mdash; everything you need before, during, and after your visit.',
+            'og_image' => $base . '/resources-hero.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'page',
+        ],
+        'patient-education' => [
+            'title' => 'Patient Education | ' . $brand . ' &middot; New Market, VA',
+            'description' => 'Plain-English articles on dental procedures, recovery, and what to expect &mdash; reviewed by Dr. Burns&rsquo;s office.',
+            'og_image' => $base . '/resources-hero.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'page',
+        ],
     ];
 
     if ( isset( $map[ $slug ] ) ) { return $map[ $slug ]; }
@@ -249,8 +269,11 @@ function ds_seo_data( $slug = null ) {
         ];
     }
 
+    // Final default — must NOT call wp_get_document_title() since this fn
+    // is itself wired into the document_title_parts filter. That recursion
+    // exhausts memory on any unmapped slug (e.g., new pages added post-deploy).
     return [
-        'title' => wp_get_document_title(),
+        'title' => get_bloginfo( 'name' ),
         'description' => 'A Dream Smile You Never Have to Hide. 30+ years of dental implant experience with ' . $brand . ' in New Market, VA.',
         'og_image' => $base . '/hero-image.png', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'page',
     ];

@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: General Dentistry Hub
+ * Title: General Dentistry
  * Slug: dreamsmile/general-dentistry-hub
  * Categories: dreamsmile
  *

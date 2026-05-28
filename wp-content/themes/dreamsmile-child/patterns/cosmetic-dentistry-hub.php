@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Cosmetic Dentistry Hub
+ * Title: Cosmetic Dentistry
  * Slug: dreamsmile/cosmetic-dentistry-hub
  * Categories: dreamsmile
  *

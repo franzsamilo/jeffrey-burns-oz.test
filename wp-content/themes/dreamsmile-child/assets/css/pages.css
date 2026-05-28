@@ -5865,101 +5865,161 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 
 
 /* ==========================================================================
-   DREAMSMILE — Patient Education ARTICLE chrome
-   Added to service-detail.php when the slug is one of the 8 article slugs.
-   Breadcrumb header + related-articles footer. The article body itself
-   continues to use the standard .ds-np-welcome / .ds-np-steps / .ds-implants-nav
-   primitives so the design system stays single-source.
+   DREAMSMILE — Patient Education ARTICLE chrome (editorial layout)
+   On the 8 patient-ed article slugs:
+   • page-sub-hero returns early — the dark-overlay hero is skipped.
+   • service-detail.php renders .ds-article-hero (white editorial block).
+   • The standard service-page primitives (.ds-np-welcome pillars and
+     .ds-implants-nav "why" cards) are suppressed; .ds-np-steps is
+     restyled into long-form prose, no card backgrounds, no big numbers.
    ========================================================================== */
 
-.ds-article-header {
-  padding: 18px 0;
-  background: #fff;
+.ds-article-hero {
+  background: #FAFAF8;
+  padding: 56px 0 48px;
   border-bottom: 1px solid #ECECEA;
 }
-.ds-article-header .ds-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
+.ds-article-hero .ds-wrap { max-width: 760px; }
+.ds-article-hero__crumbs { margin-bottom: 24px; }
+.ds-article-hero__crumb {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ds-teal-dark);
+  text-decoration: none;
+  transition: color .15s ease;
 }
-.ds-article-header__crumbs {
+.ds-article-hero__crumb:hover { color: var(--ds-teal); }
+.ds-article-hero__cat {
+  display: inline-block;
+  margin-bottom: 18px;
+}
+.ds-article-hero__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 5vw, 46px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ds-charcoal, #3A3A3A);
+  margin: 0 0 18px;
+}
+.ds-article-hero__lede {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.55;
+  color: var(--ds-dark-slate, #4A4A4A);
+  margin: 0 0 24px;
+}
+.ds-article-hero__meta {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
+  color: var(--ds-warm-gray, #6B6B6B);
 }
-.ds-article-header__crumb {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: var(--ds-teal-dark);
-  text-decoration: none;
+.ds-article-hero__byline {
   font-weight: 600;
-  letter-spacing: 0.02em;
-  transition: color .15s ease;
+  color: var(--ds-charcoal, #3A3A3A);
 }
-.ds-article-header__crumb:hover { color: var(--ds-teal); }
-.ds-article-header__crumb--current {
-  color: var(--ds-warm-gray);
-  font-weight: 500;
-  letter-spacing: 0.005em;
-}
-.ds-article-header__crumb--current:hover { color: var(--ds-warm-gray); }
-.ds-article-header__sep {
-  color: var(--ds-warm-gray);
+.ds-article-hero__dot {
   opacity: 0.4;
-  font-weight: 300;
 }
-.ds-article-header__meta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
-  color: var(--ds-warm-gray);
-}
-.ds-article-header__cat {
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ds-teal-dark);
-  font-size: 11px;
-}
-.ds-article-header__dot {
-  display: inline-block;
-  width: 3px; height: 3px;
-  border-radius: 50%;
-  background: var(--ds-warm-gray);
-  opacity: 0.45;
-}
-.ds-article-header__time {
+.ds-article-hero__time {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   font-family: 'JetBrains Mono', 'Menlo', monospace;
-  font-size: 11px;
-}
-.ds-article-header__time svg { opacity: 0.6; }
-.ds-article-header__reviewed {
-  font-style: italic;
   font-size: 12px;
 }
+.ds-article-hero__time svg { opacity: 0.6; }
+.ds-article-hero__reviewed {
+  font-style: italic;
+  font-size: 13px;
+}
 
-/* Tighter typography in the article body — service-detail.php still
-   renders .ds-np-* primitives, but inside .ds-service--article we trim
-   line-heights, reduce all-caps shouting, and let prose breathe. */
-.ds-service--article .ds-np-welcome { padding: 56px 0 40px; }
-.ds-service--article .ds-np-welcome__title { font-size: clamp(28px, 4vw, 38px); }
-.ds-service--article .ds-np-welcome__sub { font-size: 16px; line-height: 1.7; max-width: 740px; }
-.ds-service--article .ds-np-steps { padding: 24px 0 56px; }
-.ds-service--article .ds-np-steps__title { font-size: clamp(22px, 3vw, 28px); }
-.ds-service--article .ds-np-steps__list { max-width: 780px; margin: 0 auto; }
-.ds-service--article .ds-np-step p { font-size: 15px; line-height: 1.7; }
-.ds-service--article .ds-implants-nav { padding: 32px 0 56px; }
-.ds-service--article .ds-implants-nav__title { font-size: clamp(22px, 3vw, 28px); }
+/* Editorial body — narrower reading column, no numbered cards, no pillar
+   chips. Steps become flowing subsections; references are right-aligned
+   below the prose. */
+.ds-service--article .ds-np-steps {
+  padding: 48px 0 64px;
+  background: #fff;
+}
+.ds-service--article .ds-np-steps__head {
+  max-width: 720px;
+  margin: 0 auto 28px;
+}
+.ds-service--article .ds-np-steps__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 2.8vw, 28px);
+  font-weight: 500;
+}
+.ds-service--article .ds-np-steps__sub {
+  font-size: 16px;
+  line-height: 1.7;
+}
+.ds-service--article .ds-np-steps__list {
+  max-width: 720px;
+  margin: 0 auto;
+  list-style: none;
+  padding-left: 0;
+  counter-reset: none;
+}
+.ds-service--article .ds-np-step {
+  display: block;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 0 36px;
+}
+.ds-service--article .ds-np-step::before { display: none !important; }
+.ds-service--article .ds-np-step__num {
+  display: none;
+}
+.ds-service--article .ds-np-step__body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--ds-charcoal, #3A3A3A);
+  margin: 0 0 12px;
+  letter-spacing: -0.005em;
+}
+.ds-service--article .ds-np-step__body p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ds-dark-slate, #4A4A4A);
+  margin: 0;
+}
+
+.ds-service--article .ds-np-refs {
+  padding: 16px 0 56px;
+  background: #fff;
+}
+.ds-service--article .ds-np-refs__head,
+.ds-service--article .ds-np-refs__list,
+.ds-service--article .ds-np-refs__disclaimer {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ds-service--article .ds-np-refs__head .ds-label { color: var(--ds-warm-gray, #6B6B6B); }
+.ds-service--article .ds-np-refs__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .ds-article-hero { padding: 40px 0 36px; }
+  .ds-article-hero__lede { font-size: 18px; }
+  .ds-service--article .ds-np-steps { padding: 32px 0 48px; }
+  .ds-service--article .ds-np-step__body p { font-size: 16px; }
+}
 
 .ds-article-related {
   background: #FAFAF8;
@@ -5990,4 +6050,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   .ds-article-related__grid { grid-template-columns: 1fr; }
 }
 /* /DREAMSMILE-ARTICLE */
+
+
+/* (homepage patient-ed tease removed per client review) */
 

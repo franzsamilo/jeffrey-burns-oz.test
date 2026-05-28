@@ -13,6 +13,13 @@ defined( 'ABSPATH' ) || exit;
 $slug = ( is_page() && ( $p = get_post() ) ) ? $p->post_name : '';
 $base = get_stylesheet_directory_uri() . '/assets/arrange';
 
+// Patient-education articles render their OWN editorial hero in
+// service-detail.php — skip this dark-overlay sub-hero so blog articles
+// don't feel like service pages.
+if ( function_exists( 'ds_pated_is_article' ) && ds_pated_is_article( $slug ) ) {
+    return;
+}
+
 $variants = [
   'dental-implants' => [
     'label'    => 'DENTAL IMPLANTS',
