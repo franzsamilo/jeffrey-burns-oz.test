@@ -61,6 +61,10 @@ $steps = $svc['steps']      ?? null;
 $why   = $svc['why']        ?? null;
 $refs  = $svc['references'] ?? null;
 $cta   = $svc['cta']        ?? null;
+$prose   = $svc['prose']        ?? null;  // rich explanatory text blocks
+$figure  = $svc['figure']       ?? null;  // inline SVG explainer diagram (no photo needed)
+$compare = $svc['compare']      ?? null;  // text "traditional vs implant" comparison
+$results = $svc['before_after'] ?? null;  // before/after + social-proof scaffold
 
 // Per-category visual differentiation. Each category gets a distinct accent
 // theme + a "context strip" that shows where this page lives in the IA.
@@ -182,6 +186,113 @@ $article_title = $svc['sub_hero']['label'] ?? '';
 </section>
 <?php endif; ?>
 
+<?php // ── Explanatory prose (what it is / why it matters) ─────────────────── ?>
+<?php if ( $prose && ! empty( $prose['blocks'] ) ) : ?>
+<section class="ds-np-prose">
+  <div class="ds-wrap ds-np-prose__wrap">
+    <div class="ds-np-prose__head ds-reveal">
+      <?php if ( ! empty( $prose['label'] ) ) : ?><span class="ds-label"><?php echo esc_html( $prose['label'] ); ?></span><?php endif; ?>
+      <?php if ( ! empty( $prose['title'] ) ) : ?><h2 class="ds-np-prose__title"><?php echo $prose['title']; ?></h2><?php endif; ?>
+    </div>
+    <div class="ds-np-prose__body ds-reveal">
+      <?php foreach ( $prose['blocks'] as $blk ) : ?>
+        <?php if ( ! empty( $blk['h'] ) ) : ?><h3 class="ds-np-prose__h"><?php echo $blk['h']; ?></h3><?php endif; ?>
+        <?php foreach ( (array) ( $blk['p'] ?? [] ) as $para ) : ?>
+          <p class="ds-np-prose__p"><?php echo $para; ?></p>
+        <?php endforeach; ?>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
+<?php // ── Explanatory diagram (inline SVG schematic, not a photo) ──────────── ?>
+<?php if ( $figure && ! empty( $figure['svg'] ) ) :
+    $svg = ds_diagram_svg( $figure['svg'] );
+    if ( $svg ) :
+?>
+<section class="ds-np-figure">
+  <div class="ds-wrap ds-np-figure__wrap">
+    <div class="ds-np-figure__head ds-reveal">
+      <?php if ( ! empty( $figure['label'] ) ) : ?><span class="ds-label"><?php echo esc_html( $figure['label'] ); ?></span><?php endif; ?>
+      <?php if ( ! empty( $figure['title'] ) ) : ?><h2 class="ds-np-figure__title"><?php echo $figure['title']; ?></h2><?php endif; ?>
+    </div>
+    <figure class="ds-np-figure__fig ds-reveal">
+      <div class="ds-np-figure__media"><?php echo $svg; ?></div>
+      <?php if ( ! empty( $figure['caption'] ) ) : ?><figcaption class="ds-np-figure__cap"><?php echo $figure['caption']; ?></figcaption><?php endif; ?>
+    </figure>
+  </div>
+</section>
+<?php endif; endif; ?>
+
+<?php // ── Traditional vs. implant comparison (text, no photos needed) ──────── ?>
+<?php if ( $compare && ! empty( $compare['cols'] ) ) : ?>
+<section class="ds-np-compare">
+  <div class="ds-wrap">
+    <div class="ds-np-compare__head ds-reveal">
+      <?php if ( ! empty( $compare['label'] ) ) : ?><span class="ds-label"><?php echo esc_html( $compare['label'] ); ?></span><?php endif; ?>
+      <h2 class="ds-np-compare__title"><?php echo $compare['title'] ?? 'Your options, side by side.'; ?></h2>
+      <?php if ( ! empty( $compare['sub'] ) ) : ?><p class="ds-np-compare__sub"><?php echo $compare['sub']; ?></p><?php endif; ?>
+    </div>
+    <div class="ds-np-compare__grid">
+      <?php foreach ( $compare['cols'] as $col ) :
+        $best = ! empty( $col['best'] );
+      ?>
+        <article class="ds-np-compare__card<?php echo $best ? ' is-best' : ''; ?> ds-reveal">
+          <?php if ( $best ) : ?><span class="ds-np-compare__badge">BEST OPTION</span><?php endif; ?>
+          <h3 class="ds-np-compare__card-title"><?php echo $col['title']; ?></h3>
+          <?php if ( ! empty( $col['tagline'] ) ) : ?><p class="ds-np-compare__tagline"><?php echo $col['tagline']; ?></p><?php endif; ?>
+          <ul class="ds-np-compare__points">
+            <?php foreach ( ( $col['points'] ?? [] ) as $pt ) :
+              $kind = $pt[0] ?? 'pro';
+            ?>
+              <li class="ds-np-compare__point ds-np-compare__point--<?php echo esc_attr( $kind ); ?>">
+                <span class="ds-np-compare__mark" aria-hidden="true"><?php echo $kind === 'pro'
+                  ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>'
+                  : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>'; ?></span>
+                <span><?php echo $pt[1] ?? ''; ?></span>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        </article>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
+<?php // ── Real results: before/after + social proof (asset placeholders) ───── ?>
+<?php if ( $results ) : ?>
+<section class="ds-np-results">
+  <div class="ds-wrap">
+    <div class="ds-np-results__head ds-reveal">
+      <span class="ds-label"><?php echo esc_html( $results['label'] ?? 'REAL RESULTS' ); ?></span>
+      <h2 class="ds-np-results__title"><?php echo $results['title'] ?? 'Real patients. Real results.'; ?></h2>
+      <?php if ( ! empty( $results['sub'] ) ) : ?><p class="ds-np-results__sub"><?php echo $results['sub']; ?></p><?php endif; ?>
+    </div>
+    <!-- TODO (assets): drop real before/after photos in place of these placeholders. -->
+    <div class="ds-np-results__grid ds-reveal">
+      <?php for ( $i = 0; $i < (int) ( $results['pairs'] ?? 2 ); $i++ ) : ?>
+        <figure class="ds-np-ba">
+          <div class="ds-np-ba__pair">
+            <span class="ds-np-ba__slot ds-np-ba__slot--before">Before</span>
+            <span class="ds-np-ba__slot ds-np-ba__slot--after">After</span>
+          </div>
+          <figcaption class="ds-np-ba__cap">Actual patient photo &mdash; coming soon</figcaption>
+        </figure>
+      <?php endfor; ?>
+    </div>
+    <?php if ( ! empty( $results['quote'] ) ) : ?>
+      <blockquote class="ds-np-results__quote ds-reveal">
+        <span class="ds-np-results__quote-mark" aria-hidden="true">&ldquo;</span>
+        <p class="ds-np-results__quote-text"><?php echo $results['quote']['text']; ?></p>
+        <cite class="ds-np-results__quote-cite">&mdash; <?php echo esc_html( $results['quote']['cite'] ?? 'DreamSmile patient' ); ?></cite>
+      </blockquote>
+    <?php endif; ?>
+  </div>
+</section>
+<?php endif; ?>
+
 <?php if ( $why && ! empty( $why['cards'] ) && ! $is_article ) :
     $count = count( $why['cards'] );
     $grid_mod = ( $count === 4 ) ? ' ds-implants-nav--quad' : ( ( $count >= 5 ) ? ' ds-implants-nav--wide' : '' );
@@ -226,7 +337,7 @@ $article_title = $svc['sub_hero']['label'] ?? '';
         </li>
       <?php endforeach; ?>
     </ul>
-    <p class="ds-np-refs__disclaimer">External sources are provided for further reading. They are not endorsements of Dr.&nbsp;Burns&rsquo;s practice and do not replace a personal consultation.</p>
+    <p class="ds-np-refs__disclaimer">These sources are listed for transparency. They are not endorsements of Dr.&nbsp;Burns&rsquo;s practice and do not replace a personal consultation.</p>
   </div>
 </section>
 <?php endif; ?>

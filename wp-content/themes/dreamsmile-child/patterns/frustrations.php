@@ -73,8 +73,12 @@ $items = [
       <?php endforeach; ?>
     </div>
 
+    <div class="ds-frustrations__bridge ds-reveal">
+      <p>Dr. Burns&rsquo;s <strong>Burns Protocol</strong> is the permanent answer to every one of these &mdash; same-day teeth, a lifetime warranty, and care from a doctor who actually listens.</p>
+    </div>
+
     <div class="ds-frustrations__cta ds-reveal">
-      <a href="#quiz" class="ds-btn ds-btn--solid">SCHEDULE FREE DREAM SMILE ASSESSMENT</a>
+      <a href="#quiz" class="ds-btn ds-btn--solid">SCHEDULE FREE DREAMSMILE&trade; ASSESSMENT</a>
     </div>
   </div>
 </section>

@@ -28,12 +28,12 @@ $quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/quiz-card.png
               <span class="ds-quiz-card__option-label">I have all of my teeth</span>
             </label>
             <label class="ds-quiz-card__option">
-              <input type="radio" name="ds-quiz" value="one" class="ds-quiz-radio" />
-              <span class="ds-quiz-card__option-label">I&rsquo;m missing one tooth</span>
+              <input type="radio" name="ds-quiz" value="some" class="ds-quiz-radio" />
+              <span class="ds-quiz-card__option-label">I&rsquo;m missing one or more teeth</span>
             </label>
             <label class="ds-quiz-card__option">
-              <input type="radio" name="ds-quiz" value="multiple" class="ds-quiz-radio" />
-              <span class="ds-quiz-card__option-label">I&rsquo;m missing multiple teeth</span>
+              <input type="radio" name="ds-quiz" value="most" class="ds-quiz-radio" />
+              <span class="ds-quiz-card__option-label">I&rsquo;m missing most of my teeth</span>
             </label>
             <label class="ds-quiz-card__option">
               <input type="radio" name="ds-quiz" value="all-missing" class="ds-quiz-radio" />
@@ -49,13 +49,16 @@ $quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/quiz-card.png
       </div>
 
       <!-- CENTER — iPad / book preview -->
+      <!-- TODO (client): quiz-card.png is a stock placeholder — it is NOT Dr. Burns's
+           actual patient or his real guide. Replace with the real "Pricing & Information
+           Guide" cover that TIE created (sourced from his live website). -->
       <figure class="ds-quiz-ipad ds-reveal" aria-hidden="false">
-        <img src="<?php echo esc_url( $quiz_card_img ); ?>" alt="The Complete Handbook on Dental Implants &mdash; free downloadable guide" loading="lazy" />
+        <img src="<?php echo esc_url( $quiz_card_img ); ?>" alt="Free Dental Implant Pricing &amp; Information Guide" loading="lazy" />
       </figure>
 
       <!-- RIGHT — Guide CTA -->
       <aside class="ds-guide-card ds-reveal">
-        <span class="ds-guide-card__label">WANT TO LEARN MORE ABOUT DENTAL IMPLANTS?</span>
+        <span class="ds-guide-card__label">WANT TO LEARN MORE &mdash; INCLUDING SAME-DAY TEETH?</span>
         <p class="ds-guide-card__heading">Download the FREE Pricing &amp; Information Guide</p>
         <a href="#" data-ds-schedule class="ds-btn ds-btn--outlined ds-btn--sm ds-guide-card__cta">GET THE FREE GUIDE</a>
       </aside>

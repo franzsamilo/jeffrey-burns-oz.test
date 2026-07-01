@@ -50,7 +50,7 @@ $pillars = [
   [
     'icon'  => 'phone',
     'title' => 'His personal cell number',
-    'desc'  => 'Every DreamSmile implant patient receives Dr. Burns&rsquo;s direct cell. Pain at 9 PM? Worry on a Saturday? Text him. This is not a marketing line &mdash; it is how Dr. Burns has practiced for decades.',
+    'desc'  => 'Every DreamSmile&trade; implant patient receives Dr. Burns&rsquo;s direct cell. Pain at 9 PM? Worry on a Saturday? Call him. This is not a marketing line &mdash; it is how Dr. Burns has practiced for decades.',
   ],
   [
     'icon'  => 'doctor',
@@ -65,7 +65,7 @@ $pillars = [
   [
     'icon'  => 'house',
     'title' => 'Everything in-house',
-    'desc'  => 'Imaging, surgery, lab work, restoration, and follow-up all happen at the New Market office. No referrals, no shipping you out, no waiting for someone else&rsquo;s schedule.',
+    'desc'  => 'Imaging, surgery, lab work, restoration, and follow-up all happen at the New Market office &mdash; often the same day. Most patients get beautiful temporary teeth immediately, so you leave smiling, not gap-toothed. No referrals, no shipping you out.',
   ],
 ];
 

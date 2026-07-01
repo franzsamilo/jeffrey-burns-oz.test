@@ -5,6 +5,9 @@
 
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+// Inline explanatory SVG diagrams (ds_diagram_svg) used by service-detail.php.
+require_once trailingslashit( get_stylesheet_directory() ) . 'inc/diagrams.php';
+
 add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'twentytwentyfive-style', get_template_directory_uri() . '/style.css', [], wp_get_theme( 'twentytwentyfive' )->get( 'Version' ) );
     wp_enqueue_style( 'dreamsmile-style', get_stylesheet_uri(), [ 'twentytwentyfive-style' ], wp_get_theme()->get( 'Version' ) );
@@ -274,7 +277,7 @@ function ds_seo_data( $slug = null ) {
     // exhausts memory on any unmapped slug (e.g., new pages added post-deploy).
     return [
         'title' => get_bloginfo( 'name' ),
-        'description' => 'A Dream Smile You Never Have to Hide. 30+ years of dental implant experience with ' . $brand . ' in New Market, VA.',
+        'description' => 'A DreamSmile You Never Have to Hide. 30+ years of dental implant experience with ' . $brand . ' in New Market, VA.',
         'og_image' => $base . '/hero-image.png', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'page',
     ];
 }
@@ -453,6 +456,50 @@ function ds_office_data() {
 }
 
 /**
+ * Split-panel sub-hero — a solid charcoal text panel beside a clean image
+ * (no full scrim over the photo). Shared by page-sub-hero.php and the implant
+ * deep-dive patterns so every sub-page hero stays consistent. Only a short top
+ * gradient sits over the image, to keep the fixed navbar legible without
+ * greying the whole photo.
+ *
+ * @param array $a label, title, sub, alt, bg (full URL), ctas[ [label,href,variant] ]
+ */
+function ds_render_split_hero( array $a ) {
+    $label = $a['label'] ?? '';
+    $title = $a['title'] ?? '';
+    $sub   = $a['sub']   ?? '';
+    $alt   = $a['alt']   ?? 'DreamSmile by Dr. Jeffrey S. Burns';
+    $bg    = $a['bg']    ?? ( get_stylesheet_directory_uri() . '/assets/arrange/hero-image.png' );
+    $ctas  = $a['ctas']  ?? [];
+    ?>
+    <section class="ds-hero ds-hero--sub ds-hero--split" id="hero">
+      <div class="ds-hero-split">
+        <div class="ds-hero-split__panel">
+          <div class="ds-hero__content ds-reveal">
+            <?php if ( '' !== $label ) : ?><span class="ds-hero__label"><?php echo wp_kses_post( $label ); ?></span><?php endif; ?>
+            <h1 class="ds-hero__title"><?php echo wp_kses_post( $title ); ?></h1>
+            <?php if ( '' !== $sub ) : ?><p class="ds-hero__sub"><?php echo wp_kses_post( $sub ); ?></p><?php endif; ?>
+            <?php if ( ! empty( $ctas ) ) : ?>
+            <div class="ds-hero__ctas">
+              <?php foreach ( $ctas as $i => $c ) :
+                  $variant = $c['variant'] ?? ( 0 === $i ? 'solid' : 'outlined-white' );
+              ?>
+                <a href="<?php echo esc_url( $c['href'] ?? '#' ); ?>" class="ds-btn ds-btn--<?php echo esc_attr( $variant ); ?>"><?php echo esc_html( $c['label'] ?? '' ); ?></a>
+              <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+          </div>
+        </div>
+        <div class="ds-hero-split__media" role="img" aria-label="<?php echo esc_attr( $alt ); ?>"
+             style="background-image: url('<?php echo esc_url( $bg ); ?>'); background-position: center;">
+          <span class="ds-hero-split__watermark" aria-hidden="true">DreamSmile<sup>&trade;</sup></span>
+        </div>
+      </div>
+    </section>
+    <?php
+}
+
+/**
  * Shared "Meet the Specialist" section used by every sub-page.
  */
 function ds_render_about_section() {
@@ -469,8 +516,8 @@ function ds_render_about_section() {
           <div class="ds-reveal ds-about__text-col">
             <span class="ds-label">MEET THE SPECIALIST</span>
             <h2 class="ds-about__title">Dr. Jeffrey S. Burns</h2>
-            <p class="ds-about__bio">Dr. Jeffrey S. Burns is a nationally recognized leader in dental implantology and smile design with over 30 years of hands-on implant experience. He is the creator of the Burns Protocol, a proven multi-step system he has taught to Dentists across the United States to consistently deliver healthy, long-lasting DreamSmile.</p>
-            <p class="ds-about__bio">Dr. Burns combines elite expertise with genuine care&mdash;so much so that every DreamSmile patient receives his personal cell phone number, ensuring direct access, confidence, and peace of mind throughout their transformation.</p>
+            <p class="ds-about__bio">Dr. Jeffrey S. Burns is a nationally recognized leader in dental implantology and smile design with over 30 years of hands-on implant experience. He is the creator of the Burns Protocol, a proven multi-step system with a proven 98%+ success rate that he has taught to dentists across the United States to consistently deliver beautiful, aesthetically pleasing, healthy, long-lasting DreamSmiles&trade;.</p>
+            <p class="ds-about__bio">Dr. Burns combines elite expertise with genuine care&mdash;so much so that every DreamSmile&trade; patient receives his personal cell phone number, ensuring direct access, confidence, and peace of mind throughout their transformation.</p>
             <div class="ds-about__credentials">
               <?php foreach ( $credentials as $c ) : ?>
                 <span class="ds-about__credential">

@@ -212,7 +212,7 @@ $hero_prefix = $is_home_city ? 'in' : 'Near';
 <section class="ds-loc-testimonials">
   <div class="ds-wrap">
     <span class="ds-label">PATIENT STORIES</span>
-    <h2 class="ds-loc-testimonials__title ds-reveal">Real patients. <span class="ds-italic">Real DreamSmiles.</span></h2>
+    <h2 class="ds-loc-testimonials__title ds-reveal">Real patients. <span class="ds-italic">Real DreamSmiles&trade;.</span></h2>
     <p class="ds-loc-testimonials__sub ds-reveal">Hear directly from a DreamSmile patient about their experience with Dr. Burns.</p>
     <div class="ds-loc-testimonials__media ds-reveal">
       <video

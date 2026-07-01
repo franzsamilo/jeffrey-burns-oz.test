@@ -38,7 +38,7 @@ $promises = [
       <?php endforeach; ?>
     </ul>
     <div class="ds-promise__cta ds-reveal">
-      <a href="#quiz" class="ds-btn ds-btn--solid" data-ds-schedule-location="Patient Promise">Schedule Free DreamSmile Assessment</a>
+      <a href="#quiz" class="ds-btn ds-btn--solid" data-ds-schedule-location="Patient Promise">Schedule Free DreamSmile&trade; Assessment</a>
     </div>
   </div>
 </section>

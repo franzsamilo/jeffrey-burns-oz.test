@@ -22,7 +22,7 @@ $star = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 
   <div class="ds-wrap">
     <div class="ds-testimonials__head ds-reveal">
       <h2 class="ds-testimonials__title">Real Results. Real Patients.</h2>
-      <p class="ds-testimonials__sub">Real results from real patients who trusted Dr. Burns with their DreamSmile.</p>
+      <p class="ds-testimonials__sub">Real results from real patients who trusted Dr. Burns with their DreamSmile&trade;.</p>
     </div>
 
     <div class="ds-testi-rail ds-reveal" data-ds-testi-rail aria-roledescription="carousel" aria-label="Patient testimonials">

@@ -43,7 +43,8 @@ body.admin-bar .ds-navbar { top: 32px; }
 .ds-label {
   display: inline-block;
   font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
+  /* Bigger little titles so older readers can read them (client request, applies to every kicker). */
+  font-size: 13px;
   font-weight: 700;
   color: var(--ds-teal);
   letter-spacing: 0.2em;
@@ -408,7 +409,7 @@ body.admin-bar .ds-navbar { top: 32px; }
 .ds-hero__label {
   display: inline-block;
   font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--ds-teal-light);
   letter-spacing: 0.22em;
@@ -549,7 +550,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-quiz-card__label {
   font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -732,7 +733,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 .ds-guide-card > * { position: relative; z-index: 1; }
 .ds-guide-card__label {
   font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -789,6 +790,14 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   font-size: 14px;
   color: var(--ds-warm-gray);
   margin: 8px 0 0;
+}
+.ds-intro-section__valueprop {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ds-teal-dark);
+  margin: 6px 0 0;
 }
 .ds-intro-grid {
   display: grid;
@@ -1211,6 +1220,19 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 .ds-service-card .ds-btn {
   margin-inline: 8px;
 }
+/* Same-Day Teeth flag line on the Implants service card (client priority). */
+.ds-service-card__flag {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 8px 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ds-teal-dark);
+}
+.ds-service-card__flag svg { width: 14px; height: 14px; flex: 0 0 auto; margin-top: 1px; color: var(--ds-teal); }
 
 /* â”€â”€â”€ Comparison (mockup-true: DreamSmile dominates) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
@@ -1319,12 +1341,12 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   padding-top: 36px;
 }
 @media (min-width: 1024px) {
-  /* Slight scale-down on the chains card to emphasize the winner */
+  /* Traditional card stays full-size so its rows align line-for-line with the
+     DreamSmile card (client: "align this with each other — each line is VS").
+     Dominance is carried by the primary card's border, shadow, wash, and badge
+     instead of a scale-down, which previously shifted the rows out of line. */
   .ds-compare-card--muted {
     align-self: stretch;
-    transform: scale(0.97);
-    transform-origin: center center;
-    opacity: 0.92;
   }
 }
 
@@ -1352,6 +1374,11 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   color: var(--ds-teal-dark);
   margin: 6px 0 4px;
   line-height: 1.1;
+  /* Equal header height across both cards so the feature rows start at the
+     same Y and line up row-for-row. */
+  min-height: 3rem;
+  display: flex;
+  align-items: flex-end;
 }
 .ds-compare-card__title--muted {
   font-family: 'Amiri', 'Playfair Display', serif;
@@ -1361,7 +1388,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-compare-card__kicker {
   font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--ds-warm-gray);
@@ -1375,7 +1402,8 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   flex-direction: column;
   gap: 18px;
 }
-.ds-compare-item { display: flex; align-items: flex-start; gap: 14px; }
+/* Fixed row height so the Nth feature lines up across both cards. */
+.ds-compare-item { display: flex; align-items: flex-start; gap: 14px; min-height: 68px; }
 .ds-compare-item__icon {
   flex: 0 0 auto;
   width: 24px;
@@ -1414,11 +1442,17 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 .ds-protocol {
   background: var(--ds-charcoal);
   color: #fff;
-  padding-block: 80px;
+  /* Shorter top padding — client: "big margin between the top and YOUR JOURNEY". */
+  padding: 52px 0 80px;
 }
-@media (min-width: 768px) { .ds-protocol { padding-block: 96px; } }
+@media (min-width: 768px) { .ds-protocol { padding: 60px 0 96px; } }
 .ds-protocol__head { text-align: center; margin-bottom: 24px; }
-.ds-protocol__head .ds-label { color: var(--ds-teal-light); }
+/* Larger label so older readers can read it (client request). */
+.ds-protocol__head .ds-label {
+  color: var(--ds-teal-light);
+  font-size: 15px;
+  letter-spacing: 0.22em;
+}
 .ds-protocol__title {
   font-family: 'Amiri', 'Playfair Display', serif;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
@@ -1505,15 +1539,16 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-step__body h3 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
+  font-size: 19.5px;
   font-weight: 600;
   color: #fff;
-  margin: 6px 0 4px;
+  margin: 6px 0 6px;
 }
+/* Larger, higher-contrast body — client: "the text is too small". */
 .ds-step__body p {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 14px;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 15.5px;
+  line-height: 1.65;
   margin: 0 0 8px;
 }
 .ds-step__link {
@@ -1730,9 +1765,29 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 @media (min-width: 1024px) {
   .ds-frustrations__grid { grid-template-columns: repeat(3, 1fr); }
 }
+/* Pain -> solution bridge callout between the frustration grid and the CTA. */
+.ds-frustrations__bridge {
+  max-width: 760px;
+  margin: 40px auto 0;
+  padding: 22px 28px;
+  border-radius: var(--ds-card-radius);
+  background: rgba(127, 181, 176, 0.10);
+  border: 1px solid rgba(127, 181, 176, 0.30);
+  border-left: 3px solid var(--ds-teal);
+  text-align: center;
+}
+.ds-frustrations__bridge p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+.ds-frustrations__bridge strong { color: var(--ds-teal-light); font-weight: 700; }
+
 .ds-frustration-card {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid rgba(127, 181, 176, 0.55);
   border-radius: var(--ds-card-radius);
   padding: 24px;
   transition: background-color .2s ease, border-color .2s ease;
@@ -2377,7 +2432,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   }
   .ds-guide-card__label {
     max-width: 100%;
-    font-size: 10.5px;
+    font-size: 12px;
     letter-spacing: 0.18em;
     margin-top: 0;
   }
@@ -2409,3 +2464,271 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   .ds-tier--recommended { margin-block: 0; }
 }
 /* /DREAMSMILE-MOBILE-V1 */
+
+/* ════════════════════════════════════════════════════════════════════════
+   BURNS-WEBSITE-NOTES PASS — brand lockup, navbar/hero phone, "As Seen On"
+   media chips, DreamSmile-is compact bullets, Introducing kicker.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Generic trademark superscript */
+.ds-tm {
+  font-size: 0.5em;
+  vertical-align: super;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  margin-left: 1px;
+}
+
+/* Brand wordmark lockup — script "DreamSmile" + small ™ (logo stand-in) */
+.ds-brand { display: inline-flex; align-items: flex-start; white-space: nowrap; }
+.ds-brand__word { font-family: 'Dancing Script', cursive; font-weight: 700; }
+.ds-brand__tm {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.30em;
+  font-weight: 600;
+  line-height: 1;
+  margin-top: 0.55em;
+  margin-left: 2px;
+}
+/* Comparison section: brand reads as the logo — bigger script, teal-dark. */
+.ds-comparison__title .ds-brand { color: var(--ds-teal-dark); }
+.ds-comparison__title .ds-brand__word { font-size: 1.18em; line-height: 1; }
+.ds-compare-card__title--brand { color: var(--ds-teal-dark); }
+.ds-compare-card__title--brand .ds-brand__word { font-size: 1.1em; }
+
+/* ─── Navbar phone (upper-right) ─────────────────────────────────────────── */
+.ds-navbar__actions { display: flex; align-items: center; gap: 16px; }
+.ds-navbar__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  transition: color .2s ease;
+  white-space: nowrap;
+}
+.ds-navbar__phone svg { color: var(--ds-teal-light); flex: 0 0 auto; }
+.ds-navbar__phone:hover { color: var(--ds-teal-light); }
+.ds-navbar.is-scrolled .ds-navbar__phone { color: var(--ds-charcoal); }
+.ds-navbar.is-scrolled .ds-navbar__phone svg { color: var(--ds-teal-dark); }
+.ds-navbar.is-scrolled .ds-navbar__phone:hover { color: var(--ds-teal-dark); }
+@media (max-width: 767px) { .ds-navbar__phone { display: none; } }
+.ds-navbar__mobile-phone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--ds-teal-dark);
+}
+.ds-navbar__mobile-phone svg { color: var(--ds-teal); flex: 0 0 auto; }
+
+/* ─── Hero CTA group + "or call" phone ───────────────────────────────────── */
+.ds-hero__cta-group { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.ds-hero__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  transition: color .2s ease;
+}
+.ds-hero__phone strong { color: #fff; font-weight: 700; }
+.ds-hero__phone svg { color: var(--ds-teal-light); flex: 0 0 auto; }
+.ds-hero__phone:hover { color: var(--ds-teal-light); }
+.ds-hero__asterisk { color: var(--ds-teal-light); font-weight: 700; }
+.ds-hero__watermark-tm { font-size: 0.34em; vertical-align: super; }
+
+/* ─── Expertise "As Seen On" media chips (placeholder logos) ──────────────── */
+.ds-expertise__media {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 16px;
+}
+.ds-expertise__media-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.88);
+}
+.ds-expertise__media-logo svg { color: var(--ds-teal-light); flex: 0 0 auto; }
+.ds-expertise__media-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: left;
+}
+.ds-expertise__media-name small { display: block; font-weight: 500; opacity: 0.55; font-size: 10px; letter-spacing: 0.04em; }
+.ds-expertise__media-note {
+  margin: 14px auto 0;
+  max-width: 520px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ─── DreamSmile-is: compact bullets + one watermarked photo ──────────────── */
+.ds-is-compact {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: center;
+  max-width: 940px;
+  margin-inline: auto;
+}
+@media (min-width: 768px) {
+  .ds-is-compact { grid-template-columns: 1.05fr 0.95fr; gap: 44px; }
+}
+.ds-is-benefits { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.ds-is-benefit { display: flex; align-items: center; gap: 15px; }
+.ds-is-benefit__icon {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ds-teal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-is-benefit__icon svg { width: 18px; height: 18px; color: #fff; }
+.ds-is-benefit__text {
+  font-family: 'Amiri', 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 2.6vw, 1.55rem);
+  color: var(--ds-charcoal);
+  line-height: 1.25;
+}
+.ds-is-benefit__text strong { color: var(--ds-teal-dark); font-weight: 700; }
+.ds-is-figure {
+  position: relative;
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 50px -20px rgba(58, 58, 58, 0.35);
+}
+.ds-is-figure img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 5; }
+.ds-is-figure__watermark {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  color: rgba(255, 255, 255, 0.94);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+.ds-is-figure__watermark sup { font-size: 0.32em; vertical-align: super; }
+
+/* ─── Introducing: centered kicker over the logo wordmark ─────────────────── */
+.ds-intro-section__kicker {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ds-warm-gray);
+  margin: 0 0 8px;
+}
+.ds-intro-section__script {
+  font-family: 'Dancing Script', cursive;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.5em;
+  color: var(--ds-teal-dark);
+}
+.ds-intro-section__tm {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.26em;
+  font-weight: 600;
+  vertical-align: super;
+  color: var(--ds-teal-dark);
+  margin-left: 2px;
+}
+
+/* About: schedule CTA + "learn more" link row (Burns-notes: add a CTA) */
+.ds-about__ctas { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 4px; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   SPLIT-PANEL SUB-HERO — client: "text on one side with a solid background,
+   image on the other, so the image isn't greyed out." Charcoal text panel |
+   clean photo. Only a short top gradient sits over the image so the fixed
+   navbar stays legible without greying the whole picture. All ~30 sub-pages
+   + the 3 implant deep-dives render via ds_render_split_hero().
+   ════════════════════════════════════════════════════════════════════════ */
+.ds-hero--split {
+  display: block;        /* override base .ds-hero flex/overlay */
+  min-height: 0;
+  overflow: hidden;
+  background: var(--ds-charcoal);
+}
+.ds-hero-split { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 900px) {
+  .ds-hero-split { grid-template-columns: 1.03fr 1fr; align-items: stretch; min-height: 60vh; }
+}
+.ds-hero-split__panel {
+  background: var(--ds-charcoal);
+  display: flex;
+  align-items: center;
+  padding: 104px 24px 48px;   /* top clears the 80px fixed navbar */
+}
+@media (min-width: 900px) {
+  .ds-hero-split__panel { padding: 120px clamp(32px, 5vw, 64px) 72px clamp(24px, 6vw, 96px); }
+}
+.ds-hero-split__panel .ds-hero__content { max-width: 560px; width: 100%; }
+.ds-hero-split__media {
+  position: relative;
+  min-height: 280px;
+  background-color: var(--ds-charcoal);  /* fallback if the image is missing */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media (min-width: 900px) { .ds-hero-split__media { min-height: 100%; } }
+/* Top scrim only — keeps the navbar readable over the photo. */
+.ds-hero-split__media::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 150px;
+  background: linear-gradient(180deg, rgba(58, 58, 58, 0.72) 0%, rgba(58, 58, 58, 0) 100%);
+  pointer-events: none;
+}
+/* Soft seam between the charcoal panel and the photo (desktop only). */
+@media (min-width: 900px) {
+  .ds-hero-split__media::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 96px;
+    background: linear-gradient(90deg, var(--ds-charcoal) 0%, rgba(58, 58, 58, 0) 100%);
+    pointer-events: none;
+  }
+}
+.ds-hero-split__watermark {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  z-index: 2;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+.ds-hero-split__watermark sup { font-size: 0.34em; vertical-align: super; }

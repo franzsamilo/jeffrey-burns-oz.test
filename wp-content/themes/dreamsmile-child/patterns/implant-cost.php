@@ -54,23 +54,19 @@ $svg = [
 ];
 ?>
 <!-- wp:html -->
-<section class="ds-hero ds-hero--sub" id="hero">
-  <div class="ds-hero__bg" role="img" aria-label="Dental implant cost &amp; financing — transparent treatment plan"
-       style="background-image: linear-gradient(135deg, rgba(58,58,58,0.92) 0%, rgba(58,58,58,0.7) 50%, rgba(58,58,58,0.5) 100%), url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/implant-cost-hero.jpg' ); ?>'); background-size: cover; background-position: center;">
-  </div>
-  <div class="ds-hero__inner">
-    <div class="ds-hero__content ds-reveal">
-      <span class="ds-hero__label">DENTAL IMPLANTS &middot; COST</span>
-      <h1 class="ds-hero__title">Dental Implant Costs, <em>Made Clear.</em></h1>
-      <p class="ds-hero__sub">Transparent pricing, flexible financing, and the factors that shape your total &mdash; no surprises.</p>
-      <div class="ds-hero__ctas">
-        <a href="/#quiz" class="ds-btn ds-btn--solid">Take the Implant Quiz</a>
-        <a href="tel:+15407408937" class="ds-btn ds-btn--outlined-white">Call (540) 740-8937</a>
-      </div>
-    </div>
-  </div>
-  <div class="ds-hero__watermark" aria-hidden="true">DreamSmile</div>
-</section>
+<?php
+ds_render_split_hero( [
+  'label' => 'DENTAL IMPLANTS &middot; COST',
+  'title' => 'Dental Implant Costs, <em>Made Clear.</em>',
+  'sub'   => 'Transparent pricing, flexible financing, and the factors that shape your total &mdash; no surprises.',
+  'alt'   => 'Dental implant cost and financing — a transparent treatment plan',
+  'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-cost-hero.jpg',
+  'ctas'  => [
+    [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz' ],
+    [ 'label' => 'Call (540) 740-8937',   'href' => 'tel:+15407408937', 'variant' => 'outlined-white' ],
+  ],
+] );
+?>
 
 <section class="ds-cost-factors">
   <div class="ds-wrap">

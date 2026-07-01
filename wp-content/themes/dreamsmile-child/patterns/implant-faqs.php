@@ -18,23 +18,19 @@ $cats = [
 $faqs = ds_faq_data();
 ?>
 <!-- wp:html -->
-<section class="ds-hero ds-hero--sub" id="hero">
-  <div class="ds-hero__bg" role="img" aria-label="Dental implant FAQs — Dr. Burns answering patient questions"
-       style="background-image: linear-gradient(135deg, rgba(58,58,58,0.92) 0%, rgba(58,58,58,0.7) 50%, rgba(58,58,58,0.5) 100%), url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/implant-faqs-hero.jpg' ); ?>'); background-size: cover; background-position: center;">
-  </div>
-  <div class="ds-hero__inner">
-    <div class="ds-hero__content ds-reveal">
-      <span class="ds-hero__label">DENTAL IMPLANTS &middot; FAQS</span>
-      <h1 class="ds-hero__title">Everything You Need to Know, <em>Answered.</em></h1>
-      <p class="ds-hero__sub">Real answers to the questions patients ask before choosing DreamSmile &mdash; pain, healing, cost, and more.</p>
-      <div class="ds-hero__ctas">
-        <a href="/#quiz" class="ds-btn ds-btn--solid">Take the Implant Quiz</a>
-        <a href="tel:+15407408937" class="ds-btn ds-btn--outlined-white">Call (540) 740-8937</a>
-      </div>
-    </div>
-  </div>
-  <div class="ds-hero__watermark" aria-hidden="true">DreamSmile</div>
-</section>
+<?php
+ds_render_split_hero( [
+  'label' => 'DENTAL IMPLANTS &middot; FAQS',
+  'title' => 'Everything You Need to Know, <em>Answered.</em>',
+  'sub'   => 'Real answers to the questions patients ask before choosing DreamSmile&trade; &mdash; pain, healing, cost, and more.',
+  'alt'   => 'Dental implant FAQs — Dr. Burns answering patient questions',
+  'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-faqs-hero.jpg',
+  'ctas'  => [
+    [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz' ],
+    [ 'label' => 'Call (540) 740-8937',   'href' => 'tel:+15407408937', 'variant' => 'outlined-white' ],
+  ],
+] );
+?>
 
 <section class="ds-faq">
   <div class="ds-wrap">
@@ -74,8 +70,8 @@ $faqs = ds_faq_data();
   <div class="ds-wrap">
     <div class="ds-faq-help__inner ds-reveal">
       <span class="ds-label">STILL HAVE QUESTIONS?</span>
-      <h2 class="ds-faq-help__title">Text Dr. Burns directly.</h2>
-      <p class="ds-faq-help__sub">Every DreamSmile patient gets Dr. Burns&rsquo; personal cell. Ask him anything &mdash; before, during, or after treatment.</p>
+      <h2 class="ds-faq-help__title">Call Dr. Burns directly.</h2>
+      <p class="ds-faq-help__sub">Every DreamSmile&trade; patient gets Dr. Burns&rsquo; personal cell. Ask him anything &mdash; before, during, or after treatment.</p>
       <div class="ds-faq-help__ctas">
         <a href="tel:+15407408937" class="ds-btn ds-btn--solid">Call (540) 740-8937</a>
         <a href="/#quiz" class="ds-btn ds-btn--outlined-white">Take the Quiz</a>

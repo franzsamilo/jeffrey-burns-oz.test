@@ -11,10 +11,13 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
 <section class="ds-intro-section">
   <div class="ds-wrap">
     <div class="ds-intro-section__head ds-reveal">
+      <p class="ds-intro-section__kicker">Introducing The</p>
+      <!-- Brand wordmark stand-in for the DreamSmile logo — swap .ds-intro-section__script for an <img> of the real logo SVG when available. -->
       <h2 class="ds-intro-section__title">
-        Introducing The <span class="ds-intro-section__script">DreamSmile</span>
+        <span class="ds-intro-section__script">DreamSmile</span><sup class="ds-intro-section__tm">&trade;</sup>
       </h2>
-      <p class="ds-intro-section__by">by Jeffrey S. Burns DDS</p>
+      <p class="ds-intro-section__by">by Jeffrey S. Burns, DDS &middot; 30+ Years &middot; AACD Award Winner</p>
+      <p class="ds-intro-section__valueprop">The Burns Protocol for same-day, confident smiles.</p>
     </div>
 
     <div class="ds-intro-grid">

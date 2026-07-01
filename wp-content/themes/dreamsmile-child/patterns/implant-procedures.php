@@ -28,23 +28,19 @@ $svg = [
 ];
 ?>
 <!-- wp:html -->
-<section class="ds-hero ds-hero--sub" id="hero">
-  <div class="ds-hero__bg" role="img" aria-label="Dental implant procedures — surgical precision and modern technology"
-       style="background-image: linear-gradient(135deg, rgba(58,58,58,0.92) 0%, rgba(58,58,58,0.7) 50%, rgba(58,58,58,0.5) 100%), url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/implant-procedures-hero.jpg' ); ?>'); background-size: cover; background-position: center;">
-  </div>
-  <div class="ds-hero__inner">
-    <div class="ds-hero__content ds-reveal">
-      <span class="ds-hero__label">DENTAL IMPLANTS &middot; PROCEDURES</span>
-      <h1 class="ds-hero__title">The Right Implant Solution <em>for Every Smile.</em></h1>
-      <p class="ds-hero__sub">Six proven procedures &mdash; from a single tooth to a full-arch rebuild. Find the one that fits.</p>
-      <div class="ds-hero__ctas">
-        <a href="/#quiz" class="ds-btn ds-btn--solid">Take the Implant Quiz</a>
-        <a href="tel:+15407408937" class="ds-btn ds-btn--outlined-white">Call (540) 740-8937</a>
-      </div>
-    </div>
-  </div>
-  <div class="ds-hero__watermark" aria-hidden="true">DreamSmile</div>
-</section>
+<?php
+ds_render_split_hero( [
+  'label' => 'DENTAL IMPLANTS &middot; PROCEDURES',
+  'title' => 'The Right Implant Solution <em>for Every Smile.</em>',
+  'sub'   => 'Six proven procedures &mdash; from a single tooth to a full-arch rebuild. Find the one that fits.',
+  'alt'   => 'Dental implant procedures — surgical precision and modern technology',
+  'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-procedures-hero.jpg',
+  'ctas'  => [
+    [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz' ],
+    [ 'label' => 'Call (540) 740-8937',   'href' => 'tel:+15407408937', 'variant' => 'outlined-white' ],
+  ],
+] );
+?>
 
 <section class="ds-proc-types">
   <div class="ds-wrap">

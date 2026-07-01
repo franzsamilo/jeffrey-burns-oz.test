@@ -39,10 +39,10 @@ $show_more    = $current_slug !== 'meet-dr-burns';
         <h2 class="ds-about__title">Dr. Jeffrey S. Burns</h2>
 
         <p class="ds-about__bio">
-          Dr. Jeffrey S. Burns is a nationally recognized leader in dental implantology and smile design with over 30 years of hands-on implant experience. He is the creator of the Burns Protocol, a proven multi-step system he has taught to Dentists across the United States to consistently deliver healthy, long-lasting DreamSmile.
+          Dr. Jeffrey S. Burns is a nationally recognized leader in dental implantology and smile design with over 30 years of hands-on implant experience. He is the creator of the Burns Protocol, a proven multi-step system with a proven 98%+ success rate that he has taught to dentists across the United States to consistently deliver beautiful, aesthetically pleasing, healthy, long-lasting DreamSmiles&trade;.
         </p>
         <p class="ds-about__bio">
-          Dr. Burns combines elite expertise with genuine care&mdash;so much so that every DreamSmile patient receives his personal cell phone number, ensuring direct access, confidence, and peace of mind throughout their transformation.
+          Dr. Burns combines elite expertise with genuine care&mdash;so much so that every DreamSmile&trade; patient receives his personal cell phone number, ensuring direct access, confidence, and peace of mind throughout their transformation.
         </p>
 
         <div class="ds-about__credentials">
@@ -54,12 +54,15 @@ $show_more    = $current_slug !== 'meet-dr-burns';
           <?php endforeach; ?>
         </div>
 
-        <?php if ( $show_more ) : ?>
-        <a href="/meet-dr-burns/" class="ds-about__more">
-          Learn more about Dr.&nbsp;Burns
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-        </a>
-        <?php endif; ?>
+        <div class="ds-about__ctas">
+          <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid ds-btn--sm">Schedule to Meet Dr.&nbsp;Burns</a>
+          <?php if ( $show_more ) : ?>
+          <a href="/meet-dr-burns/" class="ds-about__more">
+            Learn more about Dr.&nbsp;Burns
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+          </a>
+          <?php endif; ?>
+        </div>
       </div>
     </div>
 

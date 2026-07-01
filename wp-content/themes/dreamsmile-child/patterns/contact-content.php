@@ -52,6 +52,7 @@ $svg_route = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
         <h3 class="ds-loc-map__city"><?php echo esc_html( $office['home_city'] ); ?>, <?php echo esc_html( $office['home_state'] ); ?></h3>
         <p class="ds-loc-map__addr">Jeffrey S. Burns DDS<br/>9626 South Congress St<br/>New Market, VA 22844</p>
         <p class="ds-loc-map__hours">Mon&ndash;Thu &middot; 8:00 AM &ndash; 3:00 PM<br/>Fri&ndash;Sun &middot; <em>Closed</em></p>
+        <p class="ds-loc-map__phone-label">Direct line to Dr. Burns</p>
         <p class="ds-loc-map__hours" style="margin-top:-12px;">
           <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" style="color:#fff;font-weight:700;font-size:18px;letter-spacing:0.02em;text-decoration:none;">
             <?php echo esc_html( $office['phone'] ); ?>
@@ -145,7 +146,7 @@ $svg_route = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
   <div class="ds-wrap">
     <div class="ds-subpage-cta__inner ds-reveal">
       <span class="ds-label">READY WHEN YOU ARE</span>
-      <h2 class="ds-subpage-cta__title">Start your <span class="ds-italic">DreamSmile</span> today.</h2>
+      <h2 class="ds-subpage-cta__title">Start your <span class="ds-italic">DreamSmile&trade;</span> today.</h2>
       <p class="ds-subpage-cta__sub">Free consultation. No obligations. Direct line to Dr. Burns.</p>
       <div class="ds-subpage-cta__ctas">
         <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule Free Consultation</a>

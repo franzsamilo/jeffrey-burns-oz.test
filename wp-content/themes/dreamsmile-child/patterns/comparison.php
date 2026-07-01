@@ -13,6 +13,7 @@ $dreamsmile_rows = [
   [ 'Dr. Burns&rsquo;s Personal Cell Phone',           'Direct access to your doctor &mdash; because your care doesn&rsquo;t end when you leave the office.' ],
   [ 'Turnkey Pricing + Lifetime Warranty',             'One transparent price covers everything. No surprises, no hidden fees.' ],
   [ 'One-Stop Shop',                                   'Everything done in-house. No referrals, no traveling between offices.' ],
+  [ 'You Leave With a Full Smile Today',               'Same-day temporary teeth &mdash; you never walk out with a gap or a wait.' ],
 ];
 
 $chain_rows = [
@@ -20,8 +21,9 @@ $chain_rows = [
   [ 'CRNA Sedation',              'Nurse anesthetists instead of board-certified anesthesiologists.' ],
   [ 'Cookie-Cutter Protocols',    'One-size-fits-all approaches that don&rsquo;t account for your unique needs.' ],
   [ 'Call Center Support',        'Good luck reaching your actual doctor when you have a question.' ],
-  [ 'Hidden Fees &amp; Upsells',  'The price you&rsquo;re quoted is rarely the price you pay.' ],
+  [ 'Hidden Fees and Limited or No Warranty',  'Surprise additional costs and uncertainty if you need additional support.' ],
   [ 'Multiple Locations Required','Referred out for imaging, surgery, and follow-ups at different offices.' ],
+  [ 'Weeks or Months of Waiting', 'Temporary gaps and repeat visits before your final teeth are ready.' ],
 ];
 ?>
 <!-- wp:html -->
@@ -30,7 +32,8 @@ $chain_rows = [
     <div class="ds-comparison__head ds-reveal">
       <span class="ds-label">SEE THE DIFFERENCE</span>
       <h2 class="ds-comparison__title">
-        The <span class="ds-comparison__title-emph">DreamSmile</span> vs. Dental Chains
+        <!-- Brand wordmark stand-in for the DreamSmile logo — swap .ds-brand for an <img> logo when the SVG is available. -->
+        The <span class="ds-brand ds-comparison__title-emph"><span class="ds-brand__word">DreamSmile</span><sup class="ds-brand__tm">&trade;</sup></span> vs. Traditional Dental Implants
       </h2>
       <div class="ds-comparison__divider" aria-hidden="true"><span></span><svg viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2.5"/></svg><span></span></div>
       <p class="ds-comparison__subtitle">Not all dental implant smiles are created equal.</p>
@@ -41,7 +44,9 @@ $chain_rows = [
 
       <div class="ds-compare-card ds-compare-card--primary ds-reveal">
         <span class="ds-compare-card__badge">RECOMMENDED</span>
-        <h3 class="ds-compare-card__title">The DreamSmile</h3>
+        <h3 class="ds-compare-card__title ds-compare-card__title--brand">
+          <span class="ds-brand"><span class="ds-brand__word">DreamSmile</span><sup class="ds-brand__tm">&trade;</sup></span>
+        </h3>
         <p class="ds-compare-card__kicker">THE DR. BURNS EXPERIENCE</p>
         <div class="ds-compare-list">
           <?php foreach ( $dreamsmile_rows as $row ) : ?>
@@ -61,7 +66,7 @@ $chain_rows = [
       <div class="ds-vs ds-vs--mobile" aria-hidden="true">VS</div>
 
       <div class="ds-compare-card ds-compare-card--muted ds-reveal">
-        <h3 class="ds-compare-card__title ds-compare-card__title--muted">National Dental Chains</h3>
+        <h3 class="ds-compare-card__title ds-compare-card__title--muted">Traditional Dental Implants</h3>
         <p class="ds-compare-card__kicker">THE TRADITIONAL EXPERIENCE</p>
         <div class="ds-compare-list">
           <?php foreach ( $chain_rows as $row ) : ?>

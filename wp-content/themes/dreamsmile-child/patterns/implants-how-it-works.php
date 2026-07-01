@@ -18,8 +18,8 @@ $steps = [
   [ 'consult', 'Consultation', '~45 min',     'A no-pressure sit-down with Dr. Burns. We review your goals, answer every question, and map your path &mdash; you leave with clarity, not a sales pitch.' ],
   [ 'scan',    '3D Scanning',  '~15 min',     'Low-radiation 3D imaging and digital models give us a precision blueprint of your jaw and bite structure. No messy impressions.' ],
   [ 'place',   'Placement',    'Same day',    'Dr. Burns personally places your implants with on-staff anesthesia for total comfort. Most patients say it was easier than expected.' ],
-  [ 'healing', 'Healing',      '3&ndash;6 mo.', 'Your implants integrate with your jawbone. You walk out with temporary teeth and check in on a schedule that works for you.' ],
-  [ 'reveal',  'Reveal',       '~2 hours',    'Your final DreamSmile is fitted, fine-tuned, and polished. You walk out smiling &mdash; and never have to hide your mouth again.' ],
+  [ 'healing', 'Healing',      '3&ndash;6 mo.', 'Your implants fuse with your jawbone &mdash; acting as the root of the tooth, which preserves bone and keeps your facial structure youthful, something bridges and dentures can&rsquo;t do. You walk out with temporary teeth and check in on a schedule that works for you.' ],
+  [ 'reveal',  'Reveal',       '~2 hours',    'Your final DreamSmile&trade; is fitted, fine-tuned, and polished. You walk out smiling &mdash; and never have to hide your mouth again.' ],
 ];
 $total = count( $steps );
 ?>

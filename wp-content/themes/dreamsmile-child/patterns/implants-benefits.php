@@ -35,7 +35,7 @@ $items = [
   [ 'eat',    'Eat Your Favorite Foods', 'Steak, apples, corn on the cob &mdash; anything you love. Implants restore near-natural bite force with none of the wobble of dentures.',       '90%+ bite force restored' ],
   [ 'smile',  'Smile With Confidence',   'Dental implants look, feel, and function like the teeth you were born with &mdash; indistinguishable, even up close.',                               'Natural look &amp; feel' ],
   [ 'bone',   'Prevent Bone Loss',       'Unlike bridges or dentures, implants fuse with your jawbone. They preserve bone structure and keep your face looking youthful.',                       'Stops jawbone resorption' ],
-  [ 'shield', 'Long-Term Durability',    'Properly cared-for implants are designed to last a lifetime. Every DreamSmile is backed by our Silver, Gold, or Platinum warranty.',                   'Lifetime Warranty available' ],
+  [ 'shield', 'Long-Term Durability',    'Properly cared-for implants are designed to last a lifetime. Every DreamSmile&trade; is backed by our Silver, Gold, or Platinum warranty.',                   'Lifetime Warranty available' ],
 ];
 ?>
 <!-- wp:html -->

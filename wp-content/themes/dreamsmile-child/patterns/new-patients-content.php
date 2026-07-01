@@ -55,7 +55,7 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
   <div class="ds-wrap">
     <div class="ds-np-welcome__head ds-reveal">
       <span class="ds-label">WELCOME</span>
-      <h2 class="ds-np-welcome__title">Welcome to <span class="ds-italic">DreamSmile Dentistry.</span></h2>
+      <h2 class="ds-np-welcome__title">Welcome to <span class="ds-italic">DreamSmile&trade; Dentistry.</span></h2>
       <p class="ds-np-welcome__sub">If this is your first time visiting Dr. Burns&rsquo;s practice in New Market, VA, you&rsquo;re already in good hands. Here&rsquo;s exactly what to expect &mdash; no surprises, no hidden steps, no high-pressure sales pitch.</p>
     </div>
     <div class="ds-np-welcome__pillars ds-reveal">
@@ -243,7 +243,7 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
       <article class="ds-np-comfort-card ds-reveal">
         <span class="ds-np-comfort-card__icon"><?php echo $icon_phone; ?></span>
         <h3>Direct line to Dr. Burns</h3>
-        <p>Before, during, and after &mdash; every implant patient gets Dr. Burns&rsquo;s personal cell number. Pain or worry at 9 PM? Text him.</p>
+        <p>Before, during, and after &mdash; every implant patient gets Dr. Burns&rsquo;s personal cell number. Pain or worry at 9 PM? Call him.</p>
       </article>
     </div>
   </div>

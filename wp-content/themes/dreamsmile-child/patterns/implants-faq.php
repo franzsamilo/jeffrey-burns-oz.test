@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
 
 $faqs = [
   [ 'Is the procedure painful?', 'No. Our on-staff anesthesiologist ensures complete comfort throughout. Most patients say it was far easier than they expected.' ],
-  [ 'How long do implants last?', 'Properly cared for dental implants are designed to last a lifetime, and they&rsquo;re backed by the DreamSmile Warranty.' ],
+  [ 'How long do implants last?', 'Properly cared for dental implants are designed to last a lifetime, and they&rsquo;re backed by the DreamSmile&trade; Warranty.' ],
   [ 'Am I a candidate if I have bone loss?', 'Most patients are candidates. Dr. Burns&rsquo; 3D imaging and bone-grafting techniques open up options many other offices can&rsquo;t offer.' ],
   [ 'How long will treatment take?', 'Timelines vary by case. Many of our patients walk out the same day with a brand-new smile.' ],
 ];

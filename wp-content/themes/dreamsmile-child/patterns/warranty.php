@@ -26,8 +26,8 @@ $tiers = [
 
   <div class="ds-wrap ds-warranty__inner">
     <div class="ds-warranty__head ds-reveal">
-      <h2 class="ds-warranty__title">The DreamSmile Warranty</h2>
-      <p class="ds-warranty__sub">Every Dream Smile is backed by our exclusive warranty.</p>
+      <h2 class="ds-warranty__title">The DreamSmile&trade; Warranty</h2>
+      <p class="ds-warranty__sub">Every DreamSmile&trade; is backed by our exclusive warranty.</p>
     </div>
 
     <div class="ds-warranty__grid">
@@ -56,7 +56,7 @@ $tiers = [
     </div>
 
     <div class="ds-warranty__cta ds-reveal">
-      <a href="#quiz" class="ds-btn ds-btn--solid" data-ds-schedule-location="Warranty">Schedule Free DreamSmile Assessment</a>
+      <a href="#quiz" class="ds-btn ds-btn--solid" data-ds-schedule-location="Warranty">Schedule Free DreamSmile&trade; Assessment</a>
     </div>
   </div>
 </section>

@@ -37,10 +37,10 @@ return [
     'intro' => [
       'label' => 'WHY A SINGLE IMPLANT',
       'title' => 'One missing tooth. <span class="ds-italic">One elegant solution.</span>',
-      'sub'   => 'A single dental implant replaces just the missing tooth &mdash; without grinding down the healthy teeth around it (the way a traditional bridge does). The result feels and functions exactly like your natural tooth.',
+      'sub'   => 'A single dental implant replaces just the missing tooth &mdash; without grinding down the healthy teeth around it (the way a traditional bridge does). The titanium post acts as a new tooth root, so it keeps the jawbone stimulated and healthy where the old root used to be &mdash; something no bridge or flipper can do. The result looks, feels, and functions exactly like your natural tooth.',
       'pillars' => [
-        [ 'strong' => 'One Tooth', 'span' => 'replaced without touching the others' ],
-        [ 'strong' => '95%+ Success', 'span' => 'with proper bone and case planning' ],
+        [ 'strong' => 'One Tooth', 'span' => 'replaced without affecting the others' ],
+        [ 'strong' => '98%+ Success', 'span' => 'with proper bone and case planning' ],
         [ 'strong' => 'Lifetime Design', 'span' => 'with the Burns Protocol warranty' ],
       ],
     ],
@@ -50,10 +50,48 @@ return [
       'sub'   => 'Most patients are surprised at how comfortable and predictable the process is. Here&rsquo;s exactly what to expect.',
       'list' => [
         [ 'num' => '01', 'title' => 'Consultation &amp; 3D imaging',  'desc' => 'In-house 3D scan to map your bone, bite, and existing teeth. Dr. Burns reviews everything with you and answers questions before any decision.' ],
-        [ 'num' => '02', 'title' => 'Implant placement',              'desc' => 'A single implant post is precisely placed into the jawbone &mdash; usually a 30&ndash;60 minute procedure with on-staff anesthesiology.' ],
+        [ 'num' => '02', 'title' => 'Implant placement',              'desc' => 'A single implant post is precisely placed into the jawbone &mdash; usually a 30&ndash;60 minute procedure with local or sedation anesthesia.' ],
         [ 'num' => '03', 'title' => 'Healing &amp; integration',      'desc' => '3&ndash;6 months for the implant to integrate with the bone. We provide a temporary crown so you&rsquo;re never without a tooth in that spot.' ],
         [ 'num' => '04', 'title' => 'Custom crown &amp; reveal',      'desc' => 'A custom-shaded porcelain crown is placed on the implant. It looks, feels, and functions like the tooth that was always supposed to be there.' ],
       ],
+    ],
+    'figure' => [
+      'svg'     => 'implant-anatomy',
+      'label'   => 'WHY IT MATTERS',
+      'title'   => 'A single implant replaces the whole tooth &mdash; <span class="ds-italic">root and all</span>.',
+      'caption' => 'Unlike a bridge or a flipper, a dental implant replaces the <strong>root</strong> of the missing tooth, not just the part you see. The titanium post fuses to your jawbone and keeps it stimulated &mdash; so the bone stays healthy and your face keeps its natural shape for the long term.',
+    ],
+    'compare' => [
+      'label' => 'TRADITIONAL VS. IMPLANT',
+      'title' => 'Three ways to replace one tooth.',
+      'sub'   => 'A flipper or a traditional bridge can fill the gap &mdash; but only a dental implant replaces the root and protects the bone. Here&rsquo;s the honest comparison.',
+      'cols' => [
+        [ 'title' => 'Flipper', 'tagline' => 'A removable temporary tooth.', 'points' => [
+          [ 'pro', 'Lowest upfront cost' ],
+          [ 'con', 'Removable &mdash; comes out to clean' ],
+          [ 'con', 'Doesn&rsquo;t replace the root or protect bone' ],
+          [ 'con', 'A short-term fix, not a real solution' ],
+        ] ],
+        [ 'title' => 'Traditional Bridge', 'tagline' => 'Anchored to the neighbouring teeth.', 'points' => [
+          [ 'pro', 'Fixed (non-removable)' ],
+          [ 'con', 'Grinds down two healthy teeth' ],
+          [ 'con', 'Doesn&rsquo;t replace the root or protect bone' ],
+          [ 'con', 'Often replaced every 10&ndash;15 years' ],
+        ] ],
+        [ 'title' => 'Dental Implant', 'tagline' => 'A new root plus a natural-looking crown.', 'best' => true, 'points' => [
+          [ 'pro', 'Replaces the root &mdash; protects the jawbone' ],
+          [ 'pro', 'Leaves every other tooth untouched' ],
+          [ 'pro', 'Looks, feels &amp; functions like a real tooth' ],
+          [ 'pro', 'Designed to last a lifetime' ],
+        ] ],
+      ],
+    ],
+    'before_after' => [
+      'label' => 'REAL RESULTS',
+      'title' => 'The difference a single implant makes.',
+      'sub'   => 'See the before-and-after on real single-implant cases &mdash; and hear from the patients themselves.',
+      'pairs' => 2,
+      'quote' => [ 'text' => 'I stopped hiding my smile in photos. You honestly can&rsquo;t tell which tooth is the implant.', 'cite' => 'Single-implant patient' ],
     ],
     'why' => [
       'label' => 'WHY DR. BURNS',
@@ -61,8 +99,8 @@ return [
       'cards' => [
         [ 'icon' => 'doctor', 'title' => 'Personally placed',         'desc' => 'Dr. Burns performs every implant placement himself &mdash; no rotating providers, no associates handling the surgery.' ],
         [ 'icon' => 'cpu',    'title' => 'In-house 3D imaging',       'desc' => 'Modern cone-beam CT lets us plan the placement to within a fraction of a millimeter &mdash; before any surgery.' ],
-        [ 'icon' => 'safety', 'title' => 'On-staff anesthesiology',   'desc' => 'A board-certified physician anesthesiologist for every procedure &mdash; not a CRNA, not a contractor.' ],
-        [ 'icon' => 'phone',  'title' => 'His personal cell',         'desc' => 'Every implant patient leaves with Dr. Burns&rsquo;s direct cell number. Pain at 9 PM? Text him.' ],
+        [ 'icon' => 'safety', 'title' => 'On-staff anesthesiology',   'desc' => 'A board-certified physician anesthesiologist, if you choose sedation &mdash; not a CRNA, not a contractor.' ],
+        [ 'icon' => 'phone',  'title' => 'His personal cell',         'desc' => 'Every implant patient leaves with Dr. Burns&rsquo;s direct cell number. Pain at 9 PM? Call him.' ],
       ],
     ],
     'cta' => [
@@ -71,9 +109,9 @@ return [
       'sub'   => 'Free consultation, full 3D imaging, and a clear written treatment plan &mdash; with no obligations, ever.',
     ],
     'references' => [
-      'label' => 'CLINICAL REFERENCES',
-      'title' => 'For further reading.',
-      'sub'   => 'The Burns Protocol&rsquo;s approach to single-tooth implants aligns with current guidance from the American Academy of Periodontology: the implant replaces both the missing tooth and its root, preserving the jawbone that would otherwise resorb after extraction.',
+      'label' => 'GOOD TO KNOW',
+      'title' => '',
+      'sub'   => 'The Burns Protocol&rsquo;s approach to single-tooth implants aligns with current guidance from the American Academy of Periodontology: the implant replaces both the missing tooth and its root, preserving the jawbone that would otherwise shrink after extraction.',
       'sources' => [
         [ 'title' => 'Single-Tooth Dental Implants', 'org' => 'American Academy of Periodontology', 'url' => 'https://www.perio.org/for-patients/periodontal-treatments-and-procedures/dental-implant-procedures/single-tooth-dental-implants/' ],
         [ 'title' => 'Dental Implants', 'org' => 'Cleveland Clinic', 'url' => 'https://my.clevelandclinic.org/health/treatments/10903-dental-implants' ],
@@ -129,7 +167,7 @@ return [
       'sub'   => 'Free consultation, 3D imaging, and a side-by-side comparison of your real options &mdash; with full pricing.',
     ],
     'references' => [
-      'label' => 'CLINICAL REFERENCES',
+      'label' => 'GOOD TO KNOW',
       'title' => 'Why an implant-supported bridge often outlasts a traditional one.',
       'sub'   => 'Per the Cleveland Clinic, traditional fixed bridges typically last 5&ndash;15 years and require reshaping the teeth on either side of the gap &mdash; a step that is irreversible. Implant-supported bridges anchor on new implants instead, preserve the surrounding teeth, and stimulate the underlying bone the way a natural root does.',
       'sources' => [
@@ -188,8 +226,8 @@ return [
       'sub'   => 'Free consultation, 3D imaging, and an honest read on whether implants are right for you &mdash; with no obligation.',
     ],
     'references' => [
-      'label' => 'CLINICAL REFERENCES',
-      'title' => 'How implants actually work, in the words of the clinical literature.',
+      'label' => 'GOOD TO KNOW',
+      'title' => 'How dental implants actually work.',
       'sub'   => 'A modern dental implant has three parts &mdash; a titanium (or sometimes zirconia/ceramic) post that acts as the root, an abutment connector, and the visible restoration. The jawbone fuses to the post during osseointegration, a process lasting roughly 3&ndash;9 months. Candidates do best when smoking is avoided, gum disease is treated, jawbone density is adequate, and daily oral hygiene is consistent.',
       'sources' => [
         [ 'title' => 'Dental Implants &mdash; structure, materials &amp; osseointegration', 'org' => 'Cleveland Clinic', 'url' => 'https://my.clevelandclinic.org/health/treatments/10903-dental-implants' ],
@@ -247,7 +285,7 @@ return [
       'sub'   => 'Free 3D imaging, written treatment plan with turnkey pricing, and zero pressure to decide on the spot.',
     ],
     'references' => [
-      'label' => 'CLINICAL REFERENCES',
+      'label' => 'GOOD TO KNOW',
       'title' => 'Why fixed full-arch implants outperform conventional dentures.',
       'sub'   => 'Per the American Academy of Periodontology, a full-arch fixed bridge anchored to dental implants integrates with the jawbone and prevents the bone loss and facial-shape changes that follow conventional dentures. The integration phase typically runs 2&ndash;6 months, and once placed the restoration is cleaned with the same brushing-and-flossing routine recommended for natural teeth.',
       'sources' => [
@@ -305,8 +343,8 @@ return [
       'sub'   => 'Free consultation, 3D imaging, and a clear comparison of your options. No obligation.',
     ],
     'references' => [
-      'label' => 'CLINICAL REFERENCES',
-      'title' => 'Implant-supported vs. implant-retained dentures &mdash; what the clinical sources say.',
+      'label' => 'GOOD TO KNOW',
+      'title' => 'Implant-supported vs. implant-retained dentures &mdash; the plain-English difference.',
       'sub'   => 'Per the Cleveland Clinic, implant-supported dentures anchor directly to the jawbone &mdash; preventing the slipping that conventional dentures cause, stimulating the underlying bone, and eliminating the daily adhesive routine. They come in two forms: removable (snap-on for nightly cleaning) and fixed (cleaned in place with specialised tools). Note: &ldquo;implant-retained&rdquo; and &ldquo;implant-supported&rdquo; refer to slightly different appliances &mdash; we&rsquo;ll explain which fits your case at the free consult.',
       'sources' => [
         [ 'title' => 'Implant-Supported Dentures', 'org' => 'Cleveland Clinic', 'url' => 'https://my.clevelandclinic.org/health/treatments/24303-implant-supported-dentures' ],
@@ -365,7 +403,7 @@ return [
       'sub'   => 'Free consultation, full assessment, and a written treatment plan with both options compared.',
     ],
     'references' => [
-      'label' => 'CLINICAL REFERENCES',
+      'label' => 'GOOD TO KNOW',
       'title' => 'Traditional bridges vs. implant-supported bridges &mdash; the trade-offs.',
       'sub'   => 'Two practical facts to weigh: traditional bridges last roughly 5&ndash;15 years and require permanently reshaping the teeth on either side of the gap, while implant-supported bridges typically last decades, preserve the surrounding teeth, and stimulate the underlying bone the way a natural root does. Cost and timeline favour traditional; long-term tooth and bone preservation favour implant-supported.',
       'sources' => [
@@ -457,6 +495,12 @@ return [
         [ 'num' => '04', 'title' => 'Implant placement',       'desc' => 'Once the bone has integrated, the implant is placed exactly as it would have been if you&rsquo;d had the bone all along.' ],
       ],
     ],
+    'figure' => [
+      'svg'     => 'bone-graft-process',
+      'label'   => 'WHAT GRAFTING DOES',
+      'title'   => 'How a graft rebuilds the bone for an implant.',
+      'caption' => 'After a tooth is lost the jawbone shrinks. A bone graft fills that space with new material, and over a few months your body grows <strong>solid new bone</strong> &mdash; rebuilding the foundation an implant needs.',
+    ],
     'why' => [
       'label' => 'WHY DR. BURNS',
       'title' => 'A practice that says yes when others say no.',
@@ -472,9 +516,9 @@ return [
       'sub'   => 'Free consultation, 3D imaging, and an honest assessment of whether grafting can put implants back on the table.',
     ],
     'references' => [
-      'label' => 'CLINICAL REFERENCES',
-      'title' => 'What the clinical literature says about bone grafting.',
-      'sub'   => 'Per the Cleveland Clinic, dental bone grafts use one of four materials &mdash; the patient&rsquo;s own bone (autogenous), donor human bone (allograft), animal-derived bone (xenograft), or lab-synthesised mineral (alloplast). Initial healing takes about a week, but full integration runs 3&ndash;12 months; for best results an implant should be placed within 6&ndash;12 months of the graft, before new bone begins to resorb.',
+      'label' => 'GOOD TO KNOW',
+      'title' => 'How bone grafting rebuilds your foundation.',
+      'sub'   => 'A bone graft adds material to the areas where your jawbone has shrunk after tooth loss &mdash; using your own bone, donor bone, or a safe synthetic substitute. Initial healing takes about a week, and the grafted area rebuilds into solid new bone over the following months. For the best result, we place the implant within 6&ndash;12 months of the graft, before the new bone has a chance to shrink again.',
       'sources' => [
         [ 'title' => 'Dental Bone Graft &mdash; types, recovery &amp; timeline', 'org' => 'Cleveland Clinic', 'url' => 'https://my.clevelandclinic.org/health/treatments/21727-dental-bone-graft' ],
       ],
@@ -529,8 +573,8 @@ return [
       'sub'   => 'Free consultation, honest discussion of conventional vs. implant-stabilized, and a written treatment plan.',
     ],
     'references' => [
-      'label' => 'CLINICAL REFERENCES',
-      'title' => 'What to expect from a full denture &mdash; in the clinical literature.',
+      'label' => 'GOOD TO KNOW',
+      'title' => 'What to expect from a full denture.',
       'sub'   => 'Per the Cleveland Clinic, full dentures are built from impressions, a stone model, and an acrylic or resin base; getting the fit right typically takes several office visits as the oral tissues adapt. Adjustment to a new denture can take weeks or months. Conventional dentures average 7&ndash;10 years of service, with a reline every 1&ndash;2 years. Implant-retained versions snap on to dental implants for greater stability without adhesive &mdash; an upgrade path we&rsquo;ll discuss honestly at the consult.',
       'sources' => [
         [ 'title' => 'Dentures &mdash; fitting, lifespan &amp; care', 'org' => 'Cleveland Clinic', 'url' => 'https://my.clevelandclinic.org/health/treatments/10900-dentures' ],
@@ -666,6 +710,12 @@ return [
         [ 'num' => '02', 'title' => 'Impression &amp; temporary', 'desc' => 'A precise digital or physical impression goes to the lab. You wear a temporary crown for 1&ndash;2 weeks.' ],
         [ 'num' => '03', 'title' => 'Final crown placement',      'desc' => 'The custom porcelain crown is bonded into place. Color, shape, and bite all checked &mdash; we adjust until it&rsquo;s right.' ],
       ],
+    ],
+    'figure' => [
+      'svg'     => 'crown-cap',
+      'label'   => 'WHAT A CROWN DOES',
+      'title'   => 'How a crown protects and rebuilds your tooth.',
+      'caption' => 'The tooth is gently reshaped, then a <strong>custom porcelain crown</strong> is bonded over it like a protective cap &mdash; restoring full strength and a natural shape while your own root stays in place.',
     ],
     'why' => [
       'label' => 'WHY DR. BURNS',
@@ -1310,6 +1360,35 @@ return [
         [ 'num' => '02', 'title' => 'Composite placement',         'desc' => 'Tooth-colored composite is bonded directly to the tooth in layers, each layer hardened with a special light.' ],
         [ 'num' => '03', 'title' => 'Shape &amp; bite check',      'desc' => 'The filling is shaped to match the original tooth contour. We adjust the bite until it feels exactly right before you leave.' ],
       ],
+    ],
+    // Friendly schematic replaces the clinical "scary" hero imagery the client
+    // flagged. fillings-hero.jpg can still be swapped for a smiling-patient photo.
+    'figure' => [
+      'svg'     => 'filling-process',
+      'label'   => 'STEP BY STEP',
+      'title'   => 'What actually happens during a filling.',
+      'caption' => 'We gently remove only the decayed part of the tooth, clean and prepare the space, then bond tooth-coloured composite in its place &mdash; sealing the tooth and restoring its natural shape, usually in a single visit.',
+    ],
+    'prose' => [
+      'label' => 'THE BASICS',
+      'title' => 'What a filling is &mdash; and why it matters.',
+      'blocks' => [
+        [ 'h' => 'What is a dental filling?', 'p' => [
+          'A filling restores a tooth after a cavity. Once the decayed part of the tooth is gently removed, the space is filled with a tooth-coloured composite material that bonds directly to the tooth &mdash; sealing it back up and returning it to full strength and a natural shape.',
+        ] ],
+        [ 'h' => 'Why do people choose to have a filling?', 'p' => [
+          'Left alone, a small cavity only gets bigger &mdash; and what could have been a simple filling can turn into a crown, a root canal, or a lost tooth. A filling stops the decay early, ends the sensitivity, and protects the tooth before bigger (and costlier) treatment is ever needed.',
+        ] ],
+        [ 'h' => 'The benefits of a modern, tooth-coloured filling', 'p' => [
+          'Today&rsquo;s composite fillings are nothing like the dark silver fillings of the past. They&rsquo;re matched to your natural tooth shade so no one can see them, they bond to the tooth for a tighter seal against future decay, and they let us preserve more of your healthy tooth than older materials ever did.',
+        ] ],
+      ],
+    ],
+    'before_after' => [
+      'label' => 'BEFORE &amp; AFTER',
+      'title' => 'A filling you&rsquo;ll never notice.',
+      'sub'   => 'Tooth-coloured composite blends in completely &mdash; see the difference on real cases.',
+      'pairs' => 2,
     ],
     'why' => [
       'label' => 'WHY DR. BURNS',

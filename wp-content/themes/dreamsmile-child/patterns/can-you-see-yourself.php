@@ -8,6 +8,6 @@ defined( 'ABSPATH' ) || exit;
 ?>
 <!-- wp:html -->
 <section class="ds-see-yourself ds-wrap ds-reveal">
-  <h2>Can You See Yourself with Your DreamSmile?</h2>
+  <h2>Can You See Yourself with Your DreamSmile&trade;?</h2>
 </section>
 <!-- /wp:html -->
