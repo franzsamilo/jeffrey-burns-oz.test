@@ -5030,6 +5030,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 .ds-proc-type-card__icon svg { width: 24px !important; height: 24px !important; }
 .ds-proc-type-card__tag {
   display: inline-block;
+  align-self: flex-start;
   font-family: 'Montserrat', sans-serif;
   font-size: 10.5px;
   font-weight: 700;
@@ -6201,7 +6202,11 @@ body:has(.ds-article-hero) .ds-navbar__toggle span { background: var(--ds-charco
 }
 .ds-np-compare__sub { color: var(--ds-warm-gray); font-size: 15px; line-height: 1.6; margin: 0; }
 .ds-np-compare__grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
-@media (min-width: 860px) { .ds-np-compare__grid { grid-template-columns: repeat(3, 1fr); align-items: stretch; } }
+@media (min-width: 860px) {
+  .ds-np-compare__grid { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+  /* Subgrid keeps title/tagline/points rows aligned across the three cards; row-gap 0 because child margins already space the rows. Non-subgrid browsers keep the stacked flow. */
+  .ds-np-compare__card { display: grid; grid-template-rows: subgrid; grid-row: span 3; row-gap: 0; align-content: start; }
+}
 .ds-np-compare__card {
   position: relative;
   background: #fff;

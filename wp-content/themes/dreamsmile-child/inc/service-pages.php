@@ -242,8 +242,8 @@ return [
       'label'    => 'FULL MOUTH DENTAL IMPLANTS',
       'title'    => 'A Whole New Smile &mdash; <em>Permanently Anchored</em>.',
       'subtitle' => 'For patients missing all (or most) of their teeth. A full-arch fixed bridge supported by 4&ndash;6 implants &mdash; the All-on-4 / All-on-6 approach.',
-      'bg'       => 'surgical-photo-burns.png',
-      'alt'      => 'Full mouth dental implants &mdash; All-on-4 procedure',
+      'bg'       => 'full-mouth-implants-hero.jpg',
+      'alt'      => 'Patient smiling confidently with a full new smile',
     ],
     'seo' => [
       'title'       => 'Full Mouth Dental Implants (All-on-4) in New Market, VA | Dr. Jeffrey S. Burns, DDS',
@@ -256,7 +256,7 @@ return [
       'pillars' => [
         [ 'strong' => '4&ndash;6 Implants', 'span' => 'support a full arch of teeth' ],
         [ 'strong' => 'Often One Day', 'span' => 'from extraction to teeth-in-place' ],
-        [ 'strong' => 'Lifetime Warranty', 'span' => 'on the Platinum DreamSmile tier' ],
+        [ 'strong' => 'Lifetime Warranty', 'span' => 'on the Platinum DreamSmile&trade; tier' ],
       ],
     ],
     'steps' => [
@@ -685,8 +685,8 @@ return [
       'label'    => 'DENTAL CROWNS',
       'title'    => 'A Crown That Looks Like the Tooth <em>Was Always There</em>.',
       'subtitle' => 'Custom porcelain crowns that protect cracked, weakened, or restored teeth &mdash; shaded and shaped to disappear into your smile.',
-      'bg'       => 'restorative-care-hero.jpg',
-      'alt'      => 'Dental crown procedure',
+      'bg'       => 'crowns-hero.jpg',
+      'alt'      => 'Patient smiling after receiving a custom porcelain crown',
     ],
     'seo' => [
       'title'       => 'Dental Crowns in New Market, VA | Dr. Jeffrey S. Burns, DDS',

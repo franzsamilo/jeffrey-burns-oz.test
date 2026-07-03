@@ -47,7 +47,7 @@ $svg = [
   </div>
 </section>
 
-<section class="ds-implants-nav">
+<section class="ds-implants-nav ds-implants-nav--quad">
   <div class="ds-wrap">
     <div class="ds-implants-nav__head ds-reveal">
       <span class="ds-label">GUM DISEASE TREATMENTS</span>

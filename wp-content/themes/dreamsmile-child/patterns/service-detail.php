@@ -286,7 +286,7 @@ $article_title = $svc['sub_hero']['label'] ?? '';
       <blockquote class="ds-np-results__quote ds-reveal">
         <span class="ds-np-results__quote-mark" aria-hidden="true">&ldquo;</span>
         <p class="ds-np-results__quote-text"><?php echo $results['quote']['text']; ?></p>
-        <cite class="ds-np-results__quote-cite">&mdash; <?php echo esc_html( $results['quote']['cite'] ?? 'DreamSmile patient' ); ?></cite>
+        <cite class="ds-np-results__quote-cite">&mdash; <?php echo esc_html( $results['quote']['cite'] ?? 'DreamSmile™ patient' ); ?></cite>
       </blockquote>
     <?php endif; ?>
   </div>

@@ -8,11 +8,11 @@ defined( 'ABSPATH' ) || exit;
 $base = get_stylesheet_directory_uri() . '/assets/arrange';
 
 $testimonials = [
-  [ '02_01_MIKE_15_V1.mp4',   'Mike',   'DreamSmile Patient' ],
-  [ '02_02_DANNY_15_V1.mp4',  'Danny',  'DreamSmile Patient' ],
-  [ '02_03_KELLY_15_V1.mp4',  'Kelly',  'DreamSmile Patient' ],
-  [ '02_04_ANGELA_15_V1.mp4', 'Angela', 'DreamSmile Patient' ],
-  [ '02_05_RON_15_V1.mp4',    'Ron',    'DreamSmile Patient' ],
+  [ '02_01_MIKE_15_V1.mp4',   'Mike',   'DreamSmile™ Patient' ],
+  [ '02_02_DANNY_15_V1.mp4',  'Danny',  'DreamSmile™ Patient' ],
+  [ '02_03_KELLY_15_V1.mp4',  'Kelly',  'DreamSmile™ Patient' ],
+  [ '02_04_ANGELA_15_V1.mp4', 'Angela', 'DreamSmile™ Patient' ],
+  [ '02_05_RON_15_V1.mp4',    'Ron',    'DreamSmile™ Patient' ],
 ];
 
 $star = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';

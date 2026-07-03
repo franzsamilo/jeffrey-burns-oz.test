@@ -16,7 +16,7 @@ $steps = [
   [ 3, 'DreamSmile&trade; Creation Day',       'The day your new smile begins to take shape. With our on-staff anesthesiologist you&rsquo;ll be comfortable and safe throughout &mdash; and you receive beautiful temporary teeth the same day, so you never leave without a smile.' ],
   [ 4, 'DreamSmile&trade; Refinement',         'Fine-tuning every detail to ensure your smile looks and feels perfect. We don&rsquo;t settle for &ldquo;good enough&rdquo; &mdash; we aim for exceptional.' ],
   [ 5, 'DreamSmile&trade; Reveal',             'The moment you&rsquo;ve been waiting for. See your brand-new, permanent smile for the first time. This is the day that changes everything.' ],
-  [ 6, 'Lifetime Care &amp; Maintenance', 'Your DreamSmile journey doesn&rsquo;t end at the reveal. We provide ongoing care and maintenance to ensure your smile lasts a lifetime.' ],
+  [ 6, 'Lifetime Care &amp; Maintenance', 'Your DreamSmile&trade; journey doesn&rsquo;t end at the reveal. We provide ongoing care and maintenance to ensure your smile lasts a lifetime.' ],
 ];
 ?>
 <!-- wp:html -->

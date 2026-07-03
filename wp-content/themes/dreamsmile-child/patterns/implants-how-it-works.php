@@ -50,7 +50,7 @@ $total = count( $steps );
 
     <div class="ds-how__foot ds-reveal">
       <div class="ds-how__foot-stat">
-        <strong>Most patients</strong> complete the full DreamSmile journey in <em>4&ndash;6 months</em>.
+        <strong>Most patients</strong> complete the full DreamSmile&trade; journey in <em>4&ndash;6 months</em>.
       </div>
       <a href="/#quiz" class="ds-btn ds-btn--solid">Start with a free consult</a>
     </div>

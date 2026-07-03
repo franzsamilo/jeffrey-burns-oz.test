@@ -5,7 +5,7 @@
  * Categories: dreamsmile
  */
 defined( 'ABSPATH' ) || exit;
-$hero_bg = get_stylesheet_directory_uri() . '/assets/arrange/hero-image.png';
+$hero_bg = get_stylesheet_directory_uri() . '/assets/arrange/home-hero.jpg';
 $office  = function_exists( 'ds_office_data' ) ? ds_office_data() : [ 'phone' => '(540) 740-8937', 'phone_tel' => '+15407408937' ];
 ?>
 <!-- wp:html -->

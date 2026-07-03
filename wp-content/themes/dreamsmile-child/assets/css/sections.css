@@ -752,7 +752,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   max-width: 24ch;
 }
 .ds-guide-card__cta {
-  align-self: center;
+  align-self: flex-start;
   margin-top: 4px;
 }
 
@@ -1139,6 +1139,8 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   text-align: center;
   padding-inline: 16px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .ds-stat + .ds-stat { border-left: 1px solid rgba(255, 255, 255, 0.12); }
 .ds-stat__number {
@@ -1166,7 +1168,8 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 .ds-stat__icon {
   display: flex;
   justify-content: center;
-  margin-top: 12px;
+  margin-top: auto;
+  padding-top: 12px;
 }
 .ds-stat__icon svg { width: 24px; height: 24px; color: var(--ds-teal); }
 
@@ -1199,6 +1202,8 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   border-radius: 14px;
   padding: 14px 14px 24px;
   box-shadow: 0 8px 20px -12px rgba(58, 58, 58, 0.14);
+  display: flex;
+  flex-direction: column;
 }
 .ds-service-card__media { margin-bottom: 20px; }
 .ds-service-card__media img { border-radius: 10px; }
@@ -1219,6 +1224,9 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-service-card .ds-btn {
   margin-inline: 8px;
+  margin-top: auto;
+  /* stretch = every card's CTA is the same size regardless of label/desc length */
+  align-self: stretch;
 }
 /* Same-Day Teeth flag line on the Implants service card (client priority). */
 .ds-service-card__flag {
@@ -2277,7 +2285,6 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 22px;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
@@ -2401,6 +2408,10 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   .ds-hero { min-height: auto; }
   .ds-hero__watermark { display: none; }
   .ds-hero__inner { padding: 72px 20px 88px; }
+  /* The inline 100deg gradient thins to alpha .34 on the right — fine on
+     desktop where text stops at 620px, but on phones the bullets span the
+     full width and white text drops below 3:1 there. Extra flat scrim. */
+  #hero .ds-hero__bg::after { content: ""; position: absolute; inset: 0; background: rgba(58, 58, 58, 0.45); }
 
   /* Footer — fixed 600px glow overflows narrow viewports */
   .ds-footer__glow { width: min(100%, 360px); height: 140px; }

@@ -6,7 +6,7 @@
  */
 defined( 'ABSPATH' ) || exit;
 $base       = get_stylesheet_directory_uri() . '/assets/arrange';
-$visual_img = $base . '/dental-implants.png';
+$visual_img = $base . '/service-implants.jpg';
 
 $factors = [
   [ 'tooth',    'Number of Implants Needed',  'Single, multiple, or full-arch &mdash; count drives cost.' ],

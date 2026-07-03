@@ -10,9 +10,9 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
 // Video clips are vertical (TikTok 9:16). They letterbox inside the 16/9
 // stage with dark padding — preserves full frame.
 $shots = [
-  [ 'Joe-Vile-BA-TikTok.mp4',    'DreamSmile transformation — Joe Vile',    'Joe Vile',    'DreamSmile Transformation' ],
-  [ 'Carol-Sliver-BA-TikTok.mp4', 'DreamSmile transformation — Carol Sliver', 'Carol Sliver', 'DreamSmile Transformation' ],
-  [ 'Danny-Spain-BA-TikTok.mp4', 'DreamSmile transformation — Danny Spain', 'Danny Spain', 'DreamSmile Transformation' ],
+  [ 'Joe-Vile-BA-TikTok.mp4',    'DreamSmile transformation — Joe Vile',    'Joe Vile',    'DreamSmile™ Transformation' ],
+  [ 'Carol-Sliver-BA-TikTok.mp4', 'DreamSmile transformation — Carol Sliver', 'Carol Sliver', 'DreamSmile™ Transformation' ],
+  [ 'Danny-Spain-BA-TikTok.mp4', 'DreamSmile transformation — Danny Spain', 'Danny Spain', 'DreamSmile™ Transformation' ],
 ];
 $count = count( $shots );
 ?>
@@ -22,7 +22,7 @@ $count = count( $shots );
     <div class="ds-before-after__head ds-reveal">
       <span class="ds-label">REAL RESULTS</span>
       <h2 class="ds-before-after__title">Real Patients. Real Transformations.</h2>
-      <p class="ds-before-after__sub">Watch a few of our favorite DreamSmile transformations in their own words.</p>
+      <p class="ds-before-after__sub">Watch a few of our favorite DreamSmile&trade; transformations in their own words.</p>
     </div>
 
     <div class="ds-ba" data-ds-carousel data-count="<?php echo (int) $count; ?>" aria-roledescription="carousel">

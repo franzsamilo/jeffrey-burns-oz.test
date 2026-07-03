@@ -180,7 +180,7 @@ function ds_seo_data( $slug = null ) {
         'home' => [
             'title' => 'DreamSmile Dental Implants in New Market, VA | ' . $brand,
             'description' => 'Permanent dental implant solutions from a nationally recognized specialist with 30+ years of experience. Serving the Shenandoah Valley from our New Market, VA office. Schedule your free consultation with Dr. Jeffrey S. Burns, DDS.',
-            'og_image' => $base . '/hero-image.png', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'home',
+            'og_image' => $base . '/home-hero.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'home',
         ],
         'dental-implants' => [
             'title' => 'Dental Implants in New Market, VA &mdash; The Burns Protocol | ' . $brand,
@@ -220,12 +220,12 @@ function ds_seo_data( $slug = null ) {
         'general-dentistry' => [
             'title' => 'General Dentistry in New Market, VA | ' . $brand,
             'description' => 'Comprehensive general dentistry from Dr. Jeffrey S. Burns, DDS &mdash; serving New Market, Harrisonburg, and the Shenandoah Valley. Bridges, crowns, extractions, root canals, and more, all in one office.',
-            'og_image' => $base . '/general-dentistry.png', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'service',
+            'og_image' => $base . '/service-general.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'service',
         ],
         'cosmetic-dentistry' => [
             'title' => 'Cosmetic Dentistry in New Market, VA | ' . $brand,
             'description' => 'Cosmetic dentistry by a nationally recognized AACD-award-winning specialist &mdash; veneers, whitening, and clear braces designed to give you the smile you actually want.',
-            'og_image' => $base . '/cosmetic-dentistry.png', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'service',
+            'og_image' => $base . '/service-cosmetic.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'service',
         ],
         'meet-dr-burns' => [
             'title' => 'Meet Dr. Jeffrey S. Burns, DDS &mdash; Nationally Recognized Implant Specialist',
@@ -363,7 +363,8 @@ add_action( 'wp_head', function () {
         $faqs = ds_faq_data();
         $main_entity = [];
         foreach ( $faqs as $f ) {
-            $main_entity[] = [ '@type' => 'Question', 'name' => wp_strip_all_tags( html_entity_decode( $f[1] ) ), 'acceptedAnswer' => [ '@type' => 'Answer', 'text' => wp_strip_all_tags( html_entity_decode( $f[2] ) ) ] ];
+            // Brand convention: DreamSmile&trade; on visible UI only — strip the mark from schema text.
+            $main_entity[] = [ '@type' => 'Question', 'name' => str_replace( '™', '', wp_strip_all_tags( html_entity_decode( $f[1] ) ) ), 'acceptedAnswer' => [ '@type' => 'Answer', 'text' => str_replace( '™', '', wp_strip_all_tags( html_entity_decode( $f[2] ) ) ) ] ];
         }
         echo "\n" . '<script type="application/ld+json">' . wp_json_encode( [ '@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $main_entity ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
     }
@@ -404,13 +405,13 @@ function ds_parse_address_for_schema( $address ) {
 function ds_faq_data() {
     return [
         [ 'pain',      'Is the procedure painful?',       'Most patients are surprised at how comfortable the procedure is. With our on-staff anesthesiologist and modern techniques, you&rsquo;ll be relaxed and pain-free throughout. Mild soreness in the days after is normal and easily managed.' ],
-        [ 'timing',    'How long do implants last?',      'With proper care, dental implants are designed to last a lifetime. Our DreamSmile implants come with industry-leading warranties &mdash; up to lifetime coverage on the implant itself.' ],
+        [ 'timing',    'How long do implants last?',      'With proper care, dental implants are designed to last a lifetime. Our DreamSmile&trade; implants come with industry-leading warranties &mdash; up to lifetime coverage on the implant itself.' ],
         [ 'timing',    'What is the healing time?',       'Initial healing takes 1&ndash;2 weeks for soft tissue, with full integration of the implant into the bone taking 3&ndash;6 months. We&rsquo;ll provide a temporary smile so you&rsquo;re never without teeth during healing.' ],
         [ 'candidacy', 'What if I smoke?',                'Smoking can affect implant success and healing. We&rsquo;ll discuss this with you in your consultation and may recommend stopping for a period before and after surgery to ensure the best outcome.' ],
-        [ 'candidacy', 'Do implants look natural?',       'Absolutely. Each DreamSmile is custom-designed to match your face, smile, and personality. Most people can&rsquo;t tell the difference between an implant and a natural tooth.' ],
-        [ 'cost',      'Does insurance help with cost?',  'Many insurance plans cover part of the cost. We work directly with most major providers and offer flexible financing through Cherry Credit and Care Credit to make your DreamSmile affordable.' ],
+        [ 'candidacy', 'Do implants look natural?',       'Absolutely. Each DreamSmile&trade; is custom-designed to match your face, smile, and personality. Most people can&rsquo;t tell the difference between an implant and a natural tooth.' ],
+        [ 'cost',      'Does insurance help with cost?',  'Many insurance plans cover part of the cost. We work directly with most major providers and offer flexible financing through Cherry Credit and Care Credit to make your DreamSmile&trade; affordable.' ],
         [ 'candidacy', 'Am I a candidate with bone loss?','Most patients are candidates. Dr. Burns&rsquo; 3D imaging and bone-grafting techniques open up options many other offices can&rsquo;t offer &mdash; even for patients who&rsquo;ve been told &ldquo;no&rdquo; elsewhere.' ],
-        [ 'cost',      'Is there a warranty?',            'Yes &mdash; every DreamSmile is backed by our Silver, Gold, or Platinum warranty. The Platinum tier covers your teeth for life.' ],
+        [ 'cost',      'Is there a warranty?',            'Yes &mdash; every DreamSmile&trade; is backed by our Silver, Gold, or Platinum warranty. The Platinum tier covers your teeth for life.' ],
     ];
 }
 

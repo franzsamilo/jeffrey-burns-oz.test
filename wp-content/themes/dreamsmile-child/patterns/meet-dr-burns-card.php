@@ -14,7 +14,7 @@ $bullets = [
   'Personal cell number given to every patient',
   'The proprietary Burns Protocol, taught nationwide',
   'Board-certified anesthesiologist on-staff for every case',
-  'Lifetime warranty on every DreamSmile',
+  'Lifetime warranty on every DreamSmile&trade;',
 ];
 
 $icons = [
@@ -39,7 +39,7 @@ $credentials = [
     <div class="ds-meet-card__head ds-reveal">
       <span class="ds-label">MEET THE SPECIALIST</span>
       <h2 class="ds-meet-card__heading">A Dentist Who Treats You Like <em>Family</em>.</h2>
-      <p class="ds-meet-card__sub">Three decades of changing lives, one DreamSmile at a time.</p>
+      <p class="ds-meet-card__sub">Three decades of changing lives, one DreamSmile&trade; at a time.</p>
     </div>
 
     <div class="ds-meet-card__body ds-reveal">
@@ -87,7 +87,7 @@ $credentials = [
       <blockquote class="ds-meet-card__quote-body">
         Dr. Burns didn&rsquo;t just give me a new smile &mdash; he gave me my <em>confidence</em> back. I can&rsquo;t recommend him enough.
       </blockquote>
-      <figcaption class="ds-meet-card__quote-cite">&mdash; Margaret T., DreamSmile Patient</figcaption>
+      <figcaption class="ds-meet-card__quote-cite">&mdash; Margaret T., DreamSmile&trade; Patient</figcaption>
     </figure>
   </div>
 </section>
