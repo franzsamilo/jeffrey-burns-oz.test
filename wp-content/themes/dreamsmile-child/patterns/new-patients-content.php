@@ -189,8 +189,15 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
         </span>
         <h3 class="ds-np-forms-card__title">Request Digital Forms</h3>
         <p class="ds-np-forms-card__desc">Send us your name and email and we&rsquo;ll email you secure online versions to fill out from any device. Faster than printing.</p>
-        <form class="ds-np-forms-form" data-ds-forms-request action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <!-- TODO: replace action URL with the chosen backend (Formspree / Web3Forms / WP REST + wp_mail). See open-questions memory entry #1. -->
+        <form class="ds-np-forms-form" data-ds-forms-request
+              data-ds-access-key="" data-ds-endpoint="">
+          <!--
+            Same one-step setup as the consultation modal (parts/footer.html):
+            paste the Web3Forms Access Key (https://web3forms.com) into
+            data-ds-access-key, OR a full Formspree/Getform URL into
+            data-ds-endpoint. Until one is set, this shows the confirmation
+            without sending (demo mode). See open-questions memory entry #1.
+          -->
           <label class="ds-np-forms-field">
             <span>Full Name</span>
             <input type="text" name="name" autocomplete="name" required />
@@ -203,9 +210,21 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
             <span>Phone <em>(optional)</em></span>
             <input type="tel" name="phone" autocomplete="tel" />
           </label>
+          <input type="hidden" name="subject" value="DreamSmile &mdash; New Patient Forms Request" />
           <input type="hidden" name="_subject" value="DreamSmile &mdash; New Patient Forms Request" />
+          <input type="hidden" name="from_name" value="DreamSmile Website" />
+          <input type="hidden" name="source_page" data-ds-source value="/new-patients/" />
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important" />
           <button type="submit" class="ds-btn ds-btn--solid ds-btn--block">Email Me the Forms</button>
+          <p class="ds-np-forms-form__error" data-ds-forms-error hidden role="alert">
+            Something went wrong. Please call
+            <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>"><?php echo esc_html( $office['phone'] ); ?></a>
+            and we&rsquo;ll email your forms.
+          </p>
           <p class="ds-np-forms-form__note">We&rsquo;ll send the secure form link within one business day. Your info is never sold or shared.</p>
+          <div class="ds-np-forms-form__success" data-ds-forms-success hidden>
+            <strong>Thank you!</strong> We&rsquo;ll email your secure forms within one business day.
+          </div>
         </form>
       </article>
 

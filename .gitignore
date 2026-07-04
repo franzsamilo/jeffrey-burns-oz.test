@@ -46,3 +46,20 @@ claude-update.md
 
 # Release artifacts (published via GitHub Releases, not committed)
 *.zip
+
+# Session scratch — overlay/preview build experiments (regenerable, not part of the theme)
+/build_overlay*.py
+/build_preview_overlay.py
+/build_targeted_overlay.py
+/split_overlay.py
+/preview-*.php
+/preview-*.b64
+/overlay-chunks/
+/scratch_notes_extract.txt
+
+# Client-provided source material (kept locally, too large / not for the repo)
+/Burns Website Notes.docx
+/contact-image-from-doc.png
+
+# Ephemeral Superpowers planning specs
+/docs/superpowers/

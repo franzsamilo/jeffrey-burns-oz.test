@@ -2383,6 +2383,19 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
 }
 .ds-modal__note a:hover { color: var(--ds-teal); border-bottom-color: var(--ds-teal); }
 
+.ds-modal__error {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #C0392B;
+  background: rgba(217, 83, 79, 0.08);
+  border: 1px solid rgba(217, 83, 79, 0.28);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 12px 0 0;
+  text-align: center;
+}
+.ds-modal__error a { color: #C0392B; font-weight: 700; border-bottom: 1px dashed currentColor; }
+
 .ds-modal__success {
   text-align: center;
   align-items: center;
@@ -5656,6 +5669,30 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   margin: 6px 0 0;
   line-height: 1.5;
 }
+/* Flex children override the [hidden] UA rule — force it back for the AJAX swap. */
+.ds-np-forms-form [hidden] { display: none !important; }
+.ds-np-forms-form__error {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #C0392B;
+  background: rgba(217, 83, 79, 0.08);
+  border: 1px solid rgba(217, 83, 79, 0.28);
+  border-radius: 8px;
+  padding: 9px 11px;
+  margin: 0;
+}
+.ds-np-forms-form__error a { color: #C0392B; font-weight: 700; border-bottom: 1px dashed currentColor; }
+.ds-np-forms-form__success {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ds-teal-dark);
+  background: rgba(127, 181, 176, 0.12);
+  border: 1px solid rgba(127, 181, 176, 0.4);
+  border-radius: 10px;
+  padding: 16px 18px;
+  text-align: center;
+}
+.ds-np-forms-form__success strong { color: var(--ds-charcoal); }
 
 .ds-np-forms__assist {
   text-align: center;

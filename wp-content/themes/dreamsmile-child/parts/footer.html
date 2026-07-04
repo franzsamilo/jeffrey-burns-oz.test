@@ -58,10 +58,27 @@
       </div>
     </div>
 
-    <form class="ds-modal__form" data-ds-modal-form>
+    <!--
+      LEAD DELIVERY — one-step setup for the client:
+      1. Go to https://web3forms.com, enter the practice email, copy the free Access Key
+         (no account needed — leads arrive straight in that inbox).
+      2. Paste the key into data-ds-access-key="" below. That's it.
+      Alternatively, paste a full Formspree/Getform endpoint into data-ds-endpoint=""
+      instead of a key. Until one of these is set, the form shows the confirmation
+      screen WITHOUT sending (demo mode) so the preview keeps working.
+    -->
+    <form class="ds-modal__form" data-ds-modal-form
+          data-ds-access-key=""
+          data-ds-endpoint="">
       <span class="ds-label">SCHEDULE YOUR FREE CONSULTATION</span>
       <h2 class="ds-modal__title" id="ds-modal-title">Book Your <span class="ds-modal__title-accent">DreamSmile&trade;</span> Visit</h2>
       <p class="ds-modal__sub">Dr. Burns will personally review your case &mdash; no pressure, no obligation.</p>
+
+      <!-- Context + spam-guard fields (do not remove) -->
+      <input type="hidden" name="subject" value="New DreamSmile Consultation Request" />
+      <input type="hidden" name="from_name" value="DreamSmile Website" />
+      <input type="hidden" name="source_page" data-ds-source value="" />
+      <input type="checkbox" name="botcheck" class="ds-modal__hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important" />
 
       <label class="ds-modal__field">
         <span>Full Name</span>
@@ -94,6 +111,11 @@
       </label>
 
       <button type="submit" class="ds-btn ds-btn--solid ds-btn--block">Book My Free Consultation</button>
+
+      <p class="ds-modal__error" data-ds-modal-error hidden role="alert">
+        Something went wrong sending your request. Please call
+        <a href="tel:+15407408937">(540) 740-8937</a> and we&rsquo;ll get you booked right away.
+      </p>
 
       <p class="ds-modal__note">Prefer to call? <a href="tel:+15407408937">(540) 740-8937</a></p>
     </form>
