@@ -67,12 +67,12 @@ defined( 'ABSPATH' ) || exit;
         </span>
         <video
           class="ds-awards__video-el"
-          src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/Dr.-Burns-Lecture-10-25-25-TikTok.mp4' ); ?>"
+          src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/Educational-One-Day-Teeth.mp4' ); ?>"
           preload="metadata"
           playsinline
           muted
           controls
-          aria-label="Dr. Burns lecture clip"
+          aria-label="Dr. Burns explains what happens when you get permanent teeth in one day"
         ></video>
       </div>
     </div>

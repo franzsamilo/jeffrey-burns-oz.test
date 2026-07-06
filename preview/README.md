@@ -26,7 +26,7 @@ Open this URL in the same browser tab where Playground is currently running:
 ```
 https://playground.wordpress.net/scope:loyal-old-town/wp-content/uploads/dreamsmile-bundle/dreamsmile-child.zip
 ```
-That downloads **`dreamsmile-child.zip`** (~43 MB for v2 — larger than v1 because it now bundles the 5 patient/lecture videos) — it contains the entire theme **including the location photos, hero images, and video clips that only live on the Playground**.
+That downloads **`dreamsmile-child.zip`** (~40 MB) — it contains the entire theme including the location photos and hero images. **Videos are NOT bundled in the zip**: each .mp4 is a separate binary asset on the GitHub release, fetched at Playground boot time by the `writeFile` steps in `blueprint.json`. (The zip itself is now built locally from the git working tree via `build_zip.py`, not exported from a live Playground.)
 
 > If your Playground site slug isn't `loyal-old-town`, swap that part of the URL.
 
