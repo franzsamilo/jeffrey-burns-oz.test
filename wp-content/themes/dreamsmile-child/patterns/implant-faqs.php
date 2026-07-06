@@ -59,7 +59,20 @@ ds_render_split_hero( [
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
             </span>
           </summary>
-          <div class="ds-faq-item__a"><?php echo $f[2]; ?></div>
+          <div class="ds-faq-item__a">
+            <?php echo $f[2]; ?>
+            <?php if ( ! empty( $f[3] ) ) : ?>
+              <video
+                class="ds-faq-item__video"
+                src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/' . $f[3] ); ?>"
+                preload="metadata"
+                playsinline
+                muted
+                controls
+                aria-label="<?php echo esc_attr( wp_strip_all_tags( $f[1] ) ); ?> — Dr. Burns explains"
+              ></video>
+            <?php endif; ?>
+          </div>
         </details>
       <?php endforeach; ?>
     </div>

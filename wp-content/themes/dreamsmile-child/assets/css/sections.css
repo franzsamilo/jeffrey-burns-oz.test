@@ -56,6 +56,16 @@ body.admin-bar .ds-navbar { top: 32px; }
   font-weight: 700;
 }
 
+/* Real DreamSmile wordmark image — small inline contexts only (e.g. body copy).
+   Section headings still use .ds-brand / .ds-intro-section__script CSS text,
+   since the only source is a low-res screenshot crop, not a vector file. */
+.ds-wordmark-inline {
+  height: 24px;
+  width: auto;
+  vertical-align: -6px;
+  display: inline-block;
+}
+
 .ds-italic { font-style: italic; }
 
 /* Skip to content */

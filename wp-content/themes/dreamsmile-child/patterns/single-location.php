@@ -217,12 +217,12 @@ $hero_prefix = $is_home_city ? 'in' : 'Near';
     <div class="ds-loc-testimonials__media ds-reveal">
       <video
         class="ds-loc-testimonials__video"
-        src="<?php echo esc_url( $base . '/02_04_ANGELA_15_V1.mp4' ); ?>"
+        src="<?php echo esc_url( $base . '/Hall-of-Fame-Patients.mp4' ); ?>"
         preload="metadata"
         playsinline
         muted
         controls
-        aria-label="DreamSmile patient testimonial"
+        aria-label="Dr. Burns Hall of Fame — DreamSmile patient stories"
       ></video>
     </div>
   </div>

@@ -30,19 +30,19 @@ defined( 'ABSPATH' ) || exit;
       <div class="ds-expertise__video-frame">
         <video
           class="ds-expertise__video-el"
-          src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/out.mp4' ); ?>"
+          src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/Showcase-Burns-Protocol-TV.mp4' ); ?>"
           preload="metadata"
           playsinline
           muted
           controls
-          aria-label="Dr. Burns — nationally recognized expertise in dental implants"
+          aria-label="The Showcase of the Burns Protocol — Dr. Burns TV interview"
         ></video>
       </div>
     </div>
 
     <div class="ds-expertise__doctor ds-reveal">
       <h3>Dr. Jeffrey S. Burns, DDS</h3>
-      <p>Changing lives, one <span class="ds-script" style="color: var(--ds-teal); font-size: 20px;">DreamSmile</span><sup class="ds-tm">&trade;</sup> at a time</p>
+      <p>Changing lives, one <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/dreamsmile-wordmark-small.png' ); ?>" alt="DreamSmile" class="ds-wordmark-inline" /><sup class="ds-tm">&trade;</sup> at a time</p>
     </div>
 
     <div class="ds-expertise__rating ds-reveal">

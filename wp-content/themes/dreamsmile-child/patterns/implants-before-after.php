@@ -10,9 +10,9 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
 // Video clips are vertical (TikTok 9:16). They letterbox inside the 16/9
 // stage with dark padding — preserves full frame.
 $shots = [
-  [ 'Joe-Vile-BA-TikTok.mp4',    'DreamSmile transformation — Joe Vile',    'Joe Vile',    'DreamSmile™ Transformation' ],
-  [ 'Carol-Sliver-BA-TikTok.mp4', 'DreamSmile transformation — Carol Sliver', 'Carol Sliver', 'DreamSmile™ Transformation' ],
-  [ 'Danny-Spain-BA-TikTok.mp4', 'DreamSmile transformation — Danny Spain', 'Danny Spain', 'DreamSmile™ Transformation' ],
+  [ 'Curtis-Cloude-Testimonial.mp4', 'DreamSmile transformation — Curtis Cloude', 'Curtis Cloude', 'DreamSmile™ Transformation' ],
+  [ 'Angela-Burker-Testimonial.mp4', 'DreamSmile transformation — Angela Burker', 'Angela Burker', 'DreamSmile™ Transformation' ],
+  [ 'Peter-Encheff-Testimonial.mp4', 'DreamSmile transformation — Peter Encheff', 'Peter Encheff', 'DreamSmile™ Transformation' ],
 ];
 $count = count( $shots );
 ?>
