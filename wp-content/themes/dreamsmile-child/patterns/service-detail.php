@@ -206,10 +206,10 @@ $article_title = $svc['sub_hero']['label'] ?? '';
 </section>
 <?php endif; ?>
 
-<?php // ── Explanatory diagram (inline SVG schematic, not a photo) ──────────── ?>
-<?php if ( $figure && ! empty( $figure['svg'] ) ) :
-    $svg = ds_diagram_svg( $figure['svg'] );
-    if ( $svg ) :
+<?php // ── Explanatory diagram (inline SVG schematic, or image) ──────────── ?>
+<?php if ( $figure && ( ! empty( $figure['svg'] ) || ! empty( $figure['image'] ) ) ) :
+    $svg = ! empty( $figure['svg'] ) ? ds_diagram_svg( $figure['svg'] ) : '';
+    $img_url = ! empty( $figure['image'] ) ? get_stylesheet_directory_uri() . '/assets/arrange/' . $figure['image'] : '';
 ?>
 <section class="ds-np-figure">
   <div class="ds-wrap ds-np-figure__wrap">
@@ -218,12 +218,18 @@ $article_title = $svc['sub_hero']['label'] ?? '';
       <?php if ( ! empty( $figure['title'] ) ) : ?><h2 class="ds-np-figure__title"><?php echo $figure['title']; ?></h2><?php endif; ?>
     </div>
     <figure class="ds-np-figure__fig ds-reveal">
-      <div class="ds-np-figure__media"><?php echo $svg; ?></div>
+      <div class="ds-np-figure__media">
+        <?php if ( $svg ) : ?>
+          <?php echo $svg; ?>
+        <?php else : ?>
+          <img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $figure['title'] ?? 'Explanatory diagram' ); ?>" style="width: 100%; max-width: 500px; height: auto; border-radius: 8px;" />
+        <?php endif; ?>
+      </div>
       <?php if ( ! empty( $figure['caption'] ) ) : ?><figcaption class="ds-np-figure__cap"><?php echo $figure['caption']; ?></figcaption><?php endif; ?>
     </figure>
   </div>
 </section>
-<?php endif; endif; ?>
+<?php endif; ?>
 
 <?php // ── Traditional vs. implant comparison (text, no photos needed) ──────── ?>
 <?php if ( $compare && ! empty( $compare['cols'] ) ) : ?>
@@ -272,15 +278,25 @@ $article_title = $svc['sub_hero']['label'] ?? '';
     </div>
     <!-- TODO (assets): drop real before/after photos in place of these placeholders. -->
     <div class="ds-np-results__grid ds-reveal">
-      <?php for ( $i = 0; $i < (int) ( $results['pairs'] ?? 2 ); $i++ ) : ?>
-        <figure class="ds-np-ba">
-          <div class="ds-np-ba__pair">
-            <span class="ds-np-ba__slot ds-np-ba__slot--before">Before</span>
-            <span class="ds-np-ba__slot ds-np-ba__slot--after">After</span>
-          </div>
-          <figcaption class="ds-np-ba__cap">Actual patient photo &mdash; coming soon</figcaption>
-        </figure>
-      <?php endfor; ?>
+      <?php if ( ! empty( $results['images'] ) ) : ?>
+        <?php foreach ( $results['images'] as $img ) : 
+          $img_url = get_stylesheet_directory_uri() . '/assets/arrange/' . $img;
+        ?>
+          <figure class="ds-np-ba ds-np-ba--combined">
+            <img src="<?php echo esc_url( $img_url ); ?>" alt="Before and After patient results" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);" />
+          </figure>
+        <?php endforeach; ?>
+      <?php else : ?>
+        <?php for ( $i = 0; $i < (int) ( $results['pairs'] ?? 2 ); $i++ ) : ?>
+          <figure class="ds-np-ba">
+            <div class="ds-np-ba__pair">
+              <span class="ds-np-ba__slot ds-np-ba__slot--before">Before</span>
+              <span class="ds-np-ba__slot ds-np-ba__slot--after">After</span>
+            </div>
+            <figcaption class="ds-np-ba__cap">Actual patient photo &mdash; coming soon</figcaption>
+          </figure>
+        <?php endfor; ?>
+      <?php endif; ?>
     </div>
     <?php if ( ! empty( $results['quote'] ) ) : ?>
       <blockquote class="ds-np-results__quote ds-reveal">

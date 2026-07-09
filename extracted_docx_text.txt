@@ -1,0 +1,80 @@
+=== MAIN DOCUMENT: word/document.xml ===
+
+Anywhere Dream Smile shows up combine the words like this: DreamSmile and add the ™ symbol.
+Logo isn’t right. Here’s the accurate one:
+Change “A Dream Smile You Never Have to Hide” to “A DreamSmile™ You’ll Never Have to Hide”
+Bullet Points:
+A beautiful smile designed to be healthier & longer-lasting
+Proprietary procedure with a 98%+ success rate
+A doctor who truly cares—gives you his personal cell number
+Backed by the DreamSmile™ Lifetime Warranty*
+Same Day Teeth (find some place to weave this in, they get their temps the same day)
+Add phone number under “Schedule Your Free Consultation”
+Add phone number in upper right corner
+Replace ‘Home’ with Our Team
+Use the stuff that TIE already created…this is not his patient nor is it what the guide looks like. The right stuff is on his website:
+Let’s insert the section shown below in between the sections shown above:
+Use the actual “Dream Smile” logo here (maybe center ‘Introducing’ and put the logo below? Or keep the same but just use the Dream Smile logo)
+Find actual videos to go here. There’s a bunch in this folder (that’s linked to our drive): https://drive.google.com/drive/folders/1eY0NbJDYGTY9GislN8iYArmjrr2WVTdW?usp=drive_link
+I like this section but I don’t like that we have to scroll so much. Can you do this as bullet points and let’s select one image of an actual patient smiling (ideally let’s put the Dream Smile logo as a watermark in the image)
+Remove the “A moment to remember and stuff about sharing flowers and replace with “As Seen on and then put the TV station logo and the radio logo (see texassedationdental.com for an example).
+Remove the link “Read our reviews”
+Wherever Dream Smile is used add a ™ symbol
+Add a space between Dream and Smile and add ™
+Change ‘Dental Chains’ to ‘Traditional Dental Implants’
+Is it possible to add the dream smile logo there instead?
+Change “The DreamSmile” to the logo
+Align this with each other….each line is VS
+Change “Hidden Fees & Upsells” to “Hidden Fees and Limited or No warranty”
+Change “The price you’re quoted is rarely the price you pay.” to “Surprise additional costs and uncertainty if you need additional support.”
+Feels like a big margin between the top and “YOUR JOURNEY”...shorten it
+Make “YOUR JOURNEY” bigger so older people with bad eyesight can read it
+Put a ™ symbol anywhere “Dream Smile” occurs.
+Change photo to picture of him smiling, in his doctor attire.
+Remove “SCHEDULE YOUR FREE ASSESSMENT” on each of these except for right below the Dream Smile Assessment
+The text is too small
+DreamSmile with TM
+Between system and he  “a proven multi-step system with a proven 98% success rate that he has taught to dentists”, add beautiful smile/aesthetically pleasing/healthy, long lasting dreamsmile(S).
+Schedule to meet with dr Burns….CTA
+One or more missing teeth
+All little titles need to be bigger…..and 95% success, needs to be 98%+
+Lifetime Design
+Replaced without [affecting] the other
+Single implant is just local anesthesia ( but offers sedation if they want it)
+Change to “with local or sedation anesthesia”
+A board certified physician anesthesiologist, if you choose sedation.
+Change it to “Call him”
+Change resorb to “shrink”Remove the two things
+Get rid of “For further reading” title
+Add before and after photos of single implants, insert in hereAlso add an explanatory photo, and a description of why this is important…probably in the “HOw it works” section…talk about why it's important: implant acts as root of the tooth, what it does etc.
+Traditional way vs implant way…side by side comparison, flipper, traditional bridge, implant supported
+Needs a lot of social proof
+Change this background image to perhaps a photo of someone smiling or a close up of their teeth, this image with the drill, is too cold and clinical and kind of scary. We want the photos to show the patients what they could achieve, focusing more on the results or outcome rather than the technique/method or pain.Maybe add some images or illustrations here to give more life to the page, so it’s not all just text.
+This image needs to be replaced with a smiling person or peopleWe don’t want to redirect patients to another website by providing a big button. Any information we can take or paraphrase from these sites. And we can just hyperlink within the body of text. If we take the info from cleveland clinic: example -  “Dental bridges are a great solution if you are missing teeth, dental bridges work like this and provide this for you, etc”. Perhaps a photo of a person smiling with a gap in their teeth.All photos like this that are more clinical, please replace them with images of people smiling, smiling next to their dentist, or even a dentist smiling.
+Not sure how I feel about this one, but let’s see if we can find something that shows a patient.
+We don’t want to write “clinical literature”, let’s just take the text from the references and paraphrase it and write it as we are the ones providing the information and telling the patients all about bone grafting, and add the link or list of references at the bottom of the page so it’s not a focal point.
+This is not a good photo. Front facing smile, preferably of the person’s whole face.
+The teeth aren’t very white, and let’s stick to a smiling whole face in the image.
+What if we did the text on one side with a solid background and the image on the other side, so we don’t have to have the image greyed out. The image is losing its appeal with the grey on top of it, see this example below:
+Let’s also add more images to this page so it looks more dynamic
+This photo is very scary looking and shocking. Can we try a diagram or illustration or something that won’t make the patients think too much about how uncomfortable the procedure could be.Let’s add more text talking about what a filling is, why people choose to have a filling, benefits of a filling etc…. add a couple photos, and also add a before and after photo further down the article, some examples:
+
+
+=== OTHER PART: word/numbering.xml ===
+
+
+
+=== OTHER PART: word/settings.xml ===
+
+
+
+=== OTHER PART: word/fontTable.xml ===
+
+
+
+=== OTHER PART: word/styles.xml ===
+
+
+
+=== OTHER PART: word/theme/theme1.xml ===
+

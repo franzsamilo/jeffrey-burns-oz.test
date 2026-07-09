@@ -56,7 +56,7 @@ return [
       ],
     ],
     'figure' => [
-      'svg'     => 'implant-anatomy',
+      'image'   => 'single-implant-explainer.png',
       'label'   => 'WHY IT MATTERS',
       'title'   => 'A single implant replaces the whole tooth &mdash; <span class="ds-italic">root and all</span>.',
       'caption' => 'Unlike a bridge or a flipper, a dental implant replaces the <strong>root</strong> of the missing tooth, not just the part you see. The titanium post fuses to your jawbone and keeps it stimulated &mdash; so the bone stays healthy and your face keeps its natural shape for the long term.',
@@ -90,7 +90,7 @@ return [
       'label' => 'REAL RESULTS',
       'title' => 'The difference a single implant makes.',
       'sub'   => 'See the before-and-after on real single-implant cases &mdash; and hear from the patients themselves.',
-      'pairs' => 2,
+      'images' => [ 'single-implant-before-after.png' ],
       'quote' => [ 'text' => 'I stopped hiding my smile in photos. You honestly can&rsquo;t tell which tooth is the implant.', 'cite' => 'Single-implant patient' ],
     ],
     'why' => [
@@ -1388,7 +1388,7 @@ return [
       'label' => 'BEFORE &amp; AFTER',
       'title' => 'A filling you&rsquo;ll never notice.',
       'sub'   => 'Tooth-coloured composite blends in completely &mdash; see the difference on real cases.',
-      'pairs' => 2,
+      'images' => [ 'fillings-before-after.png' ],
     ],
     'why' => [
       'label' => 'WHY DR. BURNS',
