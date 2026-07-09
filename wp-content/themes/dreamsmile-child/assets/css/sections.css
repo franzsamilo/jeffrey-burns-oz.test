@@ -2759,9 +2759,6 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   height: 48px;
   width: auto;
   object-fit: contain;
-  background: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
   transition: transform 0.2s ease;
 }
 .ds-navbar__logo-img:hover {
@@ -2771,9 +2768,6 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   height: 42px;
   width: auto;
   object-fit: contain;
-  background: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
   margin-bottom: 12px;
   display: inline-block;
 }
