@@ -320,24 +320,20 @@ $article_title = $svc['sub_hero']['label'] ?? '';
 <?php endif; ?>
 
 <?php if ( $refs && ! empty( $refs['sources'] ) ) : ?>
-<section class="ds-np-refs">
+<section class="ds-service-footnotes" aria-label="Footnotes and references">
   <div class="ds-wrap">
-    <div class="ds-np-refs__head ds-reveal">
-      <?php if ( ! empty( $refs['label'] ) ) : ?><span class="ds-label"><?php echo esc_html( $refs['label'] ); ?></span><?php endif; ?>
-      <?php if ( ! empty( $refs['title'] ) ) : ?><h2 class="ds-np-refs__title"><?php echo $refs['title']; ?></h2><?php endif; ?>
-      <?php if ( ! empty( $refs['sub'] ) ) : ?><p class="ds-np-refs__sub"><?php echo $refs['sub']; ?></p><?php endif; ?>
-    </div>
-    <ul class="ds-np-refs__list ds-reveal">
-      <?php foreach ( $refs['sources'] as $src ) : ?>
-        <li class="ds-np-refs__item">
-          <a href="<?php echo esc_url( $src['url'] ); ?>" target="_blank" rel="nofollow noopener noreferrer">
-            <span class="ds-np-refs__src-title"><?php echo $src['title']; ?></span>
-            <?php if ( ! empty( $src['org'] ) ) : ?><span class="ds-np-refs__src-org"><?php echo esc_html( $src['org'] ); ?></span><?php endif; ?>
+    <div class="ds-service-footnotes__inner">
+      <p class="ds-service-footnotes__text">
+        <strong>References &amp; Sources:</strong>
+        <?php foreach ( $refs['sources'] as $i => $src ) : ?>
+          <?php if ( $i > 0 ) : ?> &middot; <?php endif; ?>
+          <a href="<?php echo esc_url( $src['url'] ); ?>" target="_blank" rel="nofollow noopener noreferrer" class="ds-service-footnotes__link">
+            <?php echo esc_html( $src['title'] ); ?><?php if ( ! empty( $src['org'] ) ) : ?> (<?php echo esc_html( $src['org'] ); ?>)<?php endif; ?>
           </a>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-    <p class="ds-np-refs__disclaimer">These sources are listed for transparency. They are not endorsements of Dr.&nbsp;Burns&rsquo;s practice and do not replace a personal consultation.</p>
+        <?php endforeach; ?>
+      </p>
+      <p class="ds-service-footnotes__disclaimer">These sources are listed for transparency and reference. They do not constitute an endorsement of the practice and do not replace a professional clinical consultation.</p>
+    </div>
   </div>
 </section>
 <?php endif; ?>

@@ -2753,3 +2753,56 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   pointer-events: none;
 }
 .ds-hero-split__watermark sup { font-size: 0.34em; vertical-align: super; }
+
+/* Navbar & Footer Logo Image styling (BURNS-WEBSITE-NOTES PASS) */
+.ds-navbar__logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  background: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: transform 0.2s ease;
+}
+.ds-navbar__logo-img:hover {
+  transform: scale(1.02);
+}
+.ds-footer__logo-img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  background: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+/* Service footnotes style (de-emphasized client bibliography) */
+.ds-service-footnotes {
+  padding-block: 24px;
+  background: var(--ds-off-white);
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.ds-service-footnotes__inner {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  color: var(--ds-warm-gray);
+  line-height: 1.6;
+}
+.ds-service-footnotes__text {
+  margin: 0 0 8px 0;
+}
+.ds-service-footnotes__link {
+  color: var(--ds-teal-dark);
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+.ds-service-footnotes__link:hover {
+  color: var(--ds-teal);
+}
+.ds-service-footnotes__disclaimer {
+  margin: 0;
+  font-style: italic;
+  opacity: 0.8;
+}

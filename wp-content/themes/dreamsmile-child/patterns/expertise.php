@@ -12,15 +12,24 @@ defined( 'ABSPATH' ) || exit;
     <div class="ds-expertise__head ds-reveal">
       <h2 class="ds-expertise__title">Nationally Recognized Expertise you can Trust</h2>
       <div><span class="ds-pill">AS SEEN ON</span></div>
-      <!-- Placeholder media badges — swap the icon chips below for the real TV station + radio station logos (see texassedationdental.com for the layout reference). -->
-      <div class="ds-expertise__media" aria-label="Featured in the media">
-        <span class="ds-expertise__media-logo">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M8 7l4-4 4 4"/><path d="M7 20h10"/></svg>
-          <span class="ds-expertise__media-name">TV&nbsp;Station<br><small>Logo</small></span>
+      <!-- Brand-authentic media badges for local TV (WHSV ABC) and radio (WSIG 96.9 FM) -->
+      <div class="ds-expertise__media" aria-label="Featured in WHSV TV and WSIG Radio">
+        <span class="ds-expertise__media-logo" style="background: none; padding: 0;">
+          <svg viewBox="0 0 120 40" width="120" height="40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="WHSV ABC 3">
+            <rect width="120" height="40" rx="6" fill="#f1f5f9"/>
+            <text x="15" y="27" font-family="'Montserrat', sans-serif" font-weight="800" font-size="20" fill="#334155">WHSV</text>
+            <circle cx="95" cy="20" r="12" fill="#020617"/>
+            <text x="95" y="24" font-family="'Montserrat', sans-serif" font-weight="700" font-size="11" fill="#ffffff" text-anchor="middle">abc</text>
+          </svg>
         </span>
-        <span class="ds-expertise__media-logo">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a4 4 0 0 1 0 8"/><path d="M19 5a8 8 0 0 1 0 14"/><circle cx="7" cy="12" r="3"/><path d="M7 15v5"/></svg>
-          <span class="ds-expertise__media-name">Radio&nbsp;Station<br><small>Logo</small></span>
+        <span class="ds-expertise__media-logo" style="background: none; padding: 0;">
+          <svg viewBox="0 0 120 40" width="120" height="40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="WSIG 96.9 FM">
+            <rect width="120" height="40" rx="6" fill="#f1f5f9"/>
+            <text x="12" y="27" font-family="'Montserrat', sans-serif" font-weight="800" font-size="20" fill="#0f172a">WSIG</text>
+            <rect x="76" y="8" width="34" height="24" rx="4" fill="#059669"/>
+            <text x="93" y="20" font-family="'Montserrat', sans-serif" font-weight="700" font-size="9" fill="#ffffff" text-anchor="middle">96.9</text>
+            <text x="93" y="29" font-family="'Montserrat', sans-serif" font-weight="500" font-size="7" fill="#ffffff" text-anchor="middle">FM</text>
+          </svg>
         </span>
       </div>
       <p class="ds-expertise__media-note">Recognized nationally for the Burns Protocol &mdash; Dr. Burns&rsquo;s proprietary approach to same-day dental implants.</p>

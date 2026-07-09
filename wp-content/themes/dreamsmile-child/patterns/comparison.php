@@ -31,9 +31,8 @@ $chain_rows = [
   <div class="ds-wrap">
     <div class="ds-comparison__head ds-reveal">
       <span class="ds-label">SEE THE DIFFERENCE</span>
-      <h2 class="ds-comparison__title">
-        <!-- Brand wordmark stand-in for the DreamSmile logo — swap .ds-brand for an <img> logo when the SVG is available. -->
-        The <span class="ds-brand ds-comparison__title-emph"><span class="ds-brand__word">DreamSmile</span><sup class="ds-brand__tm">&trade;</sup></span> vs. Traditional Dental Implants
+      <h2 class="ds-comparison__title" style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;">
+        The <img class="ds-comparison__logo-img" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/nav-logo.svg' ); ?>" alt="DreamSmile Logo" style="height: 36px; width: auto;" /> vs. Traditional Dental Implants
       </h2>
       <div class="ds-comparison__divider" aria-hidden="true"><span></span><svg viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2.5"/></svg><span></span></div>
       <p class="ds-comparison__subtitle">Not all dental implant smiles are created equal.</p>
@@ -44,8 +43,8 @@ $chain_rows = [
 
       <div class="ds-compare-card ds-compare-card--primary ds-reveal">
         <span class="ds-compare-card__badge">RECOMMENDED</span>
-        <h3 class="ds-compare-card__title ds-compare-card__title--brand">
-          <span class="ds-brand"><span class="ds-brand__word">DreamSmile</span><sup class="ds-brand__tm">&trade;</sup></span>
+        <h3 class="ds-compare-card__title ds-compare-card__title--brand" style="display: flex; justify-content: center; align-items: center; min-height: 40px;">
+          <img class="ds-compare-card__logo-img" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/nav-logo.svg' ); ?>" alt="DreamSmile Logo" style="height: 32px; width: auto;" />
         </h3>
         <p class="ds-compare-card__kicker">THE DR. BURNS EXPERIENCE</p>
         <div class="ds-compare-list">

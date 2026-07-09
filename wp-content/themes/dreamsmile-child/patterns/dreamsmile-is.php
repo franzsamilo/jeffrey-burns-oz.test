@@ -42,9 +42,9 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
         <?php endforeach; ?>
       </ul>
 
-      <figure class="ds-is-figure ds-reveal">
+      <figure class="ds-is-figure ds-reveal" style="position: relative;">
         <img src="<?php echo $is_photo; ?>" alt="Woman smiling confidently with her DreamSmile" loading="lazy" />
-        <span class="ds-is-figure__watermark" aria-hidden="true">DreamSmile<sup>&trade;</sup></span>
+        <img class="ds-is-figure__watermark-img" src="<?php echo esc_url( $base ); ?>/nav-logo.svg" alt="DreamSmile Logo" style="position: absolute; bottom: 16px; right: 16px; height: 32px; width: auto; background: rgba(255,255,255,0.85); padding: 2px 6px; border-radius: 4px; pointer-events: none;" />
       </figure>
     </div>
 
