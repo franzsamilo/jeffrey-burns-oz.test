@@ -609,3 +609,10 @@ function ds_pated_group_for_slug( $slug ) {
     }
     return null;
 }
+
+/**
+ * Helper to get video url from the GitHub Releases CDN
+ */
+function ds_get_video_url( $video_name ) {
+    return 'https://github.com/franzsamilo/jeffrey-burns-oz.test/releases/latest/download/' . $video_name;
+}

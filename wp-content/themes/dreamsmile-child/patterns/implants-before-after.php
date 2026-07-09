@@ -32,7 +32,7 @@ $count = count( $shots );
             <figure class="ds-ba__slide<?php echo $i === 0 ? ' is-active' : ''; ?>" data-index="<?php echo (int) $i; ?>" aria-roledescription="slide" aria-label="<?php echo (int) ( $i + 1 ); ?> of <?php echo (int) $count; ?>">
               <video
                 class="ds-ba__video"
-                src="<?php echo esc_url( $base . '/' . $s[0] ); ?>"
+                src="<?php echo esc_url( ds_get_video_url( $s[0] ) ); ?>"
                 preload="metadata"
                 playsinline
                 muted

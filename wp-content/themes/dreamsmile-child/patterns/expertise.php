@@ -39,7 +39,7 @@ defined( 'ABSPATH' ) || exit;
       <div class="ds-expertise__video-frame">
         <video
           class="ds-expertise__video-el"
-          src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/Showcase-Burns-Protocol-TV.mp4' ); ?>"
+          src="<?php echo esc_url( ds_get_video_url( 'Showcase-Burns-Protocol-TV.mp4' ) ); ?>"
           preload="metadata"
           playsinline
           muted

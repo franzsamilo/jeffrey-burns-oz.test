@@ -67,7 +67,7 @@ defined( 'ABSPATH' ) || exit;
         </span>
         <video
           class="ds-awards__video-el"
-          src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/Educational-One-Day-Teeth.mp4' ); ?>"
+          src="<?php echo esc_url( ds_get_video_url( 'Educational-One-Day-Teeth.mp4' ) ); ?>"
           preload="metadata"
           playsinline
           muted

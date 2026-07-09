@@ -64,7 +64,7 @@ ds_render_split_hero( [
             <?php if ( ! empty( $f[3] ) ) : ?>
               <video
                 class="ds-faq-item__video"
-                src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/' . $f[3] ); ?>"
+                src="<?php echo esc_url( ds_get_video_url( $f[3] ) ); ?>"
                 preload="metadata"
                 playsinline
                 muted

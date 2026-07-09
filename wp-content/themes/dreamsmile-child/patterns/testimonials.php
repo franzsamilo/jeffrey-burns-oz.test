@@ -37,7 +37,7 @@ $star = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 
               <div class="ds-testi-card__frame">
                 <video
                   class="ds-testi-card__video"
-                  src="<?php echo esc_url( $base . '/' . $t[0] ); ?>"
+                  src="<?php echo esc_url( ds_get_video_url( $t[0] ) ); ?>"
                   preload="metadata"
                   playsinline
                   muted

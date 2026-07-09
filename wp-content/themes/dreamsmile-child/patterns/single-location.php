@@ -217,7 +217,7 @@ $hero_prefix = $is_home_city ? 'in' : 'Near';
     <div class="ds-loc-testimonials__media ds-reveal">
       <video
         class="ds-loc-testimonials__video"
-        src="<?php echo esc_url( $base . '/Hall-of-Fame-Patients.mp4' ); ?>"
+        src="<?php echo esc_url( ds_get_video_url( 'Hall-of-Fame-Patients.mp4' ) ); ?>"
         preload="metadata"
         playsinline
         muted
