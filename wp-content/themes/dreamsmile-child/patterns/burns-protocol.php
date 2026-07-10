@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
 // NOTE: client asked for a photo of Dr. Burns *smiling, in his doctor attire*.
 // Using the casual (smiling) portrait as the closest available stand-in until
 // a smiling-in-lab-coat photo is provided — swap $protocol_photo when ready.
-$protocol_photo = get_stylesheet_directory_uri() . '/assets/arrange/casual-photo-burns.png';
+$protocol_photo = get_stylesheet_directory_uri() . '/assets/arrange/dr-burns-portrait.jpg';
 
 $steps = [
   [ 1, 'DreamSmile&trade; Assessment',         'A comprehensive evaluation of your oral health, goals, and candidacy for dental implants. We take advanced 3D imaging and develop your personalized treatment plan.' ],

@@ -700,6 +700,11 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   max-height: 360px;
   display: block;
   margin-inline: auto;
+  /* Placeholder asset (quiz-card.png) ships with an opaque white background rather
+     than a transparent cutout, so round its corners to match the card language and
+     avoid a sharp-cornered white box on the section's gray field. Harmless once the
+     real transparent guide cover is dropped in. */
+  border-radius: 16px;
   filter: drop-shadow(0 24px 32px rgba(58, 58, 58, 0.22)) drop-shadow(0 6px 14px rgba(58, 58, 58, 0.10));
   transition: transform .3s ease, filter .3s ease;
 }
@@ -2392,7 +2397,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 /* DREAMSMILE-EXPERTISE-LANDSCAPE */
 .ds-expertise__video { max-width: 800px !important; }
 .ds-expertise__video-frame { aspect-ratio: 16 / 9 !important; }
-.ds-expertise__video-el { object-fit: cover !important; }
+.ds-expertise__video-el { object-fit: contain !important; }
 /* /DREAMSMILE-EXPERTISE-LANDSCAPE */
 
 /* ==========================================================================

@@ -332,7 +332,7 @@ add_action( 'wp_head', function () {
         '@context' => 'https://schema.org', '@type' => 'Dentist', '@id' => $dentist_id,
         'name' => 'DreamSmile by Dr. Jeffrey S. Burns, DDS', 'alternateName' => 'Dr. Burns Dental Implants',
         'url' => $site_url, 'logo' => get_stylesheet_directory_uri() . '/assets/images/favicon.svg',
-        'image' => get_stylesheet_directory_uri() . '/assets/arrange/casual-photo-burns.png',
+        'image' => get_stylesheet_directory_uri() . '/assets/arrange/dr-burns-portrait.jpg',
         'description' => 'Nationally recognized dental implant practice led by Dr. Jeffrey S. Burns, DDS, with 30+ years of experience. Home of the Burns Protocol.',
         'telephone' => $office['phone_tel'], 'priceRange' => '$$$',
         'address' => array_merge( [ '@type' => 'PostalAddress' ], $address_parts ),
@@ -348,7 +348,7 @@ add_action( 'wp_head', function () {
         'name' => 'Dr. Jeffrey S. Burns', 'givenName' => 'Jeffrey', 'familyName' => 'Burns',
         'honorificSuffix' => 'DDS', 'jobTitle' => 'Doctor of Dental Surgery',
         'description' => 'Nationally recognized leader in dental implantology and smile design with over 30 years of hands-on implant experience. Creator of the Burns Protocol.',
-        'image' => get_stylesheet_directory_uri() . '/assets/arrange/casual-photo-burns.png',
+        'image' => get_stylesheet_directory_uri() . '/assets/arrange/dr-burns-portrait.jpg',
         'url' => $site_url, 'worksFor' => [ '@id' => $dentist_id ],
         'knowsAbout' => [ 'Dental Implants', 'Cosmetic Dentistry', 'Burns Protocol', 'Smile Design' ],
         'hasCredential' => [
@@ -506,7 +506,7 @@ function ds_render_split_hero( array $a ) {
  * Shared "Meet the Specialist" section used by every sub-page.
  */
 function ds_render_about_section() {
-    $casual = get_stylesheet_directory_uri() . '/assets/arrange/casual-photo-burns.png';
+    $casual = get_stylesheet_directory_uri() . '/assets/arrange/dr-burns-portrait.jpg';
     $check  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>';
     $credentials = [ 'Nationally Recognized', 'Teaches Doctors Nationwide', 'AACD Award Recipient', 'Published Author' ];
     ?>

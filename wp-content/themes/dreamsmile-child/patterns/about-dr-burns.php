@@ -5,7 +5,7 @@
  * Categories: dreamsmile
  */
 defined( 'ABSPATH' ) || exit;
-$casual = get_stylesheet_directory_uri() . '/assets/arrange/casual-photo-burns.png';
+$casual = get_stylesheet_directory_uri() . '/assets/arrange/dr-burns-portrait.jpg';
 
 $icons = [
   'flag'   => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V4"/><path d="M4 4h12l-2.5 4L16 12H4"/></svg>',
