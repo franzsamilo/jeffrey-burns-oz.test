@@ -103,10 +103,10 @@ $svg = [
   <div class="ds-wrap">
     <div class="ds-subpage-cta__inner ds-reveal">
       <span class="ds-label">NOT SURE WHAT YOU NEED?</span>
-      <h2 class="ds-subpage-cta__title">Schedule a restorative consultation.</h2>
-      <p class="ds-subpage-cta__sub">Free consultation with full assessment. We&rsquo;ll walk through every realistic option for your case &mdash; with no pressure to commit.</p>
+      <h2 class="ds-subpage-cta__title">Schedule a restorative assessment.</h2>
+      <p class="ds-subpage-cta__sub">Free assessment with full 3D imaging. We&rsquo;ll walk through every realistic option for your case &mdash; with no pressure to commit.</p>
       <div class="ds-subpage-cta__ctas">
-        <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule a Free Consult</a>
+        <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule a Free Assessment</a>
         <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" class="ds-btn ds-btn--outlined">Call <?php echo esc_html( $office['phone'] ); ?></a>
       </div>
     </div>

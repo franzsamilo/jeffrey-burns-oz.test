@@ -51,7 +51,7 @@ $svg = [
     <div class="ds-np-welcome__head ds-reveal">
       <span class="ds-label">DESIGNED AROUND YOU</span>
       <h2 class="ds-np-welcome__title">A smile that looks like <span class="ds-italic">you on a great day</span> &mdash; not a stranger&rsquo;s catalog.</h2>
-      <p class="ds-np-welcome__sub">Cosmetic dentistry done well doesn&rsquo;t announce itself. It looks like the smile you&rsquo;d have if everything had gone perfectly &mdash; brighter teeth, a more even line, the proportions that match your face. Dr. Burns is an AACD-award-winning specialist whose work has been recognized nationally for getting that exact balance right.</p>
+      <p class="ds-np-welcome__sub">Cosmetic dentistry done well doesn&rsquo;t announce itself. It looks like the smile you&rsquo;d have if everything had gone perfectly &mdash; brighter teeth, a more even line, the proportions that match your face. Dr. Burns is an AACD-award-winning expert whose work has been recognized nationally for getting that exact balance right.</p>
     </div>
     <div class="ds-np-welcome__pillars ds-reveal">
       <div class="ds-np-pillar">
@@ -100,9 +100,9 @@ $svg = [
     <div class="ds-subpage-cta__inner ds-reveal">
       <span class="ds-label">CURIOUS WHAT&rsquo;S POSSIBLE?</span>
       <h2 class="ds-subpage-cta__title">Preview your smile before any treatment begins.</h2>
-      <p class="ds-subpage-cta__sub">Book a free cosmetic consultation. Dr. Burns will preview your result with digital smile design &mdash; you&rsquo;ll see the &ldquo;after&rdquo; before any treatment begins.</p>
+      <p class="ds-subpage-cta__sub">Book a free cosmetic assessment. Dr. Burns will preview your result with digital smile design &mdash; you&rsquo;ll see the &ldquo;after&rdquo; before any treatment begins.</p>
       <div class="ds-subpage-cta__ctas">
-        <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule a Free Consult</a>
+        <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule a Free Assessment</a>
         <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" class="ds-btn ds-btn--outlined">Call <?php echo esc_html( $office['phone'] ); ?></a>
       </div>
     </div>

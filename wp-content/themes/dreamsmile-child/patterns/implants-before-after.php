@@ -9,10 +9,14 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
 
 // Video clips are vertical (TikTok 9:16). They letterbox inside the 16/9
 // stage with dark padding — preserves full frame.
+// 5th element is an optional poster frame. Only Angela has one so far — the
+// client's before/after still set covers Angela, Danny, Kelly, Mike and Ron,
+// which does not overlap Curtis or Peter. Ask for stills of those two, or
+// swap this carousel onto the five patients that do have them.
 $shots = [
-  [ 'Curtis-Cloude-Testimonial.mp4', 'DreamSmile transformation — Curtis Cloude', 'Curtis Cloude', 'DreamSmile™ Transformation' ],
-  [ 'Angela-Burker-Testimonial.mp4', 'DreamSmile transformation — Angela Burker', 'Angela Burker', 'DreamSmile™ Transformation' ],
-  [ 'Peter-Encheff-Testimonial.mp4', 'DreamSmile transformation — Peter Encheff', 'Peter Encheff', 'DreamSmile™ Transformation' ],
+  [ 'Curtis-Cloude-Testimonial.mp4', 'DreamSmile transformation — Curtis Cloude', 'Curtis Cloude', 'DreamSmile™ Transformation', '' ],
+  [ 'Angela-Burker-Testimonial.mp4', 'DreamSmile transformation — Angela Burker', 'Angela Burker', 'DreamSmile™ Transformation', 'testimonial-ba-angela.jpg' ],
+  [ 'Peter-Encheff-Testimonial.mp4', 'DreamSmile transformation — Peter Encheff', 'Peter Encheff', 'DreamSmile™ Transformation', '' ],
 ];
 $count = count( $shots );
 ?>
@@ -22,7 +26,7 @@ $count = count( $shots );
     <div class="ds-before-after__head ds-reveal">
       <span class="ds-label">REAL RESULTS</span>
       <h2 class="ds-before-after__title">Real Patients. Real Transformations.</h2>
-      <p class="ds-before-after__sub">Watch a few of our favorite DreamSmile&trade; transformations in their own words.</p>
+      <p class="ds-before-after__sub">Watch a few of our favorite DreamSmile<sup class="ds-tm">&trade;</sup> transformations in their own words.</p>
     </div>
 
     <div class="ds-ba" data-ds-carousel data-count="<?php echo (int) $count; ?>" aria-roledescription="carousel">
@@ -33,6 +37,7 @@ $count = count( $shots );
               <video
                 class="ds-ba__video"
                 src="<?php echo esc_url( ds_get_video_url( $s[0] ) ); ?>"
+                <?php if ( ! empty( $s[4] ) ) : ?>poster="<?php echo esc_url( $base . '/' . $s[4] ); ?>"<?php endif; ?>
                 preload="metadata"
                 playsinline
                 muted

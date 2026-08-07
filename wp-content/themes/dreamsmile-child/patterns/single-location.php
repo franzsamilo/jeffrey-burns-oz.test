@@ -62,7 +62,7 @@ $LOCATIONS = [
     'state'     => 'VA',
     'image'     => 'Luray-8locations.jpg',
     'hero_bg'   => 'Luray-8locations.jpg',
-    'local_why' => 'Patients from Luray and Page County make the trip for the Burns Protocol &mdash; the same trusted process from consult through final reveal.',
+    'local_why' => 'Patients from Luray and Page County make the trip for the Burns Protocol &mdash; the same trusted process from assessment through final reveal.',
     'travel'    => 'Across the valley from Luray to our New Market office &mdash; a beautiful drive on Rt. 211 W and Rt. 11.',
   ],
   'woodstock' => [
@@ -117,7 +117,7 @@ $why_cards = [
   ],
   [ 'car',    'Easy Parking &amp; Access',       esc_html( $office['parking'] ), false ],
   [ 'cpu',    'Modern In-House Technology',      '3D imaging, digital smile design, and the latest implant tech &mdash; all under one roof.', false ],
-  [ 'tooth',  'Specialized Implant Care',        'Decades of focused implant experience. This is what we do, every day.', false ],
+  [ 'tooth',  'Focused Implant Care',            'Decades of focused implant experience. This is what we do, every day.', false ],
 ];
 
 $service_cards = [
@@ -175,7 +175,7 @@ $hero_prefix = $is_home_city ? 'in' : 'Near';
           </span>
         </div>
         <div class="ds-loc-hero__ctas">
-          <a href="#quiz" class="ds-btn ds-btn--solid"<?php echo $schedule_attr; ?>>Schedule Free Consult</a>
+          <a href="#quiz" class="ds-btn ds-btn--solid"<?php echo $schedule_attr; ?>>Schedule Free Assessment</a>
           <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" class="ds-btn ds-btn--outlined">Call Now</a>
         </div>
       </div>
@@ -188,6 +188,13 @@ $hero_prefix = $is_home_city ? 'in' : 'Near';
     </div>
   </div>
 </section>
+
+<?php
+// Client note (2026-08-04): "put forms again right here at the top. Lead
+// capture right there at the top." Reuses the existing quiz banner rather
+// than a location-specific variant so there is one component to maintain.
+echo do_blocks( '<!-- wp:pattern {"slug":"dreamsmile/implants-quiz-banner"} /-->' );
+?>
 
 <section class="ds-loc-why">
   <div class="ds-wrap">
@@ -207,13 +214,11 @@ $hero_prefix = $is_home_city ? 'in' : 'Near';
   </div>
 </section>
 
-<?php ds_render_about_section(); ?>
-
 <section class="ds-loc-testimonials">
   <div class="ds-wrap">
     <span class="ds-label">PATIENT STORIES</span>
-    <h2 class="ds-loc-testimonials__title ds-reveal">Real patients. <span class="ds-italic">Real DreamSmiles&trade;.</span></h2>
-    <p class="ds-loc-testimonials__sub ds-reveal">Hear directly from a DreamSmile&trade; patient about their experience with Dr. Burns.</p>
+    <h2 class="ds-loc-testimonials__title ds-reveal">Real patients. <span class="ds-italic">Real DreamSmiles<sup class="ds-tm">&trade;</sup>.</span></h2>
+    <p class="ds-loc-testimonials__sub ds-reveal">Hear directly from a DreamSmile<sup class="ds-tm">&trade;</sup> patient about their experience with Dr. Burns.</p>
     <div class="ds-loc-testimonials__media ds-reveal">
       <video
         class="ds-loc-testimonials__video"
@@ -293,7 +298,7 @@ $hero_prefix = $is_home_city ? 'in' : 'Near';
   <div class="ds-wrap">
     <div class="ds-loc-cta__inner ds-reveal">
       <h2 class="ds-loc-cta__title">Your New Smile Starts Here.</h2>
-      <p class="ds-loc-cta__sub">Free consultation &middot; No obligations &middot; Direct line to Dr. Burns</p>
+      <p class="ds-loc-cta__sub">Free assessment &middot; No obligations &middot; Direct line to Dr. Burns</p>
       <div class="ds-loc-cta__ctas">
         <a href="#quiz" class="ds-btn ds-btn--solid"<?php echo $schedule_attr; ?>>Schedule</a>
         <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" class="ds-btn ds-btn--outlined">Call <?php echo esc_html( $office['phone'] ); ?></a>

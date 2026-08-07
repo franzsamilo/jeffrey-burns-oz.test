@@ -32,7 +32,7 @@ return [
     ],
     'seo' => [
       'title'       => 'Single Dental Implants in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Replace one missing tooth with a permanent dental implant &mdash; natural-looking, fully functional, placed personally by Dr. Burns. Free consultation in New Market, VA.',
+      'description' => 'Replace one missing tooth with a permanent dental implant &mdash; natural-looking, fully functional, placed personally by Dr. Burns. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHY A SINGLE IMPLANT',
@@ -49,7 +49,7 @@ return [
       'title' => 'Your single-implant journey, <span class="ds-italic">step by step</span>.',
       'sub'   => 'Most patients are surprised at how comfortable and predictable the process is. Here&rsquo;s exactly what to expect.',
       'list' => [
-        [ 'num' => '01', 'title' => 'Consultation &amp; 3D imaging',  'desc' => 'In-house 3D scan to map your bone, bite, and existing teeth. Dr. Burns reviews everything with you and answers questions before any decision.' ],
+        [ 'num' => '01', 'title' => 'Assessment &amp; 3D imaging',  'desc' => 'In-house 3D scan to map your bone, bite, and existing teeth. Dr. Burns reviews everything with you and answers questions before any decision.' ],
         [ 'num' => '02', 'title' => 'Implant placement',              'desc' => 'A single implant post is precisely placed into the jawbone &mdash; usually a 30&ndash;60 minute procedure with local or sedation anesthesia.' ],
         [ 'num' => '03', 'title' => 'Healing &amp; integration',      'desc' => '3&ndash;6 months for the implant to integrate with the bone. We provide a temporary crown so you&rsquo;re never without a tooth in that spot.' ],
         [ 'num' => '04', 'title' => 'Custom crown &amp; reveal',      'desc' => 'A custom-shaded porcelain crown is placed on the implant. It looks, feels, and functions like the tooth that was always supposed to be there.' ],
@@ -105,8 +105,8 @@ return [
     ],
     'cta' => [
       'label' => 'READY TO REPLACE THAT TOOTH?',
-      'title' => 'Schedule your free single-implant consultation.',
-      'sub'   => 'Free consultation, full 3D imaging, and a clear written treatment plan &mdash; with no obligations, ever.',
+      'title' => 'Schedule your free single-implant assessment.',
+      'sub'   => 'Free assessment, full 3D imaging, and a clear written treatment plan &mdash; with no obligations, ever.',
     ],
     'references' => [
       'label' => 'GOOD TO KNOW',
@@ -126,11 +126,11 @@ return [
       'title'    => 'Replace Several Teeth in a Row &mdash; <em>Without a Removable Bridge</em>.',
       'subtitle' => 'Two implants anchor a custom bridge to fill the gap of multiple missing teeth. Stable, permanent, indistinguishable from natural teeth.',
       'bg'       => 'implant-cost-hero.jpg',
-      'alt'      => 'Implant-supported bridge consultation',
+      'alt'      => 'Implant-supported bridge assessment',
     ],
     'seo' => [
       'title'       => 'Implant Supported Bridges in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Implant-supported bridges replace multiple missing teeth without grinding down healthy ones. A permanent, comfortable alternative to traditional bridges. Free consultation in New Market, VA.',
+      'description' => 'Implant-supported bridges replace multiple missing teeth without grinding down healthy ones. A permanent, comfortable alternative to traditional bridges. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHY IMPLANT-SUPPORTED',
@@ -146,7 +146,7 @@ return [
       'label' => 'HOW IT WORKS',
       'title' => 'Your implant-bridge journey.',
       'list' => [
-        [ 'num' => '01', 'title' => 'Consultation &amp; planning', 'desc' => '3D imaging maps the gap, the surrounding bone, and the exact placement angles for the two anchor implants.' ],
+        [ 'num' => '01', 'title' => 'Assessment &amp; planning', 'desc' => '3D imaging maps the gap, the surrounding bone, and the exact placement angles for the two anchor implants.' ],
         [ 'num' => '02', 'title' => 'Implant placement',          'desc' => 'Two implants are placed at either end of the gap &mdash; one procedure, full anesthesiology coverage.' ],
         [ 'num' => '03', 'title' => 'Healing &amp; bridge design', 'desc' => '3&ndash;6 months of integration. During healing, your custom bridge is designed in-house by Dr. Burns&rsquo;s lab partners.' ],
         [ 'num' => '04', 'title' => 'Bridge placement',           'desc' => 'The custom porcelain bridge clicks into place on the two implants. The result: a row of teeth that looks and works like the originals.' ],
@@ -164,7 +164,7 @@ return [
     'cta' => [
       'label' => 'MISSING SEVERAL TEETH?',
       'title' => 'Find out if an implant bridge is right for you.',
-      'sub'   => 'Free consultation, 3D imaging, and a side-by-side comparison of your real options &mdash; with full pricing.',
+      'sub'   => 'Free assessment, 3D imaging, and a side-by-side comparison of your real options &mdash; with full pricing.',
     ],
     'references' => [
       'label' => 'GOOD TO KNOW',
@@ -188,7 +188,7 @@ return [
     ],
     'seo' => [
       'title'       => 'How Dental Implants Work | Dr. Jeffrey S. Burns, DDS &middot; New Market, VA',
-      'description' => 'A plain-English explanation of how dental implants work, why they last, and how Dr. Burns&rsquo;s approach makes the procedure predictable. Free consultation in New Market, VA.',
+      'description' => 'A plain-English explanation of how dental implants work, why they last, and how Dr. Burns&rsquo;s approach makes the procedure predictable. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'THE BASICS',
@@ -223,7 +223,7 @@ return [
     'cta' => [
       'label' => 'STILL HAVE QUESTIONS?',
       'title' => 'Book a free conversation with Dr. Burns.',
-      'sub'   => 'Free consultation, 3D imaging, and an honest read on whether implants are right for you &mdash; with no obligation.',
+      'sub'   => 'Free assessment, 3D imaging, and an honest read on whether implants are right for you &mdash; with no obligation.',
     ],
     'references' => [
       'label' => 'GOOD TO KNOW',
@@ -256,14 +256,14 @@ return [
       'pillars' => [
         [ 'strong' => '4&ndash;6 Implants', 'span' => 'support a full arch of teeth' ],
         [ 'strong' => 'Often One Day', 'span' => 'from extraction to teeth-in-place' ],
-        [ 'strong' => 'Lifetime Warranty', 'span' => 'on the Platinum DreamSmile&trade; tier' ],
+        [ 'strong' => 'Lifetime Warranty', 'span' => 'on the Platinum DreamSmile<sup class="ds-tm">&trade;</sup> tier' ],
       ],
     ],
     'steps' => [
       'label' => 'HOW IT WORKS',
       'title' => 'Your full-mouth journey, <span class="ds-italic">in plain steps</span>.',
       'list' => [
-        [ 'num' => '01', 'title' => 'Consultation &amp; comprehensive 3D imaging', 'desc' => 'A full plan: existing teeth, bone density, sinus position, bite. Dr. Burns reviews every option &mdash; including whether All-on-4 or All-on-6 is right for you.' ],
+        [ 'num' => '01', 'title' => 'Assessment &amp; comprehensive 3D imaging', 'desc' => 'A full plan: existing teeth, bone density, sinus position, bite. Dr. Burns reviews every option &mdash; including whether All-on-4 or All-on-6 is right for you.' ],
         [ 'num' => '02', 'title' => 'Surgery day',                                 'desc' => 'Any failing teeth are removed; 4&ndash;6 implants are precisely placed; a temporary fixed bridge is attached the same day. You leave with teeth.' ],
         [ 'num' => '03', 'title' => 'Healing &amp; integration',                   'desc' => '3&ndash;6 months for full bone integration. The temporary bridge stays in place &mdash; you eat, talk, and smile normally throughout.' ],
         [ 'num' => '04', 'title' => 'Final fixed bridge',                          'desc' => 'Your custom-designed final bridge is placed &mdash; the one designed for the next 30 years. This is the day you&rsquo;ll remember.' ],
@@ -281,7 +281,7 @@ return [
     ],
     'cta' => [
       'label' => 'READY FOR A WHOLE NEW SMILE?',
-      'title' => 'Schedule your free full-mouth consultation.',
+      'title' => 'Schedule your free full-mouth assessment.',
       'sub'   => 'Free 3D imaging, written treatment plan with turnkey pricing, and zero pressure to decide on the spot.',
     ],
     'references' => [
@@ -302,11 +302,11 @@ return [
       'title'    => 'Dentures That <em>Stay Where They Belong</em>.',
       'subtitle' => 'Snap-in dentures anchored to 2&ndash;4 implants &mdash; the comfort and stability of fixed teeth, with the convenience of a removable appliance.',
       'bg'       => 'implant-faqs-hero.jpg',
-      'alt'      => 'Implant-supported dentures consultation',
+      'alt'      => 'Implant-supported dentures assessment',
     ],
     'seo' => [
       'title'       => 'Implant Supported Dentures in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Snap-in implant-supported dentures eliminate slipping, sore spots, and adhesive. Anchored to 2&ndash;4 implants. Free consultation with Dr. Burns in New Market, VA.',
+      'description' => 'Snap-in implant-supported dentures eliminate slipping, sore spots, and adhesive. Anchored to 2&ndash;4 implants. Free assessment with Dr. Burns in New Market, VA.',
     ],
     'intro' => [
       'label' => 'NO MORE SLIPPING',
@@ -322,7 +322,7 @@ return [
       'label' => 'HOW IT WORKS',
       'title' => 'From slipping dentures to <span class="ds-italic">stable, snap-in teeth</span>.',
       'list' => [
-        [ 'num' => '01', 'title' => 'Consultation &amp; assessment', 'desc' => 'Dr. Burns reviews your existing dentures (or current tooth situation), takes 3D imaging, and confirms you have the bone for implant anchors.' ],
+        [ 'num' => '01', 'title' => 'Assessment &amp; 3D imaging', 'desc' => 'Dr. Burns reviews your existing dentures (or current tooth situation), takes 3D imaging, and confirms you have the bone for implant anchors.' ],
         [ 'num' => '02', 'title' => 'Implant placement',             'desc' => 'Two to four implants are placed in the jawbone &mdash; usually a single 60&ndash;90 minute procedure with full anesthesiology.' ],
         [ 'num' => '03', 'title' => 'Healing',                       'desc' => '3&ndash;6 months of integration. You can wear your existing denture (modified for comfort) during this time.' ],
         [ 'num' => '04', 'title' => 'Snap-in denture fitting',       'desc' => 'A custom denture with snap-in attachments is fitted to the implants. You take it out at night to clean &mdash; otherwise it stays put, all day.' ],
@@ -340,12 +340,12 @@ return [
     'cta' => [
       'label' => 'TIRED OF SLIPPING DENTURES?',
       'title' => 'Find out if implant dentures are right for you.',
-      'sub'   => 'Free consultation, 3D imaging, and a clear comparison of your options. No obligation.',
+      'sub'   => 'Free assessment, 3D imaging, and a clear comparison of your options. No obligation.',
     ],
     'references' => [
       'label' => 'GOOD TO KNOW',
       'title' => 'Implant-supported vs. implant-retained dentures &mdash; the plain-English difference.',
-      'sub'   => 'Per the Cleveland Clinic, implant-supported dentures anchor directly to the jawbone &mdash; preventing the slipping that conventional dentures cause, stimulating the underlying bone, and eliminating the daily adhesive routine. They come in two forms: removable (snap-on for nightly cleaning) and fixed (cleaned in place with specialised tools). Note: &ldquo;implant-retained&rdquo; and &ldquo;implant-supported&rdquo; refer to slightly different appliances &mdash; we&rsquo;ll explain which fits your case at the free consult.',
+      'sub'   => 'Per the Cleveland Clinic, implant-supported dentures anchor directly to the jawbone &mdash; preventing the slipping that conventional dentures cause, stimulating the underlying bone, and eliminating the daily adhesive routine. They come in two forms: removable (snap-on for nightly cleaning) and fixed (cleaned in place with specialised tools). Note: &ldquo;implant-retained&rdquo; and &ldquo;implant-supported&rdquo; refer to slightly different appliances &mdash; we&rsquo;ll explain which fits your case at the free assessment.',
       'sources' => [
         [ 'title' => 'Implant-Supported Dentures', 'org' => 'Cleveland Clinic', 'url' => 'https://my.clevelandclinic.org/health/treatments/24303-implant-supported-dentures' ],
       ],
@@ -363,7 +363,7 @@ return [
       'title'    => 'Bridge a Gap. <em>Restore Your Bite</em>.',
       'subtitle' => 'Traditional bridges and modern implant-supported alternatives &mdash; we&rsquo;ll help you choose the right approach for your case.',
       'bg'       => 'bridges-hero.jpg',
-      'alt'      => 'Dental bridge consultation',
+      'alt'      => 'Dental bridge assessment',
     ],
     'seo' => [
       'title'       => 'Dental Bridges &mdash; Traditional &amp; Implant-Supported | Dr. Jeffrey S. Burns, DDS',
@@ -400,7 +400,7 @@ return [
     'cta' => [
       'label' => 'MISSING ONE OR MORE TEETH?',
       'title' => 'Find out which bridge fits your case.',
-      'sub'   => 'Free consultation, full assessment, and a written treatment plan with both options compared.',
+      'sub'   => 'Free assessment, full exam, and a written treatment plan with both options compared.',
     ],
     'references' => [
       'label' => 'GOOD TO KNOW',
@@ -424,7 +424,7 @@ return [
     ],
     'seo' => [
       'title'       => 'Tooth Extraction in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Comfortable, anxiety-aware tooth extractions with on-staff anesthesiology. Implant-ready extraction sites whenever possible. Free consultation in New Market, VA.',
+      'description' => 'Comfortable, anxiety-aware tooth extractions with on-staff anesthesiology. Implant-ready extraction sites whenever possible. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHEN AN EXTRACTION IS RIGHT',
@@ -457,8 +457,8 @@ return [
     ],
     'cta' => [
       'label' => 'NEED A TOOTH OUT?',
-      'title' => 'Schedule a comfort-focused extraction consult.',
-      'sub'   => 'Free consultation. Honest discussion of whether the tooth can be saved &mdash; and the right next steps if not.',
+      'title' => 'Schedule a comfort-focused extraction assessment.',
+      'sub'   => 'Free assessment. Honest discussion of whether the tooth can be saved &mdash; and the right next steps if not.',
     ],
   ],
 
@@ -469,11 +469,11 @@ return [
       'title'    => 'Rebuild the Foundation &mdash; <em>Get Back on the Implant Track</em>.',
       'subtitle' => 'When bone loss has put implants out of reach, modern bone grafting often opens the door back up. The "yes" when other offices said no.',
       'bg'       => 'bone-graft-hero.jpg',
-      'alt'      => 'Bone grafting consultation',
+      'alt'      => 'Bone grafting assessment',
     ],
     'seo' => [
       'title'       => 'Bone Grafting in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Bone grafting rebuilds jawbone after tooth loss, opening up implant options that may have been ruled out elsewhere. Free consultation with Dr. Burns in New Market, VA.',
+      'description' => 'Bone grafting rebuilds jawbone after tooth loss, opening up implant options that may have been ruled out elsewhere. Free assessment with Dr. Burns in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHEN BONE LOSS IS A BLOCKER',
@@ -513,7 +513,7 @@ return [
     'cta' => [
       'label' => 'TOLD &ldquo;NO BONE FOR IMPLANTS&rdquo;?',
       'title' => 'Get a second opinion from Dr. Burns.',
-      'sub'   => 'Free consultation, 3D imaging, and an honest assessment of whether grafting can put implants back on the table.',
+      'sub'   => 'Free assessment, 3D imaging, and an honest read on whether grafting can put implants back on the table.',
     ],
     'references' => [
       'label' => 'GOOD TO KNOW',
@@ -536,7 +536,7 @@ return [
     ],
     'seo' => [
       'title'       => 'Full Dentures in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Comfortable, well-fitted full dentures &mdash; and the option to upgrade to implant-stabilized dentures for a no-slip solution. Free consultation in New Market, VA.',
+      'description' => 'Comfortable, well-fitted full dentures &mdash; and the option to upgrade to implant-stabilized dentures for a no-slip solution. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'A FULL ARCH OF TEETH',
@@ -552,7 +552,7 @@ return [
       'label' => 'HOW IT WORKS',
       'title' => 'Your full-denture process.',
       'list' => [
-        [ 'num' => '01', 'title' => 'Consultation &amp; impressions', 'desc' => 'Detailed measurements of your jaw, bite, and remaining anatomy to design dentures that look and feel right.' ],
+        [ 'num' => '01', 'title' => 'Assessment &amp; impressions', 'desc' => 'Detailed measurements of your jaw, bite, and remaining anatomy to design dentures that look and feel right.' ],
         [ 'num' => '02', 'title' => 'Try-in fittings',                'desc' => 'A wax-up version is tried in your mouth so you (and we) can confirm the look, the bite, and the comfort before the final dentures are made.' ],
         [ 'num' => '03', 'title' => 'Final dentures',                 'desc' => 'Custom dentures crafted in porcelain or high-grade acrylic. We adjust until the fit is right.' ],
         [ 'num' => '04', 'title' => 'Aftercare &amp; check-ins',      'desc' => 'Follow-up visits to fine-tune comfort. Dentures need adjustment over time as the gums change &mdash; we plan for that.' ],
@@ -569,13 +569,13 @@ return [
     ],
     'cta' => [
       'label' => 'NEED FULL DENTURES?',
-      'title' => 'Schedule a denture consultation.',
-      'sub'   => 'Free consultation, honest discussion of conventional vs. implant-stabilized, and a written treatment plan.',
+      'title' => 'Schedule a denture assessment.',
+      'sub'   => 'Free assessment, honest discussion of conventional vs. implant-stabilized, and a written treatment plan.',
     ],
     'references' => [
       'label' => 'GOOD TO KNOW',
       'title' => 'What to expect from a full denture.',
-      'sub'   => 'Per the Cleveland Clinic, full dentures are built from impressions, a stone model, and an acrylic or resin base; getting the fit right typically takes several office visits as the oral tissues adapt. Adjustment to a new denture can take weeks or months. Conventional dentures average 7&ndash;10 years of service, with a reline every 1&ndash;2 years. Implant-retained versions snap on to dental implants for greater stability without adhesive &mdash; an upgrade path we&rsquo;ll discuss honestly at the consult.',
+      'sub'   => 'Per the Cleveland Clinic, full dentures are built from impressions, a stone model, and an acrylic or resin base; getting the fit right typically takes several office visits as the oral tissues adapt. Adjustment to a new denture can take weeks or months. Conventional dentures average 7&ndash;10 years of service, with a reline every 1&ndash;2 years. Implant-retained versions snap on to dental implants for greater stability without adhesive &mdash; an upgrade path we&rsquo;ll discuss honestly at the assessment.',
       'sources' => [
         [ 'title' => 'Dentures &mdash; fitting, lifespan &amp; care', 'org' => 'Cleveland Clinic', 'url' => 'https://my.clevelandclinic.org/health/treatments/10900-dentures' ],
       ],
@@ -593,7 +593,7 @@ return [
     ],
     'seo' => [
       'title'       => 'Partial Dentures in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Discreet, well-fitted partial dentures that fill the gaps without compromising your healthy teeth. Free consultation with Dr. Burns in New Market, VA.',
+      'description' => 'Discreet, well-fitted partial dentures that fill the gaps without compromising your healthy teeth. Free assessment with Dr. Burns in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHEN A PARTIAL FITS',
@@ -609,7 +609,7 @@ return [
       'label' => 'HOW IT WORKS',
       'title' => 'Your partial denture process.',
       'list' => [
-        [ 'num' => '01', 'title' => 'Consultation &amp; impressions', 'desc' => 'A detailed look at your existing teeth, the gaps, and how a partial would clip in. Impressions go to the lab for a custom design.' ],
+        [ 'num' => '01', 'title' => 'Assessment &amp; impressions', 'desc' => 'A detailed look at your existing teeth, the gaps, and how a partial would clip in. Impressions go to the lab for a custom design.' ],
         [ 'num' => '02', 'title' => 'Try-in fitting',                 'desc' => 'A trial version confirms fit, comfort, and bite. Adjustments before the final partial is crafted.' ],
         [ 'num' => '03', 'title' => 'Final partial denture',          'desc' => 'Your custom partial is fitted. Clasps grip the existing teeth gently; the artificial teeth fill the gaps.' ],
       ],
@@ -625,8 +625,8 @@ return [
     ],
     'cta' => [
       'label' => 'CONSIDERING A PARTIAL?',
-      'title' => 'Schedule a partial-denture consultation.',
-      'sub'   => 'Free consultation. Honest comparison of partials, bridges, and implants for your specific case.',
+      'title' => 'Schedule a partial-denture assessment.',
+      'sub'   => 'Free assessment. Honest comparison of partials, bridges, and implants for your specific case.',
     ],
   ],
 
@@ -675,7 +675,7 @@ return [
     'cta' => [
       'label' => 'BRINGING IN YOUR CHILD?',
       'title' => 'Schedule a friendly first visit.',
-      'sub'   => 'Free first-visit consultation. We&rsquo;ll meet your child, give them a tour, and never push more than they&rsquo;re ready for.',
+      'sub'   => 'Free first-visit assessment. We&rsquo;ll meet your child, give them a tour, and never push more than they&rsquo;re ready for.',
     ],
   ],
 
@@ -690,7 +690,7 @@ return [
     ],
     'seo' => [
       'title'       => 'Dental Crowns in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Custom porcelain dental crowns that protect cracked or weakened teeth and look indistinguishable from natural enamel. Free consultation in New Market, VA.',
+      'description' => 'Custom porcelain dental crowns that protect cracked or weakened teeth and look indistinguishable from natural enamel. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHEN A CROWN IS RIGHT',
@@ -728,8 +728,8 @@ return [
     ],
     'cta' => [
       'label' => 'NEED A CROWN?',
-      'title' => 'Schedule a crown consultation.',
-      'sub'   => 'Free consultation. Honest assessment of whether a crown, filling, or other restoration is the right call.',
+      'title' => 'Schedule a crown assessment.',
+      'sub'   => 'Free assessment. Honest assessment of whether a crown, filling, or other restoration is the right call.',
     ],
   ],
 
@@ -744,7 +744,7 @@ return [
     ],
     'seo' => [
       'title'       => 'Root Canal in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Modern, virtually painless root canal therapy that saves the tooth and ends the pain. Free consultation with Dr. Burns in New Market, VA.',
+      'description' => 'Modern, virtually painless root canal therapy that saves the tooth and ends the pain. Free assessment with Dr. Burns in New Market, VA.',
     ],
     'intro' => [
       'label' => 'IT&rsquo;S NOT WHAT YOU&rsquo;VE HEARD',
@@ -777,7 +777,7 @@ return [
     ],
     'cta' => [
       'label' => 'TOOTH HURTING?',
-      'title' => 'Schedule an emergency-friendly consult.',
+      'title' => 'Schedule an emergency-friendly assessment.',
       'sub'   => 'If you&rsquo;re in pain, call <strong>(540) 740-8937</strong>. We try to see emergency cases the same day or next day.',
     ],
   ],
@@ -789,11 +789,11 @@ return [
       'title'    => 'A Comfortable Way Through &mdash; <em>With On-Staff Anesthesiology</em>.',
       'subtitle' => 'Safe, expertly planned wisdom-teeth removal &mdash; from a single tooth to all four, with full sedation if you want it.',
       'bg'       => 'wisdom-teeth-hero.jpg',
-      'alt'      => 'Wisdom teeth removal consultation',
+      'alt'      => 'Wisdom teeth removal assessment',
     ],
     'seo' => [
       'title'       => 'Wisdom Teeth Removal in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Safe, expertly planned wisdom-teeth removal with on-staff anesthesiology and a recovery plan that fits your week. Free consultation in New Market, VA.',
+      'description' => 'Safe, expertly planned wisdom-teeth removal with on-staff anesthesiology and a recovery plan that fits your week. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WISDOM TEETH OUT',
@@ -809,7 +809,7 @@ return [
       'label' => 'HOW IT WORKS',
       'title' => 'Your wisdom-teeth visit.',
       'list' => [
-        [ 'num' => '01', 'title' => 'Consultation &amp; 3D imaging', 'desc' => 'A panoramic X-ray (and 3D scan if needed) shows exactly how the wisdom teeth are positioned and what removal will involve.' ],
+        [ 'num' => '01', 'title' => 'Assessment &amp; 3D imaging', 'desc' => 'A panoramic X-ray (and 3D scan if needed) shows exactly how the wisdom teeth are positioned and what removal will involve.' ],
         [ 'num' => '02', 'title' => 'Comfort planning',              'desc' => 'Local numbing, nitrous, or full IV sedation &mdash; your call. For all four teeth, most patients pick full sedation.' ],
         [ 'num' => '03', 'title' => 'The procedure',                  'desc' => 'Typically 30&ndash;60 minutes for all four. You won&rsquo;t feel a thing during. We send you home with a driver and a clear recovery plan.' ],
         [ 'num' => '04', 'title' => 'Recovery follow-up',             'desc' => 'Most patients are back to normal in 3&ndash;5 days. Dr. Burns&rsquo;s direct cell number means you can text any worry, anytime.' ],
@@ -826,8 +826,8 @@ return [
     ],
     'cta' => [
       'label' => 'WISDOM TEETH ACTING UP?',
-      'title' => 'Schedule a wisdom-teeth consultation.',
-      'sub'   => 'Free consultation, panoramic imaging, and a clear recommendation &mdash; out, watchful waiting, or no action needed.',
+      'title' => 'Schedule a wisdom-teeth assessment.',
+      'sub'   => 'Free assessment, panoramic imaging, and a clear recommendation &mdash; out, watchful waiting, or no action needed.',
     ],
   ],
 
@@ -840,13 +840,13 @@ return [
     'sub_hero' => [
       'label'    => 'PORCELAIN VENEERS',
       'title'    => 'A Smile That Looks Like You &mdash; <em>On Your Best Day</em>.',
-      'subtitle' => 'Custom-crafted ultra-thin porcelain shells that reshape, brighten, and rebuild a smile in just a few visits. Designed by an AACD-award-winning specialist.',
+      'subtitle' => 'Custom-crafted ultra-thin porcelain shells that reshape, brighten, and rebuild a smile in just a few visits. Designed by an AACD-award-winning expert.',
       'bg'       => 'veneers-hero.jpg',
       'alt'      => 'Porcelain veneers smile design',
     ],
     'seo' => [
       'title'       => 'Porcelain Veneers in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Custom porcelain veneers from an AACD-award-winning cosmetic specialist. Reshape, brighten, and rebuild your smile in just a few visits. Free consultation in New Market, VA.',
+      'description' => 'Custom porcelain veneers from an AACD-award-winning cosmetic expert. Reshape, brighten, and rebuild your smile in just a few visits. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHAT VENEERS DO',
@@ -854,7 +854,7 @@ return [
       'sub'   => 'Porcelain veneers are ultra-thin shells bonded to the front of your teeth. They can change the color, shape, length, and alignment of teeth simultaneously &mdash; the closest thing dentistry has to an instant smile transformation.',
       'pillars' => [
         [ 'strong' => 'Designed Around You', 'span' => 'shape and shade matched to your face' ],
-        [ 'strong' => 'Just 2&ndash;3 Visits', 'span' => 'from consult to final reveal' ],
+        [ 'strong' => 'Just 2&ndash;3 Visits', 'span' => 'from assessment to final reveal' ],
         [ 'strong' => 'AACD-Recognized', 'span' => 'award-winning cosmetic work' ],
       ],
     ],
@@ -862,7 +862,7 @@ return [
       'label' => 'HOW IT WORKS',
       'title' => 'Your veneer journey, <span class="ds-italic">visit by visit</span>.',
       'list' => [
-        [ 'num' => '01', 'title' => 'Smile design consultation', 'desc' => 'Photos, digital smile design preview, and a thorough conversation about what you actually want. You&rsquo;ll see the &ldquo;after&rdquo; before any work begins.' ],
+        [ 'num' => '01', 'title' => 'Smile design assessment', 'desc' => 'Photos, digital smile design preview, and a thorough conversation about what you actually want. You&rsquo;ll see the &ldquo;after&rdquo; before any work begins.' ],
         [ 'num' => '02', 'title' => 'Tooth preparation',         'desc' => 'A very thin layer of enamel is removed to make room for the veneer. Local anesthesia, no discomfort.' ],
         [ 'num' => '03', 'title' => 'Custom veneers crafted',    'desc' => 'Impressions go to a master ceramist; you wear temporary veneers for 1&ndash;2 weeks. The custom porcelain is shade-matched to your natural enamel.' ],
         [ 'num' => '04', 'title' => 'Final placement &amp; reveal', 'desc' => 'The veneers are bonded into place. The first time you see them in the mirror is the kind of moment that&rsquo;s hard to describe.' ],
@@ -879,7 +879,7 @@ return [
     ],
     'cta' => [
       'label' => 'WANT TO SEE WHAT&rsquo;S POSSIBLE?',
-      'title' => 'Book a free smile-design consultation.',
+      'title' => 'Book a free smile-design assessment.',
       'sub'   => 'Photos, digital smile design preview, and an honest conversation. Veneers are not for everyone &mdash; we&rsquo;ll tell you straight.',
     ],
   ],
@@ -895,7 +895,7 @@ return [
     ],
     'seo' => [
       'title'       => 'Professional Teeth Whitening in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Professional in-office and take-home teeth whitening tailored to your enamel &mdash; safer, more dramatic, and lower-sensitivity than over-the-counter kits. Free consultation in New Market, VA.',
+      'description' => 'Professional in-office and take-home teeth whitening tailored to your enamel &mdash; safer, more dramatic, and lower-sensitivity than over-the-counter kits. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'NOT THE STRIPS',
@@ -927,8 +927,8 @@ return [
     ],
     'cta' => [
       'label' => 'READY FOR A BRIGHTER SMILE?',
-      'title' => 'Schedule a whitening consultation.',
-      'sub'   => 'Free consultation, honest assessment of expected results, and clear pricing on every option.',
+      'title' => 'Schedule a whitening assessment.',
+      'sub'   => 'Free assessment, an honest read on expected results, and clear pricing on every option.',
     ],
   ],
 
@@ -939,11 +939,11 @@ return [
       'title'    => 'Straighten Your Smile &mdash; <em>Without the Metal</em>.',
       'subtitle' => 'Discreet clear-aligner treatment for crowding, gaps, or bite issues. Removable, comfortable, and supervised personally by Dr. Burns.',
       'bg'       => 'aligners-hero.jpg',
-      'alt'      => 'Clear braces / aligners consultation',
+      'alt'      => 'Clear braces / aligners assessment',
     ],
     'seo' => [
       'title'       => 'Clear Braces &amp; Aligners in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Discreet clear-aligner treatment for crooked teeth, gaps, or bite issues &mdash; planned and supervised by Dr. Burns. Free consultation in New Market, VA.',
+      'description' => 'Discreet clear-aligner treatment for crooked teeth, gaps, or bite issues &mdash; planned and supervised by Dr. Burns. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'CLEAR &amp; REMOVABLE',
@@ -959,7 +959,7 @@ return [
       'label' => 'HOW IT WORKS',
       'title' => 'Your clear-aligner journey.',
       'list' => [
-        [ 'num' => '01', 'title' => 'Consultation &amp; case planning', 'desc' => 'A digital scan maps your current bite. Dr. Burns reviews the case and confirms whether clear aligners are the right fit (sometimes traditional braces are better for complex cases).' ],
+        [ 'num' => '01', 'title' => 'Assessment &amp; case planning', 'desc' => 'A digital scan maps your current bite. Dr. Burns reviews the case and confirms whether clear aligners are the right fit (sometimes traditional braces are better for complex cases).' ],
         [ 'num' => '02', 'title' => 'Custom aligner series',            'desc' => 'A series of custom aligners is fabricated &mdash; each one moves your teeth a little closer to the planned final position. You wear each set for ~2 weeks.' ],
         [ 'num' => '03', 'title' => 'Periodic check-ins',                'desc' => 'Quick check-in visits every 6&ndash;8 weeks to track progress. Dr. Burns supervises the case throughout &mdash; not a remote-only treatment plan.' ],
         [ 'num' => '04', 'title' => 'Retainers to lock it in',           'desc' => 'After the active treatment ends, custom retainers keep the new alignment locked in for the long haul.' ],
@@ -976,8 +976,8 @@ return [
     ],
     'cta' => [
       'label' => 'READY TO STRAIGHTEN UP?',
-      'title' => 'Schedule a clear-braces consultation.',
-      'sub'   => 'Free consultation, digital case preview, and an honest read on whether aligners are right for your case.',
+      'title' => 'Schedule a clear-braces assessment.',
+      'sub'   => 'Free assessment, digital case preview, and an honest read on whether aligners are right for your case.',
     ],
   ],
 
@@ -996,7 +996,7 @@ return [
     ],
     'seo' => [
       'title'       => 'Anesthesia &amp; Sedation Dentistry in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Local numbing, nitrous oxide, oral sedation, and full IV sedation &mdash; with a board-certified physician anesthesiologist on staff. Free consultation in New Market, VA.',
+      'description' => 'Local numbing, nitrous oxide, oral sedation, and full IV sedation &mdash; with a board-certified physician anesthesiologist on staff. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'COMFORT ON YOUR TERMS',
@@ -1022,7 +1022,7 @@ return [
       'label' => 'WHY OUR APPROACH IS DIFFERENT',
       'title' => 'Why patients pick this office for sedation cases.',
       'cards' => [
-        [ 'icon' => 'safety', 'title' => 'Physician anesthesiologist',       'desc' => 'A separate medical professional &mdash; board-certified MD &mdash; runs the sedation while Dr. Burns focuses entirely on the procedure. Two specialists in the room.' ],
+        [ 'icon' => 'safety', 'title' => 'Physician anesthesiologist',       'desc' => 'A separate medical professional &mdash; board-certified MD &mdash; runs the sedation while Dr. Burns focuses entirely on the procedure. Two experts in the room.' ],
         [ 'icon' => 'sleep',  'title' => 'Calm, no judgment',                 'desc' => 'Many of our patients come in after years of avoiding the dentist. We get it. There&rsquo;s no eye-rolling about being nervous &mdash; just the right comfort plan.' ],
         [ 'icon' => 'check',  'title' => 'Documented safety record',          'desc' => 'Decades of sedation cases without incident. We document every protocol, every dose, every recovery period.' ],
       ],
@@ -1030,7 +1030,7 @@ return [
     'cta' => [
       'label' => 'NERVOUS ABOUT A PROCEDURE?',
       'title' => 'Talk through comfort options before booking.',
-      'sub'   => 'Free phone or in-person consultation. We&rsquo;ll walk through what each level of sedation feels like and which one fits your case.',
+      'sub'   => 'Free phone or in-person assessment. We&rsquo;ll walk through what each level of sedation feels like and which one fits your case.',
     ],
   ],
 
@@ -1223,7 +1223,7 @@ return [
     ],
     'cta' => [
       'label' => 'WANT TO PREVENT CAVITIES?',
-      'title' => 'Schedule a sealant consultation.',
+      'title' => 'Schedule a sealant assessment.',
       'sub'   => 'Free assessment to see whether sealants are worth it for your child (or you). We won&rsquo;t recommend them unless they&rsquo;ll help.',
     ],
   ],
@@ -1239,7 +1239,7 @@ return [
     ],
     'seo' => [
       'title'       => 'Deep Teeth Cleaning (Scaling &amp; Root Planing) in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Deep cleaning (scaling and root planing) for early gum disease. The right step when a routine cleaning isn&rsquo;t enough. Free consultation in New Market, VA.',
+      'description' => 'Deep cleaning (scaling and root planing) for early gum disease. The right step when a routine cleaning isn&rsquo;t enough. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHEN A DEEP CLEANING IS RIGHT',
@@ -1273,7 +1273,7 @@ return [
     'cta' => [
       'label' => 'GUM ISSUES?',
       'title' => 'Schedule a gum-health assessment.',
-      'sub'   => 'Free consultation. Honest assessment of whether a regular cleaning, deep cleaning, or further periodontal care is the right step.',
+      'sub'   => 'Free assessment. Honest assessment of whether a regular cleaning, deep cleaning, or further periodontal care is the right step.',
     ],
   ],
 
@@ -1340,7 +1340,7 @@ return [
     ],
     'seo' => [
       'title'       => 'Tooth-Colored Dental Fillings in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Modern tooth-colored composite fillings that match your natural enamel &mdash; no more silver flashes when you laugh. Free consultation in New Market, VA.',
+      'description' => 'Modern tooth-colored composite fillings that match your natural enamel &mdash; no more silver flashes when you laugh. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'A FILLING DONE RIGHT',
@@ -1401,8 +1401,8 @@ return [
     ],
     'cta' => [
       'label' => 'NEED A FILLING?',
-      'title' => 'Schedule a filling consultation.',
-      'sub'   => 'Free consultation. Honest assessment of whether a filling, crown, or other treatment is the right call.',
+      'title' => 'Schedule a filling assessment.',
+      'sub'   => 'Free assessment. Honest assessment of whether a filling, crown, or other treatment is the right call.',
     ],
   ],
 
@@ -1453,8 +1453,8 @@ return [
     ],
     'cta' => [
       'label' => 'WANT FULL PRICING DETAILS?',
-      'title' => 'Schedule a financing consultation.',
-      'sub'   => 'Free consultation, insurance verification, and a written treatment plan with full pricing &mdash; before any commitment.',
+      'title' => 'Schedule a financing assessment.',
+      'sub'   => 'Free assessment, insurance verification, and a written treatment plan with full pricing &mdash; before any commitment.',
     ],
   ],
 
@@ -1497,7 +1497,7 @@ return [
       'cards' => [
         [ 'icon' => 'phone', 'title' => 'Call the office',           'desc' => 'For specific questions about your case, calling beats reading. Real receptionist, real conversation, no answering tree.' ],
         [ 'icon' => 'book',  'title' => 'Read the FAQs',             'desc' => 'Our <a href="/implant-faqs/">Implant FAQs</a> page covers the most common questions about pain, healing, longevity, and cost.' ],
-        [ 'icon' => 'check', 'title' => 'Schedule a free consult',   'desc' => 'For anything more than a general question, a free consultation is faster than reading. No commitment.' ],
+        [ 'icon' => 'check', 'title' => 'Schedule a free assessment',   'desc' => 'For anything more than a general question, a free assessment is faster than reading. No commitment.' ],
       ],
     ],
     'cta' => [

@@ -22,7 +22,7 @@ $faqs = ds_faq_data();
 ds_render_split_hero( [
   'label' => 'DENTAL IMPLANTS &middot; FAQS',
   'title' => 'Everything You Need to Know, <em>Answered.</em>',
-  'sub'   => 'Real answers to the questions patients ask before choosing DreamSmile&trade; &mdash; pain, healing, cost, and more.',
+  'sub'   => 'Real answers to the questions patients ask before choosing DreamSmile<sup class="ds-tm">&trade;</sup> &mdash; pain, healing, cost, and more.',
   'alt'   => 'Dental implant FAQs — Dr. Burns answering patient questions',
   'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-faqs-hero.jpg',
   'ctas'  => [
@@ -84,7 +84,7 @@ ds_render_split_hero( [
     <div class="ds-faq-help__inner ds-reveal">
       <span class="ds-label">STILL HAVE QUESTIONS?</span>
       <h2 class="ds-faq-help__title">Call Dr. Burns directly.</h2>
-      <p class="ds-faq-help__sub">Every DreamSmile&trade; patient gets Dr. Burns&rsquo; personal cell. Ask him anything &mdash; before, during, or after treatment.</p>
+      <p class="ds-faq-help__sub">Every DreamSmile<sup class="ds-tm">&trade;</sup> patient gets Dr. Burns&rsquo; personal cell. Ask him anything &mdash; before, during, or after treatment.</p>
       <div class="ds-faq-help__ctas">
         <a href="tel:+15407408937" class="ds-btn ds-btn--solid">Call (540) 740-8937</a>
         <a href="/#quiz" class="ds-btn ds-btn--outlined-white">Take the Quiz</a>
@@ -92,8 +92,6 @@ ds_render_split_hero( [
     </div>
   </div>
 </section>
-
-<?php ds_render_about_section(); ?>
 
 <section class="ds-subpage-cta">
   <div class="ds-wrap">

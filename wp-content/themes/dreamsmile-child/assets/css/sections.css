@@ -154,11 +154,13 @@ body.admin-bar .ds-navbar { top: 32px; }
   inset: 0 0 auto 0;
   z-index: 50;
   transition: background-color .3s ease, box-shadow .3s ease;
-  background: transparent;
+  background: #ffffff !important;
+  border-bottom: 1px solid #eaeaea;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 .ds-navbar.is-scrolled {
-  background: #fff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  background: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 .ds-navbar__inner {
   max-width: var(--ds-max-width);
@@ -246,8 +248,9 @@ body.admin-bar .ds-navbar { top: 32px; }
 /* â”€â”€â”€ Footer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-footer {
-  background: var(--ds-charcoal);
-  color: #fff;
+  background: #ffffff !important;
+  color: #3a3a3a !important;
+  border-top: 1px solid #eaeaea;
   padding-block: 64px;
   position: relative;
   overflow: hidden;
@@ -259,7 +262,7 @@ body.admin-bar .ds-navbar { top: 32px; }
   transform: translateX(-50%);
   width: 600px;
   height: 200px;
-  background: rgba(127, 181, 176, 0.03);
+  background: rgba(127, 181, 176, 0.08);
   border-radius: 50%;
   filter: blur(100px);
   pointer-events: none;
@@ -290,33 +293,33 @@ body.admin-bar .ds-navbar { top: 32px; }
   font-size: 24px;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: #fff;
+  color: #3a3a3a;
   display: block;
   transition: color .3s ease;
 }
-.ds-footer__brand:hover .ds-footer__logo { color: var(--ds-teal-light); }
+.ds-footer__brand:hover .ds-footer__logo { color: var(--ds-teal); }
 .ds-footer__sub {
   font-family: 'Montserrat', sans-serif;
   font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  color: rgba(255, 255, 255, 0.5);
+  color: #666666;
   display: block;
 }
 .ds-footer__script {
   font-family: 'Dancing Script', cursive;
   font-size: 20px;
-  color: rgba(168, 213, 208, 0.8);
+  color: var(--ds-teal);
   margin: 8px 0;
 }
 .ds-footer__tag {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.4);
+  color: #666666;
   margin: 0;
 }
 .ds-footer__heading {
   font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -325,32 +328,33 @@ body.admin-bar .ds-navbar { top: 32px; }
 }
 .ds-footer__links p {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
+  color: #4a4a4a;
   margin: 0 0 10px;
 }
 .ds-footer__links a {
-  color: rgba(255, 255, 255, 0.6);
+  color: #4a4a4a;
   transition: color .2s ease;
 }
 .ds-footer__links a:hover { color: var(--ds-teal); }
 
 .ds-footer__copyright {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid #eaeaea;
   margin-top: 48px;
   padding-top: 32px;
   text-align: center;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.3);
+  color: #777777;
 }
 
 /* â”€â”€â”€ Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .ds-hero {
   position: relative;
-  min-height: 72vh;
-  display: flex;
-  align-items: center;
-  overflow: visible;
+  height: 90vh;
+  min-height: 520px;
+  max-height: 880px;
+  display: block;
+  overflow: hidden;
 }
 .ds-hero__bg {
   position: absolute;
@@ -375,14 +379,20 @@ body.admin-bar .ds-navbar { top: 32px; }
   z-index: 1;
   max-width: var(--ds-max-width);
   margin-inline: auto;
-  padding: 96px 24px 128px;
+  padding: 16px 24px 320px;
   width: 100%;
 }
 @media (min-width: 768px) {
-  .ds-hero__inner { padding-block: 128px; }
+  .ds-hero__inner { padding-top: 16px; padding-bottom: 340px; }
 }
 .ds-hero__content {
-  max-width: 620px;
+  max-width: 440px;
+  margin-right: auto;
+}
+@media (min-width: 1024px) {
+  .ds-hero__content {
+    max-width: 420px;
+  }
 }
 .ds-hero__title {
   font-family: 'Amiri', 'Playfair Display', serif;
@@ -815,12 +825,26 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   margin: 6px 0 0;
 }
 .ds-intro-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
 }
-@media (min-width: 768px) {
-  .ds-intro-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.ds-intro-grid .ds-intro-card-wrap {
+  flex: 0 0 240px;
+}
+@media (min-width: 900px) {
+  .ds-intro-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    overflow-x: visible;
+  }
+  .ds-intro-grid .ds-intro-card-wrap {
+    flex: 1 1 auto;
+  }
 }
 .ds-photo-placeholder {
   background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 50%, #E2E8F0 100%);
@@ -2496,12 +2520,20 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
    media chips, DreamSmile-is compact bullets, Introducing kicker.
    ════════════════════════════════════════════════════════════════════════ */
 
-/* Generic trademark superscript */
-.ds-tm {
-  font-size: 0.5em;
+/* Generic trademark superscript.
+   Client note (2026-08-04): "trademarks are usually small little letters" —
+   the mark must read as a quiet legal notation, never as part of the wordmark.
+   Sized to sit alongside .ds-brand__tm (0.30em) and .ds-intro-section__tm
+   (0.26em); line-height:0 keeps the raised mark from padding out the line box
+   of the large Playfair headings this lands in. */
+.ds-tm,
+.ds-footer__tm {
+  font-size: 0.36em;
   vertical-align: super;
+  line-height: 0;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
+  letter-spacing: 0;
   margin-left: 1px;
 }
 
@@ -2519,6 +2551,18 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 /* Comparison section: brand reads as the logo — bigger script, teal-dark. */
 .ds-comparison__title .ds-brand { color: var(--ds-teal-dark); }
 .ds-comparison__title .ds-brand__word { font-size: 1.18em; line-height: 1; }
+
+/* Client note (2026-08-04): the DreamSmile name is written out here rather
+   than set as an image. The old image lockups were the J. Burns mark, not the
+   DreamSmile one, and the small wordmark PNG rendered visibly cropped.
+   Dancing Script runs small for its point size, so each context nudges it up. */
+.ds-compare-card__title--brand .ds-brand__word { font-size: 1.18em; line-height: 1; }
+
+/* Expertise "Changing lives, one DreamSmile at a time" sits in 14px muted body
+   copy on a dark panel — lift the script so the brand stays legible. */
+.ds-expertise__doctor .ds-brand { color: #fff; }
+.ds-expertise__doctor .ds-brand__word { font-size: 1.55em; line-height: 1; }
+.ds-expertise__doctor .ds-brand__tm { margin-top: 0.35em; }
 .ds-compare-card__title--brand { color: var(--ds-teal-dark); }
 .ds-compare-card__title--brand .ds-brand__word { font-size: 1.1em; }
 
@@ -2528,7 +2572,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: #fff;
+  color: #3A3A3A !important;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
@@ -2536,11 +2580,11 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   transition: color .2s ease;
   white-space: nowrap;
 }
-.ds-navbar__phone svg { color: var(--ds-teal-light); flex: 0 0 auto; }
-.ds-navbar__phone:hover { color: var(--ds-teal-light); }
-.ds-navbar.is-scrolled .ds-navbar__phone { color: var(--ds-charcoal); }
-.ds-navbar.is-scrolled .ds-navbar__phone svg { color: var(--ds-teal-dark); }
-.ds-navbar.is-scrolled .ds-navbar__phone:hover { color: var(--ds-teal-dark); }
+.ds-navbar__phone svg { color: var(--ds-teal-dark) !important; flex: 0 0 auto; }
+.ds-navbar__phone:hover { color: var(--ds-teal) !important; }
+.ds-navbar.is-scrolled .ds-navbar__phone { color: #3A3A3A !important; }
+.ds-navbar.is-scrolled .ds-navbar__phone svg { color: var(--ds-teal-dark) !important; }
+.ds-navbar.is-scrolled .ds-navbar__phone:hover { color: var(--ds-teal) !important; }
 @media (max-width: 767px) { .ds-navbar__phone { display: none; } }
 .ds-navbar__mobile-phone {
   display: flex;

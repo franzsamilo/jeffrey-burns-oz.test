@@ -11,7 +11,7 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
 <section class="ds-is-section">
   <div class="ds-wrap">
     <div class="ds-is-section__head ds-reveal">
-      <h2 class="ds-is-section__title">The DreamSmile&trade; is</h2>
+      <h2 class="ds-is-section__title">The DreamSmile<sup class="ds-tm">&trade;</sup> is</h2>
       <p class="ds-is-section__lede">
         A healthy, beautiful, natural functioning and looking smile using dental implants.
       </p>
@@ -30,7 +30,7 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
       'Confidently <strong>smiling again</strong>',
     ];
     // TODO: replace with a single real patient-smiling photo when supplied.
-    $is_photo = esc_url( $base ) . '/dreamsmile-is-portrait.jpg';
+    $is_photo = esc_url( $base ) . '/dreamsmile-is-patient.png';
     ?>
     <div class="ds-is-compact">
       <ul class="ds-is-benefits ds-reveal">
@@ -43,13 +43,13 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
       </ul>
 
       <figure class="ds-is-figure ds-reveal" style="position: relative;">
-        <img src="<?php echo $is_photo; ?>" alt="Woman smiling confidently with her DreamSmile" loading="lazy" />
-        <img class="ds-is-figure__watermark-img" src="<?php echo esc_url( $base ); ?>/nav-logo.png" alt="DreamSmile Logo" style="position: absolute; bottom: 16px; right: 16px; height: 32px; width: auto; background: rgba(255,255,255,0.85); padding: 2px 6px; border-radius: 4px; pointer-events: none;" />
+        <img src="<?php echo $is_photo; ?>" alt="DreamSmile patient smiling with confidence" loading="lazy" style="border-radius: 12px; object-fit: cover;" />
+        <img class="ds-is-figure__watermark-img" src="<?php echo esc_url( $base ); ?>/dreamsmile-banner-logo.png" alt="DreamSmile Logo" style="position: absolute; bottom: 16px; right: 16px; height: 36px; width: auto; background: rgba(255,255,255,0.9); padding: 4px 8px; border-radius: 6px; pointer-events: none;" />
       </figure>
     </div>
 
     <div class="ds-is-section__foot ds-reveal">
-      <h2 class="ds-see-yourself__title">Can You See Yourself with Your DreamSmile&trade;?</h2>
+      <h2 class="ds-see-yourself__title">Can You See Yourself with Your DreamSmile<sup class="ds-tm">&trade;</sup>?</h2>
     </div>
   </div>
 </section>

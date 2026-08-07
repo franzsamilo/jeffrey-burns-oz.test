@@ -95,8 +95,6 @@ ds_render_split_hero( [
   </div>
 </section>
 
-<?php ds_render_about_section(); ?>
-
 <section class="ds-subpage-cta">
   <div class="ds-wrap">
     <div class="ds-subpage-cta__inner ds-reveal">

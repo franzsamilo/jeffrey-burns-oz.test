@@ -29,7 +29,7 @@ $np_first_visit_img = file_exists( $base_dir . 'np-first-visit.jpg' )
 
 $np_extra_img = file_exists( $base_dir . 'extra.jpg' )
   ? $base . '/extra.jpg'
-  : ''; // 600×800 portrait — Dr. Burns + patient consultation
+  : ''; // 600×800 portrait — Dr. Burns + patient assessment
 
 $icon_safety = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>';
 $icon_calm   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>';
@@ -55,7 +55,7 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
   <div class="ds-wrap">
     <div class="ds-np-welcome__head ds-reveal">
       <span class="ds-label">WELCOME</span>
-      <h2 class="ds-np-welcome__title">Welcome to <span class="ds-italic">DreamSmile&trade; Dentistry.</span></h2>
+      <h2 class="ds-np-welcome__title">Welcome to <span class="ds-italic">DreamSmile<sup class="ds-tm">&trade;</sup> Dentistry.</span></h2>
       <p class="ds-np-welcome__sub">If this is your first time visiting Dr. Burns&rsquo;s practice in New Market, VA, you&rsquo;re already in good hands. Here&rsquo;s exactly what to expect &mdash; no surprises, no hidden steps, no high-pressure sales pitch.</p>
     </div>
     <div class="ds-np-welcome__pillars ds-reveal">
@@ -91,7 +91,7 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
     <div class="ds-np-steps__body">
       <figure class="ds-np-steps__media ds-reveal">
         <img src="<?php echo esc_url( $np_first_visit_img ); ?>"
-             alt="Dr. Jeffrey S. Burns in consultation with a new patient"
+             alt="Dr. Jeffrey S. Burns meeting with a new patient"
              loading="lazy"
              onerror="this.parentElement.classList.add('ds-np-steps__media--missing')" />
       </figure>
@@ -151,7 +151,7 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
           <li><strong>Medication list</strong><span>Including supplements, dosages, and anything OTC you take regularly</span></li>
           <li><strong>Recent imaging</strong><span>If another office took X-rays in the last 2 years, we can request them</span></li>
           <li><strong>Your concerns, written down</strong><span>Easier than remembering in the chair</span></li>
-          <li><strong>Someone you trust</strong><span>A friend or family member is welcome to sit in for the consultation</span></li>
+          <li><strong>Someone you trust</strong><span>A friend or family member is welcome to sit in for the assessment</span></li>
         </ul>
       </div>
     </div>
@@ -192,7 +192,7 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
         <form class="ds-np-forms-form" data-ds-forms-request
               data-ds-access-key="" data-ds-endpoint="">
           <!--
-            Same one-step setup as the consultation modal (parts/footer.html):
+            Same one-step setup as the assessment modal (parts/footer.html):
             paste the Web3Forms Access Key (https://web3forms.com) into
             data-ds-access-key, OR a full Formspree/Getform URL into
             data-ds-endpoint. Until one is set, this shows the confirmation
@@ -307,8 +307,8 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
         <div class="ds-np-faq__a">No &mdash; Dr. Burns sees patients directly. Many actually find us after another dentist told them their case was &ldquo;too complex.&rdquo; You can book directly.</div>
       </details>
       <details class="ds-np-faq ds-reveal">
-        <summary><span>Is the consultation really free?</span></summary>
-        <div class="ds-np-faq__a">Yes. Your first consultation &mdash; including 3D imaging and a written treatment plan &mdash; is on us. No obligation to move forward, ever.</div>
+        <summary><span>Is the assessment really free?</span></summary>
+        <div class="ds-np-faq__a">Yes. Your first assessment &mdash; including 3D imaging and a written treatment plan &mdash; is on us. No obligation to move forward, ever.</div>
       </details>
       <details class="ds-np-faq ds-reveal">
         <summary><span>What if I haven&rsquo;t been to a dentist in years?</span></summary>
@@ -316,7 +316,7 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
       </details>
       <details class="ds-np-faq ds-reveal">
         <summary><span>Can a family member come with me?</span></summary>
-        <div class="ds-np-faq__a">Absolutely. Bring whoever helps you feel comfortable &mdash; they&rsquo;re welcome to sit in for the consultation and ask questions alongside you.</div>
+        <div class="ds-np-faq__a">Absolutely. Bring whoever helps you feel comfortable &mdash; they&rsquo;re welcome to sit in for the assessment and ask questions alongside you.</div>
       </details>
       <details class="ds-np-faq ds-reveal">
         <summary><span>What happens if I decide implants aren&rsquo;t right for me?</span></summary>

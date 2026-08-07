@@ -348,7 +348,7 @@ $article_title = $svc['sub_hero']['label'] ?? '';
           </a>
         <?php endforeach; ?>
       </p>
-      <p class="ds-service-footnotes__disclaimer">These sources are listed for transparency and reference. They do not constitute an endorsement of the practice and do not replace a professional clinical consultation.</p>
+      <p class="ds-service-footnotes__disclaimer">These sources are listed for transparency and reference. They do not constitute an endorsement of the practice and do not replace a professional clinical assessment.</p>
     </div>
   </div>
 </section>
@@ -426,10 +426,10 @@ if ( $is_article && function_exists( 'ds_pated_group_for_slug' ) ) :
   <div class="ds-wrap">
     <div class="ds-subpage-cta__inner ds-reveal">
       <?php if ( ! empty( $cta['label'] ) ) : ?><span class="ds-label"><?php echo esc_html( $cta['label'] ); ?></span><?php endif; ?>
-      <h2 class="ds-subpage-cta__title"><?php echo $cta['title'] ?? 'Schedule your free consultation.'; ?></h2>
+      <h2 class="ds-subpage-cta__title"><?php echo $cta['title'] ?? 'Schedule your free assessment.'; ?></h2>
       <?php if ( ! empty( $cta['sub'] ) ) : ?><p class="ds-subpage-cta__sub"><?php echo $cta['sub']; ?></p><?php endif; ?>
       <div class="ds-subpage-cta__ctas">
-        <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule a Free Consult</a>
+        <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule a Free Assessment</a>
         <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" class="ds-btn ds-btn--outlined">Call <?php echo esc_html( $office['phone'] ); ?></a>
       </div>
     </div>

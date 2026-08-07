@@ -78,7 +78,7 @@ $items = [
     </div>
 
     <div class="ds-frustrations__cta ds-reveal">
-      <a href="#quiz" class="ds-btn ds-btn--solid">SCHEDULE FREE DREAMSMILE&trade; ASSESSMENT</a>
+      <a href="#quiz" class="ds-btn ds-btn--solid">SCHEDULE FREE DREAMSMILE<sup class="ds-tm">&trade;</sup> ASSESSMENT</a>
     </div>
   </div>
 </section>

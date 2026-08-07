@@ -146,10 +146,10 @@ $svg_route = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
   <div class="ds-wrap">
     <div class="ds-subpage-cta__inner ds-reveal">
       <span class="ds-label">READY WHEN YOU ARE</span>
-      <h2 class="ds-subpage-cta__title">Start your <span class="ds-italic">DreamSmile&trade;</span> today.</h2>
-      <p class="ds-subpage-cta__sub">Free consultation. No obligations. Direct line to Dr. Burns.</p>
+      <h2 class="ds-subpage-cta__title">Start your <span class="ds-italic">DreamSmile<sup class="ds-tm">&trade;</sup></span> today.</h2>
+      <p class="ds-subpage-cta__sub">Free assessment. No obligations. Direct line to Dr. Burns.</p>
       <div class="ds-subpage-cta__ctas">
-        <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule Free Consultation</a>
+        <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule Free Assessment</a>
         <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" class="ds-btn ds-btn--outlined">Call <?php echo esc_html( $office['phone'] ); ?></a>
       </div>
     </div>

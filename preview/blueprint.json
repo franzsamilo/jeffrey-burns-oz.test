@@ -23,7 +23,7 @@
       "step": "installTheme",
       "themeZipFile": {
         "resource": "url",
-        "url": "https://github.com/franzsamilo/jeffrey-burns-oz.test/releases/latest/download/dreamsmile-child.zip"
+        "url": "https://github.com/franzsamilo/jeffrey-burns-oz.test/releases/download/v2/dreamsmile-child.zip"
       },
       "options": { "activate": true }
     },

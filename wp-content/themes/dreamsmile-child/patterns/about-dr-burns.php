@@ -35,14 +35,14 @@ $show_more    = $current_slug !== 'meet-dr-burns';
       </div>
 
       <div class="ds-reveal ds-about__text-col">
-        <span class="ds-label">MEET THE SPECIALIST</span>
+        <span class="ds-label">MEET THE EXPERT</span>
         <h2 class="ds-about__title">Dr. Jeffrey S. Burns</h2>
 
         <p class="ds-about__bio">
-          Dr. Jeffrey S. Burns is a nationally recognized leader in dental implantology and smile design with over 30 years of hands-on implant experience. He is the creator of the Burns Protocol, a proven multi-step system with a proven 98%+ success rate that he has taught to dentists across the United States to consistently deliver beautiful, aesthetically pleasing, healthy, long-lasting DreamSmiles&trade;.
+          Dr. Jeffrey S. Burns is a nationally recognized leader in dental implantology and smile design with over 30 years of hands-on implant experience. He is the creator of the Burns Protocol, a proven multi-step system with a proven 98%+ success rate that he has taught to dentists across the United States to consistently deliver beautiful, aesthetically pleasing, healthy, long-lasting DreamSmiles<sup class="ds-tm">&trade;</sup>.
         </p>
         <p class="ds-about__bio">
-          Dr. Burns combines elite expertise with genuine care&mdash;so much so that every DreamSmile&trade; patient receives his personal cell phone number, ensuring direct access, confidence, and peace of mind throughout their transformation.
+          Dr. Burns combines elite expertise with genuine care&mdash;so much so that every DreamSmile<sup class="ds-tm">&trade;</sup> patient receives his personal cell phone number, ensuring direct access, confidence, and peace of mind throughout their transformation.
         </p>
 
         <div class="ds-about__credentials">

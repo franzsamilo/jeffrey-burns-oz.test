@@ -36,7 +36,7 @@ $cols = [
     'points'  => [
       [ 'pro', 'Acts as the tooth&rsquo;s root &mdash; preserves bone and facial structure' ],
       [ 'pro', 'Never touches the healthy teeth beside it' ],
-      [ 'pro', 'Designed to last a lifetime, backed by the DreamSmile&trade; Warranty' ],
+      [ 'pro', 'Designed to last a lifetime, backed by the DreamSmile<sup class="ds-tm">&trade;</sup> Warranty' ],
     ],
   ],
 ];

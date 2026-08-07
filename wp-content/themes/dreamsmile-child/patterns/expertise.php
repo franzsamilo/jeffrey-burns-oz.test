@@ -39,19 +39,18 @@ defined( 'ABSPATH' ) || exit;
       <div class="ds-expertise__video-frame">
         <video
           class="ds-expertise__video-el"
-          src="<?php echo esc_url( ds_get_video_url( 'Showcase-Burns-Protocol-TV.mp4' ) ); ?>"
+          src="<?php echo esc_url( ds_get_video_url( 'showcase-expertise.mp4' ) ); ?>"
           preload="metadata"
           playsinline
-          muted
           controls
-          aria-label="The Showcase of the Burns Protocol — Dr. Burns TV interview"
+          aria-label="Showcase 12-12-25 DR BURNS — Dr. Burns Expertise Video"
         ></video>
       </div>
     </div>
 
     <div class="ds-expertise__doctor ds-reveal">
       <h3>Dr. Jeffrey S. Burns, DDS</h3>
-      <p>Changing lives, one <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/dreamsmile-wordmark-small.png' ); ?>" alt="DreamSmile" class="ds-wordmark-inline" /><sup class="ds-tm">&trade;</sup> at a time</p>
+      <p>Changing lives, one <span class="ds-brand"><span class="ds-brand__word">DreamSmile</span><span class="ds-brand__tm">&trade;</span></span> at a time</p>
     </div>
 
     <div class="ds-expertise__rating ds-reveal">

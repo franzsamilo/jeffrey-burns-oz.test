@@ -12,7 +12,7 @@
  *   - .ds-subpage-cta (dark final CTA)
  *
  * The shared about-dr-burns pattern still renders below this content
- * via page-meet-dr-burns.html for the canonical "Meet the Specialist"
+ * via page-meet-dr-burns.html for the canonical "Meet the Expert"
  * block + Gene Tucker quote.
  */
 defined( 'ABSPATH' ) || exit;
@@ -50,7 +50,7 @@ $pillars = [
   [
     'icon'  => 'phone',
     'title' => 'His personal cell number',
-    'desc'  => 'Every DreamSmile&trade; implant patient receives Dr. Burns&rsquo;s direct cell. Pain at 9 PM? Worry on a Saturday? Call him. This is not a marketing line &mdash; it is how Dr. Burns has practiced for decades.',
+    'desc'  => 'Every DreamSmile<sup class="ds-tm">&trade;</sup> implant patient receives Dr. Burns&rsquo;s direct cell. Pain at 9 PM? Worry on a Saturday? Call him. This is not a marketing line &mdash; it is how Dr. Burns has practiced for decades.',
   ],
   [
     'icon'  => 'doctor',
@@ -85,10 +85,10 @@ $svg = [
   <div class="ds-wrap">
     <div class="ds-np-before__copy ds-reveal" style="max-width:780px; margin:0 auto; text-align:left;">
       <span class="ds-label">THE STORY</span>
-      <h2 class="ds-np-before__title">A specialist who stayed <span class="ds-italic">a family doctor.</span></h2>
-      <p>Most implant specialists pick a path: become a high-volume operator, or stay a general dentist who refers complex cases out. Dr. Burns rejected both. He built a practice deep enough to handle the most complex full-arch cases and warm enough that patients still feel known by name.</p>
+      <h2 class="ds-np-before__title">A national expert who stayed <span class="ds-italic">a family doctor.</span></h2>
+      <p>Most implant dentists pick a path: become a high-volume operator, or stay a general dentist who refers complex cases out. Dr. Burns rejected both. He built a practice deep enough to handle the most complex full-arch cases and warm enough that patients still feel known by name.</p>
       <p style="margin-top:14px;">Over 30 years of focused implant work shaped a single conviction &mdash; that getting an implant right is not just a clinical exercise. It is an emotional one. Patients arrive embarrassed, anxious, sometimes after years of being told &ldquo;there&rsquo;s nothing we can do.&rdquo; The Burns Protocol exists because that conversation deserves a better answer.</p>
-      <p style="margin-top:14px;">Today, Dr. Burns continues to personally place every implant at his New Market, VA office &mdash; and teaches the same protocol to dentists across the United States who want to deliver the same standard of care.</p>
+      <p style="margin-top:14px;">He could have taken that anywhere. Dr. Burns became good enough at this work that he now teaches the protocol to dentists across the United States &mdash; and he still chooses to practice in New Market, Virginia, a town of a few thousand people. The same doctor who trains other implant dentists is the one who personally places every implant here, and who hands out his own cell number afterward.</p>
     </div>
   </div>
 </section>
@@ -140,9 +140,9 @@ $svg = [
     <div class="ds-subpage-cta__inner ds-reveal">
       <span class="ds-label">SCHEDULE WITH DR. BURNS HIMSELF</span>
       <h2 class="ds-subpage-cta__title">Direct conversation with the doctor &mdash; not an associate.</h2>
-      <p class="ds-subpage-cta__sub">Free consultation. Just Dr. Burns and your case &mdash; no coordinator, no upsell, no pressure.</p>
+      <p class="ds-subpage-cta__sub">Free assessment. Just Dr. Burns and your case &mdash; no coordinator, no upsell, no pressure.</p>
       <div class="ds-subpage-cta__ctas">
-        <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule a Free Consult</a>
+        <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule a Free Assessment</a>
         <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" class="ds-btn ds-btn--outlined">Call <?php echo esc_html( $office['phone'] ); ?></a>
       </div>
     </div>

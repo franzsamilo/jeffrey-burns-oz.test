@@ -75,9 +75,9 @@ $svg = [
     <div class="ds-subpage-cta__inner ds-reveal">
       <span class="ds-label">SEEING THE WARNING SIGNS?</span>
       <h2 class="ds-subpage-cta__title">Schedule a gum-health assessment.</h2>
-      <p class="ds-subpage-cta__sub">Free consultation. Honest assessment of where your gums are and what level of care &mdash; if any &mdash; is the right next step.</p>
+      <p class="ds-subpage-cta__sub">Free assessment. Honest assessment of where your gums are and what level of care &mdash; if any &mdash; is the right next step.</p>
       <div class="ds-subpage-cta__ctas">
-        <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule a Free Consult</a>
+        <a href="#quiz" data-ds-schedule class="ds-btn ds-btn--solid">Schedule a Free Assessment</a>
         <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" class="ds-btn ds-btn--outlined">Call <?php echo esc_html( $office['phone'] ); ?></a>
       </div>
     </div>

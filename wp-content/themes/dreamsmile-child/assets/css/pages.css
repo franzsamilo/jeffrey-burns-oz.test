@@ -13,13 +13,13 @@
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.92);
+  color: #3A3A3A !important;
   text-decoration: none;
   padding: 8px 4px;
   position: relative;
   transition: color .2s ease;
 }
-.ds-navbar__nav a:hover { color: #fff; }
+.ds-navbar__nav a:hover { color: #7FB5B0 !important; }
 .ds-navbar__nav a::after {
   content: "";
   position: absolute;
@@ -32,8 +32,8 @@
 }
 .ds-navbar__nav a:hover::after { left: 4px; right: 4px; }
 
-.ds-navbar.is-scrolled .ds-navbar__nav a { color: var(--ds-charcoal); }
-.ds-navbar.is-scrolled .ds-navbar__nav a:hover { color: var(--ds-teal); }
+.ds-navbar.is-scrolled .ds-navbar__nav a { color: #3A3A3A !important; }
+.ds-navbar.is-scrolled .ds-navbar__nav a:hover { color: var(--ds-teal) !important; }
 
 @media (min-width: 900px) {
   .ds-navbar__nav { display: inline-flex; }
@@ -77,16 +77,16 @@
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.92);
+  color: #3A3A3A !important;
   cursor: pointer;
   position: relative;
   transition: color .2s ease;
 }
 .ds-navbar__dropdown-trigger:hover,
-.ds-navbar__dropdown-trigger[aria-expanded="true"] { color: #fff; }
-.ds-navbar.is-scrolled .ds-navbar__dropdown-trigger { color: var(--ds-charcoal); }
+.ds-navbar__dropdown-trigger[aria-expanded="true"] { color: var(--ds-teal) !important; }
+.ds-navbar.is-scrolled .ds-navbar__dropdown-trigger { color: #3A3A3A !important; }
 .ds-navbar.is-scrolled .ds-navbar__dropdown-trigger:hover,
-.ds-navbar.is-scrolled .ds-navbar__dropdown-trigger[aria-expanded="true"] { color: var(--ds-teal); }
+.ds-navbar.is-scrolled .ds-navbar__dropdown-trigger[aria-expanded="true"] { color: var(--ds-teal) !important; }
 body:has(.ds-loc-hero) .ds-navbar__dropdown-trigger,
 body:has(.ds-subhero) .ds-navbar__dropdown-trigger { color: var(--ds-charcoal); }
 .ds-navbar__dropdown-trigger svg { transition: transform .25s ease; }
@@ -206,11 +206,6 @@ body:has(.ds-subhero) .ds-navbar__dropdown-trigger { color: var(--ds-charcoal); 
   opacity: 1;
   transform: translateX(0);
 }
-.ds-navbar__mega-head--dual {
-  /* Non-link header (Cosmetic & Restorative bundle has no single hub) */
-  cursor: default;
-}
-.ds-navbar__mega-head--dual:hover { color: var(--ds-teal-dark) !important; border-bottom-color: #ECECEA; }
 
 .ds-navbar__mega-list {
   list-style: none;
@@ -281,34 +276,6 @@ body:has(.ds-subhero) .ds-navbar__dropdown-trigger { color: var(--ds-charcoal); 
   text-transform: uppercase;
   color: var(--ds-teal-dark);
   margin-right: 4px;
-}
-
-.ds-navbar__mega-foot {
-  margin: auto 0 0 !important;
-  padding: 12px 4px 0 !important;
-  border-top: 1px dashed #E8E8E5;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.ds-navbar__mega-foot a {
-  display: inline-block !important;
-  padding: 4px 0 !important;
-  background: transparent !important;
-  color: var(--ds-teal-dark) !important;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12.5px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  border-radius: 0 !important;
-  transition: transform .15s ease, color .15s ease;
-}
-.ds-navbar__mega-foot a::after { display: none; }
-.ds-navbar__mega-foot a:hover {
-  color: var(--ds-teal) !important;
-  background: transparent !important;
-  transform: translateX(3px);
-  padding-left: 0 !important;
 }
 
 /* On smaller laptop widths, allow the mega panel to nudge left so it doesn't clip */
@@ -395,11 +362,6 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
 .ds-navbar__mobile-acc-panel .ds-navbar__mobile-sub--muted {
   color: var(--ds-warm-gray) !important;
   font-size: 13px !important;
-}
-.ds-navbar__mobile-acc-panel .ds-navbar__mobile-sub--hub {
-  color: var(--ds-teal-dark) !important;
-  font-weight: 600 !important;
-  margin-top: 2px;
 }
 
 /* ─── Sub-Hero (inner page header) ───────────────────────────────────────── */
@@ -1378,7 +1340,7 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
 .ds-how__foot-stat strong { color: var(--ds-charcoal); font-weight: 700; }
 .ds-how__foot-stat em { color: var(--ds-teal-dark); font-style: italic; font-weight: 600; }
 
-/* ─── Meet Dr. Burns — canonical "Meet the Specialist" card ──────────────── */
+/* ─── Meet Dr. Burns — canonical "Meet the Expert" card ──────────────── */
 
 .ds-meet-card {
   position: relative;

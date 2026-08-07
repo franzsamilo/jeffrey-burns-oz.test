@@ -11,7 +11,8 @@ def main() -> None:
     files = []
     for root, _, names in os.walk(THEME_DIR):
         for n in names:
-            files.append(os.path.join(root, n))
+            if not n.endswith('.mp4'):
+                files.append(os.path.join(root, n))
     files.sort()
 
     with zipfile.ZipFile(OUT, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:

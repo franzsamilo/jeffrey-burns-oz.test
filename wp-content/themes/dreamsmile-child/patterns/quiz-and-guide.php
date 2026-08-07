@@ -5,7 +5,7 @@
  * Categories: dreamsmile
  */
 defined( 'ABSPATH' ) || exit;
-$quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/quiz-card.png';
+$quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/guide-cover.webp';
 ?>
 <!-- wp:html -->
 <section class="ds-quiz-section" id="quiz">
@@ -48,12 +48,14 @@ $quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/quiz-card.png
         </div>
       </div>
 
-      <!-- CENTER — iPad / book preview -->
-      <!-- TODO (client): quiz-card.png is a stock placeholder — it is NOT Dr. Burns's
-           actual patient or his real guide. Replace with the real "Pricing & Information
-           Guide" cover that TIE created (sourced from his live website). -->
+      <!-- CENTER — iPad / book preview.
+           Resolved 2026-08-07: this is the real guide ("The Ultimate Guide to Dental
+           Implants", Dr. Burns's own patient) from the client's Drive, not a stock
+           placeholder. Swapped off quiz-card.png, which had a "Download Now" button
+           baked into the artwork — an image that reads as a button but isn't. The
+           GET THE FREE GUIDE control in the aside is the only real CTA here. -->
       <figure class="ds-quiz-ipad ds-reveal" aria-hidden="false">
-        <img src="<?php echo esc_url( $quiz_card_img ); ?>" alt="Free Dental Implant Pricing &amp; Information Guide" loading="lazy" />
+        <img src="<?php echo esc_url( $quiz_card_img ); ?>" alt="The Ultimate Guide to Dental Implants &mdash; free pricing and information guide from Dr. Jeffrey S. Burns" loading="lazy" />
       </figure>
 
       <!-- RIGHT — Guide CTA -->

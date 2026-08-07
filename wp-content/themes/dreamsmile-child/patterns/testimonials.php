@@ -7,12 +7,16 @@
 defined( 'ABSPATH' ) || exit;
 $base = get_stylesheet_directory_uri() . '/assets/arrange';
 
+// Poster frames come from the client's "Before and After Testimonial" set —
+// each one is the patient holding a framed photo of their old smile, so the
+// card reads as a before/after even before anyone presses play. Without a
+// poster these videos render as an empty black frame.
 $testimonials = [
-  [ 'Curtis-Cloude-Testimonial.mp4', 'Curtis Cloude', 'DreamSmile™ Patient' ],
-  [ 'Jill-Bush-Testimonial.mp4',     'Jill Bush',     'DreamSmile™ Patient' ],
-  [ 'Angela-Burker-Testimonial.mp4', 'Angela Burker', 'DreamSmile™ Patient' ],
-  [ 'Mike-Woolard-Testimonial.mp4',  'Mike Woolard',  'DreamSmile™ Patient' ],
-  [ 'Peter-Encheff-Testimonial.mp4', 'Peter Encheff', 'DreamSmile™ Patient' ],
+  [ 'testi-angela.mp4', 'Angela Burker', 'DreamSmile™ Patient', 'testimonial-ba-angela.jpg' ],
+  [ 'testi-danny.mp4',  'Danny',          'DreamSmile™ Patient', 'testimonial-ba-danny.jpg'  ],
+  [ 'testi-kelly.mp4',  'Kelly',          'DreamSmile™ Patient', 'testimonial-ba-kelly.jpg'  ],
+  [ 'testi-mike.mp4',   'Mike Woolard',   'DreamSmile™ Patient', 'testimonial-ba-mike.jpg'   ],
+  [ 'testi-ron.mp4',    'Ron',            'DreamSmile™ Patient', 'testimonial-ba-ron.jpg'    ],
 ];
 
 $star = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
@@ -22,7 +26,7 @@ $star = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 
   <div class="ds-wrap">
     <div class="ds-testimonials__head ds-reveal">
       <h2 class="ds-testimonials__title">Real Results. Real Patients.</h2>
-      <p class="ds-testimonials__sub">Real results from real patients who trusted Dr. Burns with their DreamSmile&trade;.</p>
+      <p class="ds-testimonials__sub">Real results from real patients who trusted Dr. Burns with their DreamSmile<sup class="ds-tm">&trade;</sup>.</p>
     </div>
 
     <div class="ds-testi-rail ds-reveal" data-ds-testi-rail aria-roledescription="carousel" aria-label="Patient testimonials">
@@ -38,10 +42,11 @@ $star = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 
                 <video
                   class="ds-testi-card__video"
                   src="<?php echo esc_url( ds_get_video_url( $t[0] ) ); ?>"
+                  poster="<?php echo esc_url( $base . '/' . $t[3] ); ?>"
                   preload="metadata"
                   playsinline
                   muted
-                  aria-label="<?php echo esc_attr( $t[1] ); ?> &mdash; DreamSmile testimonial"
+                  aria-label="<?php echo esc_attr( $t[1] ); ?> &mdash; DreamSmile testimonial, before and after"
                 ></video>
                 <button type="button" class="ds-testi-card__play" data-ds-testi-play aria-label="Play <?php echo esc_attr( $t[1] ); ?>&rsquo;s testimonial">
                   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7L8 5z"/></svg>
