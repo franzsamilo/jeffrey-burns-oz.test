@@ -10,13 +10,13 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
 <!-- wp:html -->
 <section class="ds-intro-section">
   <div class="ds-wrap">
-    <div class="ds-intro-section__head ds-reveal" style="text-align: center; margin-bottom: 40px;">
-      <p class="ds-intro-section__kicker" style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2.5px; color: #7FB5B0; font-weight: 600; margin-bottom: 12px;">Introducing The</p>
-      <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 16px;">
-        <img class="ds-intro-section__logo-img" src="<?php echo esc_url( $base ); ?>/dreamsmile-banner-logo.png" alt="DreamSmile by Jeffrey S. Burns DDS Logo Banner" style="max-width: 310px; width: 100%; height: auto; display: block;" />
-      </div>
-      <p class="ds-intro-section__by" style="font-size: 1.05rem; color: #6B6B6B; font-weight: 500; margin-bottom: 6px;">by Jeffrey S. Burns DDS &middot; 30+ Years &middot; AACD Award Winner</p>
-      <p class="ds-intro-section__valueprop" style="font-size: 1.2rem; color: #3A3A3A; font-weight: 600;">The Burns Protocol for same-day, confident smiles.</p>
+    <div class="ds-intro-section__head ds-reveal">
+      <span class="ds-intro-section__kicker">INTRODUCING THE</span>
+      <h2 class="ds-intro-section__title">
+        <span class="ds-brand"><span class="ds-brand__word">DreamSmile</span><sup class="ds-tm">&trade;</sup></span>
+      </h2>
+      <p class="ds-intro-section__by">by Jeffrey S. Burns, DDS &middot; 30+ Years &middot; AACD Award Winner</p>
+      <p class="ds-intro-section__valueprop">The Burns Protocol for same-day, confident smiles.</p>
     </div>
 
     <div class="ds-intro-grid">
