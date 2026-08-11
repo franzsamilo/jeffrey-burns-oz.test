@@ -366,10 +366,10 @@ body.admin-bar .ds-navbar { top: 32px; }
 
 .ds-hero {
   position: relative;
-  height: 90vh;
-  min-height: 520px;
-  max-height: 880px;
-  display: block;
+  min-height: 620px;
+  max-height: 840px;
+  display: flex;
+  align-items: center;
   overflow: hidden;
 }
 .ds-hero__bg {
@@ -392,14 +392,14 @@ body.admin-bar .ds-navbar { top: 32px; }
 }
 .ds-hero__inner {
   position: relative;
-  z-index: 1;
+  z-index: 10;
   max-width: var(--ds-max-width);
   margin-inline: auto;
-  padding: 100px 24px 40px;
+  padding: 100px 24px 100px;
   width: 100%;
 }
 @media (min-width: 768px) {
-  .ds-hero__inner { padding-top: 110px; padding-bottom: 60px; }
+  .ds-hero__inner { padding-top: 105px; padding-bottom: 110px; }
 }
 .ds-hero__content {
   max-width: 440px;
@@ -419,6 +419,10 @@ body.admin-bar .ds-navbar { top: 32px; }
   font-weight: 500;
 }
 .ds-hero__title em { font-style: italic; }
+.ds-hero__title-accent {
+  color: #7FB5B0;
+  font-weight: 600;
+}
 .ds-hero__bullets {
   display: flex;
   flex-direction: column;
@@ -1437,17 +1441,18 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   color: var(--ds-teal-dark);
   margin: 6px 0 4px;
   line-height: 1.15;
-  /* Equal header height across both cards so the feature rows start at the
-     same Y and line up row-for-row. */
   min-height: 3rem;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .ds-compare-card__title--muted {
   font-family: 'Amiri', 'Playfair Display', serif;
   font-weight: 700;
   font-size: clamp(1.25rem, 2.4vw, 1.5rem);
   color: var(--ds-warm-gray);
+  text-align: center;
 }
 .ds-compare-card__kicker {
   font-family: 'Montserrat', sans-serif;
@@ -1457,6 +1462,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   color: var(--ds-warm-gray);
   font-weight: 600;
   margin: 0 0 24px;
+  text-align: center;
 }
 .ds-compare-card--primary .ds-compare-card__kicker { color: var(--ds-charcoal); }
 

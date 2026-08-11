@@ -17,7 +17,7 @@ $office  = function_exists( 'ds_office_data' ) ? ds_office_data() : [ 'phone' =>
   <div class="ds-hero__inner">
     <div class="ds-hero__content ds-reveal">
       <h1 class="ds-hero__title">
-        A DreamSmile<sup class="ds-tm">&trade;</sup> You&rsquo;ll Never Have to <em>Hide</em>
+        A <span class="ds-hero__title-accent">DreamSmile<sup class="ds-tm">&trade;</sup></span> You&rsquo;ll Never Have to <em>Hide</em>
       </h1>
 
       <div class="ds-hero__bullets">

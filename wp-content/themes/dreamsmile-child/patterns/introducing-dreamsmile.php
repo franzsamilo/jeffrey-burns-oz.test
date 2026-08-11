@@ -12,10 +12,10 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
   <div class="ds-wrap">
     <div class="ds-intro-section__head ds-reveal">
       <span class="ds-intro-section__kicker">INTRODUCING THE</span>
-      <h2 class="ds-intro-section__title">
-        <span class="ds-brand"><span class="ds-brand__word">DreamSmile</span><sup class="ds-tm">&trade;</sup></span>
+      <h2 class="ds-intro-section__title" style="margin: 14px 0 10px;">
+        <img src="<?php echo esc_url( $base ); ?>/dreamsmile-banner-logo.png" alt="DreamSmile by Jeffrey S. Burns DDS" style="max-height: 72px; width: auto; display: inline-block; margin-inline: auto;" />
       </h2>
-      <p class="ds-intro-section__by">by Jeffrey S. Burns, DDS &middot; 30+ Years &middot; AACD Award Winner</p>
+      <p class="ds-intro-section__by">30+ Years &middot; AACD Award Winner &middot; High-Precision Dental Care</p>
       <p class="ds-intro-section__valueprop">The Burns Protocol for same-day, confident smiles.</p>
     </div>
 
