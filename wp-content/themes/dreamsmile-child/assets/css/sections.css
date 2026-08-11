@@ -162,6 +162,22 @@ body.admin-bar .ds-navbar { top: 32px; }
   background: #ffffff !important;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
+.ds-navbar__mega,
+.ds-navbar__dropdown-menu {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+.ds-navbar__dropdown:hover > .ds-navbar__mega,
+.ds-navbar__dropdown:hover > .ds-navbar__dropdown-menu,
+.ds-navbar__dropdown.is-open > .ds-navbar__mega,
+.ds-navbar__dropdown.is-open > .ds-navbar__dropdown-menu {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
 .ds-navbar__inner {
   max-width: var(--ds-max-width);
   margin-inline: auto;
@@ -379,11 +395,11 @@ body.admin-bar .ds-navbar { top: 32px; }
   z-index: 1;
   max-width: var(--ds-max-width);
   margin-inline: auto;
-  padding: 16px 24px 320px;
+  padding: 100px 24px 40px;
   width: 100%;
 }
 @media (min-width: 768px) {
-  .ds-hero__inner { padding-top: 16px; padding-bottom: 340px; }
+  .ds-hero__inner { padding-top: 110px; padding-bottom: 60px; }
 }
 .ds-hero__content {
   max-width: 440px;
