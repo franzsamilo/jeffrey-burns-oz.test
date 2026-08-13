@@ -6313,3 +6313,75 @@ body:has(.ds-article-hero) .ds-navbar__toggle span { background: var(--ds-charco
   line-height: 1.5;
 }
 .ds-np-results__quote-cite { color: var(--ds-warm-gray); font-size: 14px; font-style: normal; }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   NAV IA v2 (client doc, 2026-08-13)
+   The single "Services" mega menu splits into three top-level dropdowns
+   (Dental Implants / General Dentistry / Cosmetic Dentistry), so the bar now
+   carries six items instead of four. Home is deliberately absent — the logo
+   is the home link, per the doc.
+
+   Sizing was measured against real Montserrat metrics, not eyeballed. The six
+   labels alone run ~795px at 12.5px/500. Against the 1200px content container
+   (1152px usable) that leaves no room for the logo, the phone number and the
+   Schedule pill together, so the header chrome — and only the header — runs to
+   1320px. Remaining budget is spent in this order, because the client doc
+   opens with "we can just have the phone number at the top, it should be
+   direct response oriented":
+     ≥1340px  logo + nav + phone + Schedule   (89px slack)
+     ≥1200px  logo + nav + Schedule           (126px slack, phone drops)
+     <1200px  hamburger drawer
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Single-column service panel ────────────────────────────────────────── */
+/* Reuses the mega primitives; --single just collapses the grid to one column
+   and anchors the panel to its own trigger instead of the bar centre. */
+.ds-navbar__dropdown--mega .ds-navbar__dropdown-menu.ds-navbar__mega--single {
+  min-width: 278px;
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding: 18px 16px 14px;
+  /* Left-anchored: a 278px panel centred on its trigger clips off-canvas at
+     the leftmost item, and the inherited right-anchoring clips it too. */
+  left: 0;
+  right: auto;
+  transform: translateX(0) translateY(-6px);
+}
+.ds-navbar__dropdown--mega:hover > .ds-navbar__dropdown-menu.ds-navbar__mega--single,
+.ds-navbar__dropdown--mega:focus-within > .ds-navbar__dropdown-menu.ds-navbar__mega--single,
+.ds-navbar__dropdown--mega.is-open > .ds-navbar__dropdown-menu.ds-navbar__mega--single,
+.ds-navbar__dropdown--mega[data-open="true"] > .ds-navbar__dropdown-menu.ds-navbar__mega--single {
+  transform: translateX(0) translateY(0);
+}
+
+/* ─── Header chrome runs wider than the 1200px content column ────────────── */
+.ds-navbar__inner { max-width: 1320px; }
+
+/* ─── Six top-level items need a wider bar than four did ─────────────────── */
+@media (max-width: 1199px) {
+  .ds-navbar__nav { display: none; }
+  .ds-navbar__toggle { display: flex; }
+}
+@media (min-width: 1200px) {
+  .ds-navbar__nav { display: inline-flex; gap: 15px; }
+  .ds-navbar__toggle { display: none; }
+  .ds-navbar__nav a,
+  .ds-navbar__dropdown-trigger { font-size: 12.5px; }
+  .ds-navbar__logo-img { height: 40px !important; }
+  .ds-navbar__actions { gap: 14px; }
+  .ds-navbar__cta { display: inline-block; padding-inline: 22px; }
+}
+@media (min-width: 1340px) {
+  .ds-navbar__nav { gap: 16px; }
+  .ds-navbar__logo-img { height: 42px !important; }
+}
+
+/* The phone is the doc's headline direct-response element, so it is the last
+   thing dropped — but below 1340px the six items leave it no room. */
+@media (max-width: 1339px) {
+  .ds-navbar__phone { display: none; }
+}
+@media (min-width: 1340px) {
+  .ds-navbar__phone { display: inline-flex; }
+}

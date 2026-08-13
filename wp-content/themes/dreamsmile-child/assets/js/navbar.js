@@ -26,28 +26,38 @@
     });
   }
 
-  // Services dropdown — keyboard + touch support (CSS handles hover)
+  // Service dropdowns — keyboard + touch support (CSS handles hover).
+  // The visibility rules key off `.is-open`; `data-open` is kept in sync
+  // because the panel's off-centre transform still selects on it.
   var dropdowns = nav.querySelectorAll('[data-ds-dropdown]');
+
+  var setOpen = function (dd, open) {
+    dd.classList.toggle('is-open', open);
+    dd.setAttribute('data-open', open ? 'true' : 'false');
+    var t = dd.querySelector('[data-ds-dropdown-trigger]');
+    if (t) { t.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  };
+
   Array.prototype.forEach.call(dropdowns, function (dd) {
     var trigger = dd.querySelector('[data-ds-dropdown-trigger]');
     if (!trigger) { return; }
 
     trigger.addEventListener('click', function (e) {
       e.preventDefault();
-      var open = dd.getAttribute('data-open') === 'true';
-      dd.setAttribute('data-open', open ? 'false' : 'true');
-      trigger.setAttribute('aria-expanded', open ? 'false' : 'true');
+      var open = !dd.classList.contains('is-open');
+      // Only one panel open at a time — six top-level items make overlapping
+      // panels easy to trigger otherwise.
+      Array.prototype.forEach.call(dropdowns, function (other) {
+        if (other !== dd) { setOpen(other, false); }
+      });
+      setOpen(dd, open);
     });
   });
 
   // Close any open dropdown when clicking outside
   document.addEventListener('click', function (e) {
     Array.prototype.forEach.call(dropdowns, function (dd) {
-      if (!dd.contains(e.target)) {
-        dd.setAttribute('data-open', 'false');
-        var t = dd.querySelector('[data-ds-dropdown-trigger]');
-        if (t) { t.setAttribute('aria-expanded', 'false'); }
-      }
+      if (!dd.contains(e.target)) { setOpen(dd, false); }
     });
   });
 
@@ -55,9 +65,10 @@
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') { return; }
     Array.prototype.forEach.call(dropdowns, function (dd) {
-      dd.setAttribute('data-open', 'false');
+      var wasOpen = dd.classList.contains('is-open');
+      setOpen(dd, false);
       var t = dd.querySelector('[data-ds-dropdown-trigger]');
-      if (t) { t.setAttribute('aria-expanded', 'false'); t.focus(); }
+      if (wasOpen && t) { t.focus(); }
     });
   });
 

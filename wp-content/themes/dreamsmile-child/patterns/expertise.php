@@ -12,14 +12,28 @@ defined( 'ABSPATH' ) || exit;
     <div class="ds-expertise__head ds-reveal">
       <h2 class="ds-expertise__title">Nationally Recognized Expertise you can Trust</h2>
       <div><span class="ds-pill">AS SEEN ON</span></div>
-      <!-- Brand-authentic media badges for local TV (WHSV ABC) and radio (WSIG 96.9 FM) -->
-      <div class="ds-expertise__media" aria-label="Featured in WHSV TV and WSIG Radio">
+      <!--
+        Brand-authentic media badges for local TV (WHSV ABC), the WRIC 8News
+        broadcast (client request 2026-08-13 — sits between the other two), and
+        radio (WSIG 96.9 FM). Drawn as SVG rather than dropped in as station
+        PNGs so all three read at one weight on the charcoal panel.
+      -->
+      <div class="ds-expertise__media" aria-label="Featured on WHSV TV, WRIC 8News and WSIG Radio">
         <span class="ds-expertise__media-logo" style="background: none; padding: 0;">
           <svg viewBox="0 0 120 40" width="120" height="40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="WHSV ABC 3">
             <rect width="120" height="40" rx="6" fill="#f1f5f9"/>
             <text x="15" y="27" font-family="'Montserrat', sans-serif" font-weight="800" font-size="20" fill="#334155">WHSV</text>
             <circle cx="95" cy="20" r="12" fill="#020617"/>
             <text x="95" y="24" font-family="'Montserrat', sans-serif" font-weight="700" font-size="11" fill="#ffffff" text-anchor="middle">abc</text>
+          </svg>
+        </span>
+        <span class="ds-expertise__media-logo" style="background: none; padding: 0;">
+          <svg viewBox="0 0 120 40" width="120" height="40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="WRIC ABC 8News">
+            <rect width="120" height="40" rx="6" fill="#f1f5f9"/>
+            <text x="11" y="26.5" font-family="'Montserrat', sans-serif" font-weight="800" font-size="18" fill="#0f172a">WRIC</text>
+            <circle cx="77" cy="20" r="10.5" fill="#020617"/>
+            <text x="77" y="23.5" font-family="'Montserrat', sans-serif" font-weight="700" font-size="9.5" fill="#ffffff" text-anchor="middle">abc</text>
+            <text x="94" y="28" font-family="'Montserrat', sans-serif" font-weight="800" font-size="22" fill="#F5A623">8</text>
           </svg>
         </span>
         <span class="ds-expertise__media-logo" style="background: none; padding: 0;">
