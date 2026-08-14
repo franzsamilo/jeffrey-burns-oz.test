@@ -6385,3 +6385,36 @@ body:has(.ds-article-hero) .ds-navbar__toggle span { background: var(--ds-charco
 @media (min-width: 1340px) {
   .ds-navbar__phone { display: inline-flex; }
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   QUIZ PEEK — no entrance animation (bugfix, 2026-08-14)
+   The quiz row is pulled up into the hero (.ds-quiz-section margin-top:-50/-70px)
+   so it "peeks" above the fold — client ask 1.1: visitors should think "wait,
+   what's this down here?" and get pulled down.
+
+   All three columns were carrying .ds-reveal, which sets opacity:0 up front and
+   waits for the IntersectionObserver in animations.js to add .is-visible. On a
+   first visit, before any scroll, that painted the peeking card at opacity 0 —
+   there was nothing to peek at, only the section's grey background. Worse, it
+   could not always self-correct: the observer needs 12% of a 480px card
+   intersecting and its rootMargin trims another 40px off the bottom of the
+   root, so when the hero fills the viewport the few dozen pixels that peek
+   never reach the threshold and the card stays hidden until the user scrolls
+   it into view. The reveal was hiding the exact thing meant to cause the scroll.
+
+   Fix is the absence of a mechanism, not a new one: the three peek-row elements
+   (.ds-quiz-card, .ds-quiz-ipad, .ds-guide-card) carry no reveal class and no
+   entrance animation, so they paint with the first frame. Above-the-fold
+   content should not be scroll-revealed. Nothing here depends on JS — which is
+   the point. Don't re-add .ds-reveal to this row.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ─── "INTRODUCING THE" banner logo — scaled up (client, 2026-08-14) ─────── */
+/* Was a hard inline max-height:72px. Now fluid and ~1.4x larger at desktop so
+   the wordmark carries the section the way the kicker above it implies. */
+.ds-intro-section__logo {
+  max-height: clamp(88px, 8.5vw, 104px);
+  width: auto;
+  display: inline-block;
+  margin-inline: auto;
+}

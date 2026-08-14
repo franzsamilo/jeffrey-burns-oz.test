@@ -15,7 +15,11 @@ $quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/guide-cover.w
 
       <!-- LEFT — Quiz card -->
       <div class="ds-quiz-card-wrap">
-        <div class="ds-quiz-card ds-reveal" data-ds-quiz>
+        <!-- Deliberately no ds-reveal here, nor on the iPad/guide siblings below:
+             this row is the peek device — it is pulled up into the hero so part of
+             it sits above the fold on load. Any entrance animation hides the very
+             thing that is supposed to pull the visitor down. It paints as-is. -->
+        <div class="ds-quiz-card" data-ds-quiz>
           <span class="ds-quiz-card__label">FIND OUT IF YOU&rsquo;RE A</span>
           <h3 class="ds-quiz-card__title">CANDIDATE FOR DENTAL IMPLANTS</h3>
           <p class="ds-quiz-card__subtitle">Take this 30 second quiz</p>
@@ -54,12 +58,12 @@ $quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/guide-cover.w
            placeholder. Swapped off quiz-card.png, which had a "Download Now" button
            baked into the artwork — an image that reads as a button but isn't. The
            GET THE FREE GUIDE control in the aside is the only real CTA here. -->
-      <figure class="ds-quiz-ipad ds-reveal" aria-hidden="false">
+      <figure class="ds-quiz-ipad" aria-hidden="false">
         <img src="<?php echo esc_url( $quiz_card_img ); ?>" alt="The Ultimate Guide to Dental Implants &mdash; free pricing and information guide from Dr. Jeffrey S. Burns" loading="lazy" />
       </figure>
 
       <!-- RIGHT — Guide CTA -->
-      <aside class="ds-guide-card ds-reveal">
+      <aside class="ds-guide-card">
         <span class="ds-guide-card__label">WANT TO LEARN MORE &mdash; INCLUDING SAME-DAY TEETH?</span>
         <p class="ds-guide-card__heading">Download the FREE Pricing &amp; Information Guide</p>
         <a href="#" data-ds-schedule class="ds-btn ds-btn--outlined ds-btn--sm ds-guide-card__cta">GET THE FREE GUIDE</a>
