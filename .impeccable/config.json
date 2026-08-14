@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "createdAt": "2026-08-14T10:33:33.981Z",
+        "reason": "Brand typeface specified in CLAUDE.md design tokens; user confirmed intentional"
+      }
+    ]
+  }
+}
