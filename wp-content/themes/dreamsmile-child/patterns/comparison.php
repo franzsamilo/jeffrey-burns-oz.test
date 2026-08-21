@@ -33,7 +33,9 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
     <div class="ds-comparison__head ds-reveal">
       <span class="ds-label">SEE THE DIFFERENCE</span>
       <h2 class="ds-comparison__title">
-        The <span class="ds-brand"><span class="ds-brand__word"><span class="ds-brand__dream">Dream</span><span class="ds-brand__smile">Smile</span></span><span class="ds-brand__tm">&trade;</span></span> vs. Traditional Dental Implants
+        <span>The</span>
+        <img class="ds-comparison__title-logo" src="<?php echo esc_url( $base ); ?>/dreamsmile-banner-logo.png" alt="DreamSmile" />
+        <span>vs. Traditional Dental Implants</span>
       </h2>
       <div class="ds-comparison__divider" aria-hidden="true"><span></span><svg viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2.5"/></svg><span></span></div>
       <p class="ds-comparison__subtitle">Not all dental implant smiles are created equal.</p>

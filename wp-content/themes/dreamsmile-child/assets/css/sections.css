@@ -2567,8 +2567,22 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 
 /* Comparison section: brand styling and official logo */
-.ds-comparison__title .ds-brand__dream { color: var(--ds-teal-dark, #5A9A93); }
-.ds-comparison__title .ds-brand__smile { color: var(--ds-charcoal, #3A3A3A); }
+.ds-comparison__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 12px;
+}
+.ds-comparison__title-logo {
+  height: clamp(28px, 3.2vw, 38px);
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
 .ds-compare-card__logo {
   height: clamp(34px, 3.8vw, 42px);
   width: auto;
