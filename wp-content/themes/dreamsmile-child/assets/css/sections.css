@@ -430,14 +430,7 @@ body.admin-bar .ds-navbar { top: 32px; }
   margin-bottom: 40px;
 }
 .ds-hero__watermark {
-  position: absolute;
-  bottom: 32px;
-  right: 32px;
-  z-index: 1;
-  font-family: 'Dancing Script', cursive;
-  font-size: clamp(2rem, 5vw, 3rem);
-  color: rgba(255, 255, 255, 0.1);
-  user-select: none;
+  display: none !important;
 }
 
 /* â”€â”€â”€ Sub-hero variant (inner pages) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
@@ -2559,34 +2552,40 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   margin-left: 1px;
 }
 
-/* Brand wordmark lockup — script "DreamSmile" + small ™ (logo stand-in) */
-.ds-brand { display: inline-flex; align-items: flex-start; white-space: nowrap; }
-.ds-brand__word { font-family: 'Dancing Script', cursive; font-weight: 700; }
+/* Brand wordmark lockup — clean brand sans "DreamSmile" + small ™ */
+.ds-brand { display: inline-flex; align-items: baseline; white-space: nowrap; font-weight: 700; }
+.ds-brand__word { font-family: 'Montserrat', 'Segoe UI', -apple-system, sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+.ds-brand__dream { color: var(--ds-teal, #7FB5B0); }
+.ds-brand__smile { color: #3A3A3A; }
 .ds-brand__tm {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.30em;
-  font-weight: 600;
+  font-size: 0.38em;
+  font-weight: 700;
   line-height: 1;
-  margin-top: 0.55em;
+  vertical-align: super;
   margin-left: 2px;
 }
-/* Comparison section: brand reads as the logo — bigger script, teal-dark. */
-.ds-comparison__title .ds-brand { color: var(--ds-teal-dark); }
-.ds-comparison__title .ds-brand__word { font-size: 1.18em; line-height: 1; }
 
-/* Client note (2026-08-04): the DreamSmile name is written out here rather
-   than set as an image. The old image lockups were the J. Burns mark, not the
-   DreamSmile one, and the small wordmark PNG rendered visibly cropped.
-   Dancing Script runs small for its point size, so each context nudges it up. */
-.ds-compare-card__title--brand .ds-brand__word { font-size: 1.18em; line-height: 1; }
+/* Comparison section: brand styling and official logo */
+.ds-comparison__title .ds-brand__dream { color: var(--ds-teal-dark, #5A9A93); }
+.ds-comparison__title .ds-brand__smile { color: var(--ds-charcoal, #3A3A3A); }
+.ds-compare-card__logo {
+  height: clamp(34px, 3.8vw, 42px);
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
+}
+.ds-compare-card__title--brand {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
 
-/* Expertise "Changing lives, one DreamSmile at a time" sits in 14px muted body
-   copy on a dark panel — lift the script so the brand stays legible. */
-.ds-expertise__doctor .ds-brand { color: #fff; }
-.ds-expertise__doctor .ds-brand__word { font-size: 1.55em; line-height: 1; }
-.ds-expertise__doctor .ds-brand__tm { margin-top: 0.35em; }
-.ds-compare-card__title--brand { color: var(--ds-teal-dark); }
-.ds-compare-card__title--brand .ds-brand__word { font-size: 1.1em; }
+/* Expertise "Changing lives, one DreamSmile at a time" on dark panel */
+.ds-expertise__doctor .ds-brand__dream { color: var(--ds-teal-light, #A8D5D0); }
+.ds-expertise__doctor .ds-brand__smile { color: #ffffff; }
+.ds-expertise__doctor .ds-brand__tm { color: rgba(255, 255, 255, 0.7); }
 
 /* ─── Navbar phone (upper-right) ─────────────────────────────────────────── */
 .ds-navbar__actions { display: flex; align-items: center; gap: 16px; }
@@ -2827,18 +2826,8 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   }
 }
 .ds-hero-split__watermark {
-  position: absolute;
-  right: 18px;
-  bottom: 14px;
-  z-index: 2;
-  font-family: 'Dancing Script', cursive;
-  font-weight: 700;
-  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
-  color: rgba(255, 255, 255, 0.8);
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
-  pointer-events: none;
+  display: none !important;
 }
-.ds-hero-split__watermark sup { font-size: 0.34em; vertical-align: super; }
 
 /* Navbar & Footer Logo Image styling (BURNS-WEBSITE-NOTES PASS) */
 .ds-navbar__logo-img {

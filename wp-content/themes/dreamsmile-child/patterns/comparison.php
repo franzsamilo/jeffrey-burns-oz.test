@@ -25,6 +25,7 @@ $chain_rows = [
   [ 'Multiple Locations Required','Referred out for imaging, surgery, and follow-ups at different offices.' ],
   [ 'Weeks or Months of Waiting', 'Temporary gaps and repeat visits before your final teeth are ready.' ],
 ];
+$base = get_stylesheet_directory_uri() . '/assets/arrange';
 ?>
 <!-- wp:html -->
 <section class="ds-comparison">
@@ -32,7 +33,7 @@ $chain_rows = [
     <div class="ds-comparison__head ds-reveal">
       <span class="ds-label">SEE THE DIFFERENCE</span>
       <h2 class="ds-comparison__title">
-        The <span class="ds-brand"><span class="ds-brand__word">DreamSmile</span><span class="ds-brand__tm">&trade;</span></span> vs. Traditional Dental Implants
+        The <span class="ds-brand"><span class="ds-brand__word"><span class="ds-brand__dream">Dream</span><span class="ds-brand__smile">Smile</span></span><span class="ds-brand__tm">&trade;</span></span> vs. Traditional Dental Implants
       </h2>
       <div class="ds-comparison__divider" aria-hidden="true"><span></span><svg viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2.5"/></svg><span></span></div>
       <p class="ds-comparison__subtitle">Not all dental implant smiles are created equal.</p>
@@ -44,7 +45,7 @@ $chain_rows = [
       <div class="ds-compare-card ds-compare-card--primary ds-reveal">
         <span class="ds-compare-card__badge">RECOMMENDED</span>
         <h3 class="ds-compare-card__title ds-compare-card__title--brand">
-          <span class="ds-brand"><span class="ds-brand__word">DreamSmile</span><span class="ds-brand__tm">&trade;</span></span>
+          <img class="ds-compare-card__logo" src="<?php echo esc_url( $base ); ?>/dreamsmile-banner-logo.png" alt="DreamSmile by Jeffrey S. Burns DDS" />
         </h3>
         <p class="ds-compare-card__kicker">THE DREAMSMILE EXPERIENCE</p>
         <div class="ds-compare-list">

@@ -495,7 +495,6 @@ function ds_render_split_hero( array $a ) {
         </div>
         <div class="ds-hero-split__media" role="img" aria-label="<?php echo esc_attr( $alt ); ?>"
              style="background-image: url('<?php echo esc_url( $bg ); ?>'); background-position: center;">
-          <span class="ds-hero-split__watermark" aria-hidden="true">DreamSmile<sup><sup class="ds-tm">&trade;</sup></sup></span>
         </div>
       </div>
     </section>

@@ -52,8 +52,6 @@ $office  = function_exists( 'ds_office_data' ) ? ds_office_data() : [ 'phone' =>
       </div>
     </div>
   </div>
-
-  <div class="ds-hero__watermark" aria-hidden="true">DreamSmile<span class="ds-hero__watermark-tm">&trade;</span></div>
 </section>
 <!-- /wp:html -->
 
