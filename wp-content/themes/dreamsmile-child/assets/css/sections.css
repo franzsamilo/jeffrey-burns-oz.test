@@ -367,10 +367,37 @@ body.admin-bar .ds-navbar { top: 32px; }
 .ds-hero {
   position: relative;
   min-height: 620px;
-  max-height: 840px;
   display: flex;
   align-items: center;
   overflow: hidden;
+}
+/* Homepage hero only (page heroes size themselves through .ds-hero--sub).
+   `background-size: cover` crops by however much the box aspect differs from the
+   photo's 2400x1603 (1.497). The box used to be a fixed height, so every window
+   width produced a different crop - widen the window and the subjects got sliced
+   away, zoom in and the whole photo came back. Tying the height to viewport WIDTH
+   holds that crop steady while resizing or zooming.
+
+   Two things have to be true for a width-driven height to actually take effect:
+
+   1. The content has to be able to get shorter than it. Measured in Chrome, the
+      hero's own content is 719px tall at 105/110 padding, which is taller than
+      any width-derived height below ~1560px - so a plain min-height never
+      engaged on a laptop. The padding below scales with width too, which drops
+      the content floor to 648px at 1024px and lets the box track the window.
+   2. The viewport-height ceiling has to stay out of the way. 86vh was *lower*
+      than the width-derived height on ordinary 16:9 and 16:10 windows, so height
+      - not width - was driving the crop. 96vh only steps in on genuinely short
+      windows, where it protects the quiz card peeking under the hero. */
+@media (min-width: 1024px) {
+  .ds-hero:not(.ds-hero--sub) {
+    min-height: min(46vw, 96vh);
+  }
+  .ds-hero:not(.ds-hero--sub) .ds-hero__inner {
+    /* 88px floor clears the 81px navbar that overlays the hero. */
+    padding-top: clamp(88px, 6.4vw, 116px);
+    padding-bottom: clamp(56px, 6.4vw, 120px);
+  }
 }
 .ds-hero__bg {
   position: absolute;
