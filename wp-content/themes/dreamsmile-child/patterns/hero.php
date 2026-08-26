@@ -5,14 +5,13 @@
  * Categories: dreamsmile
  */
 defined( 'ABSPATH' ) || exit;
-$hero_bg = get_stylesheet_directory_uri() . '/assets/arrange/hero-shot.jpg';
 $office  = function_exists( 'ds_office_data' ) ? ds_office_data() : [ 'phone' => '(540) 740-8937', 'phone_tel' => '+15407408937' ];
 ?>
 <!-- wp:html -->
 <section class="ds-hero" id="hero">
-  <div class="ds-hero__bg" role="img" aria-label="Dr. Burns with a patient"
-       style="background-image: linear-gradient(100deg, rgba(58,58,58,0.92) 0%, rgba(58,58,58,0.72) 46%, rgba(58,58,58,0.34) 100%), url('<?php echo esc_url( $hero_bg ); ?>'); background-size: cover; background-position: center 25%;">
-  </div>
+  <?php /* The photo, the scrim over it and the crop all live together in
+           sections.css - see the "Homepage hero photo + scrim" block. */ ?>
+  <div class="ds-hero__bg" role="img" aria-label="Dr. Burns with a patient"></div>
 
   <div class="ds-hero__inner">
     <div class="ds-hero__content ds-reveal">

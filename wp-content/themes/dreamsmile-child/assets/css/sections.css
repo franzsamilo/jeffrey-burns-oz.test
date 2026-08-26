@@ -397,7 +397,74 @@ body.admin-bar .ds-navbar { top: 32px; }
     /* 88px floor clears the 81px navbar that overlays the hero. */
     padding-top: clamp(88px, 6.4vw, 116px);
     padding-bottom: clamp(56px, 6.4vw, 120px);
+    /* The 1200px centred container spent ~130px of left margin on nothing and
+       pushed the copy right, straight onto Dr. Burns - he stands at 35-50% of
+       the frame. Widening the box and hugging the left edge hands that space
+       back to him; at 1920 it is worth ~240px. Paired with the scrim below. */
+    max-width: 1440px;
+    padding-left: clamp(24px, 3.6vw, 56px);
   }
+}
+
+/* ─── Homepage hero photo + scrim ─────────────────────────────────────────────
+   Goal: the copy never lands on Dr. Burns. He occupies 37-50% of the frame and
+   the patient 53-72%, so the copy has to finish before the 37% mark.
+
+   Two things had him covered. The scrim held 0.72 alpha out to the 46% mark, so
+   it greyed his face at exactly the point the text was also sitting on it; this
+   one does its darkening in the first ~28% and then drops away fast, so both
+   faces read at full brightness. And the 1200px centred container spent ~130px
+   of left margin on nothing while pushing the copy right onto him - the rule in
+   the 1024px block above hands that space back.
+
+   Photo, scrim and crop all live here rather than inline on the element so the
+   three stay tunable together - the crop below is derived from where the
+   subjects sit in this specific frame, so swapping the photo means re-deriving
+   it. patterns/hero.php renders an empty .ds-hero__bg. */
+.ds-hero:not(.ds-hero--sub) .ds-hero__bg {
+  background-image:
+    linear-gradient(93deg,
+      rgba(58, 58, 58, 0.95) 0%,
+      rgba(58, 58, 58, 0.92) 27%,
+      rgba(58, 58, 58, 0.58) 38%,
+      rgba(58, 58, 58, 0.18) 52%,
+      rgba(58, 58, 58, 0.07) 72%,
+      rgba(58, 58, 58, 0.13) 100%),
+    url('../arrange/hero-shot.jpg');
+  background-size: auto, cover;
+  background-position: center, center 25%;
+  background-repeat: no-repeat;
+}
+
+/* Sliding the copy left is enough on its own between roughly 1150 and 1800px.
+   It is NOT enough at either end, for opposite reasons:
+
+     - Below ~1150 there simply isn't the room. At 1024 the copy ends at 437px
+       and his face starts at 379px, and no realistic column width closes that.
+       (Narrower still: under 1024 the box gets taller than 1:1.497, so `cover`
+       starts fitting the photo by HEIGHT and cropping the sides instead - which
+       re-centres him under the bullets, with only ~28px of background-position
+       slack to fight it.)
+     - Above ~1800 the container is capped at 1440 and centres, so every extra
+       100px of window pushes the copy 50px right but only moves his face 37px
+       right. The copy gains on him and catches up around 1950.
+
+   So the photo is scaled up just enough to outrun the copy at both ends, and
+   left-anchored so the extra width pushes the subjects right rather than
+   cropping them off. `100%` wins across the middle, which means the framing
+   there is byte-for-byte the plain `cover` crop. max() is continuous at both
+   crossovers, so dragging the window resizes without the crop jumping.
+
+   Derivation, if these need re-tuning: the copy ends at
+   `padding-left + column`, his face starts at `0.37 x displayed-width`, and we
+   want 24px between them.  Phones keep plain `cover` - the copy spans the full
+   width there anyway, so the flat scrim does the contrast work instead. */
+@media (min-width: 768px) {
+  .ds-hero:not(.ds-hero--sub) .ds-hero__bg {
+    background-size: auto, max(100%, 1180px + 10vw, 141vw - 740px) auto;
+    background-position: center, 0% 25%;
+  }
+  .ds-hero:not(.ds-hero--sub) .ds-hero__content { max-width: 400px; }
 }
 .ds-hero__bg {
   position: absolute;
@@ -2492,7 +2559,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   /* The inline 100deg gradient thins to alpha .34 on the right — fine on
      desktop where text stops at 620px, but on phones the bullets span the
      full width and white text drops below 3:1 there. Extra flat scrim. */
-  #hero .ds-hero__bg::after { content: ""; position: absolute; inset: 0; background: rgba(58, 58, 58, 0.45); }
+  #hero .ds-hero__bg::after { content: ""; position: absolute; inset: 0; background: rgba(58, 58, 58, 0.56); }
 
   /* Footer — fixed 600px glow overflows narrow viewports */
   .ds-footer__glow { width: min(100%, 360px); height: 140px; }
