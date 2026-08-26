@@ -6281,8 +6281,19 @@ body:has(.ds-article-hero) .ds-navbar__toggle span { background: var(--ds-charco
   margin: 8px 0 8px;
 }
 .ds-np-results__sub { color: var(--ds-warm-gray); font-size: 15px; margin: 0; }
+/* Both callers currently pass a single figure (single-dental-implants' one
+   placeholder pair, fillings' one combined image), and a hard `repeat(2, 1fr)`
+   parked it in the left column while the heading, sub and quote around it were
+   all centred. auto-fit collapses the empty track so one figure centres and two
+   still sit side by side; the 560px cap keeps a lone figure from stretching the
+   full 1200px wrap. */
 .ds-np-results__grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
-@media (min-width: 760px) { .ds-np-results__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 760px) {
+  .ds-np-results__grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 560px));
+    justify-content: center;
+  }
+}
 .ds-np-ba { margin: 0; }
 .ds-np-ba__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .ds-np-ba__slot {
