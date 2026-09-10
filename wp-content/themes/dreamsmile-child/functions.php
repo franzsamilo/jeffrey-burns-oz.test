@@ -419,8 +419,13 @@ function ds_faq_data() {
 
 /**
  * Shared real-practice data — single physical practice in New Market, VA.
- * The 8 location subpages all reference this same address. TODO: replace
- * placeholder address + review count with real values.
+ * The 8 location subpages all reference this same address.
+ *
+ * Address and hours confirmed against the client's own site 2026-05-09.
+ * `reviews` is the one value still unverified — it feeds both the visible
+ * "200+ verified patient reviews" line on the location pages AND the JSON-LD
+ * aggregateRating below, so it needs a real number from the practice's Google
+ * Business Profile before launch. See the open-questions memory entry.
  */
 /**
  * Master config for all single-service pages (5 implant deep-dives, 9

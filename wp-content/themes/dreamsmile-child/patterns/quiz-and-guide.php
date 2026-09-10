@@ -65,8 +65,12 @@ $quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/guide-cover.w
       <!-- RIGHT — Guide CTA -->
       <aside class="ds-guide-card">
         <span class="ds-guide-card__label">WANT TO LEARN MORE &mdash; INCLUDING SAME-DAY TEETH?</span>
-        <p class="ds-guide-card__heading">Download the FREE Pricing &amp; Information Guide</p>
-        <a href="#" data-ds-schedule class="ds-btn ds-btn--outlined ds-btn--sm ds-guide-card__cta">GET THE FREE GUIDE</a>
+        <p class="ds-guide-card__heading">Get the FREE Pricing &amp; Information Guide</p>
+        <?php // Opens the shared modal in its "guide" dress (see schedule-modal.js
+              // VARIANTS): asking for the guide must not land the visitor on a
+              // "Book My Free Assessment" button. /contact/ is the no-JS fallback. ?>
+        <a href="/contact/" data-ds-schedule data-ds-modal-variant="guide" class="ds-btn ds-btn--outlined ds-btn--sm ds-guide-card__cta">GET THE FREE GUIDE</a>
+        <p class="ds-guide-card__note">Emailed to you &mdash; free, and no obligation.</p>
       </aside>
 
     </div>

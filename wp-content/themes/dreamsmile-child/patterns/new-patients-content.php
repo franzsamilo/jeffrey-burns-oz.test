@@ -172,15 +172,15 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
         <span class="ds-np-forms-card__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
         </span>
-        <h3 class="ds-np-forms-card__title">Download &amp; Print</h3>
-        <p class="ds-np-forms-card__desc">Print, fill out by hand, and bring to your visit (or email back to us). PDF format, opens in any browser.</p>
+        <h3 class="ds-np-forms-card__title">Choose Your Forms</h3>
+        <p class="ds-np-forms-card__desc">Pick the forms you need and we&rsquo;ll send them straight to your inbox &mdash; fill them in on any device, or print them and bring them along.</p>
         <ul class="ds-np-forms-card__list">
-          <li><a href="#" data-ds-form-pdf="patient-info"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Patient Information</a></li>
-          <li><a href="#" data-ds-form-pdf="medical-history"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Medical History</a></li>
-          <li><a href="#" data-ds-form-pdf="insurance"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Insurance Authorization</a></li>
-          <li><a href="#" data-ds-form-pdf="hipaa"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> HIPAA Acknowledgement</a></li>
+          <li><button type="button" class="ds-np-forms-card__pick" data-ds-form-pick="patient-info" data-ds-form-label="Patient Information"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h14"/><polyline points="13 7 18 12 13 17"/></svg> Patient Information</button></li>
+          <li><button type="button" class="ds-np-forms-card__pick" data-ds-form-pick="medical-history" data-ds-form-label="Medical History"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h14"/><polyline points="13 7 18 12 13 17"/></svg> Medical History</button></li>
+          <li><button type="button" class="ds-np-forms-card__pick" data-ds-form-pick="insurance" data-ds-form-label="Insurance Authorization"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h14"/><polyline points="13 7 18 12 13 17"/></svg> Insurance Authorization</button></li>
+          <li><button type="button" class="ds-np-forms-card__pick" data-ds-form-pick="hipaa" data-ds-form-label="HIPAA Acknowledgement"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h14"/><polyline points="13 7 18 12 13 17"/></svg> HIPAA Acknowledgement</button></li>
         </ul>
-        <p class="ds-np-forms-card__hint"><em>PDF links go live once forms are uploaded by the office. In the meantime, request a digital version on the right.</em></p>
+        <p class="ds-np-forms-card__hint"><em>Not sure which you need? Request them all &mdash; most new patients complete every form before the first visit.</em></p>
       </article>
 
       <article class="ds-np-forms-card ds-reveal">
@@ -213,6 +213,7 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
           <input type="hidden" name="subject" value="DreamSmile &mdash; New Patient Forms Request" />
           <input type="hidden" name="_subject" value="DreamSmile &mdash; New Patient Forms Request" />
           <input type="hidden" name="from_name" value="DreamSmile Website" />
+          <input type="hidden" name="forms_requested" data-ds-forms-requested value="All new patient forms" />
           <input type="hidden" name="source_page" data-ds-source value="/new-patients/" />
           <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important" />
           <button type="submit" class="ds-btn ds-btn--solid ds-btn--block">Email Me the Forms</button>

@@ -52,7 +52,7 @@
 
     <div class="ds-modal__aside" aria-hidden="true">
       <div class="ds-modal__aside-inner">
-        <span class="ds-modal__aside-label">BOOK YOUR VISIT</span>
+        <span class="ds-modal__aside-label" data-ds-modal-aside-label>BOOK YOUR VISIT</span>
         <p class="ds-modal__aside-quote">&ldquo;Every DreamSmile<sup class="ds-tm">&trade;</sup> starts with a conversation. Let&rsquo;s talk.&rdquo;</p>
         <span class="ds-modal__aside-sig">— Dr. J. Burns</span>
       </div>
@@ -70,12 +70,12 @@
     <form class="ds-modal__form" data-ds-modal-form
           data-ds-access-key=""
           data-ds-endpoint="">
-      <span class="ds-label">SCHEDULE YOUR FREE ASSESSMENT</span>
-      <h2 class="ds-modal__title" id="ds-modal-title">Book Your <span class="ds-modal__title-accent">DreamSmile<sup class="ds-tm">&trade;</sup></span> Visit</h2>
-      <p class="ds-modal__sub">Dr. Burns will personally review your case &mdash; no pressure, no obligation.</p>
+      <span class="ds-label" data-ds-modal-label>SCHEDULE YOUR FREE ASSESSMENT</span>
+      <h2 class="ds-modal__title" id="ds-modal-title" data-ds-modal-heading>Book Your <span class="ds-modal__title-accent">DreamSmile<sup class="ds-tm">&trade;</sup></span> Visit</h2>
+      <p class="ds-modal__sub" data-ds-modal-sub>Dr. Burns will personally review your case &mdash; no pressure, no obligation.</p>
 
       <!-- Context + spam-guard fields (do not remove) -->
-      <input type="hidden" name="subject" value="New DreamSmile Assessment Request" />
+      <input type="hidden" name="subject" data-ds-modal-subject value="New DreamSmile Assessment Request" />
       <input type="hidden" name="from_name" value="DreamSmile Website" />
       <input type="hidden" name="source_page" data-ds-source value="" />
       <input type="checkbox" name="botcheck" class="ds-modal__hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important" />
@@ -110,7 +110,7 @@
         <textarea name="message" rows="3" placeholder="Missing teeth, slipping dentures, etc."></textarea>
       </label>
 
-      <button type="submit" class="ds-btn ds-btn--solid ds-btn--block">Book My Free Assessment</button>
+      <button type="submit" class="ds-btn ds-btn--solid ds-btn--block" data-ds-modal-submit>Book My Free Assessment</button>
 
       <p class="ds-modal__error" data-ds-modal-error hidden role="alert">
         Something went wrong sending your request. Please call

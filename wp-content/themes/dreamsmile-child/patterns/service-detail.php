@@ -267,7 +267,7 @@ $article_title = $svc['sub_hero']['label'] ?? '';
 </section>
 <?php endif; ?>
 
-<?php // ── Real results: before/after + social proof (asset placeholders) ───── ?>
+<?php // ── Real results: before/after photos (when supplied) + social proof ── ?>
 <?php if ( $results ) : ?>
 <section class="ds-np-results">
   <div class="ds-wrap">
@@ -276,34 +276,32 @@ $article_title = $svc['sub_hero']['label'] ?? '';
       <h2 class="ds-np-results__title"><?php echo $results['title'] ?? 'Real patients. Real results.'; ?></h2>
       <?php if ( ! empty( $results['sub'] ) ) : ?><p class="ds-np-results__sub"><?php echo $results['sub']; ?></p><?php endif; ?>
     </div>
-    <!-- TODO (assets): drop real before/after photos in place of these placeholders. -->
-    <div class="ds-np-results__grid ds-reveal">
-      <?php if ( ! empty( $results['images'] ) ) : ?>
-        <?php foreach ( $results['images'] as $img ) : 
+    <?php // Only render the gallery when real photos exist. A page with no
+          // photos yet falls through to the quote + link below rather than
+          // showing empty "Before / After" boxes captioned "coming soon" —
+          // an unfilled slot reads as an unfinished site, not as proof. ?>
+    <?php if ( ! empty( $results['images'] ) ) : ?>
+      <div class="ds-np-results__grid ds-reveal">
+        <?php foreach ( $results['images'] as $img ) :
           $img_url = get_stylesheet_directory_uri() . '/assets/arrange/' . $img;
         ?>
           <figure class="ds-np-ba ds-np-ba--combined">
-            <img src="<?php echo esc_url( $img_url ); ?>" alt="Before and After patient results" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);" />
+            <img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $results['images_alt'] ?? 'Before and after patient results' ); ?>" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);" />
           </figure>
         <?php endforeach; ?>
-      <?php else : ?>
-        <?php for ( $i = 0; $i < (int) ( $results['pairs'] ?? 2 ); $i++ ) : ?>
-          <figure class="ds-np-ba">
-            <div class="ds-np-ba__pair">
-              <span class="ds-np-ba__slot ds-np-ba__slot--before">Before</span>
-              <span class="ds-np-ba__slot ds-np-ba__slot--after">After</span>
-            </div>
-            <figcaption class="ds-np-ba__cap">Actual patient photo &mdash; coming soon</figcaption>
-          </figure>
-        <?php endfor; ?>
-      <?php endif; ?>
-    </div>
+      </div>
+    <?php endif; ?>
     <?php if ( ! empty( $results['quote'] ) ) : ?>
       <blockquote class="ds-np-results__quote ds-reveal">
         <span class="ds-np-results__quote-mark" aria-hidden="true">&ldquo;</span>
         <p class="ds-np-results__quote-text"><?php echo $results['quote']['text']; ?></p>
         <cite class="ds-np-results__quote-cite">&mdash; <?php echo esc_html( $results['quote']['cite'] ?? 'DreamSmile™ patient' ); ?></cite>
       </blockquote>
+    <?php endif; ?>
+    <?php if ( ! empty( $results['link'] ) ) : ?>
+      <p class="ds-np-results__more ds-reveal">
+        <a class="ds-btn ds-btn--outlined ds-btn--sm" href="<?php echo esc_url( $results['link']['href'] ); ?>"><?php echo esc_html( $results['link']['label'] ); ?></a>
+      </p>
     <?php endif; ?>
   </div>
 </section>

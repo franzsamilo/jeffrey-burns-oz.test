@@ -88,10 +88,10 @@ return [
     ],
     'before_after' => [
       'label' => 'REAL RESULTS',
-      'title' => 'The difference a single implant makes.',
-      'sub'   => 'See the before-and-after on real single-implant cases &mdash; and hear from the patients themselves.',
-      'pairs' => 1,
+      'title' => 'The difference one tooth makes.',
+      'sub'   => 'Every case Dr. Burns takes on &mdash; one tooth or a full arch &mdash; is planned and placed by him personally. Hear it from the patients themselves.',
       'quote' => [ 'text' => 'I stopped hiding my smile in photos. You honestly can&rsquo;t tell which tooth is the implant.', 'cite' => 'Single-implant patient' ],
+      'link'  => [ 'label' => 'Watch real patient transformations', 'href' => '/dental-implants/#real-results' ],
     ],
     'why' => [
       'label' => 'WHY DR. BURNS',
@@ -172,7 +172,7 @@ return [
       'sub'   => 'Per the Cleveland Clinic, traditional fixed bridges typically last 5&ndash;15 years and require reshaping the teeth on either side of the gap &mdash; a step that is irreversible. Implant-supported bridges anchor on new implants instead, preserve the surrounding teeth, and stimulate the underlying bone the way a natural root does.',
       'sources' => [
         [ 'title' => 'Dental Bridges &mdash; types, lifespan, and care', 'org' => 'Cleveland Clinic', 'url' => 'https://my.clevelandclinic.org/health/treatments/10921-dental-bridges' ],
-        [ 'title' => 'Implant Bridge vs. Traditional Bridge', 'org' => 'Harlem Dentistry', 'url' => 'https://www.harlemdentistry.com/blog/implant-bridge-vs-traditional-bridge' ],
+        [ 'title' => 'Multiple Tooth Dental Implants', 'org' => 'American Academy of Periodontology', 'url' => 'https://www.perio.org/for-patients/periodontal-treatments-and-procedures/dental-implant-procedures/multiple-tooth-dental-implants/' ],
       ],
     ],
   ],
@@ -408,7 +408,7 @@ return [
       'sub'   => 'Two practical facts to weigh: traditional bridges last roughly 5&ndash;15 years and require permanently reshaping the teeth on either side of the gap, while implant-supported bridges typically last decades, preserve the surrounding teeth, and stimulate the underlying bone the way a natural root does. Cost and timeline favour traditional; long-term tooth and bone preservation favour implant-supported.',
       'sources' => [
         [ 'title' => 'Dental Bridges &mdash; types, lifespan, and care', 'org' => 'Cleveland Clinic', 'url' => 'https://my.clevelandclinic.org/health/treatments/10921-dental-bridges' ],
-        [ 'title' => 'Implant Bridge vs. Traditional Bridge', 'org' => 'Harlem Dentistry', 'url' => 'https://www.harlemdentistry.com/blog/implant-bridge-vs-traditional-bridge' ],
+        [ 'title' => 'Multiple Tooth Dental Implants', 'org' => 'American Academy of Periodontology', 'url' => 'https://www.perio.org/for-patients/periodontal-treatments-and-procedures/dental-implant-procedures/multiple-tooth-dental-implants/' ],
       ],
     ],
   ],

@@ -9,19 +9,19 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
 
 // Video clips are vertical (TikTok 9:16). They letterbox inside the 16/9
 // stage with dark padding — preserves full frame.
-// 5th element is an optional poster frame. Only Angela has one so far — the
-// client's before/after still set covers Angela, Danny, Kelly, Mike and Ron,
-// which does not overlap Curtis or Peter. Ask for stills of those two, or
-// swap this carousel onto the five patients that do have them.
+// 5th element is the poster frame. Angela's comes from the client's
+// before/after still set; Curtis's and Peter's are frames pulled from their
+// own testimonial reels (2026-09-11) at the moment each one shows the
+// finished smile — so no slide opens on a black video frame.
 $shots = [
-  [ 'Curtis-Cloude-Testimonial.mp4', 'DreamSmile transformation — Curtis Cloude', 'Curtis Cloude', 'DreamSmile™ Transformation', '' ],
+  [ 'Curtis-Cloude-Testimonial.mp4', 'DreamSmile transformation — Curtis Cloude', 'Curtis Cloude', 'DreamSmile™ Transformation', 'testimonial-ba-curtis.jpg' ],
   [ 'Angela-Burker-Testimonial.mp4', 'DreamSmile transformation — Angela Burker', 'Angela Burker', 'DreamSmile™ Transformation', 'testimonial-ba-angela.jpg' ],
-  [ 'Peter-Encheff-Testimonial.mp4', 'DreamSmile transformation — Peter Encheff', 'Peter Encheff', 'DreamSmile™ Transformation', '' ],
+  [ 'Peter-Encheff-Testimonial.mp4', 'DreamSmile transformation — Peter Encheff', 'Peter Encheff', 'DreamSmile™ Transformation', 'testimonial-ba-peter.jpg' ],
 ];
 $count = count( $shots );
 ?>
 <!-- wp:html -->
-<section class="ds-before-after">
+<section class="ds-before-after" id="real-results">
   <div class="ds-wrap">
     <div class="ds-before-after__head ds-reveal">
       <span class="ds-label">REAL RESULTS</span>

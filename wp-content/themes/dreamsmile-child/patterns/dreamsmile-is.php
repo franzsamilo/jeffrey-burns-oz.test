@@ -29,7 +29,7 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
       '<strong>Speaking</strong> naturally',
       'Confidently <strong>smiling again</strong>',
     ];
-    // TODO: replace with a single real patient-smiling photo when supplied.
+    // Real client photo (chairside patient, DreamSmile shoot).
     $is_photo = esc_url( $base ) . '/dreamsmile-is-patient.png';
     ?>
     <div class="ds-is-compact">

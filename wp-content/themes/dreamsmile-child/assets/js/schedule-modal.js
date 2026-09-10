@@ -1,6 +1,35 @@
 (function () {
   'use strict';
 
+  /**
+   * Modal copy variants.
+   *
+   * One modal serves every CTA on the site, but the CTAs do not all promise
+   * the same thing. "GET THE FREE GUIDE" used to open a modal headed "Book
+   * Your DreamSmile Visit" with a "Book My Free Assessment" button — the
+   * visitor asked for a guide and was handed a booking form. A trigger can
+   * now carry data-ds-modal-variant to re-dress the modal for what it
+   * actually offers. Fields stay the same; only the promise changes.
+   */
+  var VARIANTS = {
+    assessment: {
+      asideLabel: 'BOOK YOUR VISIT',
+      label:      'SCHEDULE YOUR FREE ASSESSMENT',
+      heading:    'Book Your <span class="ds-modal__title-accent">DreamSmile<sup class="ds-tm">&trade;</sup></span> Visit',
+      sub:        'Dr. Burns will personally review your case &mdash; no pressure, no obligation.',
+      submit:     'Book My Free Assessment',
+      subject:    'New DreamSmile Assessment Request'
+    },
+    guide: {
+      asideLabel: 'FREE PATIENT GUIDE',
+      label:      'THE ULTIMATE GUIDE TO DENTAL IMPLANTS',
+      heading:    'Send Me the Free <span class="ds-modal__title-accent">DreamSmile<sup class="ds-tm">&trade;</sup></span> Guide',
+      sub:        'Pricing ranges, treatment options and what same-day teeth really involve. We&rsquo;ll email your copy &mdash; no cost, no obligation.',
+      submit:     'Email Me the Free Guide',
+      subject:    'New DreamSmile Guide Request'
+    }
+  };
+
   function init() {
     var modal = document.querySelector('[data-ds-modal]');
 
@@ -13,8 +42,24 @@
     var form    = modal.querySelector('[data-ds-modal-form]');
     var success = modal.querySelector('[data-ds-modal-success]');
 
-    function open() {
+    function applyVariant(name) {
+      var v = VARIANTS[name] || VARIANTS.assessment;
+      var set = function (sel, html) {
+        var el = modal.querySelector(sel);
+        if (el) el.innerHTML = html;
+      };
+      set('[data-ds-modal-aside-label]', v.asideLabel);
+      set('[data-ds-modal-label]', v.label);
+      set('[data-ds-modal-heading]', v.heading);
+      set('[data-ds-modal-sub]', v.sub);
+      set('[data-ds-modal-submit]', v.submit);
+      var subject = modal.querySelector('[data-ds-modal-subject]');
+      if (subject) subject.value = v.subject;
+    }
+
+    function open(variant) {
       if (!modal) return;
+      applyVariant(variant);
       modal.removeAttribute('hidden');
       requestAnimationFrame(function () { modal.classList.add('is-open'); });
       document.documentElement.style.overflow = 'hidden';
@@ -61,7 +106,7 @@
       // calls DSScheduleModal.open() itself after validating an answer.
       if (trigger.closest('[data-ds-quiz]')) return;
       e.preventDefault();
-      open();
+      open(trigger.getAttribute('data-ds-modal-variant'));
     }, true);
 
     // Close via X, backdrop, ESC
@@ -221,5 +266,50 @@
     document.addEventListener('DOMContentLoaded', initForms);
   } else {
     initForms();
+  }
+})();
+
+/**
+ * New Patient Forms picker.
+ *
+ * The four form names used to be <a href="#"> links pointing at PDFs the
+ * office has never supplied — they scrolled the page to the top and did
+ * nothing else. They are buttons now: picking one jumps to the request form
+ * beside them, focuses it, and records which form was asked for so the
+ * office knows what to send.
+ */
+(function () {
+  function initFormPicker() {
+    var picks = document.querySelectorAll('[data-ds-form-pick]');
+    if (!picks.length) return;
+
+    var form = document.querySelector('[data-ds-forms-request]');
+    if (!form) return;
+
+    var hidden = form.querySelector('[data-ds-forms-requested]');
+    var firstField = form.querySelector('input[name="name"]');
+
+    Array.prototype.forEach.call(picks, function (btn) {
+      btn.addEventListener('click', function () {
+        var label = btn.getAttribute('data-ds-form-label') || btn.textContent.trim();
+
+        Array.prototype.forEach.call(picks, function (b) {
+          b.classList.toggle('is-picked', b === btn);
+        });
+        if (hidden) hidden.value = label;
+
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (firstField) {
+          // Focus after the smooth scroll settles, or the browser jump-cuts it.
+          setTimeout(function () { firstField.focus({ preventScroll: true }); }, 350);
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFormPicker);
+  } else {
+    initFormPicker();
   }
 })();
