@@ -953,24 +953,6 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
     flex: 1 1 auto;
   }
 }
-.ds-photo-placeholder {
-  background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 50%, #E2E8F0 100%);
-  border-radius: var(--ds-card-radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #94A3B8;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  aspect-ratio: 3 / 4;
-}
-.ds-photo-placeholder--portrait { aspect-ratio: 3 / 4; }
-.ds-photo-placeholder--landscape { aspect-ratio: 500 / 350; }
-.ds-photo-placeholder--service { aspect-ratio: 3 / 2; }
-.ds-photo-placeholder--about { aspect-ratio: 5 / 6; }
-.ds-photo-placeholder--video { aspect-ratio: 16 / 9; }
-.ds-photo-placeholder--square { aspect-ratio: 1 / 1; }
 
 /* â”€â”€â”€ DreamSmile Is â€” compact editorial zigzag (cap image width, tight gaps) â”€â”€ */
 
@@ -1176,24 +1158,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   background: #0F172A;
   display: block;
 }
-/* Legacy placeholder â€” kept in case any other page still references it. */
-.ds-expertise__video-placeholder {
-  background: linear-gradient(135deg, #4a4a4a, #2e2e2e, #4a4a4a);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  aspect-ratio: 16 / 9;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.5);
-}
-.ds-expertise__video-scrim {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-}
+
 .ds-expertise__play {
   position: relative;
   z-index: 1;
@@ -1647,16 +1612,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 @media (min-width: 1024px) {
   .ds-protocol__photo { display: block; position: sticky; top: 96px; }
 }
-.ds-protocol__photo-placeholder {
-  background: #475569;
-  color: #94A3B8;
-  border-radius: var(--ds-card-radius);
-  aspect-ratio: 3 / 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-}
+
 .ds-steps {
   display: flex;
   flex-direction: column;
@@ -2518,7 +2474,6 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   .ds-warranty-image { padding: 40px 16px; }
   .ds-warranty-image__bg { border-radius: 12px; }
 }
-
 
 /* DREAMSMILE-COMPARISON-CENTER-V2 */
 .ds-compare-card--primary .ds-compare-card__title,
