@@ -9,7 +9,7 @@ Overall reaction to the current build: positive — "this is looking excellent,"
 
 ---
 
-## Implementation status (as of 2026-08-07)
+## Implementation status (as of 2026-09-11)
 
 **Done:** 2.2 · 3.1 · 3.2 · 3.3 · 4.1 · 4.2 · 4.3 · 5.1 · 5.2 · 6.1 · 6.2 · 7.1 · 7.2 · 8.1 · 8.2 · 8.4 — plus the before/after stills now wired as testimonial poster frames.
 
@@ -17,8 +17,8 @@ Overall reaction to the current build: positive — "this is looking excellent,"
 
 | Item | Blocked on |
 |---|---|
-| **1.3 — Services vs. the emotional hook** | A **1-3-1** owed back to the client. This is a design deliverable, and it gates 1.2 and 1.4. |
-| 1.1 · 1.2 · 1.4 | Sequenced behind 1.3 — reordering the homepage before the 1-3-1 is settled would be rework. |
+| **1.3 — Services vs. the emotional hook** | **Delivered 2026-09-11 — client decision.** The 1-3-1 is published at https://claude.ai/code/artifact/938cdb86-df8d-4909-8aee-7a833afa62f9 (see § 1.3 below). Nothing moves until Spencer picks A, B or C. |
+| 1.1 · 1.2 · 1.4 | Sequenced behind 1.3 — the 1-3-1 is now with the client; reordering before they answer would be rework. 1.1 is already live either way. |
 | 2.1 — second TV station | Client: confirm call letters (WRIC / WHSV?) and supply the segment. |
 | 3.4 · 3.5 — real photography | Client: Dr. Burns + Megan shoot. |
 | 3.6 — vertical testimonial videos | Needs re-cut footage; posters are wired in the meantime. |
@@ -40,6 +40,24 @@ Overall reaction to the current build: positive — "this is looking excellent,"
 | 1.1 | **Quiz/lead-capture must peek above the fold** | Not a flat section you have to scroll to find. It should visibly stick up into the viewport so visitors think "wait, what's this down here?" and get pulled down. Matthew confirmed this is already in progress. |
 | 1.2 | **New section order** | Hero → **lead-capture form** → **Primary Services (3 cards)** → Introducing DreamSmile → the rest of the DreamSmile story. Rationale: a low-threshold CTA must be above the fold ("very few people scroll very far"), and Services early stops visitors from assuming the practice only does implants. |
 | 1.3 | **Open tension — needs a design proposal from us** | Spencer worries Services between the hero and the "Introducing The DreamSmile" photo grid breaks the emotional hook — the photo grid is "a massive hook… you'd go from this to this and be like, wow." Chris asked OZ to come back with a **1-3-1** (one problem, three visual options, one recommendation) rather than debating it verbally. **This is the one item that is ours to solve and present.** |
+
+### 1.3 — the 1-3-1, delivered 2026-09-11
+
+**Deliverable:** https://claude.ai/code/artifact/938cdb86-df8d-4909-8aee-7a833afa62f9
+
+Every option strip in it is the shipped homepage screenshotted offline through the real theme CSS (`preview_homepage.html` + headless Chrome) and stacked at true relative scale, so the 800px fold line falls where it actually falls. Depths measured at 1280×800; screen one ends at 800px:
+
+| Option | Breadth first named | Photo grid appears | Service cards appear |
+|---|---|---|---|
+| **A** — as built today | 1,220px (screen 2) | 1,957px (screen 3) | 1,220px |
+| **B** — hook first, services after | 2,256px (screen 3) | 1,220px (screen 2) | 2,256px |
+| **C** — *recommended* | **552px (screen 1, above the fold)** | 1,220px (screen 2) | 2,256px |
+
+**Recommendation — C:** keep the photo grid directly after the lead form (B's order, which also absorbs 1.4), and carry the breadth signal in a slim charcoal band at the foot of the hero — an `ALL UNDER ONE ROOF` eyebrow plus three links (Dental Implants · General Dentistry · Cosmetic & Restorative). The argument is cost: as a section, Services takes 737px off the top of the page; as a line, 52px. The full Primary Services cards keep their images and CTAs further down.
+
+**Stated honestly in the deliverable:** if the requirement is that visitors *see the three cards* early rather than merely *learn the three practice areas* early, C misses and A is already correct. That is the question Spencer needs to answer.
+
+**Only estimated figure:** the merged "Introducing + DreamSmile is…" block at 1,036px, since 1.4 is not built yet. Everything else is measured off build 1.2.6.
 | 1.4 | **Collapse the "The DreamSmile is…" section** | Delete it as a standalone section. Fold its copy into the "Introducing The DreamSmile" block: heading `Introducing The DreamSmile by Jeffrey S. Burns` → paragraph `A healthy, beautiful, natural functioning and looking smile using dental implants. Say goodbye to hiding your mouth and say hello to…` → **bullet points** (the zigzag benefits become bullets). Drop the image that currently sits there. |
 
 ## 2. Expertise / "As Seen On"
