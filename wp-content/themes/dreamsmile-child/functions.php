@@ -34,26 +34,115 @@ add_action( 'after_setup_theme', function () {
     add_theme_support( 'html5', [ 'search-form', 'gallery', 'caption', 'style', 'script' ] );
 } );
 
+/** ────────────────────────────────────────────────────────────────────────
+ *  LEAD DELIVERY ENGINE — captures leads from the existing schedule modal
+ *  and forms, records them into Gravity Forms Form 1, and sends email alerts
+ *  via FluentSMTP SendGrid. Preserves 100% of existing UI elements.
+ *  ──────────────────────────────────────────────────────────────────────── */
+function ds_handle_lead_submission() {
+    $params = $_POST;
+    if ( empty( $params ) ) {
+        $json = file_get_contents( 'php://input' );
+        $params = json_decode( $json, true ) ?: [];
+    }
+
+    // Spam honeypot guard
+    if ( ! empty( $params['botcheck'] ) ) {
+        wp_send_json_success( [ 'received' => true ] );
+    }
+
+    $name    = sanitize_text_field( $params['name'] ?? '' );
+    $phone   = sanitize_text_field( $params['phone'] ?? '' );
+    $email   = sanitize_email( $params['email'] ?? '' );
+    $time    = sanitize_text_field( $params['time'] ?? '' );
+    $message = sanitize_textarea_field( $params['message'] ?? '' );
+    $subject = sanitize_text_field( $params['subject'] ?? 'New DreamSmile Assessment Request' );
+    $source  = sanitize_text_field( $params['source_page'] ?? '' );
+    $forms_req = sanitize_text_field( $params['forms_requested'] ?? '' );
+
+    if ( empty( $name ) || ( empty( $email ) && empty( $phone ) ) ) {
+        wp_send_json_error( [ 'message' => 'Missing required fields' ], 400 );
+    }
+
+    $notes = "Subject: {$subject}\n";
+    if ( ! empty( $time ) )      { $notes .= "Preferred Time: {$time}\n"; }
+    if ( ! empty( $forms_req ) )  { $notes .= "Forms Requested: {$forms_req}\n"; }
+    if ( ! empty( $source ) )    { $notes .= "Source Page: {$source}\n"; }
+    if ( ! empty( $message ) )   { $notes .= "\nPatient Notes:\n{$message}"; }
+
+    $entry_id = null;
+    if ( class_exists( 'GFAPI' ) ) {
+        $entry = [
+            'form_id'    => 1,
+            '2'          => $name,
+            '3'          => $email,
+            '4'          => $phone,
+            '5'          => 'Website Schedule Modal',
+            '6'          => $notes,
+            'source_url' => home_url( $source ),
+        ];
+        $entry_id = GFAPI::add_entry( $entry );
+
+        if ( ! is_wp_error( $entry_id ) ) {
+            $form = GFAPI::get_form( 1 );
+            if ( $form ) {
+                GFAPI::send_notifications( $form, GFAPI::get_entry( $entry_id ) );
+            }
+        }
+    }
+
+    // Direct email fail-safe (routes through FluentSMTP SendGrid)
+    if ( ! $entry_id || is_wp_error( $entry_id ) ) {
+        $to = 'info@jburnsdds.com';
+        $email_subject = "Website Lead: {$name} - {$subject}";
+        $email_body = "New lead submitted via website:\n\n"
+                    . "Name: {$name}\n"
+                    . "Phone: {$phone}\n"
+                    . "Email: {$email}\n"
+                    . "Preferred Time: {$time}\n"
+                    . "Notes: {$message}\n"
+                    . "Page: {$source}\n\n"
+                    . "Date: " . current_time( 'mysql' ) . "\n";
+        $headers = [ 'Content-Type: text/plain; charset=UTF-8', "Reply-To: {$name} <{$email}>" ];
+        wp_mail( $to, $email_subject, $email_body, $headers );
+    }
+
+    wp_send_json_success( [
+        'entry_id' => is_numeric( $entry_id ) ? (int) $entry_id : null,
+    ] );
+}
+add_action( 'wp_ajax_nopriv_ds_schedule_submit', 'ds_handle_lead_submission' );
+add_action( 'wp_ajax_ds_schedule_submit', 'ds_handle_lead_submission' );
+
 /**
  * Keep the WP admin bar off the public-facing pages so the fixed
  * .ds-navbar sits flush at the top of the viewport (the bar's 46px
  * mobile height was creating a gap above the nav in the Playground
  * preview, which auto-logs the viewer in).
  */
-add_filter( 'show_admin_bar', '__return_false' );
+add_filter( 'show_admin_bar', function ( $show ) {
+    return current_user_can( 'edit_posts' );
+} );
 
 /** ────────────────────────────────────────────────────────────────────────
- *  ONE-SHOT PAGE SEEDER — mirrors preview/blueprint.json runPHP.
- *  When the OPFS Playground site receives an updated theme zip, this
- *  ensures the 30+ new WP pages from the 2026-05-07 IA expansion exist
- *  without re-installing from the blueprint. Idempotent (uses
- *  get_page_by_path() to skip existing pages), gated by a versioned
- *  option so it only runs once per release.
+ *  ONE-SHOT PAGE SEEDER — guarded for manual execution.
+ *  Only executes if explicitly requested by a logged-in Administrator
+ *  via ?ds_run_page_seeder=1 (and ?force=1 to re-seed).
  *  ──────────────────────────────────────────────────────────────────────── */
 
 add_action( 'init', function () {
+    // Only execute if explicitly requested by a logged-in Administrator
+    if ( ! isset( $_GET['ds_run_page_seeder'] ) ) {
+        return;
+    }
+    if ( ! current_user_can( 'manage_options' ) ) {
+        wp_die( 'Unauthorized: Administrator access required to seed pages.' );
+    }
+
     $version = 'ds_pages_seeded_2026_05_10';
-    if ( get_option( $version ) ) { return; }
+    if ( get_option( $version ) && ! isset( $_GET['force'] ) ) {
+        return;
+    }
     if ( ! function_exists( 'wp_insert_post' ) ) { return; }
 
     $pages = [

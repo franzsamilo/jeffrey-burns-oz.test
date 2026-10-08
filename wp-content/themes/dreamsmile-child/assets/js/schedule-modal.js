@@ -91,12 +91,14 @@
       if (success) success.hidden = false;
     }
 
-    // Hijack every Schedule-style link across the site
+    // Hijack every Schedule-style link across the site (including legacy gform=1 triggers)
     var triggers = [
       'a[href="#quiz"]',
       'a[href="/#quiz"]',
       'a[href$="#quiz"]',
-      '[data-ds-schedule]'
+      'a[href*="gform=1"]',
+      '[data-ds-schedule]',
+      '[data-modal-form]'
     ].join(',');
 
     document.addEventListener('click', function (e) {
@@ -108,6 +110,11 @@
       e.preventDefault();
       open(trigger.getAttribute('data-ds-modal-variant'));
     }, true);
+
+    // Auto-open modal on direct legacy links like /?gform=1&modal
+    if (window.location.search && (window.location.search.indexOf('gform=1') !== -1 || window.location.search.indexOf('modal') !== -1)) {
+      setTimeout(function () { open(); }, 350);
+    }
 
     // Close via X, backdrop, ESC
     modal.addEventListener('click', function (e) {
@@ -132,7 +139,7 @@
         var url = (form.getAttribute('data-ds-endpoint') || '').trim();
         if (url) return { url: url, key: key };            // explicit endpoint (Formspree/Getform/custom)
         if (key) return { url: 'https://api.web3forms.com/submit', key: key }; // Web3Forms via key only
-        return null;                                        // nothing configured → demo mode
+        return { url: '/wp-admin/admin-ajax.php', key: '' }; // Native WordPress + Gravity Forms lead delivery
       }
 
       form.addEventListener('submit', function (e) {
@@ -150,18 +157,9 @@
 
         var target = resolveEndpoint();
 
-        // Demo mode: no lead endpoint configured yet — show confirmation without sending.
-        if (!target) {
-          if (window.console && console.info) {
-            console.info('[DSScheduleModal] Demo mode — no lead endpoint configured. ' +
-              'Add data-ds-access-key (Web3Forms) or data-ds-endpoint on the form to deliver leads.');
-          }
-          setTimeout(showSuccess, 650);
-          return;
-        }
-
         var data = new FormData(form);
         if (target.key && !data.get('access_key')) data.append('access_key', target.key);
+        if (!data.get('action')) data.append('action', 'ds_schedule_submit');
 
         fetch(target.url, {
           method: 'POST',
@@ -206,7 +204,7 @@
     var url = (form.getAttribute('data-ds-endpoint') || '').trim();
     if (url) return { url: url, key: key };
     if (key) return { url: 'https://api.web3forms.com/submit', key: key };
-    return null;
+    return { url: '/wp-admin/admin-ajax.php', key: '' };
   }
 
   function initForms() {
@@ -238,10 +236,10 @@
         }
 
         var target = endpointFor(form);
-        if (!target) { setTimeout(done, 500); return; } // demo mode
 
         var data = new FormData(form);
         if (target.key && !data.get('access_key')) data.append('access_key', target.key);
+        if (!data.get('action')) data.append('action', 'ds_schedule_submit');
 
         fetch(target.url, {
           method: 'POST',
