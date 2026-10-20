@@ -1,0 +1,6 @@
+Type,Condition,From,To,Note,Enable,Ignore Parameters
+301,exact-match,/restorative-dentistry/full-mouth-reconstruction/,/full-mouth-dental-implants/,"SEO tracker Redirect Map #19 (Medium). DECISION NEEDED (tracker R21): keep /restorative-dentistry/full-mouth-reconstruction/ live, or move its content first.",0,1
+301,exact-match,/about-us/whitney-oral-surgery/,/wisdom-teeth-removal/,SEO tracker Redirect Map #58 (Medium). Ask the client whether Dr. Whitney is still with the practice before redirecting.,0,1
+301,exact-match,/about-us/whitney-oral-surgery/dr-james-whitney/,/wisdom-teeth-removal/,SEO tracker Redirect Map #59 (Medium). Ask the client whether Dr. Whitney is still with the practice before redirecting.,0,1
+301,exact-match,/about-us/whitney-oral-surgery/information/,/wisdom-teeth-removal/,SEO tracker Redirect Map #60 (Low). Ask the client whether Dr. Whitney is still with the practice before redirecting.,0,1
+301,exact-match,/about-us/whitney-oral-surgery/oral-surgery-hours/,/contact/,SEO tracker Redirect Map #61 (Low). Ask the client whether Dr. Whitney is still with the practice before redirecting.,0,1

@@ -30,11 +30,18 @@ $services = [
     'desc'  => 'Plain-English articles on dental procedures, recovery, and what to expect &mdash; written for patients.',
     'icon'  => 'leaf',
   ],
+  [
+    'href'  => '/pay-your-bill/',
+    'label' => 'Pay Your Bill',
+    'desc'  => 'Pay your balance online through our secure payment portal &mdash; or scan the QR code with your phone.',
+    'icon'  => 'card',
+  ],
 ];
 
 $svg = [
   'book'   => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
   'wallet' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>',
+  'card'   => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>',
   'leaf'   => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>',
 ];
 ?>
@@ -49,11 +56,11 @@ $svg = [
   </div>
 </section>
 
-<section class="ds-implants-nav">
+<section class="ds-implants-nav ds-implants-nav--quad">
   <div class="ds-wrap">
     <div class="ds-implants-nav__head ds-reveal">
       <span class="ds-label">PATIENT RESOURCES</span>
-      <h2 class="ds-implants-nav__title">Three places to start.</h2>
+      <h2 class="ds-implants-nav__title">Four places to start.</h2>
     </div>
     <div class="ds-implants-nav__grid">
       <?php foreach ( $services as $s ) : ?>

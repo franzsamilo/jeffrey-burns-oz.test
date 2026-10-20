@@ -30,7 +30,7 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
       'Confidently <strong>smiling again</strong>',
     ];
     // Real client photo (chairside patient, DreamSmile shoot).
-    $is_photo = esc_url( $base ) . '/dreamsmile-is-patient.png';
+    $is_photo = esc_url( $base ) . '/dreamsmile-is-patient.webp';
     ?>
     <div class="ds-is-compact">
       <ul class="ds-is-benefits ds-reveal">

@@ -111,6 +111,15 @@ $variants = [
     'bg'       => $base . '/new-patients-hero.jpg',
     'alt'      => 'Dr. Burns greeting a new patient',
   ],
+  'pay-your-bill' => [
+    'label'    => 'PAY YOUR BILL',
+    'title'    => 'Pay Your Bill <em>Online</em>.',
+    'subtitle' => 'A secure way to pay your balance from home &mdash; no phone call, no stamp. Scan the code with your phone or use the button below.',
+    'cta1'     => [ 'label' => 'Pay Online Now', 'href' => ds_payment_url() ],
+    'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
+    'bg'       => $base . '/contact-hero.jpg',
+    'alt'      => 'Dr. Jeffrey S. Burns, DDS &mdash; New Market, VA office',
+  ],
 ];
 
 // Fallback: if not in $variants but registered in ds_service_pages(),
@@ -132,8 +141,39 @@ if ( ! isset( $variants[ $slug ] ) ) {
     }
 }
 
-$variant = isset( $variants[ $slug ] ) ? $slug : 'dental-implants';
-$v       = $variants[ $variant ];
+// Any other page. This used to fall back to the dental-implants banner, which
+// put "Dental Implants That Look, Feel & Function Like Natural Teeth" as an
+// extra H1 on top of /blog/, /disclaimer/, the /contact-us/ town pages and the
+// three implant deep-dives (SEO tracker R16). Now:
+if ( ! isset( $variants[ $slug ] ) ) {
+    $content = (string) get_post_field( 'post_content', get_the_ID() );
+
+    // Theme-built pages whose content is a pattern (implant-cost, -procedures,
+    // -faqs, the theme's own town pages) render their own hero and H1.
+    if ( false !== strpos( $content, '<!-- wp:pattern' ) ) {
+        return;
+    }
+
+    // Ordinary editor content (town pages, disclaimer, blog, privacy policy):
+    // a plain white header that clears the fixed navbar. It carries the page
+    // title as the H1 only when the content has no H1 of its own, so every
+    // page ends up with exactly one.
+    $has_h1 = (bool) preg_match( '/<h1[\s>]/i', $content );
+    ?>
+<!-- wp:html -->
+<header class="ds-article-hero ds-page-head<?php echo $has_h1 ? ' ds-page-head--bare' : ''; ?>">
+  <?php if ( ! $has_h1 ) : ?>
+  <div class="ds-wrap">
+    <h1 class="ds-article-hero__title"><?php echo esc_html( get_the_title() ); ?></h1>
+  </div>
+  <?php endif; ?>
+</header>
+<!-- /wp:html -->
+    <?php
+    return;
+}
+
+$v = $variants[ $slug ];
 ?>
 <!-- wp:html -->
 <?php

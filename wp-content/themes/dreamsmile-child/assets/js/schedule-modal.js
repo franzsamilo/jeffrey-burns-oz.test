@@ -1,3 +1,24 @@
+/**
+ * Lead signal for Google Tag Manager (SEO tracker R14).
+ *
+ * The old site's form tool told GTM about every lead; these custom forms did
+ * not, so form leads would have vanished from the practice's reports at
+ * launch. Pushes a GA4-style `generate_lead` event once the server has
+ * confirmed the lead was received. It carries which form and which page —
+ * never anything the patient typed (this is a medical site).
+ *
+ * In GTM: Custom Event trigger on `generate_lead`, read `form_name` from the
+ * data layer.
+ */
+window.dsTrackLead = function (formName) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'generate_lead',
+    form_name: formName,
+    page_path: window.location.pathname
+  });
+};
+
 (function () {
   'use strict';
 
@@ -57,8 +78,11 @@
       if (subject) subject.value = v.subject;
     }
 
+    var openVariant = 'assessment';
+
     function open(variant) {
       if (!modal) return;
+      openVariant = VARIANTS[variant] ? variant : 'assessment';
       applyVariant(variant);
       modal.removeAttribute('hidden');
       requestAnimationFrame(function () { modal.classList.add('is-open'); });
@@ -91,12 +115,14 @@
       if (success) success.hidden = false;
     }
 
-    // Hijack every Schedule-style link across the site
+    // Hijack every Schedule-style link across the site (including legacy gform=1 triggers)
     var triggers = [
       'a[href="#quiz"]',
       'a[href="/#quiz"]',
       'a[href$="#quiz"]',
-      '[data-ds-schedule]'
+      'a[href*="gform=1"]',
+      '[data-ds-schedule]',
+      '[data-modal-form]'
     ].join(',');
 
     document.addEventListener('click', function (e) {
@@ -108,6 +134,11 @@
       e.preventDefault();
       open(trigger.getAttribute('data-ds-modal-variant'));
     }, true);
+
+    // Auto-open modal on direct legacy links like /?gform=1&modal
+    if (window.location.search && (window.location.search.indexOf('gform=1') !== -1 || window.location.search.indexOf('modal') !== -1)) {
+      setTimeout(function () { open(); }, 350);
+    }
 
     // Close via X, backdrop, ESC
     modal.addEventListener('click', function (e) {
@@ -132,7 +163,7 @@
         var url = (form.getAttribute('data-ds-endpoint') || '').trim();
         if (url) return { url: url, key: key };            // explicit endpoint (Formspree/Getform/custom)
         if (key) return { url: 'https://api.web3forms.com/submit', key: key }; // Web3Forms via key only
-        return null;                                        // nothing configured → demo mode
+        return { url: '/wp-admin/admin-ajax.php', key: '' }; // Native WordPress + Gravity Forms lead delivery
       }
 
       form.addEventListener('submit', function (e) {
@@ -150,18 +181,9 @@
 
         var target = resolveEndpoint();
 
-        // Demo mode: no lead endpoint configured yet — show confirmation without sending.
-        if (!target) {
-          if (window.console && console.info) {
-            console.info('[DSScheduleModal] Demo mode — no lead endpoint configured. ' +
-              'Add data-ds-access-key (Web3Forms) or data-ds-endpoint on the form to deliver leads.');
-          }
-          setTimeout(showSuccess, 650);
-          return;
-        }
-
         var data = new FormData(form);
         if (target.key && !data.get('access_key')) data.append('access_key', target.key);
+        if (!data.get('action')) data.append('action', 'ds_schedule_submit');
 
         fetch(target.url, {
           method: 'POST',
@@ -176,8 +198,12 @@
         }).then(function (r) {
           // Success = HTTP 2xx and the provider didn't explicitly report failure.
           var explicitFail = r.json && r.json.success === false;
-          if (r.ok && !explicitFail) showSuccess();
-          else fail();
+          if (r.ok && !explicitFail) {
+            showSuccess();
+            window.dsTrackLead(openVariant === 'guide' ? 'guide_request' : 'assessment_request');
+          } else {
+            fail();
+          }
         }).catch(fail);
       });
     }
@@ -206,7 +232,7 @@
     var url = (form.getAttribute('data-ds-endpoint') || '').trim();
     if (url) return { url: url, key: key };
     if (key) return { url: 'https://api.web3forms.com/submit', key: key };
-    return null;
+    return { url: '/wp-admin/admin-ajax.php', key: '' };
   }
 
   function initForms() {
@@ -238,10 +264,10 @@
         }
 
         var target = endpointFor(form);
-        if (!target) { setTimeout(done, 500); return; } // demo mode
 
         var data = new FormData(form);
         if (target.key && !data.get('access_key')) data.append('access_key', target.key);
+        if (!data.get('action')) data.append('action', 'ds_schedule_submit');
 
         fetch(target.url, {
           method: 'POST',
@@ -255,8 +281,12 @@
           );
         }).then(function (r) {
           var explicitFail = r.json && r.json.success === false;
-          if (r.ok && !explicitFail) done();
-          else fail();
+          if (r.ok && !explicitFail) {
+            done();
+            window.dsTrackLead(form.getAttribute('data-ds-form-name') || 'inline_form');
+          } else {
+            fail();
+          }
         }).catch(fail);
       });
     });

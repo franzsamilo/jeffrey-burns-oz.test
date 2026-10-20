@@ -5,6 +5,7 @@
  * Categories: dreamsmile
  */
 defined( 'ABSPATH' ) || exit;
+$towns = ds_town_pages();
 ?>
 <!-- wp:html -->
 <section class="ds-final-cta">
@@ -46,6 +47,15 @@ defined( 'ABSPATH' ) || exit;
         <span>Backed by the DreamSmile<sup class="ds-tm">&trade;</sup> Warranty</span>
       </li>
     </ul>
+
+    <?php // Harrisonburg/Winchester are the campaign's goal towns; this page is
+          // the hub that should link them (SEO tracker R29 + Content Gaps). ?>
+    <p class="ds-final-cta__serving">
+      Patients come to our New Market office from
+      <a href="<?php echo esc_url( $towns['Harrisonburg'] ); ?>">Harrisonburg</a>,
+      <a href="<?php echo esc_url( $towns['Winchester'] ); ?>">Winchester</a>,
+      and across the Shenandoah Valley &mdash; <a href="/locations/">see all the areas we serve</a>.
+    </p>
   </div>
 </section>
 <!-- /wp:html -->
