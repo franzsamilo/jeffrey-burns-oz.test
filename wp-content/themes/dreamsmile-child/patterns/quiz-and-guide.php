@@ -55,7 +55,7 @@ $quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/guide-cover.w
       <!-- CENTER — iPad / book preview.
            Resolved 2026-08-07: this is the real guide ("The Ultimate Guide to Dental
            Implants", Dr. Burns's own patient) from the client's Drive, not a stock
-           placeholder. Swapped off quiz-card.png, which had a "Download Now" button
+           placeholder. Swapped off quiz-card.webp, which had a "Download Now" button
            baked into the artwork — an image that reads as a button but isn't. The
            GET THE FREE GUIDE control in the aside is the only real CTA here. -->
       <figure class="ds-quiz-ipad" aria-hidden="false">

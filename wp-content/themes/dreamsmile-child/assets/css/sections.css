@@ -296,7 +296,10 @@ body.admin-bar .ds-navbar { top: 32px; }
   gap: 48px;
 }
 @media (min-width: 768px) {
-  .ds-footer__grid { grid-template-columns: repeat(3, 1fr); }
+  .ds-footer__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .ds-footer__grid { grid-template-columns: 1.2fr 1fr 1fr 1fr; }
 }
 .ds-footer__brand {
   display: inline-block;
@@ -353,14 +356,51 @@ body.admin-bar .ds-navbar { top: 32px; }
 }
 .ds-footer__links a:hover { color: var(--ds-teal); }
 
-.ds-footer__copyright {
+/* Town-page list (SEO tracker R29) — two short columns so eight towns don't
+   make the footer the tallest thing on the page. */
+.ds-footer__areas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 16px;
+}
+.ds-footer__areas li {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+.ds-footer__areas-all { margin-top: 4px; }
+
+.ds-footer__bottom {
   border-top: 1px solid #eaeaea;
   margin-top: 48px;
   padding-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 24px;
+}
+.ds-footer__copyright {
+  margin: 0;
   text-align: center;
   font-size: 12px;
   color: #777777;
 }
+.ds-footer__legal {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+}
+.ds-footer__legal a {
+  color: #555555;
+  transition: color .2s ease;
+}
+.ds-footer__legal a:hover { color: var(--ds-teal-dark); }
 
 /* â”€â”€â”€ Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
@@ -430,7 +470,7 @@ body.admin-bar .ds-navbar { top: 32px; }
       rgba(58, 58, 58, 0.18) 52%,
       rgba(58, 58, 58, 0.07) 72%,
       rgba(58, 58, 58, 0.13) 100%),
-    url('../arrange/hero-shot.jpg');
+    url('../arrange/hero-shot.webp');
   background-size: auto, cover;
   background-position: center, center 25%;
   background-repeat: no-repeat;
@@ -817,7 +857,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   max-height: 360px;
   display: block;
   margin-inline: auto;
-  /* Placeholder asset (quiz-card.png) ships with an opaque white background rather
+  /* Placeholder asset (quiz-card.webp) ships with an opaque white background rather
      than a transparent cutout, so round its corners to match the card language and
      avoid a sharp-cornered white box on the section's gray field. Harmless once the
      real transparent guide cover is dropped in. */

@@ -3,7 +3,8 @@
  * Master config for all single-service pages — see ds_service_pages()
  * in functions.php. Each top-level key is a WP page slug. Adding a
  * new entry here + a matching WP page is all that's needed to ship a
- * new service page (sub-hero, body content, and SEO meta all auto-wire).
+ * new service page (sub-hero and body content auto-wire). Its Google
+ * title and description are set in the page's Slim SEO box, not here.
  *
  * Categories help group pages for analytics and future filtering:
  *   implants  — 5 implant deep-dives
@@ -14,6 +15,9 @@
  *   resource  — Resources children (Financing, Patient Education)
  */
 defined( 'ABSPATH' ) || exit;
+
+// Town-page links used in body copy (SEO tracker: Harrisonburg/Winchester targeting).
+$towns = ds_town_pages();
 
 return [
 
@@ -29,10 +33,6 @@ return [
       'subtitle' => 'Replace one missing tooth without compromising the healthy teeth on either side. Permanent, natural-looking, designed to last a lifetime.',
       'bg'       => 'dental-implants-hero.jpg',
       'alt'      => 'Single dental implant &mdash; Dr. Burns&rsquo;s practice',
-    ],
-    'seo' => [
-      'title'       => 'Single Dental Implants in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Replace one missing tooth with a permanent dental implant &mdash; natural-looking, fully functional, placed personally by Dr. Burns. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHY A SINGLE IMPLANT',
@@ -128,10 +128,6 @@ return [
       'bg'       => 'implant-cost-hero.jpg',
       'alt'      => 'Implant-supported bridge assessment',
     ],
-    'seo' => [
-      'title'       => 'Implant Supported Bridges in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Implant-supported bridges replace multiple missing teeth without grinding down healthy ones. A permanent, comfortable alternative to traditional bridges. Free assessment in New Market, VA.',
-    ],
     'intro' => [
       'label' => 'WHY IMPLANT-SUPPORTED',
       'title' => 'When you&rsquo;re missing two or more teeth in a row.',
@@ -185,10 +181,6 @@ return [
       'subtitle' => 'A plain-English explanation of how dental implants integrate with the jawbone, why they outperform every alternative, and what makes them last.',
       'bg'       => 'implant-procedures-hero.jpg',
       'alt'      => 'Dental implant explained',
-    ],
-    'seo' => [
-      'title'       => 'How Dental Implants Work | Dr. Jeffrey S. Burns, DDS &middot; New Market, VA',
-      'description' => 'A plain-English explanation of how dental implants work, why they last, and how Dr. Burns&rsquo;s approach makes the procedure predictable. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'THE BASICS',
@@ -245,10 +237,6 @@ return [
       'bg'       => 'full-mouth-implants-hero.jpg',
       'alt'      => 'Patient smiling confidently with a full new smile',
     ],
-    'seo' => [
-      'title'       => 'Full Mouth Dental Implants (All-on-4) in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Full-arch dental implants restore an entire row of teeth with just 4&ndash;6 implants. Permanent, fixed, and life-changing &mdash; placed personally by Dr. Burns in New Market, VA.',
-    ],
     'intro' => [
       'label' => 'A FULL ROW OF TEETH',
       'title' => 'When dentures aren&rsquo;t enough &mdash; <span class="ds-italic">and you want your life back</span>.',
@@ -267,6 +255,24 @@ return [
         [ 'num' => '02', 'title' => 'Surgery day',                                 'desc' => 'Any failing teeth are removed; 4&ndash;6 implants are precisely placed; a temporary fixed bridge is attached the same day. You leave with teeth.' ],
         [ 'num' => '03', 'title' => 'Healing &amp; integration',                   'desc' => '3&ndash;6 months for full bone integration. The temporary bridge stays in place &mdash; you eat, talk, and smile normally throughout.' ],
         [ 'num' => '04', 'title' => 'Final fixed bridge',                          'desc' => 'Your custom-designed final bridge is placed &mdash; the one designed for the next 30 years. This is the day you&rsquo;ll remember.' ],
+      ],
+    ],
+    // Teeth-in-a-Day had its own page on the old site (ranks #2 for "dental
+    // implants in a day harrisonburg", 9 linking sites) and now redirects here.
+    // Facts below are from that page.
+    'prose' => [
+      'label'  => 'TEETH-IN-A-DAY',
+      'title'  => 'Teeth-in-a-Day: <span class="ds-italic">fixed teeth the same day as surgery</span>.',
+      'blocks' => [
+        [ 'h' => 'What Teeth-in-a-Day means', 'p' => [
+          'Teeth-in-a-Day gives qualifying patients a full arch of fixed, working teeth on dental implants in a single procedure. Dr. Burns plans the whole case in advance from a 3D CT scan of your jaw, so your new teeth are made <em>before</em> surgery day instead of weeks after it.',
+        ] ],
+        [ 'h' => 'Why planning ahead makes recovery easier', 'p' => [
+          'Because every implant position is mapped in 3D planning software first, placement is guided and precise, and it is usually done without lifting a flap of gum tissue. That typically means less swelling, less bruising, and less discomfort, and many patients are back to their normal routine the next day.',
+        ] ],
+        [ 'h' => 'For patients from Harrisonburg, Winchester, and the valley', 'p' => [
+          'Dr. Burns performs Teeth-in-a-Day at his office in New Market, VA &mdash; a short drive north on I-81 from <a href="' . esc_url( $towns['Harrisonburg'] ) . '">Harrisonburg</a> and south on I-81 from <a href="' . esc_url( $towns['Winchester'] ) . '">Winchester</a>. The CT scan, the surgery, and your new teeth all happen under one roof.',
+        ] ],
       ],
     ],
     'why' => [
@@ -303,10 +309,6 @@ return [
       'subtitle' => 'Snap-in dentures anchored to 2&ndash;4 implants &mdash; the comfort and stability of fixed teeth, with the convenience of a removable appliance.',
       'bg'       => 'implant-faqs-hero.jpg',
       'alt'      => 'Implant-supported dentures assessment',
-    ],
-    'seo' => [
-      'title'       => 'Implant Supported Dentures in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Snap-in implant-supported dentures eliminate slipping, sore spots, and adhesive. Anchored to 2&ndash;4 implants. Free assessment with Dr. Burns in New Market, VA.',
     ],
     'intro' => [
       'label' => 'NO MORE SLIPPING',
@@ -365,10 +367,6 @@ return [
       'bg'       => 'bridges-hero.jpg',
       'alt'      => 'Dental bridge assessment',
     ],
-    'seo' => [
-      'title'       => 'Dental Bridges &mdash; Traditional &amp; Implant-Supported | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Traditional and implant-supported dental bridges in New Market, VA. Get an honest comparison of both approaches and a recommendation for your specific case.',
-    ],
     'intro' => [
       'label' => 'TRADITIONAL VS. IMPLANT',
       'title' => 'Two ways to bridge a gap &mdash; <span class="ds-italic">we&rsquo;ll help you pick</span>.',
@@ -422,10 +420,6 @@ return [
       'bg'       => 'extraction-hero.jpg',
       'alt'      => 'Comfortable tooth extraction at DreamSmile',
     ],
-    'seo' => [
-      'title'       => 'Tooth Extraction in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Comfortable, anxiety-aware tooth extractions with on-staff anesthesiology. Implant-ready extraction sites whenever possible. Free assessment in New Market, VA.',
-    ],
     'intro' => [
       'label' => 'WHEN AN EXTRACTION IS RIGHT',
       'title' => 'Sometimes the tooth has to go &mdash; <span class="ds-italic">and that&rsquo;s OK</span>.',
@@ -470,10 +464,6 @@ return [
       'subtitle' => 'When bone loss has put implants out of reach, modern bone grafting often opens the door back up. The "yes" when other offices said no.',
       'bg'       => 'bone-graft-hero.jpg',
       'alt'      => 'Bone grafting assessment',
-    ],
-    'seo' => [
-      'title'       => 'Bone Grafting in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Bone grafting rebuilds jawbone after tooth loss, opening up implant options that may have been ruled out elsewhere. Free assessment with Dr. Burns in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHEN BONE LOSS IS A BLOCKER',
@@ -534,10 +524,6 @@ return [
       'bg'       => 'full-dentures-hero.jpg',
       'alt'      => 'Full dentures fitting',
     ],
-    'seo' => [
-      'title'       => 'Full Dentures in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Comfortable, well-fitted full dentures &mdash; and the option to upgrade to implant-stabilized dentures for a no-slip solution. Free assessment in New Market, VA.',
-    ],
     'intro' => [
       'label' => 'A FULL ARCH OF TEETH',
       'title' => 'Full dentures, <span class="ds-italic">fitted with care</span>.',
@@ -591,10 +577,6 @@ return [
       'bg'       => 'partial-dentures-hero.jpg',
       'alt'      => 'Partial denture fitting',
     ],
-    'seo' => [
-      'title'       => 'Partial Dentures in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Discreet, well-fitted partial dentures that fill the gaps without compromising your healthy teeth. Free assessment with Dr. Burns in New Market, VA.',
-    ],
     'intro' => [
       'label' => 'WHEN A PARTIAL FITS',
       'title' => 'A removable appliance &mdash; <span class="ds-italic">when an implant or bridge isn&rsquo;t the right fit</span>.',
@@ -639,10 +621,6 @@ return [
       'bg'       => 'pediatric-hero.jpg',
       'alt'      => 'Pediatric dental care at DreamSmile',
     ],
-    'seo' => [
-      'title'       => 'Pediatric Dental Care in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Warm, gentle pediatric dental care for kids in New Market and the Shenandoah Valley. Cavity prevention, sealants, exams, and friendly first visits.',
-    ],
     'intro' => [
       'label' => 'KIDS WELCOME',
       'title' => 'A first dental visit your child <span class="ds-italic">won&rsquo;t dread next time</span>.',
@@ -684,13 +662,9 @@ return [
     'sub_hero' => [
       'label'    => 'DENTAL CROWNS',
       'title'    => 'A Crown That Looks Like the Tooth <em>Was Always There</em>.',
-      'subtitle' => 'Custom porcelain crowns that protect cracked, weakened, or restored teeth &mdash; shaded and shaped to disappear into your smile.',
+      'subtitle' => 'Custom ceramic crowns that protect cracked, weakened, or restored teeth &mdash; shaded to disappear into your smile, and often made and fitted the same day with CEREC.',
       'bg'       => 'crowns-hero.jpg',
       'alt'      => 'Patient smiling after receiving a custom porcelain crown',
-    ],
-    'seo' => [
-      'title'       => 'Dental Crowns in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Custom porcelain dental crowns that protect cracked or weakened teeth and look indistinguishable from natural enamel. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHEN A CROWN IS RIGHT',
@@ -698,16 +672,16 @@ return [
       'sub'   => 'A crown wraps over a tooth that&rsquo;s been weakened by decay, fracture, or a large filling. It restores the strength, the shape, and the appearance &mdash; while sealing the tooth from further damage.',
       'pillars' => [
         [ 'strong' => 'Strong &amp; Durable', 'span' => 'restores 100% of bite function' ],
-        [ 'strong' => 'Custom Shaded', 'span' => 'matched to your other teeth' ],
+        [ 'strong' => 'Same-Day CEREC', 'span' => 'designed, milled &amp; fitted in one visit' ],
         [ 'strong' => '10&ndash;15+ Years', 'span' => 'with proper care' ],
       ],
     ],
     'steps' => [
       'label' => 'HOW IT WORKS',
-      'title' => 'Your crown process &mdash; <span class="ds-italic">two visits, beautifully fitted</span>.',
+      'title' => 'Your crown process &mdash; <span class="ds-italic">often in a single visit</span>.',
       'list' => [
         [ 'num' => '01', 'title' => 'Tooth preparation',          'desc' => 'The tooth is gently shaped to receive the crown. Local anesthesia keeps the visit comfortable.' ],
-        [ 'num' => '02', 'title' => 'Impression &amp; temporary', 'desc' => 'A precise digital or physical impression goes to the lab. You wear a temporary crown for 1&ndash;2 weeks.' ],
+        [ 'num' => '02', 'title' => 'Digital scan &amp; design', 'desc' => 'A quick 3D scan replaces the impression tray. With CEREC, your crown is designed on screen and milled in our office while you wait. If your case calls for a lab-made crown instead, you wear a temporary for 1&ndash;2 weeks.' ],
         [ 'num' => '03', 'title' => 'Final crown placement',      'desc' => 'The custom porcelain crown is bonded into place. Color, shape, and bite all checked &mdash; we adjust until it&rsquo;s right.' ],
       ],
     ],
@@ -717,12 +691,30 @@ return [
       'title'   => 'How a crown protects and rebuilds your tooth.',
       'caption' => 'The tooth is gently reshaped, then a <strong>custom porcelain crown</strong> is bonded over it like a protective cap &mdash; restoring full strength and a natural shape while your own root stays in place.',
     ],
+    // The old site had a CEREC page (/restorative-dentistry/cerec/, now
+    // redirected here) and "same day dental crowns harrisonburg va" is one of
+    // the campaign's goal searches. Facts below are from that page.
+    'prose' => [
+      'label'  => 'SAME-DAY CROWNS',
+      'title'  => 'Same-day CEREC crowns: <span class="ds-italic">one visit, no temporary</span>.',
+      'blocks' => [
+        [ 'h' => 'How a same-day crown works', 'p' => [
+          'CEREC lets Dr. Burns plan, make, and fit a ceramic crown in one appointment. A digital camera captures your tooth in 3D, the crown is designed on screen, and an in-office milling unit carves it from a solid block of tooth-colored ceramic. Once it fits, it is bonded in place and you leave with your final crown.',
+        ] ],
+        [ 'h' => 'Why patients choose it', 'p' => [
+          'One visit means one round of numbing and no temporary crown to protect, chip, or lose. The ceramic is shade-matched to your natural teeth and built for everyday chewing. The same CEREC system also makes same-day inlays, onlays, and veneers.',
+        ] ],
+        [ 'h' => 'Same-day crowns near Harrisonburg', 'p' => [
+          'Dr. Burns&rsquo;s office in New Market, VA is a short drive north on I-81 for patients from <a href="' . esc_url( $towns['Harrisonburg'] ) . '">Harrisonburg</a> and across the Shenandoah Valley. Ask at your assessment whether your tooth is a good fit for a same-day crown.',
+        ] ],
+      ],
+    ],
     'why' => [
       'label' => 'WHY DR. BURNS',
       'title' => 'A crown that disappears into your smile.',
       'cards' => [
         [ 'icon' => 'crown',  'title' => 'Custom porcelain, not metal', 'desc' => 'We use modern all-porcelain crowns by default &mdash; no dark metal margins at the gum line.' ],
-        [ 'icon' => 'gem',    'title' => 'Lab partners we trust',       'desc' => 'Crowns crafted with experienced lab partners. We don&rsquo;t outsource quality.' ],
+        [ 'icon' => 'gem',    'title' => 'Made in-house when it can be', 'desc' => 'Most crowns are designed and milled right here with CEREC. For the cases that need a lab, we use partners we trust.' ],
         [ 'icon' => 'shield', 'title' => 'Bite checked carefully',      'desc' => 'A crown that&rsquo;s slightly too high causes ongoing problems. We adjust until your bite feels exactly right before you leave.' ],
       ],
     ],
@@ -741,10 +733,6 @@ return [
       'subtitle' => 'Modern, virtually painless root canal therapy that saves a damaged tooth from extraction &mdash; with the comfort techniques to make it nothing like the horror story.',
       'bg'       => 'root-canal-hero.jpg',
       'alt'      => 'Root canal therapy',
-    ],
-    'seo' => [
-      'title'       => 'Root Canal in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Modern, virtually painless root canal therapy that saves the tooth and ends the pain. Free assessment with Dr. Burns in New Market, VA.',
     ],
     'intro' => [
       'label' => 'IT&rsquo;S NOT WHAT YOU&rsquo;VE HEARD',
@@ -790,10 +778,6 @@ return [
       'subtitle' => 'Safe, expertly planned wisdom-teeth removal &mdash; from a single tooth to all four, with full sedation if you want it.',
       'bg'       => 'wisdom-teeth-hero.jpg',
       'alt'      => 'Wisdom teeth removal assessment',
-    ],
-    'seo' => [
-      'title'       => 'Wisdom Teeth Removal in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Safe, expertly planned wisdom-teeth removal with on-staff anesthesiology and a recovery plan that fits your week. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WISDOM TEETH OUT',
@@ -844,10 +828,6 @@ return [
       'bg'       => 'veneers-hero.jpg',
       'alt'      => 'Porcelain veneers smile design',
     ],
-    'seo' => [
-      'title'       => 'Porcelain Veneers in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Custom porcelain veneers from an AACD-award-winning cosmetic expert. Reshape, brighten, and rebuild your smile in just a few visits. Free assessment in New Market, VA.',
-    ],
     'intro' => [
       'label' => 'WHAT VENEERS DO',
       'title' => 'Veneers reshape <span class="ds-italic">the smile you already have</span>.',
@@ -893,10 +873,6 @@ return [
       'bg'       => 'whitening-hero.jpg',
       'alt'      => 'Professional teeth whitening',
     ],
-    'seo' => [
-      'title'       => 'Professional Teeth Whitening in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Professional in-office and take-home teeth whitening tailored to your enamel &mdash; safer, more dramatic, and lower-sensitivity than over-the-counter kits. Free assessment in New Market, VA.',
-    ],
     'intro' => [
       'label' => 'NOT THE STRIPS',
       'title' => 'Professional whitening is <span class="ds-italic">a different category</span> from drugstore strips.',
@@ -940,10 +916,6 @@ return [
       'subtitle' => 'Discreet clear-aligner treatment for crowding, gaps, or bite issues. Removable, comfortable, and supervised personally by Dr. Burns.',
       'bg'       => 'aligners-hero.jpg',
       'alt'      => 'Clear braces / aligners assessment',
-    ],
-    'seo' => [
-      'title'       => 'Clear Braces &amp; Aligners in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Discreet clear-aligner treatment for crooked teeth, gaps, or bite issues &mdash; planned and supervised by Dr. Burns. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'CLEAR &amp; REMOVABLE',
@@ -994,10 +966,6 @@ return [
       'bg'       => 'anesthesia-hero.jpg',
       'alt'      => 'Anesthesia and sedation options',
     ],
-    'seo' => [
-      'title'       => 'Anesthesia &amp; Sedation Dentistry in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Local numbing, nitrous oxide, oral sedation, and full IV sedation &mdash; with a board-certified physician anesthesiologist on staff. Free assessment in New Market, VA.',
-    ],
     'intro' => [
       'label' => 'COMFORT ON YOUR TERMS',
       'title' => 'Modern anesthesia means <span class="ds-italic">no procedure should be feared</span>.',
@@ -1042,10 +1010,6 @@ return [
       'subtitle' => 'Comprehensive dental exams that go beyond the perfunctory peek &mdash; oral cancer screening, bite analysis, gum health, and a real conversation about what we see.',
       'bg'       => 'exams-hero.jpg',
       'alt'      => 'Dental exam and check-up',
-    ],
-    'seo' => [
-      'title'       => 'Dental Exams &amp; Check-ups in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Comprehensive dental exams in New Market, VA &mdash; oral cancer screening, bite analysis, gum health, and a real conversation about what we see. Schedule your check-up today.',
     ],
     'intro' => [
       'label' => 'YOUR REGULAR CHECK-UP',
@@ -1092,10 +1056,6 @@ return [
       'bg'       => 'oral-hygiene-hero.jpg',
       'alt'      => 'Oral hygiene coaching',
     ],
-    'seo' => [
-      'title'       => 'Oral Hygiene Coaching in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Practical, personalized oral hygiene coaching &mdash; the daily habits that prevent cavities, gum disease, and bigger problems. New Market, VA.',
-    ],
     'intro' => [
       'label' => 'PREVENTION FIRST',
       'title' => 'Most dental problems start with <span class="ds-italic">small daily habits</span>.',
@@ -1139,10 +1099,6 @@ return [
       'subtitle' => 'Routine professional cleanings that remove the buildup brushing can&rsquo;t reach &mdash; the foundation of good oral health.',
       'bg'       => 'gum-disease-hero.jpg',
       'alt'      => 'Professional teeth cleaning',
-    ],
-    'seo' => [
-      'title'       => 'Professional Teeth Cleaning in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Routine professional teeth cleanings in New Market, VA. Removes the plaque and tartar brushing can&rsquo;t reach. Schedule your cleaning today.',
     ],
     'intro' => [
       'label' => 'YOUR REGULAR CLEANING',
@@ -1189,10 +1145,6 @@ return [
       'bg'       => 'sealants-hero.jpg',
       'alt'      => 'Dental sealants for cavity prevention',
     ],
-    'seo' => [
-      'title'       => 'Dental Sealants in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Dental sealants prevent cavities in the deep grooves of molars &mdash; especially for kids and teens. Painless, fast, and highly effective. New Market, VA.',
-    ],
     'intro' => [
       'label' => 'PREVENTION THAT WORKS',
       'title' => 'A 5-minute treatment that <span class="ds-italic">prevents 80% of cavities</span> in molars.',
@@ -1236,10 +1188,6 @@ return [
       'subtitle' => 'Scaling and root planing for early gum disease &mdash; gentle, thorough, and the right step before things get worse.',
       'bg'       => 'deep-cleaning-hero.jpg',
       'alt'      => 'Deep teeth cleaning &mdash; scaling and root planing',
-    ],
-    'seo' => [
-      'title'       => 'Deep Teeth Cleaning (Scaling &amp; Root Planing) in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Deep cleaning (scaling and root planing) for early gum disease. The right step when a routine cleaning isn&rsquo;t enough. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHEN A DEEP CLEANING IS RIGHT',
@@ -1285,10 +1233,6 @@ return [
       'subtitle' => 'Specialized maintenance cleanings every 3&ndash;4 months for patients who&rsquo;ve had gum disease &mdash; the way to stay ahead of it long-term.',
       'bg'       => 'perio-maint-hero.jpg',
       'alt'      => 'Periodontal maintenance cleanings',
-    ],
-    'seo' => [
-      'title'       => 'Periodontal Maintenance in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Periodontal maintenance cleanings every 3&ndash;4 months for patients who&rsquo;ve had gum disease &mdash; the long-term plan to stay healthy. New Market, VA.',
     ],
     'intro' => [
       'label' => 'AFTER A DEEP CLEANING',
@@ -1337,10 +1281,6 @@ return [
       'subtitle' => 'Composite fillings that match your natural tooth shade &mdash; no more silver flashes when you laugh.',
       'bg'       => 'fillings-hero.jpg',
       'alt'      => 'Tooth-colored composite fillings',
-    ],
-    'seo' => [
-      'title'       => 'Tooth-Colored Dental Fillings in New Market, VA | Dr. Jeffrey S. Burns, DDS',
-      'description' => 'Modern tooth-colored composite fillings that match your natural enamel &mdash; no more silver flashes when you laugh. Free assessment in New Market, VA.',
     ],
     'intro' => [
       'label' => 'A FILLING DONE RIGHT',
@@ -1419,10 +1359,6 @@ return [
       'bg'       => 'financing-hero.jpg',
       'alt'      => 'Financing and insurance options',
     ],
-    'seo' => [
-      'title'       => 'Financing &amp; Insurance | Dr. Jeffrey S. Burns, DDS &middot; New Market, VA',
-      'description' => 'Most major insurance accepted plus flexible financing through Cherry, CareCredit, and Sunbit. Turnkey pricing &mdash; no surprise bills. New Market, VA.',
-    ],
     'intro' => [
       'label' => 'PAYING FOR CARE',
       'title' => 'Cost should never be <span class="ds-italic">why you put off care</span>.',
@@ -1467,10 +1403,6 @@ return [
       'subtitle' => 'Honest, jargon-free articles on procedures, recovery, and what to expect &mdash; reviewed by Dr.&nbsp;Burns&rsquo;s office, written for patients.',
       'bg'       => 'resources-hero.jpg',
       'alt'      => 'Patient education articles',
-    ],
-    'seo' => [
-      'title'       => 'Patient Education | Dr. Jeffrey S. Burns, DDS &middot; New Market, VA',
-      'description' => 'Plain-English articles on dental procedures, recovery, and what to expect &mdash; reviewed by Dr. Jeffrey S. Burns&rsquo;s office in New Market, VA.',
     ],
     'intro' => [
       'label' => 'WHY THIS PAGE EXISTS',

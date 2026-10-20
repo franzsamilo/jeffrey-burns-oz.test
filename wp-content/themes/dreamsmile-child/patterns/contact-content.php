@@ -20,16 +20,8 @@ $office     = ds_office_data();
 $maps_embed = 'https://www.google.com/maps?q=' . rawurlencode( $office['maps_q'] ) . '&output=embed';
 $maps_dir   = 'https://www.google.com/maps/dir/?api=1&destination=' . rawurlencode( $office['maps_q'] );
 
-$cities = [
-  [ 'Harrisonburg', 'harrisonburg' ],
-  [ 'Winchester',   'winchester'   ],
-  [ 'Bridgewater',  'bridgewater'  ],
-  [ 'Woodstock',    'woodstock'    ],
-  [ 'Luray',        'luray'        ],
-  [ 'Elkton',       'elkton'       ],
-  [ 'Timberville',  'timberville'  ],
-  [ 'Broadway',     'broadway'     ],
-];
+// Town name => its /contact-us/ town page (see ds_town_pages()).
+$cities = ds_town_pages();
 
 $svg_dir   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-7-7 18-2.5-7.5L3 11z"/></svg>';
 $svg_phone = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.12 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.11L8.1 9.91a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.72 2z"/></svg>';
@@ -90,11 +82,11 @@ $svg_route = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
       <p class="ds-cities-bar__sub">Pick your town for directions tailored to your route.</p>
     </div>
     <ul class="ds-cities-bar__list ds-reveal">
-      <?php foreach ( $cities as $c ) : ?>
+      <?php foreach ( $cities as $town => $path ) : ?>
         <li>
-          <a href="/<?php echo esc_attr( $c[1] ); ?>/">
+          <a href="<?php echo esc_url( $path ); ?>">
             <span class="ds-cities-bar__pin"><?php echo $svg_visit; ?></span>
-            <?php echo esc_html( $c[0] ); ?>
+            <?php echo esc_html( $town ); ?>
           </a>
         </li>
       <?php endforeach; ?>

@@ -159,6 +159,7 @@ add_action( 'init', function () {
         'Anesthesia & Sedation', 'Dental Exams', 'Oral Hygiene', 'Teeth Cleaning',
         'Dental Sealants', 'Deep Teeth Cleaning', 'Periodontal Maintenance',
         'Dental Fillings', 'Financing & Insurance', 'Patient Education',
+        'Pay Your Bill',
         'Harrisonburg', 'Winchester', 'Broadway', 'Bridgewater',
         'Luray', 'Woodstock', 'Elkton', 'Timberville',
     ];
@@ -221,275 +222,48 @@ add_action( 'init', function () {
 }, 5 );
 
 /** ────────────────────────────────────────────────────────────────────────
- *  SEO INFRASTRUCTURE — per-page meta + JSON-LD, single-Dentist schema with
- *  areaServed for the 8 SEO communities. Location subpages do NOT declare
- *  their own LocalBusiness entities (that would read as multiple practices).
+ *  SEO — Slim SEO is the single source.
+ *
+ *  Titles, meta descriptions, canonicals, robots, Open Graph, the sitemap and
+ *  the business schema all come from the Slim SEO plugin (plus Slim SEO
+ *  Schema). The theme used to print its own copy of every one of those, and
+ *  the SEO team's 2026-10-14 audit found the two copies disagreeing on every
+ *  page: an http:// and an https:// canonical, two descriptions, two Open
+ *  Graph sets, and a second Dentist entity with the wrong hours and a
+ *  hard-coded "5.0 from 200 reviews" rating. The theme now prints none of it.
+ *
+ *  The per-page titles and descriptions the theme used to hard-code live on in
+ *  inc/seo-migration.php, which copies them into Slim SEO once so the SEO
+ *  team can edit them in wp-admin.
  *  ──────────────────────────────────────────────────────────────────────── */
 
-function ds_current_slug() {
-    if ( is_front_page() || is_home() ) { return 'home'; }
-    if ( is_page() ) {
-        $p = get_post();
-        if ( $p && ! empty( $p->post_name ) ) { return $p->post_name; }
-    }
-    return '';
-}
-
-function ds_seo_data( $slug = null ) {
-    if ( null === $slug ) { $slug = ds_current_slug(); }
-    $office = ds_office_data();
-    $brand  = 'Dr. Jeffrey S. Burns, DDS';
-    $base   = get_stylesheet_directory_uri() . '/assets/arrange';
-
-    $cities = [
-        'harrisonburg' => [ 'name' => 'Harrisonburg', 'prefix' => 'Near', 'preview' => 'Harrisonburg dental implant patients trust Dr. Burns. A short drive north on I-81 to our New Market, VA office &mdash; 30+ years of experience, the Burns Protocol, and a free assessment.', 'image' => 'Harrison-Hero.jpg' ],
-        'winchester'   => [ 'name' => 'Winchester',   'prefix' => 'Near', 'preview' => 'Dental implant patients from Winchester, VA trust Dr. Burns for the Burns Protocol. A scenic drive south on I-81 to our New Market office &mdash; free assessment.', 'image' => 'Winchester-8locations.jpg' ],
-        'broadway'     => [ 'name' => 'Broadway',     'prefix' => 'Near', 'preview' => 'Dental implant patients from Broadway and the central Shenandoah Valley &mdash; a quick drive up Rt. 11 to Dr. Burns&rsquo;s New Market office. Free assessment.', 'image' => 'Broadway-8locations.jpg' ],
-        'bridgewater'  => [ 'name' => 'Bridgewater',  'prefix' => 'Near', 'preview' => 'Bridgewater, VA dental implant patients &mdash; Dr. Burns&rsquo;s practice is a short drive north on I-81 in New Market. 30+ years of experience, free assessment.', 'image' => 'Bridgewater-8locations.jpg' ],
-        'luray'        => [ 'name' => 'Luray',        'prefix' => 'Near', 'preview' => 'Page County dental implant patients trust Dr. Burns. A short drive across the valley to our New Market, VA practice. Free assessment.', 'image' => 'Luray-8locations.jpg' ],
-        'woodstock'    => [ 'name' => 'Woodstock',    'prefix' => 'Near', 'preview' => 'Shenandoah County dental implant patients &mdash; Dr. Burns&rsquo;s practice is a quick drive south on I-81 from Woodstock to New Market. Free assessment.', 'image' => 'Woodstock-8locations.jpg' ],
-        'elkton'       => [ 'name' => 'Elkton',       'prefix' => 'Near', 'preview' => 'Elkton and east Rockingham County dental implant patients &mdash; Dr. Burns&rsquo;s practice is a short trip up I-81 in New Market, VA.', 'image' => 'Elkton-8locations.jpg' ],
-        'timberville'  => [ 'name' => 'Timberville',  'prefix' => 'Near', 'preview' => 'Timberville and orchard-country dental implant patients &mdash; quick drive east to Dr. Burns&rsquo;s New Market, VA practice. Free assessment.', 'image' => 'Timberville-8locations.jpg' ],
-    ];
-
-    if ( isset( $cities[ $slug ] ) ) {
-        $c = $cities[ $slug ];
-        return [
-            'title'       => 'Dental Implants ' . $c['prefix'] . ' ' . $c['name'] . ', VA | ' . $brand,
-            'description' => wp_strip_all_tags( $c['preview'] ),
-            'og_image'    => $base . '/' . $c['image'],
-            'og_type'     => 'website',
-            'robots'      => 'index, follow',
-            'page_type'   => 'location',
-            'page_city'   => $c['name'],
-        ];
-    }
-
-    $map = [
-        'home' => [
-            'title' => 'DreamSmile Dental Implants in New Market, VA | ' . $brand,
-            'description' => 'Permanent dental implant solutions from a nationally recognized expert with 30+ years of experience. Serving the Shenandoah Valley from our New Market, VA office. Schedule your free assessment with Dr. Jeffrey S. Burns, DDS.',
-            'og_image' => $base . '/home-hero.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'home',
-        ],
-        'dental-implants' => [
-            'title' => 'Dental Implants in New Market, VA &mdash; The Burns Protocol | ' . $brand,
-            'description' => 'Permanent, natural-looking dental implants placed personally by Dr. Burns. Single, multi-tooth, and full-arch implants &mdash; all under one roof in New Market, VA.',
-            'og_image' => $base . '/dental-implants-hero.jpg', 'og_type' => 'article', 'robots' => 'index, follow', 'page_type' => 'service',
-        ],
-        'implant-cost' => [
-            'title' => 'Dental Implant Cost & Financing | ' . $brand . ' New Market, VA',
-            'description' => 'Transparent, all-inclusive dental implant pricing in New Market, VA. No hidden fees. Flexible financing for single, multi-tooth, and full-arch implants.',
-            'og_image' => $base . '/dental-implants-hero.jpg', 'og_type' => 'article', 'robots' => 'index, follow', 'page_type' => 'service',
-        ],
-        'implant-procedures' => [
-            'title' => 'Dental Implant Procedures Explained | ' . $brand,
-            'description' => 'Walk through every step of the dental implant process &mdash; assessment, placement, restoration. The Burns Protocol: a nationally recognized 6-step system.',
-            'og_image' => $base . '/dental-implants-hero.jpg', 'og_type' => 'article', 'robots' => 'index, follow', 'page_type' => 'service',
-        ],
-        'implant-faqs' => [
-            'title' => 'Dental Implant FAQs | ' . $brand . ' New Market, VA',
-            'description' => 'Answers to the most common dental implant questions &mdash; pain, recovery, longevity, cost, candidacy. Direct from Dr. Burns and his 30+ years of experience.',
-            'og_image' => $base . '/new-patients-hero.jpg', 'og_type' => 'article', 'robots' => 'index, follow', 'page_type' => 'faq',
-        ],
-        'locations' => [
-            'title' => 'Dental Implants Across the Shenandoah Valley &mdash; Communities We Serve | ' . $brand,
-            'description' => 'Dr. Burns&rsquo;s dental implant practice serves patients across the Shenandoah Valley from his New Market, VA office. See the communities we serve.',
-            'og_image' => $base . '/Harrison-Hero.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'locations-index',
-        ],
-        'new-patients' => [
-            'title' => 'New Patients | DreamSmile Dental Implants &mdash; ' . $brand,
-            'description' => 'Welcome to DreamSmile. Get started with your free assessment, new patient forms, and what to expect on your first visit with Dr. Burns in New Market, VA.',
-            'og_image' => $base . '/new-patients-hero.jpg', 'og_type' => 'article', 'robots' => 'index, follow', 'page_type' => 'page',
-        ],
-        'contact' => [
-            'title' => 'Contact &mdash; DreamSmile by Dr. Jeffrey S. Burns, DDS &middot; New Market, VA',
-            'description' => 'Visit Dr. Burns at 9626 South Congress St, New Market, VA. Call (540) 740-8937 or schedule your free assessment. Office hours Mon&ndash;Thu, 8&nbsp;AM&nbsp;&ndash;&nbsp;3&nbsp;PM.',
-            'og_image' => $base . '/hero-image.png', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'contact',
-        ],
-        'general-dentistry' => [
-            'title' => 'General Dentistry in New Market, VA | ' . $brand,
-            'description' => 'Comprehensive general dentistry from Dr. Jeffrey S. Burns, DDS &mdash; serving New Market, Harrisonburg, and the Shenandoah Valley. Bridges, crowns, extractions, root canals, and more, all in one office.',
-            'og_image' => $base . '/service-general.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'service',
-        ],
-        'cosmetic-dentistry' => [
-            'title' => 'Cosmetic Dentistry in New Market, VA | ' . $brand,
-            'description' => 'Cosmetic dentistry by a nationally recognized AACD-award-winning expert &mdash; veneers, whitening, and clear braces designed to give you the smile you actually want.',
-            'og_image' => $base . '/service-cosmetic.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'service',
-        ],
-        'meet-dr-burns' => [
-            'title' => 'Meet Dr. Jeffrey S. Burns, DDS &mdash; Nationally Recognized Implant Expert',
-            'description' => '30+ years placing dental implants. AACD award recipient. Creator of the Burns Protocol. Teaches dentists nationwide. Gives every implant patient his personal cell number. Meet the expert behind DreamSmile.',
-            'og_image' => $base . '/casual-photo-burns.png', 'og_type' => 'profile', 'robots' => 'index, follow', 'page_type' => 'about',
-        ],
-        'restorative-care' => [
-            'title' => 'Restorative Care in New Market, VA | ' . $brand,
-            'description' => 'Fillings, crowns, bridges, root canals, extractions, and implants &mdash; every restorative option you might need, planned and performed by the same doctor.',
-            'og_image' => $base . '/restorative-care-hero.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'service',
-        ],
-        'gum-disease' => [
-            'title' => 'Gum Disease Treatment in New Market, VA | ' . $brand,
-            'description' => 'Catch gum disease early and stay ahead of it. Deep teeth cleaning and periodontal maintenance from Dr. Burns&rsquo;s New Market, VA practice.',
-            'og_image' => $base . '/gum-disease-hero.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'service',
-        ],
-        'resources' => [
-            'title' => 'Patient Resources | ' . $brand,
-            'description' => 'Forms, financing, and patient-education articles &mdash; everything you need before, during, and after your visit.',
-            'og_image' => $base . '/resources-hero.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'page',
-        ],
-        'patient-education' => [
-            'title' => 'Patient Education | ' . $brand . ' &middot; New Market, VA',
-            'description' => 'Plain-English articles on dental procedures, recovery, and what to expect &mdash; reviewed by Dr. Burns&rsquo;s office.',
-            'og_image' => $base . '/resources-hero.jpg', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'page',
-        ],
-    ];
-
-    if ( isset( $map[ $slug ] ) ) { return $map[ $slug ]; }
-
-    // Fallback: service-detail pages (5 implant deep-dives, GD/Cosmetic
-    // children, preventative-care subpages, financing, etc.) — single
-    // source of truth in inc/service-pages.php.
-    $services = ds_service_pages();
-    if ( isset( $services[ $slug ] ) ) {
-        $svc = $services[ $slug ];
-        return [
-            'title'       => $svc['seo']['title']       ?? ( $svc['sub_hero']['label'] . ' | ' . $brand ),
-            'description' => $svc['seo']['description'] ?? wp_strip_all_tags( $svc['sub_hero']['subtitle'] ?? '' ),
-            'og_image'    => $base . '/' . ( $svc['sub_hero']['bg'] ?? 'hero-image.png' ),
-            'og_type'     => 'article',
-            'robots'      => 'index, follow',
-            'page_type'   => 'service',
-        ];
-    }
-
-    // Final default — must NOT call wp_get_document_title() since this fn
-    // is itself wired into the document_title_parts filter. That recursion
-    // exhausts memory on any unmapped slug (e.g., new pages added post-deploy).
-    return [
-        'title' => get_bloginfo( 'name' ),
-        'description' => 'A DreamSmile You Never Have to Hide. 30+ years of dental implant experience with ' . $brand . ' in New Market, VA.',
-        'og_image' => $base . '/hero-image.png', 'og_type' => 'website', 'robots' => 'index, follow', 'page_type' => 'page',
-    ];
-}
-
-add_filter( 'document_title_parts', function ( $parts ) {
-    $seo = ds_seo_data();
-    if ( ! empty( $seo['title'] ) ) {
-        $parts['title']   = wp_strip_all_tags( html_entity_decode( $seo['title'] ) );
-        $parts['tagline'] = '';
-        $parts['site']    = '';
-    }
-    return $parts;
-} );
+// Any page without its own Slim SEO title falls back to WordPress's default
+// "Page Title - Site Name". The SEO team's convention is a pipe. Slim SEO's
+// {{ sep }} variable reads this same filter, so its templates follow suit.
+add_filter( 'document_title_separator', function () { return '|'; } );
 
 add_action( 'wp_head', function () {
-    $seo      = ds_seo_data();
-    $office   = ds_office_data();
-    $favicon  = get_stylesheet_directory_uri() . '/assets/images/favicon.svg';
-    $site_url = trailingslashit( home_url() );
-    $req_path = isset( $_SERVER['REQUEST_URI'] ) ? strtok( $_SERVER['REQUEST_URI'], '?' ) : '/';
-    $canonical = home_url( $req_path );
-    $description = wp_strip_all_tags( html_entity_decode( $seo['description'] ) );
-    $title       = wp_strip_all_tags( html_entity_decode( $seo['title'] ) );
-    ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="<?php echo esc_attr( $description ); ?>">
-    <meta name="robots" content="<?php echo esc_attr( $seo['robots'] ); ?>">
-    <meta name="author" content="Dr. Jeffrey S. Burns, DDS">
-    <meta name="theme-color" content="#7FB5B0">
-    <link rel="canonical" href="<?php echo esc_url( $canonical ); ?>">
-    <link rel="icon" type="image/svg+xml" href="<?php echo esc_url( $favicon ); ?>">
-    <meta property="og:site_name" content="DreamSmile by Dr. Jeffrey S. Burns, DDS">
-    <meta property="og:type" content="<?php echo esc_attr( $seo['og_type'] ); ?>">
-    <meta property="og:title" content="<?php echo esc_attr( $title ); ?>">
-    <meta property="og:description" content="<?php echo esc_attr( $description ); ?>">
-    <meta property="og:url" content="<?php echo esc_url( $canonical ); ?>">
-    <meta property="og:image" content="<?php echo esc_url( $seo['og_image'] ); ?>">
-    <meta property="og:locale" content="en_US">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<?php echo esc_attr( $title ); ?>">
-    <meta name="twitter:description" content="<?php echo esc_attr( $description ); ?>">
-    <meta name="twitter:image" content="<?php echo esc_url( $seo['og_image'] ); ?>">
-    <?php
-    $address_parts = ds_parse_address_for_schema( $office['address'] );
-    $dentist_id    = $site_url . '#dentist';
-    $person_id     = $site_url . '#dr-burns';
-    $area_served = [];
-    foreach ( [ 'Harrisonburg', 'Winchester', 'Broadway', 'Bridgewater', 'Luray', 'Woodstock', 'Elkton', 'Timberville' ] as $city ) {
-        $area_served[] = [ '@type' => 'City', 'name' => $city . ', VA' ];
+    // A site icon set in Settings > General wins; this is only the fallback.
+    if ( ! has_site_icon() ) {
+        echo '<link rel="icon" type="image/svg+xml" href="' . esc_url( get_stylesheet_directory_uri() . '/assets/images/favicon.svg' ) . '">' . "\n";
     }
-    $dentist_schema = [
-        '@context' => 'https://schema.org', '@type' => 'Dentist', '@id' => $dentist_id,
-        'name' => 'DreamSmile by Dr. Jeffrey S. Burns, DDS', 'alternateName' => 'Dr. Burns Dental Implants',
-        'url' => $site_url, 'logo' => get_stylesheet_directory_uri() . '/assets/images/favicon.svg',
-        'image' => get_stylesheet_directory_uri() . '/assets/arrange/dr-burns-portrait.jpg',
-        'description' => 'Nationally recognized dental implant practice led by Dr. Jeffrey S. Burns, DDS, with 30+ years of experience. Home of the Burns Protocol.',
-        'telephone' => $office['phone_tel'], 'priceRange' => '$$$',
-        'address' => array_merge( [ '@type' => 'PostalAddress' ], $address_parts ),
-        'areaServed' => $area_served,
-        'openingHoursSpecification' => [ [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday' ], 'opens' => '08:00', 'closes' => '17:00' ] ],
-        'medicalSpecialty' => 'Dentistry',
-        'knowsAbout' => [ 'Dental Implants', 'Cosmetic Dentistry', 'Restorative Dentistry', 'Full-Arch Implants', 'Burns Protocol' ],
-        'founder' => [ '@id' => $person_id ], 'employee' => [ [ '@id' => $person_id ] ],
-        'aggregateRating' => [ '@type' => 'AggregateRating', 'ratingValue' => '5.0', 'reviewCount' => $office['reviews'] ],
-    ];
-    $person_schema = [
-        '@context' => 'https://schema.org', '@type' => 'Person', '@id' => $person_id,
-        'name' => 'Dr. Jeffrey S. Burns', 'givenName' => 'Jeffrey', 'familyName' => 'Burns',
-        'honorificSuffix' => 'DDS', 'jobTitle' => 'Doctor of Dental Surgery',
-        'description' => 'Nationally recognized leader in dental implantology and smile design with over 30 years of hands-on implant experience. Creator of the Burns Protocol.',
-        'image' => get_stylesheet_directory_uri() . '/assets/arrange/dr-burns-portrait.jpg',
-        'url' => $site_url, 'worksFor' => [ '@id' => $dentist_id ],
-        'knowsAbout' => [ 'Dental Implants', 'Cosmetic Dentistry', 'Burns Protocol', 'Smile Design' ],
-        'hasCredential' => [
-            [ '@type' => 'EducationalOccupationalCredential', 'credentialCategory' => 'AACD Award Recipient' ],
-            [ '@type' => 'EducationalOccupationalCredential', 'credentialCategory' => 'Published Author' ],
-            [ '@type' => 'EducationalOccupationalCredential', 'credentialCategory' => 'Teaches Doctors Nationwide' ],
-        ],
-    ];
-    echo "\n" . '<script type="application/ld+json">' . wp_json_encode( $dentist_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
-    echo "\n" . '<script type="application/ld+json">' . wp_json_encode( $person_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
-    if ( 'faq' === ( $seo['page_type'] ?? '' ) ) {
-        $faqs = ds_faq_data();
+    echo '<meta name="theme-color" content="#7FB5B0">' . "\n";
+
+    // FAQPage mirrors the question list the implant-faqs pattern renders from
+    // ds_faq_data(), so it can only stay in sync if it comes from the same
+    // place. Slim SEO prints no FAQPage, so this is not a second copy.
+    if ( is_page( 'implant-faqs' ) ) {
         $main_entity = [];
-        foreach ( $faqs as $f ) {
+        foreach ( ds_faq_data() as $f ) {
             // Brand convention: DreamSmile&trade; on visible UI only — strip the mark from schema text.
             $main_entity[] = [ '@type' => 'Question', 'name' => str_replace( '™', '', wp_strip_all_tags( html_entity_decode( $f[1] ) ) ), 'acceptedAnswer' => [ '@type' => 'Answer', 'text' => str_replace( '™', '', wp_strip_all_tags( html_entity_decode( $f[2] ) ) ) ] ];
         }
-        echo "\n" . '<script type="application/ld+json">' . wp_json_encode( [ '@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $main_entity ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
+        echo '<script type="application/ld+json">' . wp_json_encode( [ '@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $main_entity ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
     }
-    if ( 'home' !== ( $seo['page_type'] ?? '' ) && ! empty( $seo['title'] ) ) {
-        $bc = [ [ '@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => $site_url ] ];
-        if ( 'location' === $seo['page_type'] ) {
-            $bc[] = [ '@type' => 'ListItem', 'position' => 2, 'name' => 'Service Areas', 'item' => $site_url . 'locations/' ];
-            $bc[] = [ '@type' => 'ListItem', 'position' => 3, 'name' => $seo['page_city'], 'item' => $canonical ];
-        } else {
-            $bc[] = [ '@type' => 'ListItem', 'position' => 2, 'name' => wp_strip_all_tags( html_entity_decode( get_the_title() ?: $title ) ), 'item' => $canonical ];
-        }
-        echo "\n" . '<script type="application/ld+json">' . wp_json_encode( [ '@context' => 'https://schema.org', '@type' => 'BreadcrumbList', 'itemListElement' => $bc ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
-    }
-    if ( 'home' === ( $seo['page_type'] ?? '' ) ) {
-        echo "\n" . '<script type="application/ld+json">' . wp_json_encode( [ '@context' => 'https://schema.org', '@type' => 'WebSite', 'url' => $site_url, 'name' => 'DreamSmile by Dr. Jeffrey S. Burns, DDS', 'publisher' => [ '@id' => $dentist_id ] ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
-    }
-    echo "\n";
 }, 5 );
 
-add_filter( 'robots_txt', function ( $output, $public ) {
-    if ( '0' === (string) $public ) { return $output; }
-    return $output . "\nSitemap: " . home_url( '/wp-sitemap.xml' ) . "\n";
-}, 10, 2 );
-
-function ds_parse_address_for_schema( $address ) {
-    $parts = array_map( 'trim', explode( ',', (string) $address ) );
-    $street = $parts[0] ?? '';
-    $city   = $parts[1] ?? 'New Market';
-    $rest   = $parts[2] ?? 'VA';
-    $tokens = preg_split( '/\s+/', trim( $rest ) ) ?: [];
-    $region = $tokens[0] ?? 'VA';
-    $postal = $tokens[1] ?? '';
-    $out = [ 'streetAddress' => $street, 'addressLocality' => $city, 'addressRegion' => $region, 'addressCountry' => 'US' ];
-    if ( $postal !== '' ) { $out['postalCode'] = $postal; }
-    return $out;
-}
+// One-time hand-off of the theme's old titles/descriptions into Slim SEO.
+require_once trailingslashit( get_stylesheet_directory() ) . 'inc/seo-migration.php';
 
 function ds_faq_data() {
     return [
@@ -507,24 +281,15 @@ function ds_faq_data() {
 }
 
 /**
- * Shared real-practice data — single physical practice in New Market, VA.
- * The 8 location subpages all reference this same address.
- *
- * Address and hours confirmed against the client's own site 2026-05-09.
- * `reviews` is the one value still unverified — it feeds both the visible
- * "200+ verified patient reviews" line on the location pages AND the JSON-LD
- * aggregateRating below, so it needs a real number from the practice's Google
- * Business Profile before launch. See the open-questions memory entry.
- */
-/**
  * Master config for all single-service pages (5 implant deep-dives, 9
  * General Dentistry children, 3 Cosmetic children, Restorative Care
  * children, Preventative-care subpages, Financing, Patient Education).
  *
  * Each entry powers:
  *   - Hero metadata (page-sub-hero.php fallback when slug not in $variants)
- *   - SEO meta (ds_seo_data() fallback when slug not in $map)
  *   - Body content (patterns/service-detail.php universal renderer)
+ *
+ * Page titles and meta descriptions are NOT set here — they live in Slim SEO.
  *
  * Adding a new service page = add an entry here + create the WP page.
  * No new pattern, template, or per-slug code required.
@@ -537,6 +302,15 @@ function ds_service_pages() {
     return $cache;
 }
 
+/**
+ * Shared real-practice data — single physical practice in New Market, VA.
+ * Address and hours confirmed against the client's own site 2026-05-09.
+ *
+ * `reviews` is still unverified. It no longer reaches any schema (the theme
+ * prints none — see the SEO section above), but it still feeds the visible
+ * "200+ reviews" line on the theme's own town pages, which are being retired
+ * in favour of the /contact-us/ town pages.
+ */
 function ds_office_data() {
     return [
         'address'    => '9626 South Congress St, New Market, VA 22844',
@@ -551,6 +325,54 @@ function ds_office_data() {
         'phone_tel'  => '+15407408937',
     ];
 }
+
+/**
+ * The 8 town (area) pages, in the order the SEO team ranks them.
+ *
+ * These are the long-standing /contact-us/ pages, not the theme's own
+ * /harrisonburg/-style pages. The /contact-us/ addresses hold the rankings and
+ * the outside links, so the SEO team is restoring their original text and
+ * 301-redirecting the theme's versions to them (SEO tracker, 2026-10-15). Every
+ * town link the theme prints — the /locations/ grid, the contact page, the
+ * footer, the implant pages — reads from this one list.
+ *
+ * @return array<string,string> Town name => site-relative path.
+ */
+function ds_town_pages() {
+    return [
+        'Harrisonburg' => '/contact-us/dental-implants-harrisonburg-area/',
+        'Winchester'   => '/contact-us/winchester-dentist-dental-implants/',
+        'Elkton'       => '/contact-us/cosmetic-dentist-elkton-area/',
+        'Bridgewater'  => '/contact-us/dental-implants-dentist-near-bridgewater/',
+        'Woodstock'    => '/contact-us/dentist-near-woodstock-cosmetic-implants/',
+        'Luray'        => '/contact-us/cosmetic-dentist-near-luray/',
+        'Broadway'     => '/contact-us/cosmetic-dentist-near-broadway/',
+        'Timberville'  => '/contact-us/dental-implants-timberville-va/',
+    ];
+}
+
+/**
+ * Online bill payment (Balance Collect), requested by Dr. Burns 2026-10.
+ * The site links to /pay-your-bill/ (navbar Resources menu, footer, the
+ * /resources/ hub), which shows the payment button and the QR code.
+ */
+function ds_payment_url() {
+    return 'https://pay.balancecollect.com/m/jeffreysburnsddspc';
+}
+
+// Until a /pay-your-bill/ page is published (page seeder, or by hand with that
+// slug), send anyone who follows a "Pay Your Bill" link straight to the
+// payment portal instead of a 404.
+add_action( 'template_redirect', function () {
+    if ( ! is_404() ) {
+        return;
+    }
+    $path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+    if ( 'pay-your-bill' === $path ) {
+        wp_redirect( ds_payment_url(), 302 );
+        exit;
+    }
+} );
 
 /**
  * Split-panel sub-hero — a solid charcoal text panel beside a clean image
@@ -677,24 +499,63 @@ function ds_pated_group_for_slug( $slug ) {
 }
 
 /**
- * Helper to get video url from the GitHub Releases CDN.
+ * Resolve a video file name to a URL.
  *
- * build_zip.py excludes *.mp4, so every video slot on the site resolves
- * through here — if this base URL is wrong, all 11 of them break at once.
+ * build_zip.py excludes *.mp4 (the footage runs to hundreds of MB), so every
+ * video slot on the site resolves through here. In order:
  *
- * Fixed 2026-08-07: this pointed at franzsamilo/dreamsmile-preview, which
- * does not resolve (404 on every video). The assets live on the
- * jeffrey-burns-oz.test v2 release, the same one preview/blueprint.json
- * installs the theme from.
- *
- * Pinned to v2 rather than /releases/latest/ on purpose: the footage runs
- * to hundreds of MB and will not be re-uploaded to future releases, so a
- * later tag becoming "latest" would break every video again.
+ *   1. The site's own Media Library. Upload the .mp4 with the same file name
+ *      and every slot that uses it switches over, no code change. This is
+ *      how the videos move off the developer's GitHub account, which the SEO
+ *      team flagged (tracker R26): the client does not own that account.
+ *   2. A copy dropped into the theme's assets/arrange/ folder.
+ *   3. The jeffrey-burns-oz.test v2 GitHub release (the long-standing
+ *      fallback). Pinned to v2, not /releases/latest/, because the footage is
+ *      not re-uploaded to later releases.
  */
 function ds_get_video_url( $video_name ) {
+    $library = ds_media_library_videos();
+    $key     = strtolower( $video_name );
+    if ( isset( $library[ $key ] ) ) {
+        return $library[ $key ];
+    }
+
     $local_path = get_stylesheet_directory() . '/assets/arrange/' . $video_name;
     if ( file_exists( $local_path ) ) {
         return get_stylesheet_directory_uri() . '/assets/arrange/' . $video_name;
     }
     return 'https://github.com/franzsamilo/jeffrey-burns-oz.test/releases/download/v2/' . $video_name;
+}
+
+/**
+ * Every video in the Media Library, keyed by lower-cased file name.
+ * One query per request, and only on pages that actually render a video.
+ *
+ * @return array<string,string> file name => URL.
+ */
+function ds_media_library_videos() {
+    static $map = null;
+    if ( null !== $map ) {
+        return $map;
+    }
+    $map = [];
+    $ids = get_posts( [
+        'post_type'      => 'attachment',
+        'post_status'    => 'inherit',
+        'post_mime_type' => 'video',
+        'posts_per_page' => 200,
+        'fields'         => 'ids',
+        'no_found_rows'  => true,
+    ] );
+    if ( $ids ) {
+        update_meta_cache( 'post', $ids );
+    }
+    foreach ( $ids as $id ) {
+        $file = get_post_meta( $id, '_wp_attached_file', true );
+        $url  = wp_get_attachment_url( $id );
+        if ( $file && $url ) {
+            $map[ strtolower( wp_basename( $file ) ) ] = $url;
+        }
+    }
+    return $map;
 }

@@ -5,13 +5,15 @@
  * Categories: dreamsmile
  *
  * Index of communities Dr. Burns serves. There is ONE physical practice
- * (see ds_office_data() in functions.php). Each card links to a city-targeted
- * SEO landing page that uses "Dental Implants Near [City]" framing.
+ * (see ds_office_data() in functions.php). Each card links to that town's
+ * /contact-us/ page from ds_town_pages() — the long-standing addresses that
+ * hold the rankings (SEO tracker R15), not the theme's /harrisonburg/ pages.
  */
 defined( 'ABSPATH' ) || exit;
 $base     = get_stylesheet_directory_uri() . '/assets/arrange';
 $base_dir = trailingslashit( get_stylesheet_directory() ) . 'assets/arrange/';
 $office   = ds_office_data();
+$towns    = ds_town_pages();
 
 // Per-card image fallback: cities that don't have a real photo on disk yet
 // drop back to the hero image so the grid never shows broken-image icons.
@@ -19,8 +21,8 @@ $ds_locations_fallback = $base . '/hero-image.png';
 
 /**
  * Per-city cards. `name` is the community served, `image` is a city-flavor
- * photo (visual context, NOT "our office in X"), `slug` routes to the
- * matching SEO landing page.
+ * photo (visual context, NOT "our office in X"). The link comes from
+ * ds_town_pages(), keyed by the name.
  */
 $locations = [
   [ 'Harrisonburg', 'Serving Harrisonburg &amp; Rockingham County',  'Harrisonburg-8locations.jpg', 'harrisonburg', false ],
@@ -61,7 +63,7 @@ $locations = [
           <div class="ds-location-card__body">
             <h3 class="ds-location-card__name">Dental Implants <?php echo $loc[4] ? 'in' : 'Near'; ?> <?php echo esc_html( $loc[0] ); ?></h3>
             <p class="ds-location-card__addr"><?php echo $loc[1]; ?></p>
-            <a href="/<?php echo esc_attr( $loc[3] ); ?>/" class="ds-btn ds-btn--outlined ds-btn--sm">Learn More &rarr;</a>
+            <a href="<?php echo esc_url( $towns[ $loc[0] ] ?? '/locations/' ); ?>" class="ds-btn ds-btn--outlined ds-btn--sm" aria-label="Learn more about dental care near <?php echo esc_attr( $loc[0] ); ?>">Learn More &rarr;</a>
           </div>
         </article>
       <?php endforeach; ?>

@@ -1,3 +1,24 @@
+/**
+ * Lead signal for Google Tag Manager (SEO tracker R14).
+ *
+ * The old site's form tool told GTM about every lead; these custom forms did
+ * not, so form leads would have vanished from the practice's reports at
+ * launch. Pushes a GA4-style `generate_lead` event once the server has
+ * confirmed the lead was received. It carries which form and which page —
+ * never anything the patient typed (this is a medical site).
+ *
+ * In GTM: Custom Event trigger on `generate_lead`, read `form_name` from the
+ * data layer.
+ */
+window.dsTrackLead = function (formName) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'generate_lead',
+    form_name: formName,
+    page_path: window.location.pathname
+  });
+};
+
 (function () {
   'use strict';
 
@@ -57,8 +78,11 @@
       if (subject) subject.value = v.subject;
     }
 
+    var openVariant = 'assessment';
+
     function open(variant) {
       if (!modal) return;
+      openVariant = VARIANTS[variant] ? variant : 'assessment';
       applyVariant(variant);
       modal.removeAttribute('hidden');
       requestAnimationFrame(function () { modal.classList.add('is-open'); });
@@ -174,8 +198,12 @@
         }).then(function (r) {
           // Success = HTTP 2xx and the provider didn't explicitly report failure.
           var explicitFail = r.json && r.json.success === false;
-          if (r.ok && !explicitFail) showSuccess();
-          else fail();
+          if (r.ok && !explicitFail) {
+            showSuccess();
+            window.dsTrackLead(openVariant === 'guide' ? 'guide_request' : 'assessment_request');
+          } else {
+            fail();
+          }
         }).catch(fail);
       });
     }
@@ -253,8 +281,12 @@
           );
         }).then(function (r) {
           var explicitFail = r.json && r.json.success === false;
-          if (r.ok && !explicitFail) done();
-          else fail();
+          if (r.ok && !explicitFail) {
+            done();
+            window.dsTrackLead(form.getAttribute('data-ds-form-name') || 'inline_form');
+          } else {
+            fail();
+          }
         }).catch(fail);
       });
     });

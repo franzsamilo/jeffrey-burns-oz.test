@@ -189,7 +189,7 @@ $icon_phone  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
         </span>
         <h3 class="ds-np-forms-card__title">Request Digital Forms</h3>
         <p class="ds-np-forms-card__desc">Send us your name and email and we&rsquo;ll email you secure online versions to fill out from any device. Faster than printing.</p>
-        <form class="ds-np-forms-form" data-ds-forms-request
+        <form class="ds-np-forms-form" data-ds-forms-request data-ds-form-name="new_patient_forms_request"
               data-ds-access-key="" data-ds-endpoint="">
           <!--
             Same one-step setup as the assessment modal (parts/footer.html):
