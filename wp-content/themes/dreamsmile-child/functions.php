@@ -18,7 +18,7 @@ add_action( 'wp_enqueue_scripts', function () {
 
 add_action( 'wp_enqueue_scripts', function () {
     $ver = wp_get_theme()->get( 'Version' );
-    foreach ( [ 'navbar', 'animations', 'quiz', 'before-after', 'schedule-modal', 'faq-cats', 'testimonials' ] as $h ) {
+    foreach ( [ 'navbar', 'animations', 'quiz', 'before-after', 'schedule-modal', 'lead-embeds', 'faq-cats', 'testimonials' ] as $h ) {
         wp_enqueue_script( 'dreamsmile-' . $h, get_stylesheet_directory_uri() . '/assets/js/' . $h . '.js', [], $ver, true );
     }
 } );
@@ -375,13 +375,63 @@ add_action( 'template_redirect', function () {
 } );
 
 /**
+ * Lead tools run by the practice's marketing agency in GoHighLevel, embed
+ * codes sent by the client 2026-10-24. All three live on the agency's
+ * domains; the theme only frames or links them.
+ *
+ *   survey — the 9-step eligibility quiz. The homepage quiz card is its first
+ *            question, so the card's answer is handed over (see lead-embeds.js).
+ *   smile  — Smile Reveal, the AI smile preview (homepage, under the quiz row).
+ *   ebook  — the funnel page that delivers "The Ultimate Guide to Dental
+ *            Implants" (GET THE FREE GUIDE, and the guide section).
+ */
+function ds_lead_tools() {
+    return [
+        'survey_id'  => 'uOZSrX8gMOfmQJAmCmNu',
+        'survey_url' => 'https://schedule.jeffrey-burns.implant-services.com/widget/survey/uOZSrX8gMOfmQJAmCmNu',
+        'survey_js'  => 'https://schedule.jeffrey-burns.implant-services.com/js/form_embed.js',
+        'smile_url'  => 'https://app.smilereveal.io/embed?token=a16fb209402e11416aaa731568e6078d28f2bff01605aded53bd2e0d1a722a67',
+        'ebook_url'  => 'https://jeffrey-burns.implant-services.com/get-e-book',
+    ];
+}
+
+// The survey modal. Rendered here rather than in parts/footer.html because it
+// needs the URL above, and an editor-customised footer part would hide any
+// markup added to the file. The iframe itself is only created on first open.
+add_action( 'wp_footer', function () {
+    $tools = ds_lead_tools();
+    ?>
+<div class="ds-modal ds-modal--survey" data-ds-survey-modal hidden
+     data-ds-survey-id="<?php echo esc_attr( $tools['survey_id'] ); ?>"
+     data-ds-survey-src="<?php echo esc_url( $tools['survey_url'] ); ?>"
+     data-ds-survey-js="<?php echo esc_url( $tools['survey_js'] ); ?>">
+  <div class="ds-modal__backdrop" data-ds-survey-close></div>
+
+  <div class="ds-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ds-survey-title">
+    <button type="button" class="ds-modal__close" data-ds-survey-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="ds-survey">
+      <span class="ds-label">30-SECOND ELIGIBILITY QUIZ</span>
+      <h2 class="ds-modal__title" id="ds-survey-title">Are You a Candidate for a <span class="ds-modal__title-accent">DreamSmile<sup class="ds-tm">&trade;</sup></span>?</h2>
+      <div class="ds-survey__frame" data-ds-survey-frame></div>
+      <p class="ds-modal__note">Prefer to talk it through? <a href="tel:+15407408937">(540) 740-8937</a></p>
+    </div>
+  </div>
+</div>
+    <?php
+} );
+
+/**
  * Split-panel sub-hero — a solid charcoal text panel beside a clean image
  * (no full scrim over the photo). Shared by page-sub-hero.php and the implant
  * deep-dive patterns so every sub-page hero stays consistent. Only a short top
  * gradient sits over the image, to keep the fixed navbar legible without
  * greying the whole photo.
  *
- * @param array $a label, title, sub, alt, bg (full URL), ctas[ [label,href,variant] ]
+ * @param array $a label, title, sub, alt, bg (full URL), ctas[ [label,href,variant,survey] ]
+ *                 A CTA with 'survey' => true opens the eligibility survey.
  */
 function ds_render_split_hero( array $a ) {
     $label = $a['label'] ?? '';
@@ -403,7 +453,7 @@ function ds_render_split_hero( array $a ) {
               <?php foreach ( $ctas as $i => $c ) :
                   $variant = $c['variant'] ?? ( 0 === $i ? 'solid' : 'outlined-white' );
               ?>
-                <a href="<?php echo esc_url( $c['href'] ?? '#' ); ?>" class="ds-btn ds-btn--<?php echo esc_attr( $variant ); ?>"><?php echo esc_html( $c['label'] ?? '' ); ?></a>
+                <a href="<?php echo esc_url( $c['href'] ?? '#' ); ?>" class="ds-btn ds-btn--<?php echo esc_attr( $variant ); ?>"<?php echo empty( $c['survey'] ) ? '' : ' data-ds-survey'; ?>><?php echo esc_html( $c['label'] ?? '' ); ?></a>
               <?php endforeach; ?>
             </div>
             <?php endif; ?>

@@ -4028,6 +4028,52 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   .ds-modal__panel { max-height: calc(100vh - 20px); }
 }
 /* /DREAMSMILE-MODAL-COMPACT-V3 */
+
+/* ─── Eligibility survey modal (GoHighLevel iframe, lead-embeds.js) ─── DREAMSMILE-SURVEY-MODAL-V1 */
+/* One column, and taller than the schedule modal: the survey's contact step
+   needs the room. The panel scrolls when the survey outgrows the screen. */
+.ds-modal--survey .ds-modal__panel {
+  max-width: 620px;
+  max-height: calc(100vh - 32px);
+  grid-template-columns: 1fr;
+}
+.ds-survey {
+  padding: 28px 30px 20px;
+  overflow-y: auto;
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ds-survey .ds-label { color: var(--ds-teal-dark); }
+.ds-survey .ds-modal__title { padding-right: 40px; }
+.ds-survey__frame {
+  position: relative;
+  min-height: 420px;
+}
+.ds-survey__frame::before {
+  content: "Loading the quiz\2026";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  color: var(--ds-warm-gray);
+}
+.ds-survey__frame.is-loaded::before { content: none; }
+.ds-survey__frame iframe {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 420px;
+  border: 0;
+}
+@media (max-width: 759px) {
+  .ds-survey { padding: 44px 14px 18px; }
+  .ds-modal--survey .ds-modal__panel,
+  .ds-survey { max-height: calc(100vh - 20px); }
+}
+/* /DREAMSMILE-SURVEY-MODAL-V1 */
 /* ─── New Patients Page ─── DREAMSMILE-NEW-PATIENTS-V1 ──────────────────── */
 
 .ds-np-nav {

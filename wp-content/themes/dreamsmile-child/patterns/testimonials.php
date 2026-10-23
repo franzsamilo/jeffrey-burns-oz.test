@@ -72,7 +72,7 @@ $star = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 
     </div>
 
     <div class="ds-testimonials__cta ds-reveal">
-      <a href="#quiz" class="ds-btn ds-btn--solid">FIND OUT IF YOU&rsquo;RE A CANDIDATE FOR DENTAL IMPLANTS</a>
+      <a href="#quiz" data-ds-survey class="ds-btn ds-btn--solid">FIND OUT IF YOU&rsquo;RE A CANDIDATE FOR DENTAL IMPLANTS</a>
     </div>
   </div>
 </section>
