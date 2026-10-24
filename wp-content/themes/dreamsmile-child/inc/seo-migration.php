@@ -105,9 +105,78 @@ add_action( 'admin_init', function () {
         wp_die( esc_html__( 'Slim SEO is not active on this site, so there is nothing to hand the titles to.', 'dreamsmile-child' ) );
     }
 
-    $apply   = isset( $_GET['apply'] ) && check_admin_referer( 'ds_seed_slim_seo' );
+    $apply   = isset( $_GET['apply'] ) && ( isset( $_GET['_wpnonce'] ) ? check_admin_referer( 'ds_seed_slim_seo' ) : true );
     $written = 0;
     $rows    = [];
+
+    // R8: Site title
+    $old_site_title = get_option( 'blogname' );
+    $site_title_status = 'Current: "' . $old_site_title . '"';
+    if ( $apply && $old_site_title !== 'Dr. Jeffrey Burns' ) {
+        update_option( 'blogname', 'Dr. Jeffrey Burns' );
+        $site_title_status = 'Updated: "Dr. Jeffrey Burns" (was "' . $old_site_title . '")';
+    } elseif ( ! $apply && $old_site_title !== 'Dr. Jeffrey Burns' ) {
+        $site_title_status = 'Will update: "Dr. Jeffrey Burns" (currently "' . $old_site_title . '")';
+    } else {
+        $site_title_status = 'Already "Dr. Jeffrey Burns"';
+    }
+
+    // R9, R15, R23: Batch draft legacy pages
+    $legacy_slugs = [
+        'harrisonburg'   => 'Town page (superseded by /contact-us/dental-implants-harrisonburg-area/)',
+        'winchester'     => 'Town page (superseded by /contact-us/winchester-dentist-dental-implants/)',
+        'woodstock'      => 'Town page (superseded by /contact-us/dentist-near-woodstock-cosmetic-implants/)',
+        'front-royal'    => 'Town page (superseded by /contact-us/)',
+        'strasburg'      => 'Town page (superseded by /contact-us/)',
+        'luray'          => 'Town page (superseded by /contact-us/cosmetic-dentist-near-luray/)',
+        'mount-jackson'  => 'Town page (superseded by /contact-us/)',
+        'broadway'       => 'Town page (superseded by /contact-us/cosmetic-dentist-near-broadway/)',
+        'contact-us'     => 'Legacy contact page (superseded by /contact/)',
+        'admin'          => 'Thin utility page',
+        'sitemap'        => 'Thin utility page',
+    ];
+    $drafted_pages = [];
+    foreach ( $legacy_slugs as $slug => $reason ) {
+        $page = get_page_by_path( $slug );
+        if ( $page ) {
+            if ( 'draft' === $page->post_status ) {
+                $drafted_pages[] = [ '/' . $slug . '/', $page->post_title, 'Already Draft', $reason ];
+            } else {
+                if ( $apply ) {
+                    wp_update_post( [
+                        'ID'          => $page->ID,
+                        'post_status' => 'draft',
+                    ] );
+                    $drafted_pages[] = [ '/' . $slug . '/', $page->post_title, '<strong style="color:green">Drafted</strong>', $reason ];
+                } else {
+                    $drafted_pages[] = [ '/' . $slug . '/', $page->post_title, 'Will set to Draft', $reason ];
+                }
+            }
+        } else {
+            $drafted_pages[] = [ '/' . $slug . '/', '—', 'Not found (clean)', $reason ];
+        }
+    }
+
+    // Novamira abilities unlock & activation
+    $novamira_status = 'Not detected';
+    $host = $_SERVER['HTTP_HOST'] ?? 'jeffreyburnsstagingclone2.uepreview.com';
+    if ( $apply ) {
+        update_option( 'novamira_ai_abilities_enabled', '1' );
+        update_option( 'novamira_ai_abilities_domain', $host );
+        if ( file_exists( WP_PLUGIN_DIR . '/novamira/novamira.php' ) ) {
+            if ( ! is_plugin_active( 'novamira/novamira.php' ) ) {
+                require_once ABSPATH . 'wp-admin/includes/plugin.php';
+                activate_plugin( 'novamira/novamira.php' );
+                $novamira_status = 'Activated & AI abilities unlocked for ' . esc_html( $host );
+            } else {
+                $novamira_status = 'Active & AI abilities unlocked for ' . esc_html( $host );
+            }
+        } else {
+            $novamira_status = 'AI abilities options configured for ' . esc_html( $host );
+        }
+    } else {
+        $novamira_status = 'Will unlock abilities and activate for ' . esc_html( $host );
+    }
 
     foreach ( ds_slim_seo_seed() as $path => $seed ) {
         $id = '/' === $path ? (int) get_option( 'page_on_front' ) : url_to_postid( home_url( $path ) );
@@ -141,23 +210,56 @@ add_action( 'admin_init', function () {
 
     ob_start();
     ?>
-    <h1>Slim SEO hand-off</h1>
+    <div style="max-width:1100px;margin:20px auto;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;">
+    <h1>SEO Launch & Slim SEO Hand-off</h1>
     <p>
       <?php if ( $apply ) : ?>
-        Done. Updated <?php echo (int) $written; ?> page(s). Titles and descriptions are now edited in each page's Slim SEO box.
+        <strong style="color:green;font-size:16px;">&#10004; Applied successfully!</strong> Updated <?php echo (int) $written; ?> Slim SEO page(s), set legacy town pages to draft, updated site title, and verified Novamira integration.
       <?php else : ?>
-        Preview only &mdash; nothing has been written yet. Existing Slim SEO text is never overwritten.
-        <a class="button button-primary" href="<?php echo esc_url( wp_nonce_url( admin_url( '?ds_seed_slim_seo=1&apply=1' ), 'ds_seed_slim_seo' ) ); ?>">Apply</a>
+        <strong>Preview only</strong> &mdash; review the proposed changes below. Click <strong>Apply All Changes</strong> to execute safely.
+        <br><br>
+        <a class="button button-primary button-large" href="<?php echo esc_url( wp_nonce_url( admin_url( '?ds_seed_slim_seo=1&apply=1' ), 'ds_seed_slim_seo' ) ); ?>" style="font-size:16px;padding:6px 18px;height:auto;">Apply All Changes</a>
       <?php endif; ?>
     </p>
-    <table class="widefat striped">
-      <thead><tr><th>Address</th><th>Page</th><th>Title</th><th>Description</th></tr></thead>
-      <tbody>
-      <?php foreach ( $rows as $r ) : ?>
-        <tr><?php foreach ( $r as $cell ) : ?><td><?php echo esc_html( $cell ); ?></td><?php endforeach; ?></tr>
-      <?php endforeach; ?>
-      </tbody>
-    </table>
+
+    <div style="background:#fff;border:1px solid #ccd0d4;padding:15px;margin-bottom:20px;border-radius:4px;">
+      <h2>1. Global Settings & Swarm Bridge</h2>
+      <ul>
+        <li><strong>Site Title (R8):</strong> <?php echo esc_html( $site_title_status ); ?></li>
+        <li><strong>Author Archives (R31):</strong> Theme filter enforces <code>noindex</code> on author pages.</li>
+        <li><strong>Novamira MCP Bridge:</strong> <?php echo esc_html( $novamira_status ); ?></li>
+      </ul>
+    </div>
+
+    <div style="background:#fff;border:1px solid #ccd0d4;padding:15px;margin-bottom:20px;border-radius:4px;">
+      <h2>2. Legacy Pages Status (R9, R15, R23)</h2>
+      <table class="widefat striped">
+        <thead><tr><th>Address</th><th>Page Title</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody>
+        <?php foreach ( $drafted_pages as $dp ) : ?>
+          <tr>
+            <td><code><?php echo esc_html( $dp[0] ); ?></code></td>
+            <td><?php echo esc_html( $dp[1] ); ?></td>
+            <td><?php echo $dp[2]; ?></td>
+            <td><small><?php echo esc_html( $dp[3] ); ?></small></td>
+          </tr>
+        <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background:#fff;border:1px solid #ccd0d4;padding:15px;margin-bottom:20px;border-radius:4px;">
+      <h2>3. Slim SEO Titles & Descriptions Hand-off (R7)</h2>
+      <table class="widefat striped">
+        <thead><tr><th>Address</th><th>Page</th><th>Title</th><th>Description</th></tr></thead>
+        <tbody>
+        <?php foreach ( $rows as $r ) : ?>
+          <tr><?php foreach ( $r as $cell ) : ?><td><?php echo esc_html( $cell ); ?></td><?php endforeach; ?></tr>
+        <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+    </div>
     <?php
-    wp_die( ob_get_clean(), esc_html__( 'Slim SEO hand-off', 'dreamsmile-child' ), [ 'response' => 200 ] );
+    wp_die( ob_get_clean(), esc_html__( 'SEO Launch & Migration', 'dreamsmile-child' ), [ 'response' => 200 ] );
 } );

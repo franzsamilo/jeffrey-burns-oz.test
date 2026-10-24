@@ -242,6 +242,14 @@ add_action( 'init', function () {
 // {{ sep }} variable reads this same filter, so its templates follow suit.
 add_filter( 'document_title_separator', function () { return '|'; } );
 
+// R31: Ensure author archive pages are noindex
+add_filter( 'slim_seo_robots_index', function ( $value, $object_id ) {
+    if ( is_author() ) {
+        return false;
+    }
+    return $value;
+}, 10, 2 );
+
 add_action( 'wp_head', function () {
     // A site icon set in Settings > General wins; this is only the fallback.
     if ( ! has_site_icon() ) {
