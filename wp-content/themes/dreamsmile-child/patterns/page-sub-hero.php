@@ -25,7 +25,7 @@ $variants = [
     'label'    => 'DENTAL IMPLANTS',
     'title'    => 'Dental Implants That Look, Feel &amp; Function Like <em>Natural Teeth</em>.',
     'subtitle' => 'A permanent solution for missing or damaged teeth &mdash; placed personally by Dr. Burns.',
-    'cta1'     => [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz' ],
+    'cta1'     => [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     'cta2'     => [ 'label' => 'Free Assessment',     'href' => '/#quiz' ],
     'bg'       => $base . '/dental-implants-hero.jpg',
     'alt'      => 'Dr. Burns reviewing a dental implant case',
@@ -34,7 +34,7 @@ $variants = [
     'label'    => 'SERVICE AREAS',
     'title'    => 'Dental Implants Across the <em>Shenandoah Valley</em> &mdash; Expert Results You Can Trust.',
     'subtitle' => 'One office in New Market, VA &mdash; serving patients from across the valley, led personally by Dr. Burns.',
-    'cta1'     => [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz' ],
+    'cta1'     => [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     'cta2'     => [ 'label' => 'Free Assessment',     'href' => '/#quiz' ],
     'bg'       => $base . '/Harrison-Hero.jpg',
     'alt'      => 'Dr. Burns&rsquo;s dental implant office in New Market, VA',
@@ -184,7 +184,7 @@ ds_render_split_hero( [
   'alt'   => $v['alt'],
   'bg'    => $v['bg'],
   'ctas'  => [
-    [ 'label' => $v['cta1']['label'], 'href' => $v['cta1']['href'], 'variant' => 'solid' ],
+    [ 'label' => $v['cta1']['label'], 'href' => $v['cta1']['href'], 'variant' => 'solid', 'survey' => ! empty( $v['cta1']['survey'] ) ],
     [ 'label' => $v['cta2']['label'], 'href' => $v['cta2']['href'], 'variant' => 'outlined-white' ],
   ],
 ] );

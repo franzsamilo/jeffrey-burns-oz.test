@@ -26,7 +26,7 @@ ds_render_split_hero( [
   'alt'   => 'Dental implant FAQs — Dr. Burns answering patient questions',
   'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-faqs-hero.jpg',
   'ctas'  => [
-    [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz' ],
+    [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     [ 'label' => 'Call (540) 740-8937',   'href' => 'tel:+15407408937', 'variant' => 'outlined-white' ],
   ],
 ] );
@@ -87,7 +87,7 @@ ds_render_split_hero( [
       <p class="ds-faq-help__sub">Every DreamSmile<sup class="ds-tm">&trade;</sup> patient gets Dr. Burns&rsquo; personal cell. Ask him anything &mdash; before, during, or after treatment.</p>
       <div class="ds-faq-help__ctas">
         <a href="tel:+15407408937" class="ds-btn ds-btn--solid">Call (540) 740-8937</a>
-        <a href="/#quiz" class="ds-btn ds-btn--outlined-white">Take the Quiz</a>
+        <a href="/#quiz" data-ds-survey class="ds-btn ds-btn--outlined-white">Take the Quiz</a>
       </div>
     </div>
   </div>
@@ -100,7 +100,7 @@ ds_render_split_hero( [
       <h2 class="ds-subpage-cta__title">Ready to find out if you&rsquo;re a candidate?</h2>
       <p class="ds-subpage-cta__sub">Take the 30-second quiz &mdash; reviewed personally by Dr. Burns.</p>
       <div class="ds-subpage-cta__ctas">
-        <a href="/#quiz" class="ds-btn ds-btn--solid">Take the Implant Quiz</a>
+        <a href="/#quiz" data-ds-survey class="ds-btn ds-btn--solid">Take the Implant Quiz</a>
         <a href="/implant-cost/" class="ds-btn ds-btn--outlined">See the Cost</a>
       </div>
     </div>

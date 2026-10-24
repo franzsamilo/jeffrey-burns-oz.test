@@ -87,7 +87,7 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
     </div>
 
     <div class="ds-comparison__cta ds-reveal">
-      <a href="#quiz" class="ds-btn ds-btn--solid">SEE IF YOU&rsquo;RE ELIGIBLE FOR A DREAMSMILE<sup class="ds-tm">&trade;</sup></a>
+      <a href="#quiz" data-ds-survey class="ds-btn ds-btn--solid">SEE IF YOU&rsquo;RE ELIGIBLE FOR A DREAMSMILE<sup class="ds-tm">&trade;</sup></a>
     </div>
   </div>
 </section>
