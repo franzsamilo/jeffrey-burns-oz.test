@@ -420,6 +420,34 @@ function ds_lead_tools() {
     ];
 }
 
+/**
+ * Whether the Smile Reveal embed works right now. When the practice's Smile
+ * Reveal account runs out of credits (it did in October 2026), the embed shows
+ * visitors an error box instead of the tool, so the homepage leaves the
+ * section out until the vendor's own check passes again. The answer is kept
+ * for 30 minutes. If the check can't be reached, the section shows as before.
+ */
+function ds_smile_reveal_ready() {
+    $cached = get_transient( 'ds_smile_reveal_ready' );
+    if ( false !== $cached ) {
+        return 'yes' === $cached;
+    }
+    parse_str( (string) wp_parse_url( ds_lead_tools()['smile_url'], PHP_URL_QUERY ), $query );
+    $home   = wp_parse_url( home_url() );
+    $origin = $home['scheme'] . '://' . $home['host'] . ( isset( $home['port'] ) ? ':' . $home['port'] : '' );
+    $res    = wp_remote_post( 'https://app.smilereveal.io/api/embed/validate', [
+        'timeout' => 3,
+        'headers' => [ 'Content-Type' => 'application/json' ],
+        'body'    => wp_json_encode( [ 'token' => $query['token'] ?? '', 'embeddingOrigin' => $origin ] ),
+    ] );
+    // 403 ("out of credits") and 401 ("invalid token") are the vendor saying
+    // no. A timeout or a server error says nothing either way.
+    $code  = (int) wp_remote_retrieve_response_code( $res );
+    $ready = $code < 400 || $code >= 500;
+    set_transient( 'ds_smile_reveal_ready', $ready ? 'yes' : 'no', 30 * MINUTE_IN_SECONDS );
+    return $ready;
+}
+
 // The survey modal. Rendered here rather than in parts/footer.html because it
 // needs the URL above, and an editor-customised footer part would hide any
 // markup added to the file. The iframe itself is only created on first open.
