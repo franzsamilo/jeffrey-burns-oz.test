@@ -13,9 +13,10 @@
  * (page-sub-hero.php).
  *
  * Reuses:
- *   - .ds-loc-map (dark two-column block, as on the contact and town pages),
- *     with the map slot swapped for the QR code (.ds-loc-map__embed--qr)
- *   - .ds-loc-doctor__bullets (teal-dot list on dark)
+ *   - .ds-loc-map (two-column block, as on the contact and town pages), in its
+ *     light variant because the sub-hero above is already dark, with the map
+ *     slot swapped for the QR code (.ds-loc-map__embed--qr)
+ *   - .ds-loc-doctor__bullets (teal-dot list)
  *   - .ds-loc-cta (white final CTA)
  *
  * The QR code is the practice's own (assets/arrange/payment-qr.png): the same
@@ -40,7 +41,7 @@ $needs = [
 ];
 ?>
 <!-- wp:html -->
-<section class="ds-loc-map" id="pay">
+<section class="ds-loc-map ds-loc-map--light" id="pay">
   <div class="ds-wrap">
     <div class="ds-loc-map__head ds-reveal">
       <span class="ds-label">BEFORE YOU PAY</span>

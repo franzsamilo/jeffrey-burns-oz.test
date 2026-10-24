@@ -12,12 +12,16 @@
  *
  * The old town pages all share one shape, and the layout follows it:
  *   H1 + intro            → .ds-loc-hero
- *   the eligibility survey → inline GHL survey, at the old #see-if-you-qualify anchor
- *   sections 1–4          → .ds-loc-why: section 1 as the head, 2–4 as cards
+ *   the eligibility survey → inline GHL survey on a charcoal band, at the old
+ *                            #see-if-you-qualify anchor
+ *   section 1             → .ds-loc-intro (heading beside its two paragraphs)
+ *   sections 2–4          → .ds-loc-points (three columns on grey)
  *   Meet Dr. Jeffrey Burns → .ds-loc-doctor (dark)
  *   the DreamSmile blurb   → .ds-loc-dreamsmile, beside the patient-stories video
  *   section 5             → .ds-loc-cta, the closing call to action
- * plus the office map (.ds-loc-map), as on every location page.
+ * plus the office map (.ds-loc-map), as on every location page. The light and
+ * dark bands alternate so no more than two light sections meet (client review
+ * notes: "needs more greys").
  *
  * Old headings stay H2s, even where a card styles them small. The two shared
  * blurbs carry the DreamSmile™ mark and fix two typos in the old text
@@ -34,8 +38,11 @@ if ( ! $town ) { return; }
 $base   = get_stylesheet_directory_uri() . '/assets/arrange';
 $office = ds_office_data();
 
-list( $lead, $card_a, $card_b, $card_c, $closing ) = $town['sections'];
-$cards = [ [ 'tooth', $card_a ], [ 'cpu', $card_b ], [ 'shield', $card_c ] ];
+$points  = $town['sections'];
+$lead    = array_shift( $points );
+$closing = array_pop( $points );
+// The old pages put benefits, technology and comfort in between, in that order.
+$icons = [ 'tooth', 'cpu', 'shield' ];
 
 $svg = [
   'pin'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
@@ -52,7 +59,7 @@ $maps_embed    = 'https://www.google.com/maps?q=' . rawurlencode( $office['maps_
 $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode( $town['town'] . ', ' . $town['state'] ) . '&destination=' . rawurlencode( $office['maps_q'] );
 ?>
 <!-- wp:html -->
-<section class="ds-loc-hero">
+<section class="ds-loc-hero ds-loc-hero--town">
   <div class="ds-wrap">
     <div class="ds-loc-hero__grid">
       <div class="ds-loc-hero__copy ds-reveal">
@@ -100,26 +107,31 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode
   </div>
 </section>
 
-<section class="ds-loc-why">
-  <div class="ds-wrap">
-    <div class="ds-loc-why__head ds-reveal">
+<section class="ds-loc-intro">
+  <div class="ds-wrap ds-loc-intro__grid">
+    <div class="ds-loc-intro__head ds-reveal">
       <span class="ds-label">DENTAL IMPLANTS NEAR <?php echo esc_html( strtoupper( $town['town'] ) ); ?></span>
-      <h2 class="ds-loc-why__title"><?php echo $lead[0]; ?></h2>
+      <h2 class="ds-loc-intro__title"><?php echo $lead[0]; ?></h2>
+    </div>
+    <div class="ds-loc-intro__body ds-reveal">
       <?php foreach ( $lead[1] as $para ) : ?>
-        <p class="ds-loc-why__lead"><?php echo $para; ?></p>
+        <p><?php echo $para; ?></p>
       <?php endforeach; ?>
     </div>
-    <div class="ds-loc-why__grid ds-loc-why__grid--3">
-      <?php foreach ( $cards as $i => $c ) : ?>
-        <div class="ds-loc-why-card ds-reveal" style="animation-delay: <?php echo ( $i * 60 ); ?>ms">
-          <span class="ds-loc-why-card__icon"><?php echo $svg[ $c[0] ]; ?></span>
-          <h2 class="ds-loc-why-card__title"><?php echo $c[1][0]; ?></h2>
-          <?php foreach ( $c[1][1] as $para ) : ?>
-            <p class="ds-loc-why-card__desc"><?php echo $para; ?></p>
-          <?php endforeach; ?>
-        </div>
-      <?php endforeach; ?>
-    </div>
+  </div>
+</section>
+
+<section class="ds-loc-points">
+  <div class="ds-wrap ds-loc-points__grid">
+    <?php foreach ( $points as $i => $pt ) : ?>
+      <div class="ds-loc-point ds-reveal">
+        <span class="ds-loc-point__icon"><?php echo $svg[ $icons[ $i % 3 ] ]; ?></span>
+        <h2 class="ds-loc-point__title"><?php echo $pt[0]; ?></h2>
+        <?php foreach ( $pt[1] as $para ) : ?>
+          <p class="ds-loc-point__text"><?php echo $para; ?></p>
+        <?php endforeach; ?>
+      </div>
+    <?php endforeach; ?>
   </div>
 </section>
 
