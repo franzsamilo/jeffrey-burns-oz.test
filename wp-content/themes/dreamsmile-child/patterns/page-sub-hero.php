@@ -111,11 +111,12 @@ $variants = [
     'bg'       => $base . '/new-patients-hero.jpg',
     'alt'      => 'Dr. Burns greeting a new patient',
   ],
-  'pay-your-bill' => [
-    'label'    => 'PAY YOUR BILL',
-    'title'    => 'Pay Your Bill <em>Online</em>.',
-    'subtitle' => 'A secure way to pay your balance from home &mdash; no phone call, no stamp. Scan the code with your phone or use the button below.',
-    'cta1'     => [ 'label' => 'Pay Online Now', 'href' => ds_payment_url() ],
+  // The old site's Make a Payment intro, word for word (make-a-payment.php).
+  'make-a-payment' => [
+    'label'    => 'SECURE ONLINE PAYMENT',
+    'title'    => 'Make a <em>Payment</em>',
+    'subtitle' => 'Paying your bill online is quick and secure. Click the button below to make a payment through our secure payment portal, or scan the QR code with your phone&rsquo;s camera.',
+    'cta1'     => [ 'label' => 'Pay Your Bill Online', 'href' => ds_payment_url() ],
     'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
     'bg'       => $base . '/contact-hero.jpg',
     'alt'      => 'Dr. Jeffrey S. Burns, DDS &mdash; New Market, VA office',

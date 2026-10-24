@@ -31,8 +31,8 @@ $services = [
     'icon'  => 'leaf',
   ],
   [
-    'href'  => '/pay-your-bill/',
-    'label' => 'Pay Your Bill',
+    'href'  => '/make-a-payment/',
+    'label' => 'Make a Payment',
     'desc'  => 'Pay your balance online through our secure payment portal &mdash; or scan the QR code with your phone.',
     'icon'  => 'card',
   ],

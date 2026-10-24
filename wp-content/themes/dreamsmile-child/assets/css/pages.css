@@ -2888,7 +2888,7 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   display: block;
   filter: saturate(0.92) contrast(0.95);
 }
-/* /pay-your-bill/ — the map slot holds the payment QR code instead. White
+/* /make-a-payment/ — the map slot holds the payment QR code instead. White
    card so the code has the quiet zone phone cameras need to read it. Hidden
    on phones: someone already on a phone taps the button, they can't scan
    their own screen. */
@@ -2922,11 +2922,6 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   color: var(--ds-charcoal, #3A3A3A);
   font-weight: 700;
   margin-bottom: 2px;
-}
-.ds-pay__tel {
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
 }
 
 /* Footer CTA */
@@ -2975,7 +2970,9 @@ body:has(.ds-loc-hero) .ds-navbar {
 body:has(.ds-loc-hero) .ds-navbar__logo { color: var(--ds-charcoal); }
 body:has(.ds-loc-hero) .ds-navbar__sub { color: var(--ds-warm-gray); }
 body:has(.ds-loc-hero) .ds-navbar__logo-j { color: var(--ds-teal); }
-body:has(.ds-loc-hero) .ds-navbar__cta { color: var(--ds-teal); border-color: var(--ds-teal); }
+/* Same outlined look as the scrolled navbar; the base CTA is a solid teal pill,
+   so teal text alone would vanish into it. */
+body:has(.ds-loc-hero) .ds-navbar__cta { background: transparent; color: var(--ds-teal); border-color: var(--ds-teal); }
 body:has(.ds-loc-hero) .ds-navbar__cta:hover { background: var(--ds-teal); color: #fff; }
 body:has(.ds-loc-hero) .ds-navbar__nav a { color: var(--ds-charcoal); }
 body:has(.ds-loc-hero) .ds-navbar__nav a:hover { color: var(--ds-teal); }
@@ -6588,3 +6585,106 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 }
 
 .ds-guide-card__note { margin: 10px 0 0; font-size: 12px; line-height: 1.5; color: var(--ds-warm-gray); font-family: 'Montserrat', sans-serif; }
+
+/* ─── Town pages (/contact-us/…, town-page.php) ───────────────────────────
+   The old site's town-page copy in the location-page components above. */
+
+/* Inline eligibility survey, at the old page's #see-if-you-qualify anchor. */
+.ds-loc-survey {
+  background: var(--ds-light-gray);
+  padding: 56px 0 48px;
+  scroll-margin-top: 72px;
+}
+@media (min-width: 768px) { .ds-loc-survey { padding: 72px 0 56px; } }
+.ds-loc-survey .ds-loc-why__head { max-width: 760px; margin-bottom: 16px; }
+/* The survey draws its own card, so this only sets the width. */
+.ds-loc-survey__card { max-width: 640px; margin: 0 auto; }
+.ds-loc-survey__note {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: var(--ds-warm-gray);
+  margin: 16px 0 0;
+}
+.ds-loc-survey__note a { color: var(--ds-charcoal); font-weight: 700; text-decoration: none; }
+
+/* Links inside the old copy ("Dr. Jeffrey Burns" → home). Charcoal with a
+   teal underline: teal text on white is under 4.5:1. */
+.ds-loc-hero__sub a,
+.ds-loc-why-card__desc a,
+.ds-loc-cta__body a {
+  color: var(--ds-charcoal);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ds-teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.ds-loc-hero__sub a:hover,
+.ds-loc-why-card__desc a:hover,
+.ds-loc-cta__body a:hover { color: var(--ds-teal-dark); }
+
+/* Old section 1 as the head of .ds-loc-why; sections 2–4 as three cards. */
+.ds-loc-why__head:has(.ds-loc-why__lead) { max-width: 760px; }
+.ds-loc-why__lead {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ds-warm-gray);
+  margin: 4px 0 0;
+}
+.ds-loc-why__grid--3 .ds-loc-why-card__desc { font-size: 14px; line-height: 1.6; }
+@media (min-width: 640px) and (max-width: 1023px) {
+  .ds-loc-why__grid--3 > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+@media (min-width: 1024px) {
+  .ds-loc-why__grid--3 { grid-template-columns: repeat(3, 1fr); max-width: 1080px; }
+}
+
+/* Meet Dr. Jeffrey Burns — the shared old-site blurb in .ds-loc-doctor. */
+.ds-loc-doctor .ds-label { color: var(--ds-teal-light); display: inline-block; margin-bottom: 8px; }
+.ds-loc-doctor__bio {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 22px;
+}
+
+/* The DreamSmile blurb, beside the patient-stories video. */
+.ds-loc-dreamsmile { background: var(--ds-off-white); padding: 64px 0; }
+@media (min-width: 768px) { .ds-loc-dreamsmile { padding: 80px 0; } }
+.ds-loc-dreamsmile__grid { display: grid; gap: 36px; align-items: center; }
+@media (min-width: 768px) {
+  .ds-loc-dreamsmile__grid { grid-template-columns: 1.5fr 1fr; gap: 56px; max-width: 1040px; }
+}
+.ds-loc-dreamsmile__copy { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.ds-loc-dreamsmile__logo { display: block; width: 240px; height: auto; }
+.ds-loc-dreamsmile__text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ds-dark-slate);
+  margin: 0;
+  max-width: 60ch;
+}
+.ds-loc-dreamsmile__media { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.ds-loc-dreamsmile__media .ds-loc-testimonials__media { width: 100%; max-width: 250px; margin: 0; }
+.ds-loc-dreamsmile__media figcaption {
+  font-family: 'Amiri', 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ds-warm-gray);
+  text-align: center;
+}
+
+/* Closing section of the old copy (and the payment page's questions block). */
+.ds-loc-cta__body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ds-warm-gray);
+  margin: 0;
+  max-width: 62ch;
+}
+.ds-loc-cta__body--note { font-size: 13.5px; margin-top: 8px; }

@@ -5,7 +5,8 @@
  * ([data-ds-survey]: "Take the Quiz", "See if you're eligible", ...). The
  * "Schedule" CTAs keep the schedule modal.
  *
- * The survey iframe is only created on first open, so the agency's widget
+ * The survey iframe is only created on first open (or on load, on a page
+ * that shows it inline — see [data-ds-survey-inline]), so the agency's widget
  * and its tracking load for visitors who start the quiz, not on every page
  * view. GHL's form_embed.js (iframe resizing, UTM pass-through, cookie
  * consent) looks for survey iframes once, when it runs, so it is loaded
@@ -26,7 +27,11 @@
 
     if (!modal) return;
 
-    var slot = modal.querySelector('[data-ds-survey-frame]');
+    // A page can show the survey inline instead (the town pages do, where the
+    // old site had it). That is then the page's one survey iframe, so every
+    // survey CTA scrolls to it rather than opening a second copy in the modal.
+    var inline = document.querySelector('[data-ds-survey-inline]');
+    var slot = inline || modal.querySelector('[data-ds-survey-frame]');
     var iframe = null;
     var returnFocus = null;
 
@@ -63,6 +68,10 @@
 
     function open(answer) {
       mount(typeof answer === 'string' ? answer : '');
+      if (inline) {
+        (inline.closest('section') || inline).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
       returnFocus = document.activeElement;
       modal.removeAttribute('hidden');
       requestAnimationFrame(function () { modal.classList.add('is-open'); });
@@ -94,6 +103,8 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
     });
+
+    if (inline) mount('');
   }
 
   if (document.readyState === 'loading') {
