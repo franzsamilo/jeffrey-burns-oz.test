@@ -32,7 +32,7 @@ defined( 'ABSPATH' ) || exit;
       </ul>
     </div>
     <div class="ds-quiz-banner__ctas">
-      <a href="/#quiz" class="ds-btn ds-btn--solid ds-quiz-banner__primary">Take the Quiz</a>
+      <a href="/#quiz" data-ds-survey class="ds-btn ds-btn--solid ds-quiz-banner__primary">Take the Quiz</a>
       <span class="ds-quiz-banner__or">or</span>
       <a href="tel:+15407408937" class="ds-quiz-banner__phone">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 006 6L15 14l5 2v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>

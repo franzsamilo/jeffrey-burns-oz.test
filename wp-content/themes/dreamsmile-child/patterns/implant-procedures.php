@@ -36,7 +36,7 @@ ds_render_split_hero( [
   'alt'   => 'Dental implant procedures — surgical precision and modern technology',
   'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-procedures-hero.jpg',
   'ctas'  => [
-    [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz' ],
+    [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     [ 'label' => 'Call (540) 740-8937',   'href' => 'tel:+15407408937', 'variant' => 'outlined-white' ],
   ],
 ] );
@@ -68,7 +68,7 @@ ds_render_split_hero( [
     <div class="ds-proc-types__foot ds-reveal">
       <p class="ds-proc-types__note">You&rsquo;re not just replacing teeth &mdash; you&rsquo;re rebuilding your confidence.</p>
       <div class="ds-proc-types__ctas">
-        <a href="/#quiz" class="ds-btn ds-btn--solid">See which procedure fits you</a>
+        <a href="/#quiz" data-ds-survey class="ds-btn ds-btn--solid">See which procedure fits you</a>
         <a href="tel:+15407408937" class="ds-btn ds-btn--outlined">Call Us Now</a>
       </div>
     </div>

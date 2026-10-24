@@ -18,7 +18,7 @@ add_action( 'wp_enqueue_scripts', function () {
 
 add_action( 'wp_enqueue_scripts', function () {
     $ver = wp_get_theme()->get( 'Version' );
-    foreach ( [ 'navbar', 'animations', 'quiz', 'before-after', 'schedule-modal', 'faq-cats', 'testimonials' ] as $h ) {
+    foreach ( [ 'navbar', 'animations', 'quiz', 'before-after', 'schedule-modal', 'lead-embeds', 'faq-cats', 'testimonials' ] as $h ) {
         wp_enqueue_script( 'dreamsmile-' . $h, get_stylesheet_directory_uri() . '/assets/js/' . $h . '.js', [], $ver, true );
     }
 } );
@@ -159,7 +159,7 @@ add_action( 'init', function () {
         'Anesthesia & Sedation', 'Dental Exams', 'Oral Hygiene', 'Teeth Cleaning',
         'Dental Sealants', 'Deep Teeth Cleaning', 'Periodontal Maintenance',
         'Dental Fillings', 'Financing & Insurance', 'Patient Education',
-        'Pay Your Bill',
+        'Make a Payment',
         'Harrisonburg', 'Winchester', 'Broadway', 'Bridgewater',
         'Luray', 'Woodstock', 'Elkton', 'Timberville',
     ];
@@ -352,26 +352,128 @@ function ds_town_pages() {
 }
 
 /**
+ * The old site's copy for the town pages above, keyed by page slug
+ * (inc/town-pages.php). Towns are moved over one at a time; Harrisonburg was
+ * first (client request, 2026-10-24).
+ */
+function ds_town_copy() {
+    static $cache = null;
+    if ( null === $cache ) {
+        $cache = require trailingslashit( get_stylesheet_directory() ) . 'inc/town-pages.php';
+    }
+    return $cache;
+}
+
+// A town page with copy in ds_town_copy() is drawn by templates/page-town.html.
+// The others keep the default page template and their wp-admin text.
+add_filter( 'page_template_hierarchy', function ( $templates ) {
+    $page = get_queried_object();
+    if ( $page instanceof WP_Post && isset( ds_town_copy()[ $page->post_name ] ) ) {
+        array_unshift( $templates, 'page-town.php' );
+    }
+    return $templates;
+} );
+
+/**
  * Online bill payment (Balance Collect), requested by Dr. Burns 2026-10.
- * The site links to /pay-your-bill/ (navbar Resources menu, footer, the
- * /resources/ hub), which shows the payment button and the QR code.
+ * The site links to /make-a-payment/ (navbar Resources menu, footer, the
+ * /resources/ hub), the old site's address for the same page, which shows the
+ * payment button and the QR code.
  */
 function ds_payment_url() {
     return 'https://pay.balancecollect.com/m/jeffreysburnsddspc';
 }
 
-// Until a /pay-your-bill/ page is published (page seeder, or by hand with that
-// slug), send anyone who follows a "Pay Your Bill" link straight to the
-// payment portal instead of a 404.
+// Until a /make-a-payment/ page is published (page seeder, or by hand with
+// that slug), send anyone who follows a payment link straight to the payment
+// portal instead of a 404. /pay-your-bill/ was this page's address in theme
+// 1.3; it never went live, but a stale link may still point there.
 add_action( 'template_redirect', function () {
     if ( ! is_404() ) {
         return;
     }
     $path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
-    if ( 'pay-your-bill' === $path ) {
+    if ( in_array( $path, [ 'make-a-payment', 'pay-your-bill' ], true ) ) {
         wp_redirect( ds_payment_url(), 302 );
         exit;
     }
+} );
+
+/**
+ * Lead tools run by the practice's marketing agency in GoHighLevel, embed
+ * codes sent by the client 2026-10-24. All three live on the agency's
+ * domains; the theme only frames or links them.
+ *
+ *   survey — the 9-step eligibility quiz. The homepage quiz card is its first
+ *            question, so the card's answer is handed over (see lead-embeds.js).
+ *   smile  — Smile Reveal, the AI smile preview (homepage, under the quiz row).
+ *   ebook  — the funnel page that delivers "The Ultimate Guide to Dental
+ *            Implants" (GET THE FREE GUIDE, and the guide section).
+ */
+function ds_lead_tools() {
+    return [
+        'survey_id'  => 'uOZSrX8gMOfmQJAmCmNu',
+        'survey_url' => 'https://schedule.jeffrey-burns.implant-services.com/widget/survey/uOZSrX8gMOfmQJAmCmNu',
+        'survey_js'  => 'https://schedule.jeffrey-burns.implant-services.com/js/form_embed.js',
+        'smile_url'  => 'https://app.smilereveal.io/embed?token=a16fb209402e11416aaa731568e6078d28f2bff01605aded53bd2e0d1a722a67',
+        'ebook_url'  => 'https://jeffrey-burns.implant-services.com/get-e-book',
+    ];
+}
+
+/**
+ * Whether the Smile Reveal embed works right now. When the practice's Smile
+ * Reveal account runs out of credits (it did in October 2026), the embed shows
+ * visitors an error box instead of the tool, so the homepage leaves the
+ * section out until the vendor's own check passes again. The answer is kept
+ * for 30 minutes. If the check can't be reached, the section shows as before.
+ */
+function ds_smile_reveal_ready() {
+    $cached = get_transient( 'ds_smile_reveal_ready' );
+    if ( false !== $cached ) {
+        return 'yes' === $cached;
+    }
+    parse_str( (string) wp_parse_url( ds_lead_tools()['smile_url'], PHP_URL_QUERY ), $query );
+    $home   = wp_parse_url( home_url() );
+    $origin = $home['scheme'] . '://' . $home['host'] . ( isset( $home['port'] ) ? ':' . $home['port'] : '' );
+    $res    = wp_remote_post( 'https://app.smilereveal.io/api/embed/validate', [
+        'timeout' => 3,
+        'headers' => [ 'Content-Type' => 'application/json' ],
+        'body'    => wp_json_encode( [ 'token' => $query['token'] ?? '', 'embeddingOrigin' => $origin ] ),
+    ] );
+    // 403 ("out of credits") and 401 ("invalid token") are the vendor saying
+    // no. A timeout or a server error says nothing either way.
+    $code  = (int) wp_remote_retrieve_response_code( $res );
+    $ready = $code < 400 || $code >= 500;
+    set_transient( 'ds_smile_reveal_ready', $ready ? 'yes' : 'no', 30 * MINUTE_IN_SECONDS );
+    return $ready;
+}
+
+// The survey modal. Rendered here rather than in parts/footer.html because it
+// needs the URL above, and an editor-customised footer part would hide any
+// markup added to the file. The iframe itself is only created on first open.
+add_action( 'wp_footer', function () {
+    $tools = ds_lead_tools();
+    ?>
+<div class="ds-modal ds-modal--survey" data-ds-survey-modal hidden
+     data-ds-survey-id="<?php echo esc_attr( $tools['survey_id'] ); ?>"
+     data-ds-survey-src="<?php echo esc_url( $tools['survey_url'] ); ?>"
+     data-ds-survey-js="<?php echo esc_url( $tools['survey_js'] ); ?>">
+  <div class="ds-modal__backdrop" data-ds-survey-close></div>
+
+  <div class="ds-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ds-survey-title">
+    <button type="button" class="ds-modal__close" data-ds-survey-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="ds-survey">
+      <span class="ds-label">30-SECOND ELIGIBILITY QUIZ</span>
+      <h2 class="ds-modal__title" id="ds-survey-title">Are You a Candidate for a <span class="ds-modal__title-accent">DreamSmile<sup class="ds-tm">&trade;</sup></span>?</h2>
+      <div class="ds-survey__frame" data-ds-survey-frame></div>
+      <p class="ds-modal__note">Prefer to talk it through? <a href="tel:+15407408937">(540) 740-8937</a></p>
+    </div>
+  </div>
+</div>
+    <?php
 } );
 
 /**
@@ -381,7 +483,8 @@ add_action( 'template_redirect', function () {
  * gradient sits over the image, to keep the fixed navbar legible without
  * greying the whole photo.
  *
- * @param array $a label, title, sub, alt, bg (full URL), ctas[ [label,href,variant] ]
+ * @param array $a label, title, sub, alt, bg (full URL), ctas[ [label,href,variant,survey] ]
+ *                 A CTA with 'survey' => true opens the eligibility survey.
  */
 function ds_render_split_hero( array $a ) {
     $label = $a['label'] ?? '';
@@ -403,7 +506,7 @@ function ds_render_split_hero( array $a ) {
               <?php foreach ( $ctas as $i => $c ) :
                   $variant = $c['variant'] ?? ( 0 === $i ? 'solid' : 'outlined-white' );
               ?>
-                <a href="<?php echo esc_url( $c['href'] ?? '#' ); ?>" class="ds-btn ds-btn--<?php echo esc_attr( $variant ); ?>"><?php echo esc_html( $c['label'] ?? '' ); ?></a>
+                <a href="<?php echo esc_url( $c['href'] ?? '#' ); ?>" class="ds-btn ds-btn--<?php echo esc_attr( $variant ); ?>"<?php echo empty( $c['survey'] ) ? '' : ' data-ds-survey'; ?>><?php echo esc_html( $c['label'] ?? '' ); ?></a>
               <?php endforeach; ?>
             </div>
             <?php endif; ?>

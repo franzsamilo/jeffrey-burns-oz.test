@@ -160,6 +160,12 @@ Source copies are on the GitHub v2 release (`franzsamilo/jeffrey-burns-oz.test`)
 
 ## 7. Online bill payment (Dr. Burns's request)
 
+> **Update 2026-10-24 (theme 1.5.0):** the page moved to **`/make-a-payment/`**, the old site's
+> address for it, and now carries the old page's copy word for word. Create the page with title
+> "Make a Payment", slug `make-a-payment`. All links in the theme point there, and both
+> `/make-a-payment/` and `/pay-your-bill/` send people to the payment portal until the page exists.
+> The rest of this section describes the 1.3.0 version.
+
 - **New page `/pay-your-bill/`** — "Pay Online Now" button (opens
   `https://pay.balancecollect.com/m/jeffreysburnsddspc`), the QR code for people on a computer
   (hidden on phones, where you tap instead), the office phone for balance questions, and a

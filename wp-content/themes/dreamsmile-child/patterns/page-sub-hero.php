@@ -25,7 +25,7 @@ $variants = [
     'label'    => 'DENTAL IMPLANTS',
     'title'    => 'Dental Implants That Look, Feel &amp; Function Like <em>Natural Teeth</em>.',
     'subtitle' => 'A permanent solution for missing or damaged teeth &mdash; placed personally by Dr. Burns.',
-    'cta1'     => [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz' ],
+    'cta1'     => [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     'cta2'     => [ 'label' => 'Free Assessment',     'href' => '/#quiz' ],
     'bg'       => $base . '/dental-implants-hero.jpg',
     'alt'      => 'Dr. Burns reviewing a dental implant case',
@@ -34,7 +34,7 @@ $variants = [
     'label'    => 'SERVICE AREAS',
     'title'    => 'Dental Implants Across the <em>Shenandoah Valley</em> &mdash; Expert Results You Can Trust.',
     'subtitle' => 'One office in New Market, VA &mdash; serving patients from across the valley, led personally by Dr. Burns.',
-    'cta1'     => [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz' ],
+    'cta1'     => [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     'cta2'     => [ 'label' => 'Free Assessment',     'href' => '/#quiz' ],
     'bg'       => $base . '/Harrison-Hero.jpg',
     'alt'      => 'Dr. Burns&rsquo;s dental implant office in New Market, VA',
@@ -111,11 +111,12 @@ $variants = [
     'bg'       => $base . '/new-patients-hero.jpg',
     'alt'      => 'Dr. Burns greeting a new patient',
   ],
-  'pay-your-bill' => [
-    'label'    => 'PAY YOUR BILL',
-    'title'    => 'Pay Your Bill <em>Online</em>.',
-    'subtitle' => 'A secure way to pay your balance from home &mdash; no phone call, no stamp. Scan the code with your phone or use the button below.',
-    'cta1'     => [ 'label' => 'Pay Online Now', 'href' => ds_payment_url() ],
+  // The old site's Make a Payment intro, word for word (make-a-payment.php).
+  'make-a-payment' => [
+    'label'    => 'SECURE ONLINE PAYMENT',
+    'title'    => 'Make a <em>Payment</em>',
+    'subtitle' => 'Paying your bill online is quick and secure. Click the button below to make a payment through our secure payment portal, or scan the QR code with your phone&rsquo;s camera.',
+    'cta1'     => [ 'label' => 'Pay Your Bill Online', 'href' => ds_payment_url() ],
     'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
     'bg'       => $base . '/contact-hero.jpg',
     'alt'      => 'Dr. Jeffrey S. Burns, DDS &mdash; New Market, VA office',
@@ -184,7 +185,7 @@ ds_render_split_hero( [
   'alt'   => $v['alt'],
   'bg'    => $v['bg'],
   'ctas'  => [
-    [ 'label' => $v['cta1']['label'], 'href' => $v['cta1']['href'], 'variant' => 'solid' ],
+    [ 'label' => $v['cta1']['label'], 'href' => $v['cta1']['href'], 'variant' => 'solid', 'survey' => ! empty( $v['cta1']['survey'] ) ],
     [ 'label' => $v['cta2']['label'], 'href' => $v['cta2']['href'], 'variant' => 'outlined-white' ],
   ],
 ] );

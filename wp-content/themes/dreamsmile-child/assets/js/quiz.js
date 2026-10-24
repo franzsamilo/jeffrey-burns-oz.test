@@ -29,7 +29,11 @@
         }
         return;
       }
-      if (window.DSScheduleModal && typeof window.DSScheduleModal.open === 'function') {
+      // The card is the eligibility survey's first question; hand the answer
+      // over so the survey opens with it already selected.
+      if (window.DSSurvey && typeof window.DSSurvey.open === 'function') {
+        window.DSSurvey.open(selected.value);
+      } else if (window.DSScheduleModal && typeof window.DSScheduleModal.open === 'function') {
         window.DSScheduleModal.open();
       }
     });

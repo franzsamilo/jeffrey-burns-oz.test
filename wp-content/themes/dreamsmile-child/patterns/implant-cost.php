@@ -62,7 +62,7 @@ ds_render_split_hero( [
   'alt'   => 'Dental implant cost and financing — a transparent treatment plan',
   'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-cost-hero.jpg',
   'ctas'  => [
-    [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz' ],
+    [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     [ 'label' => 'Call (540) 740-8937',   'href' => 'tel:+15407408937', 'variant' => 'outlined-white' ],
   ],
 ] );
@@ -92,7 +92,7 @@ ds_render_split_hero( [
         <div class="ds-cost-factors__inline-cta">
           <h3>Want a personalized estimate?</h3>
           <p>Take the 30-second quiz for a realistic range based on your unique case.</p>
-          <a href="/#quiz" class="ds-btn ds-btn--solid ds-btn--sm">
+          <a href="/#quiz" data-ds-survey class="ds-btn ds-btn--solid ds-btn--sm">
             <span>Take the Quiz</span>
             <?php echo $svg['arrow']; ?>
           </a>
