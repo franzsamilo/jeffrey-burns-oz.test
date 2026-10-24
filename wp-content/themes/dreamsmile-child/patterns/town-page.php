@@ -35,8 +35,9 @@ if ( is_page() && ( $p = get_post() ) ) { $slug = $p->post_name; }
 $town = ds_town_copy()[ $slug ] ?? null;
 if ( ! $town ) { return; }
 
-$base   = get_stylesheet_directory_uri() . '/assets/arrange';
-$office = ds_office_data();
+$base     = get_stylesheet_directory_uri() . '/assets/arrange';
+$office   = ds_office_data();
+$img_dims = wp_getimagesize( get_stylesheet_directory() . '/assets/arrange/' . $town['image'] );
 
 $points  = $town['sections'];
 $lead    = array_shift( $points );
@@ -87,7 +88,7 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode
         </div>
       </div>
       <div class="ds-loc-hero__media ds-reveal">
-        <img src="<?php echo esc_url( $base . '/' . $town['image'] ); ?>" alt="<?php echo esc_attr( $town['image_alt'] ); ?>" width="1280" height="960" />
+        <img src="<?php echo esc_url( $base . '/' . $town['image'] ); ?>" alt="<?php echo esc_attr( $town['image_alt'] ); ?>"<?php echo $img_dims ? ' width="' . (int) $img_dims[0] . '" height="' . (int) $img_dims[1] . '"' : ''; ?> />
       </div>
     </div>
   </div>
