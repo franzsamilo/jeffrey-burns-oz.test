@@ -6,6 +6,7 @@
  */
 defined( 'ABSPATH' ) || exit;
 $quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/guide-cover.webp';
+$tools         = ds_lead_tools();
 ?>
 <!-- wp:html -->
 <section class="ds-quiz-section" id="quiz">
@@ -25,22 +26,26 @@ $quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/guide-cover.w
           <p class="ds-quiz-card__subtitle">Take this 30 second quiz</p>
           <p class="ds-quiz-card__question">What best describes your current condition?</p>
 
+          <?php // This card is the first question of the agency's eligibility survey
+                // (ds_lead_tools()). Next opens the survey with the answer
+                // pre-selected, which only works while each value is the survey
+                // option's exact text — straight apostrophes included. ?>
           <fieldset class="ds-quiz-card__options">
             <legend class="ds-sr-only">What best describes your current condition?</legend>
             <label class="ds-quiz-card__option">
-              <input type="radio" name="ds-quiz" value="all" class="ds-quiz-radio" />
+              <input type="radio" name="ds-quiz" value="I have all of my teeth" class="ds-quiz-radio" />
               <span class="ds-quiz-card__option-label">I have all of my teeth</span>
             </label>
             <label class="ds-quiz-card__option">
-              <input type="radio" name="ds-quiz" value="some" class="ds-quiz-radio" />
-              <span class="ds-quiz-card__option-label">I&rsquo;m missing one or more teeth</span>
+              <input type="radio" name="ds-quiz" value="I'm missing one tooth" class="ds-quiz-radio" />
+              <span class="ds-quiz-card__option-label">I&rsquo;m missing one tooth</span>
             </label>
             <label class="ds-quiz-card__option">
-              <input type="radio" name="ds-quiz" value="most" class="ds-quiz-radio" />
-              <span class="ds-quiz-card__option-label">I&rsquo;m missing most of my teeth</span>
+              <input type="radio" name="ds-quiz" value="I'm missing multiple teeth" class="ds-quiz-radio" />
+              <span class="ds-quiz-card__option-label">I&rsquo;m missing multiple teeth</span>
             </label>
             <label class="ds-quiz-card__option">
-              <input type="radio" name="ds-quiz" value="all-missing" class="ds-quiz-radio" />
+              <input type="radio" name="ds-quiz" value="I'm missing all of my teeth" class="ds-quiz-radio" />
               <span class="ds-quiz-card__option-label">I&rsquo;m missing all of my teeth</span>
             </label>
           </fieldset>
@@ -66,11 +71,10 @@ $quiz_card_img = get_stylesheet_directory_uri() . '/assets/arrange/guide-cover.w
       <aside class="ds-guide-card">
         <span class="ds-guide-card__label">WANT TO LEARN MORE &mdash; INCLUDING SAME-DAY TEETH?</span>
         <p class="ds-guide-card__heading">Get the FREE Pricing &amp; Information Guide</p>
-        <?php // Opens the shared modal in its "guide" dress (see schedule-modal.js
-              // VARIANTS): asking for the guide must not land the visitor on a
-              // "Book My Free Assessment" button. /contact/ is the no-JS fallback. ?>
-        <a href="/contact/" data-ds-schedule data-ds-modal-variant="guide" class="ds-btn ds-btn--outlined ds-btn--sm ds-guide-card__cta">GET THE FREE GUIDE</a>
-        <p class="ds-guide-card__note">Emailed to you &mdash; free, and no obligation.</p>
+        <?php // The agency's funnel page delivers the guide. New tab, so the
+              // visitor still has the site when they come back. ?>
+        <a href="<?php echo esc_url( $tools['ebook_url'] ); ?>" target="_blank" rel="noopener" class="ds-btn ds-btn--outlined ds-btn--sm ds-guide-card__cta">GET THE FREE GUIDE</a>
+        <p class="ds-guide-card__note">Free download &mdash; no cost, no obligation.</p>
       </aside>
 
     </div>
