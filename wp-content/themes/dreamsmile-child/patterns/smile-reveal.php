@@ -11,6 +11,10 @@
  * its URL-parameter script.
  */
 defined( 'ABSPATH' ) || exit;
+// Left out while the Smile Reveal account can't serve the embed.
+if ( ! ds_smile_reveal_ready() ) {
+    return;
+}
 $tools = ds_lead_tools();
 ?>
 <!-- wp:html -->
