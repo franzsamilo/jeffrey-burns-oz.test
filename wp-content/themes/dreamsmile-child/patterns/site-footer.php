@@ -58,7 +58,7 @@ if ( $disclaimer && 'publish' === $disclaimer->post_status ) {
           <p><a href="/implant-cost/">Cost &amp; Financing</a></p>
           <p><a href="/implant-procedures/">Procedures</a></p>
           <p><a href="/implant-faqs/">FAQs</a></p>
-          <p><a href="#quiz">Am I a Candidate?</a></p>
+          <p><a href="#quiz" data-ds-survey>Am I a Candidate?</a></p>
         </div>
       </div>
 

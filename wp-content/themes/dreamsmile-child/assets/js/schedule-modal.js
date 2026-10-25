@@ -31,6 +31,8 @@ window.dsTrackLead = function (formName) {
    * visitor asked for a guide and was handed a booking form. A trigger can
    * now carry data-ds-modal-variant to re-dress the modal for what it
    * actually offers. Fields stay the same; only the promise changes.
+   * (The guide itself now comes from the agency's funnel page, see
+   * ds_lead_tools(), so only the assessment dress is left.)
    */
   var VARIANTS = {
     assessment: {
@@ -40,14 +42,6 @@ window.dsTrackLead = function (formName) {
       sub:        'Dr. Burns will personally review your case &mdash; no pressure, no obligation.',
       submit:     'Book My Free Assessment',
       subject:    'New DreamSmile Assessment Request'
-    },
-    guide: {
-      asideLabel: 'FREE PATIENT GUIDE',
-      label:      'THE ULTIMATE GUIDE TO DENTAL IMPLANTS',
-      heading:    'Send Me the Free <span class="ds-modal__title-accent">DreamSmile<sup class="ds-tm">&trade;</sup></span> Guide',
-      sub:        'Pricing ranges, treatment options and what same-day teeth really involve. We&rsquo;ll email your copy &mdash; no cost, no obligation.',
-      submit:     'Email Me the Free Guide',
-      subject:    'New DreamSmile Guide Request'
     }
   };
 
@@ -78,11 +72,8 @@ window.dsTrackLead = function (formName) {
       if (subject) subject.value = v.subject;
     }
 
-    var openVariant = 'assessment';
-
     function open(variant) {
       if (!modal) return;
-      openVariant = VARIANTS[variant] ? variant : 'assessment';
       applyVariant(variant);
       modal.removeAttribute('hidden');
       requestAnimationFrame(function () { modal.classList.add('is-open'); });
@@ -128,9 +119,9 @@ window.dsTrackLead = function (formName) {
     document.addEventListener('click', function (e) {
       var trigger = e.target.closest(triggers);
       if (!trigger) return;
-      // Clicks inside the quiz card belong to the quiz flow (quiz.js), which
-      // calls DSScheduleModal.open() itself after validating an answer.
-      if (trigger.closest('[data-ds-quiz]')) return;
+      // Clicks inside the quiz card belong to the quiz flow (quiz.js), and
+      // quiz-style CTAs open the eligibility survey (lead-embeds.js).
+      if (trigger.closest('[data-ds-quiz]') || trigger.closest('[data-ds-survey]')) return;
       e.preventDefault();
       open(trigger.getAttribute('data-ds-modal-variant'));
     }, true);
@@ -200,7 +191,7 @@ window.dsTrackLead = function (formName) {
           var explicitFail = r.json && r.json.success === false;
           if (r.ok && !explicitFail) {
             showSuccess();
-            window.dsTrackLead(openVariant === 'guide' ? 'guide_request' : 'assessment_request');
+            window.dsTrackLead('assessment_request');
           } else {
             fail();
           }
