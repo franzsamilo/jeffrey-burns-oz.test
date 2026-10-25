@@ -159,7 +159,7 @@ add_action( 'init', function () {
         'Anesthesia & Sedation', 'Dental Exams', 'Oral Hygiene', 'Teeth Cleaning',
         'Dental Sealants', 'Deep Teeth Cleaning', 'Periodontal Maintenance',
         'Dental Fillings', 'Financing & Insurance', 'Patient Education',
-        'Pay Your Bill',
+        'Make a Payment',
         'Harrisonburg', 'Winchester', 'Broadway', 'Bridgewater',
         'Luray', 'Woodstock', 'Elkton', 'Timberville',
     ];
@@ -352,23 +352,48 @@ function ds_town_pages() {
 }
 
 /**
+ * The old site's copy for the town pages above, keyed by page slug
+ * (inc/town-pages.php). Towns are moved over one at a time; Harrisonburg was
+ * first (client request, 2026-10-24).
+ */
+function ds_town_copy() {
+    static $cache = null;
+    if ( null === $cache ) {
+        $cache = require trailingslashit( get_stylesheet_directory() ) . 'inc/town-pages.php';
+    }
+    return $cache;
+}
+
+// A town page with copy in ds_town_copy() is drawn by templates/page-town.html.
+// The others keep the default page template and their wp-admin text.
+add_filter( 'page_template_hierarchy', function ( $templates ) {
+    $page = get_queried_object();
+    if ( $page instanceof WP_Post && isset( ds_town_copy()[ $page->post_name ] ) ) {
+        array_unshift( $templates, 'page-town.php' );
+    }
+    return $templates;
+} );
+
+/**
  * Online bill payment (Balance Collect), requested by Dr. Burns 2026-10.
- * The site links to /pay-your-bill/ (navbar Resources menu, footer, the
- * /resources/ hub), which shows the payment button and the QR code.
+ * The site links to /make-a-payment/ (navbar Resources menu, footer, the
+ * /resources/ hub), the old site's address for the same page, which shows the
+ * payment button and the QR code.
  */
 function ds_payment_url() {
     return 'https://pay.balancecollect.com/m/jeffreysburnsddspc';
 }
 
-// Until a /pay-your-bill/ page is published (page seeder, or by hand with that
-// slug), send anyone who follows a "Pay Your Bill" link straight to the
-// payment portal instead of a 404.
+// Until a /make-a-payment/ page is published (page seeder, or by hand with
+// that slug), send anyone who follows a payment link straight to the payment
+// portal instead of a 404. /pay-your-bill/ was this page's address in theme
+// 1.3; it never went live, but a stale link may still point there.
 add_action( 'template_redirect', function () {
     if ( ! is_404() ) {
         return;
     }
     $path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
-    if ( 'pay-your-bill' === $path ) {
+    if ( in_array( $path, [ 'make-a-payment', 'pay-your-bill' ], true ) ) {
         wp_redirect( ds_payment_url(), 302 );
         exit;
     }

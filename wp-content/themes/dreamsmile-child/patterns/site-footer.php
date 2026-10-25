@@ -47,7 +47,7 @@ if ( $disclaimer && 'publish' === $disclaimer->post_status ) {
           <p>Mon&ndash;Thu &middot; 8 AM &ndash; 3 PM</p>
           <p><a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>"><?php echo esc_html( $office['phone'] ); ?></a></p>
           <p><a href="/contact/">Visit our contact page &rarr;</a></p>
-          <p><a href="/pay-your-bill/">Pay Your Bill Online</a></p>
+          <p><a href="/make-a-payment/">Make a Payment</a></p>
         </div>
       </div>
 

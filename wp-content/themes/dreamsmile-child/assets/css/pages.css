@@ -2888,7 +2888,7 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   display: block;
   filter: saturate(0.92) contrast(0.95);
 }
-/* /pay-your-bill/ — the map slot holds the payment QR code instead. White
+/* /make-a-payment/ — the map slot holds the payment QR code instead. White
    card so the code has the quiet zone phone cameras need to read it. Hidden
    on phones: someone already on a phone taps the button, they can't scan
    their own screen. */
@@ -2922,11 +2922,6 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   color: var(--ds-charcoal, #3A3A3A);
   font-weight: 700;
   margin-bottom: 2px;
-}
-.ds-pay__tel {
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
 }
 
 /* Footer CTA */
@@ -2975,7 +2970,9 @@ body:has(.ds-loc-hero) .ds-navbar {
 body:has(.ds-loc-hero) .ds-navbar__logo { color: var(--ds-charcoal); }
 body:has(.ds-loc-hero) .ds-navbar__sub { color: var(--ds-warm-gray); }
 body:has(.ds-loc-hero) .ds-navbar__logo-j { color: var(--ds-teal); }
-body:has(.ds-loc-hero) .ds-navbar__cta { color: var(--ds-teal); border-color: var(--ds-teal); }
+/* Same outlined look as the scrolled navbar; the base CTA is a solid teal pill,
+   so teal text alone would vanish into it. */
+body:has(.ds-loc-hero) .ds-navbar__cta { background: transparent; color: var(--ds-teal); border-color: var(--ds-teal); }
 body:has(.ds-loc-hero) .ds-navbar__cta:hover { background: var(--ds-teal); color: #fff; }
 body:has(.ds-loc-hero) .ds-navbar__nav a { color: var(--ds-charcoal); }
 body:has(.ds-loc-hero) .ds-navbar__nav a:hover { color: var(--ds-teal); }
@@ -6588,3 +6585,206 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 }
 
 .ds-guide-card__note { margin: 10px 0 0; font-size: 12px; line-height: 1.5; color: var(--ds-warm-gray); font-family: 'Montserrat', sans-serif; }
+
+/* ─── Town pages (/contact-us/…, town-page.php) ───────────────────────────
+   The old site's town-page copy in the location-page components above. */
+
+/* Location bands sit flush. WordPress's flow layout puts 1.2rem above each
+   top-level block, which showed as pale seams between the coloured bands. */
+.ds-main > section[class^="ds-loc-"] { margin-block-start: 0; }
+
+/* Hero: a wider copy column so the long "Schedule Your DreamSmile™
+   Assessment" button and "Call Now" share one row. */
+@media (min-width: 1024px) {
+  .ds-loc-hero--town .ds-loc-hero__grid { grid-template-columns: 1.3fr 1fr; }
+}
+@media (max-width: 639px) {
+  .ds-loc-hero--town .ds-loc-hero__ctas .ds-btn { flex: 1 1 100%; }
+}
+.ds-loc-hero--town .ds-loc-hero__title { text-wrap: balance; }
+
+/* Inline eligibility survey on charcoal, at the old #see-if-you-qualify
+   anchor. The survey draws its own white card, which the dark band frames. */
+.ds-loc-survey {
+  background:
+    radial-gradient(700px 300px at 90% 0%, rgba(127, 181, 176, 0.16), transparent 60%),
+    var(--ds-charcoal);
+  padding: 56px 0 48px;
+  scroll-margin-top: 72px;
+}
+@media (min-width: 768px) { .ds-loc-survey { padding: 72px 0 56px; } }
+.ds-loc-survey .ds-loc-why__head { max-width: 760px; margin-bottom: 16px; }
+.ds-loc-survey .ds-label { color: var(--ds-teal-light); }
+.ds-loc-survey .ds-loc-why__title { color: #fff; }
+.ds-loc-survey .ds-loc-why__title .ds-italic { color: var(--ds-teal-light); }
+.ds-loc-survey__card { max-width: 640px; margin: 0 auto; }
+.ds-loc-survey .ds-survey__frame::before { color: rgba(255, 255, 255, 0.7); }
+/* The 420px floor only covers loading. Once the survey's script sizes the
+   iframe, follow it, so a short step doesn't leave a gap above the note. */
+.ds-loc-survey .ds-survey__frame:has(iframe[style*="height"]),
+.ds-loc-survey .ds-survey__frame iframe[style*="height"] { min-height: 0; }
+.ds-loc-survey__note {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 16px 0 0;
+}
+.ds-loc-survey__note a { color: #fff; font-weight: 700; text-decoration: none; }
+.ds-loc-survey__note a:hover { color: var(--ds-teal-light); }
+
+/* Links inside the old copy ("Dr. Jeffrey Burns" → home). Charcoal with a
+   teal underline: teal text on white is under 4.5:1. */
+.ds-loc-hero__sub a,
+.ds-loc-intro__body a,
+.ds-loc-point__text a,
+.ds-loc-cta__body a {
+  color: var(--ds-charcoal);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ds-teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.ds-loc-hero__sub a:hover,
+.ds-loc-intro__body a:hover,
+.ds-loc-point__text a:hover,
+.ds-loc-cta__body a:hover { color: var(--ds-teal-dark); }
+
+/* Old section 1: its heading beside its two paragraphs. */
+.ds-loc-intro { background: #fff; padding: 56px 0; }
+@media (min-width: 768px) { .ds-loc-intro { padding: 72px 0; } }
+.ds-loc-intro__grid { display: grid; gap: 20px; }
+@media (min-width: 900px) {
+  .ds-loc-intro__grid { grid-template-columns: 5fr 7fr; gap: 56px; align-items: start; max-width: 1080px; }
+}
+.ds-loc-intro__head { display: flex; flex-direction: column; gap: 8px; }
+.ds-loc-intro__title {
+  font-family: 'Amiri', 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.18;
+  color: var(--ds-charcoal);
+  margin: 0;
+  text-wrap: balance;
+}
+.ds-loc-intro__title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 16px;
+  background: var(--ds-teal);
+  border-radius: 999px;
+}
+.ds-loc-intro__body p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ds-dark-slate);
+  margin: 0 0 14px;
+  max-width: 64ch;
+}
+.ds-loc-intro__body p:last-child { margin-bottom: 0; }
+
+/* Old sections 2–4: three columns on grey, split by hairlines, not boxed. */
+.ds-loc-points { background: var(--ds-light-gray); padding: 56px 0; }
+@media (min-width: 768px) { .ds-loc-points { padding: 72px 0; } }
+.ds-loc-points__grid { display: grid; gap: 0; max-width: 1080px; }
+@media (min-width: 1024px) { .ds-loc-points__grid { grid-template-columns: repeat(3, 1fr); } }
+.ds-loc-point { display: flex; flex-direction: column; gap: 10px; padding: 28px 0; }
+.ds-loc-point:first-child { padding-top: 0; }
+.ds-loc-point:last-child { padding-bottom: 0; }
+.ds-loc-point + .ds-loc-point { border-top: 1px solid rgba(58, 58, 58, 0.12); }
+@media (min-width: 1024px) {
+  .ds-loc-point { padding: 0 32px; }
+  .ds-loc-point:first-child { padding-left: 0; }
+  .ds-loc-point:last-child { padding-right: 0; }
+  .ds-loc-point + .ds-loc-point { border-top: 0; border-left: 1px solid rgba(58, 58, 58, 0.12); }
+}
+.ds-loc-point__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(127, 181, 176, 0.18);
+  color: var(--ds-teal-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-loc-point__icon svg { width: 22px; height: 22px; }
+.ds-loc-point__title {
+  font-family: 'Amiri', 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ds-charcoal);
+  margin: 4px 0 2px;
+  text-wrap: balance;
+}
+.ds-loc-point__text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ds-dark-slate);
+  margin: 0;
+}
+
+/* Meet Dr. Jeffrey Burns — the shared old-site blurb in .ds-loc-doctor. */
+.ds-loc-doctor .ds-label { color: var(--ds-teal-light); display: inline-block; margin-bottom: 8px; }
+.ds-loc-doctor__bio {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 22px;
+}
+
+/* The DreamSmile blurb, beside the patient-stories video. */
+.ds-loc-dreamsmile { background: var(--ds-off-white); padding: 64px 0; }
+@media (min-width: 768px) { .ds-loc-dreamsmile { padding: 80px 0; } }
+.ds-loc-dreamsmile__grid { display: grid; gap: 36px; align-items: center; }
+@media (min-width: 768px) {
+  .ds-loc-dreamsmile__grid { grid-template-columns: 1.5fr 1fr; gap: 56px; max-width: 1040px; }
+}
+.ds-loc-dreamsmile__copy { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+/* The logo file has transparent margins (45px of 700 on the left); pull the
+   artwork back onto the text's left edge. */
+.ds-loc-dreamsmile__logo { display: block; width: 240px; height: auto; margin-left: -15px; }
+.ds-loc-dreamsmile__text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ds-dark-slate);
+  margin: 0;
+  max-width: 60ch;
+}
+.ds-loc-dreamsmile__media { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.ds-loc-dreamsmile__media .ds-loc-testimonials__media { width: 100%; max-width: 250px; margin: 0; }
+.ds-loc-dreamsmile__media figcaption {
+  font-family: 'Amiri', 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ds-warm-gray);
+  text-align: center;
+}
+
+/* Closing section of the old copy (and the payment page's questions block). */
+.ds-loc-cta__body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ds-warm-gray);
+  margin: 0;
+  max-width: 62ch;
+}
+.ds-loc-cta__body--note { font-size: 13.5px; margin-top: 8px; }
+
+/* Light .ds-loc-map, for a page whose hero is already dark (Make a Payment):
+   two charcoal bands back to back read as one heavy block. */
+.ds-loc-map--light { background: var(--ds-light-gray); color: var(--ds-dark-slate); }
+.ds-loc-map--light .ds-loc-map__head .ds-label { color: var(--ds-teal-dark); }
+.ds-loc-map--light .ds-loc-map__title { color: var(--ds-charcoal); }
+.ds-loc-map--light .ds-loc-map__addr { color: var(--ds-dark-slate); }
+.ds-loc-map--light .ds-loc-doctor__bullets li { color: var(--ds-dark-slate); }
+.ds-loc-map--light .ds-loc-map__embed--qr { box-shadow: 0 18px 40px -22px rgba(58, 58, 58, 0.28); }
