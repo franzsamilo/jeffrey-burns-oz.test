@@ -13,12 +13,13 @@ SEO's schema only; links, redirects and the Slim SEO hand-off exercised end to e
 
 ---
 
-## 0. Update 2026-10-25: staging steps, in order
+## 0. Update 2026-10-26: staging steps, in order
 
-Three updates are now merged into `main`: this SEO tracker work (PR #1), the GoHighLevel quiz,
-smile preview and free guide (PR #2), and the Harrisonburg and Make a Payment pages (PR #3).
-The `setup/staging-and-deployment` branch now matches `main`. Staging was still serving theme
-**1.2.7** when we checked on 2026-10-25, so none of this is visible there yet.
+Four updates are now merged into `main`: this SEO tracker work (PR #1), the GoHighLevel quiz,
+smile preview and free guide (PR #2), the Harrisonburg and Make a Payment pages (PR #3), and a
+visual pass over every page plus proper blog layouts (PR #5, theme **1.5.2**). The
+`setup/staging-and-deployment` branch now matches `main`. Staging was still serving theme
+**1.2.7** when we checked on 2026-10-26, so none of this is visible there yet.
 
 ### Step 1: deploy (everything else depends on this)
 
@@ -27,8 +28,8 @@ The `setup/staging-and-deployment` branch now matches `main`. Staging was still 
 2. In staging's WordPress admin: *Appearance → Themes → Add New Theme → Upload Theme*, choose
    the zip, then **Replace active with uploaded**.
 3. Purge the Pressable cache.
-4. Check: the page source should show `dreamsmile-child/style.css?ver=` followed by the new
-   version (anything after 1.2.7).
+4. Check: the page source should show `dreamsmile-child/style.css?ver=1.5.2` (or a later
+   version). If it still says 1.2.7, the old theme is still active or the cache wasn't purged.
 
 ### Step 2: right after the deploy
 
@@ -38,7 +39,7 @@ The `setup/staging-and-deployment` branch now matches `main`. Staging was still 
 - **Remove the old Smile Reveal script.** It is printed just after the site footer: a script
   tag loading `app.smilereveal.io/smile-reveal-funnel.js`, plus a script containing a
   `placeSmileReveal()` function. It targets the old theme's layout and does nothing on the new
-  one, because the theme now places Smile Reveal itself. It was still on staging on 2026-10-25.
+  one, because the theme now places Smile Reveal itself. It was still on staging on 2026-10-26.
 - **Run the Slim SEO hand-off** in §2 (`/wp-admin/?ds_seed_slim_seo=1`, then *Apply*). It only
   exists once the new theme is deployed.
 
@@ -46,7 +47,7 @@ The `setup/staging-and-deployment` branch now matches `main`. Staging was still 
 
 We could only check what is visible from outside the admin:
 
-- **Redirects (R9, R10): not imported yet.** On 2026-10-25, old addresses such as
+- **Redirects (R9, R10): not imported yet.** On 2026-10-26, old addresses such as
   `/about-our-practice/our-services/` and `/office-information/make-an-appointment/` still
   returned 404, `/winchester/` still redirected through `http://`, and the theme's `/elkton/`
   page was still live. Follow the order in §3: draft the old pages, import the CSV, then make
@@ -64,6 +65,19 @@ description still work as normal.
 
 The other seven town pages are built the same way and waiting in PR #4. They stay on their
 current WordPress content until the SEO team confirms they want them moved.
+
+### Heads-up: blog posts and /blog/ now use the site's own layout
+
+Until now the theme had no blog layout, so posts, `/blog/` and category pages fell back to
+WordPress's default look. After the deploy they use the same design as the rest of the site:
+an article header, the reading column, and post cards on `/blog/`. Two things behave
+differently:
+
+- **Posts no longer show a comment form.** Existing comments stay in WordPress; they just
+  aren't displayed. Tell us if the practice wants comments on.
+- **The main heading on `/blog/` is fixed as "Blog".** Renaming the Blog page in WordPress
+  changes nothing on the page itself; its Slim SEO title and description still work as normal.
+  Category pages use the category name as their heading. Ask us if you want different wording.
 
 ### Launch day (not yet)
 
@@ -90,7 +104,7 @@ staging. *Client* = needs an answer from the practice. *Launch day* = at cut-ove
 | R13 | Blocker | Hours: text says Mon–Thu 8–3, schema says Mon–Fri 8–5 | **Theme side done:** the Mon–Fri 8–5 schema was the theme's and is gone. Site text says Mon–Thu 8 AM–3 PM everywhere. Confirm against the Google Business Profile and enter the same hours in Slim SEO Schema. | Client confirms; SEO team |
 | R14 | Blocker | Forms send no tracking signal | **Done.** Both forms push a `generate_lead` event to the GTM dataLayer after the server confirms receipt — see §5. GTM/GA4 setup + test submissions still needed. | Theme + SEO team |
 | R15 | High | Developer's 8 town pages vs. the /contact-us/ pages | **Done (theme side).** `/locations/`, the contact page and the footer now link the 8 `/contact-us/` pages. The theme's `/harrisonburg/`-style pages get drafted + redirected (in the CSV). Set `/contact-us/` itself to **draft, not trash**. | Theme + SEO team |
-| R16 | High | Implants banner as an extra H1 on non-implant pages | **Done.** The default page template no longer falls back to the implants banner. Pages with their own H1 (town pages, /disclaimer/) keep exactly that one; pages without one (/blog/) get the page title as the H1; /implant-faqs, -procedures and -cost keep only their own hero. | Theme |
+| R16 | High | Implants banner as an extra H1 on non-implant pages | **Done.** The default page template no longer falls back to the implants banner. Pages with their own H1 (town pages, /disclaimer/) keep exactly that one; pages without one get the page title as the H1 (since theme 1.5.2, /blog/ has its own layout with the H1 "Blog"); /implant-faqs, -procedures and -cost keep only their own hero. | Theme |
 | R17 | High | 48 blank pages public on the **live** site since Oct 8 | Not a theme change — these need setting to draft on www.jeffreyburns.com. Please confirm who has live-admin access before anyone touches production. | Team decision |
 | R18 | Medium | Ranking-tool drop | SEO team's reporting; no site change. | SEO team |
 | R19 | High | Link-building targets addresses that will redirect | SEO team's link roadmap. | SEO team |
