@@ -799,25 +799,28 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
 }
 .ds-ba__counter-sep { opacity: 0.5; }
 
+/* 9px dot, 24px tap target - same trick as .ds-testi-rail__dots. */
 .ds-ba__dots {
   display: flex;
-  gap: 10px;
+  gap: 0;
   justify-content: center;
-  margin-top: 28px;
+  margin-top: 20px;
 }
 .ds-ba__dots button {
+  box-sizing: content-box;
   width: 9px;
   height: 9px;
   border-radius: 99px;
   border: 0;
   background: #C9D2D1;
-  padding: 0;
+  background-clip: content-box;
+  padding: 7.5px;
   cursor: pointer;
   transition: width .28s ease, background .28s ease, transform .2s ease;
 }
-.ds-ba__dots button:hover { background: var(--ds-teal-light); transform: scale(1.15); }
+.ds-ba__dots button:hover { background-color: var(--ds-teal-light); transform: scale(1.15); }
 .ds-ba__dots button.is-active {
-  background: var(--ds-teal);
+  background-color: var(--ds-teal);
   width: 30px;
 }
 
@@ -2873,8 +2876,14 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   gap: 8px;
 }
 .ds-loc-map__ctas .ds-btn svg { width: 14px; height: 14px; }
+/* justify-self:stretch because the grid stretches this cell to the row
+   height, and with aspect-ratio set, a grid item then takes its width from
+   that height (4/3 x height) instead of from its track. Next to a tall text
+   column (/contact/ at ~768px) that came out wider than the track and the
+   page scrolled sideways. */
 .ds-loc-map__embed {
   aspect-ratio: 4 / 3;
+  justify-self: stretch;
   border-radius: 16px;
   overflow: hidden;
   background: linear-gradient(135deg, #2E3E3C, #1F2D2B);
@@ -3130,7 +3139,10 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   border-color: var(--ds-teal-light);
   color: var(--ds-charcoal);
 }
-.ds-cost-factors__inline-cta .ds-btn svg { transition: transform .2s ease; }
+/* The arrow SVG carries no width/height, so without a size it grows to
+   ~56px and squeezes "Take the Quiz" onto three lines. */
+.ds-cost-factors__inline-cta .ds-btn svg { width: 16px; height: 16px; flex-shrink: 0; transition: transform .2s ease; }
+.ds-cost-factors__inline-cta .ds-btn span { white-space: nowrap; }
 .ds-cost-factors__inline-cta .ds-btn:hover svg { transform: translateX(3px); }
 
 /* ─── Cost: Financing (DARK — PDF theme fix: "more greys") ───────────────── */
@@ -4814,6 +4826,11 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 }
 .ds-np-pillar > * { position: relative; }
 .ds-np-pillar strong { font-size: 1.78rem !important; margin-top: 4px; line-height: 1.1; }
+/* Three across on a tablet leaves ~177px of text width, narrower than
+   "Recommendation" at 1.78rem, so the word ran out of its card. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ds-np-pillar strong { font-size: 1.4rem !important; }
+}
 .ds-np-pillar span { font-size: 13.5px !important; line-height: 1.5; }
 
 /* Your First Visit: subtle card per step + colored numbers */
@@ -5876,14 +5893,18 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   box-shadow: 0 12px 28px rgba(58, 58, 58, 0.08);
   border-color: #DDDDD9;
 }
+/* "Restorative Care" didn't fit beside the read time in a 260px card and
+   broke onto two lines; keep it whole and let the time drop below instead. */
 .ds-pated-card__meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 4px 10px;
   margin-bottom: 14px;
   font-family: 'Montserrat', sans-serif;
 }
 .ds-pated-card__cat {
+  white-space: nowrap;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -5922,7 +5943,9 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   line-height: 1.6;
   color: var(--ds-dark-slate);
   margin: 0 0 18px;
-  flex: 1;
+  /* No flex:1 here. Stretching a line-clamped box past three lines lets
+     Chrome paint line four under the "Read article" link. The CTA's
+     margin-top:auto already pins it to the bottom of the card. */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -5997,9 +6020,11 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
      restyled into long-form prose, no card backgrounds, no big numbers.
    ========================================================================== */
 
+/* Top padding = the 81px fixed navbar + breathing room. At 56px the
+   "Patient Education" back link sat under the navbar. */
 .ds-article-hero {
   background: #FAFAF8;
-  padding: 56px 0 48px;
+  padding: 136px 0 48px;
   border-bottom: 1px solid #ECECEA;
 }
 .ds-article-hero .ds-wrap { max-width: 760px; }
@@ -6272,7 +6297,7 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 }
 
 @media (max-width: 720px) {
-  .ds-article-hero { padding: 40px 0 36px; }
+  .ds-article-hero { padding: 116px 0 36px; }
   .ds-article-hero__lede { font-size: 18px; }
   .ds-service--article .ds-np-steps { padding: 32px 0 48px; }
   .ds-service--article .ds-np-step__body p { font-size: 16px; }
@@ -6291,9 +6316,11 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   color: var(--ds-charcoal);
   margin: 8px 0 0;
 }
+/* auto-fit, not auto-fill: there are only ever three related cards, and
+   auto-fill left an empty fourth column at desktop widths. */
 .ds-article-related__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 18px;
 }
 .ds-article-related__index {
