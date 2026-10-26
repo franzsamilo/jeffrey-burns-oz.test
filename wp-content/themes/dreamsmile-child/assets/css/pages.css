@@ -528,23 +528,11 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   min-height: 100%;
   overflow: hidden;
 }
-.ds-benefit-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--ds-teal) 0%, var(--ds-teal-light) 100%);
-  opacity: 0;
-  transition: opacity .25s ease;
-}
 .ds-benefit-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 24px 48px -12px rgba(58, 58, 58, 0.12);
   border-color: rgba(127, 181, 176, 0.35);
 }
-.ds-benefit-card:hover::before { opacity: 1; }
 
 .ds-benefit-card__top {
   display: flex;
@@ -562,14 +550,6 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   justify-content: center;
 }
 .ds-benefit-card__icon svg { width: 28px; height: 28px; }
-.ds-benefit-card__index {
-  font-family: 'Amiri', 'Playfair Display', serif;
-  font-size: 28px;
-  font-style: italic;
-  font-weight: 700;
-  color: rgba(127, 181, 176, 0.55);
-  line-height: 1;
-}
 .ds-benefit-card__title {
   font-family: 'Amiri', 'Playfair Display', serif;
   font-size: 19px;
@@ -799,25 +779,28 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
 }
 .ds-ba__counter-sep { opacity: 0.5; }
 
+/* 9px dot, 24px tap target - same trick as .ds-testi-rail__dots. */
 .ds-ba__dots {
   display: flex;
-  gap: 10px;
+  gap: 0;
   justify-content: center;
-  margin-top: 28px;
+  margin-top: 20px;
 }
 .ds-ba__dots button {
+  box-sizing: content-box;
   width: 9px;
   height: 9px;
   border-radius: 99px;
   border: 0;
   background: #C9D2D1;
-  padding: 0;
+  background-clip: content-box;
+  padding: 7.5px;
   cursor: pointer;
   transition: width .28s ease, background .28s ease, transform .2s ease;
 }
-.ds-ba__dots button:hover { background: var(--ds-teal-light); transform: scale(1.15); }
+.ds-ba__dots button:hover { background-color: var(--ds-teal-light); transform: scale(1.15); }
 .ds-ba__dots button.is-active {
-  background: var(--ds-teal);
+  background-color: var(--ds-teal);
   width: 30px;
 }
 
@@ -2873,8 +2856,14 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   gap: 8px;
 }
 .ds-loc-map__ctas .ds-btn svg { width: 14px; height: 14px; }
+/* justify-self:stretch because the grid stretches this cell to the row
+   height, and with aspect-ratio set, a grid item then takes its width from
+   that height (4/3 x height) instead of from its track. Next to a tall text
+   column (/contact/ at ~768px) that came out wider than the track and the
+   page scrolled sideways. */
 .ds-loc-map__embed {
   aspect-ratio: 4 / 3;
+  justify-self: stretch;
   border-radius: 16px;
   overflow: hidden;
   background: linear-gradient(135deg, #2E3E3C, #1F2D2B);
@@ -3130,7 +3119,10 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   border-color: var(--ds-teal-light);
   color: var(--ds-charcoal);
 }
-.ds-cost-factors__inline-cta .ds-btn svg { transition: transform .2s ease; }
+/* The arrow SVG carries no width/height, so without a size it grows to
+   ~56px and squeezes "Take the Quiz" onto three lines. */
+.ds-cost-factors__inline-cta .ds-btn svg { width: 16px; height: 16px; flex-shrink: 0; transition: transform .2s ease; }
+.ds-cost-factors__inline-cta .ds-btn span { white-space: nowrap; }
 .ds-cost-factors__inline-cta .ds-btn:hover svg { transform: translateX(3px); }
 
 /* ─── Cost: Financing (DARK — PDF theme fix: "more greys") ───────────────── */
@@ -3288,22 +3280,11 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   gap: 10px;
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
-.ds-proc-type-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--ds-teal) 0%, var(--ds-teal-light) 100%);
-  opacity: 0;
-  transition: opacity .25s ease;
-  border-radius: 16px 16px 0 0;
-}
 .ds-proc-type-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 22px 44px -16px rgba(58, 58, 58, 0.16);
   border-color: rgba(127, 181, 176, 0.45);
 }
-.ds-proc-type-card:hover::before { opacity: 1; }
 
 .ds-proc-type-card.is-featured {
   background: linear-gradient(175deg, #fff 0%, #E9F5F2 100%);
@@ -3311,7 +3292,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   box-shadow: 0 24px 56px -18px rgba(127, 181, 176, 0.5);
   padding: 32px 24px 26px;
 }
-.ds-proc-type-card.is-featured::before { opacity: 1; height: 5px; }
 .ds-proc-type-card.is-featured .ds-proc-type-card__icon {
   background: var(--ds-teal);
   color: #fff;
@@ -3720,10 +3700,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 .ds-service--implants .ds-np-welcome__title .ds-italic,
 .ds-service--implants .ds-np-steps__title .ds-italic { color: var(--ds-teal-dark); }
 .ds-service--implants .ds-np-step__num {
-  background: linear-gradient(135deg, var(--ds-teal-dark) 0%, var(--ds-teal) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--ds-teal-dark);
   font-weight: 700;
 }
 .ds-service--implants .ds-implants-nav-card { border-top: 2px solid var(--ds-teal-dark); }
@@ -3757,12 +3734,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 .ds-service--cosmetic .ds-implants-nav-card {
   border-radius: 14px;
   border-image: linear-gradient(135deg, rgba(208, 178, 110, 0.4), rgba(127, 181, 176, 0.2)) 1;
-}
-.ds-service--cosmetic .ds-label {
-  background: linear-gradient(90deg, var(--ds-teal-dark), #B8985A);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 /* RESTORATIVE — earthy/foundational. Sienna brown accent. */
@@ -3971,7 +3942,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 .ds-cost-factors__head, .ds-cost-financing__head, .ds-proc-types__head, .ds-faq__head { text-align: center; }
 
 .ds-cost-factor-card:first-child {
-  border-left: 3px solid var(--ds-teal);
   background: linear-gradient(90deg, rgba(127, 181, 176, 0.06), transparent 60%);
 }
 
@@ -4231,7 +4201,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   padding: 14px 18px;
   background: #fff;
   border-radius: 10px;
-  border-left: 3px solid var(--ds-teal);
+  border: 1px solid rgba(127, 181, 176, 0.22);
   font-size: 13.5px;
   color: var(--ds-warm-gray);
   line-height: 1.45;
@@ -4792,21 +4762,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease !important;
   overflow: hidden;
 }
-.ds-np-pillar::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--ds-teal) 0%, var(--ds-teal-light) 100%);
-}
-.ds-np-pillar::after {
-  content: "";
-  position: absolute;
-  top: -30px; right: -30px;
-  width: 130px; height: 130px;
-  background: radial-gradient(circle, rgba(127, 181, 176, 0.14) 0%, transparent 70%);
-  pointer-events: none;
-}
 .ds-np-pillar:hover {
   transform: translateY(-4px);
   border-color: rgba(127, 181, 176, 0.42) !important;
@@ -4814,6 +4769,11 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 }
 .ds-np-pillar > * { position: relative; }
 .ds-np-pillar strong { font-size: 1.78rem !important; margin-top: 4px; line-height: 1.1; }
+/* Three across on a tablet leaves ~177px of text width, narrower than
+   "Recommendation" at 1.78rem, so the word ran out of its card. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ds-np-pillar strong { font-size: 1.4rem !important; }
+}
 .ds-np-pillar span { font-size: 13.5px !important; line-height: 1.5; }
 
 /* Your First Visit: subtle card per step + colored numbers */
@@ -4832,11 +4792,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   border-color: rgba(127, 181, 176, 0.32);
 }
 .ds-np-step__num {
-  background: linear-gradient(135deg, var(--ds-teal-dark) 0%, var(--ds-teal) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: var(--ds-teal-dark);
 }
 
 /* What to Bring: 2-col compact checklist + image as visual anchor */
@@ -4849,15 +4805,14 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 }
 .ds-np-before__list li {
   padding: 12px 16px !important;
-  border-left-width: 3px !important;
   background: linear-gradient(135deg, #fff 0%, #FAFCFB 100%) !important;
   border-radius: 10px !important;
   box-shadow: 0 4px 12px -8px rgba(58, 58, 58, 0.10) !important;
-  transition: transform .2s ease, box-shadow .2s ease, border-left-color .2s ease;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 .ds-np-before__list li:hover {
   transform: translateX(2px);
-  border-left-color: var(--ds-teal-dark) !important;
+  border-color: rgba(127, 181, 176, 0.5) !important;
   box-shadow: 0 8px 18px -10px rgba(58, 58, 58, 0.20) !important;
 }
 .ds-np-before__list strong { font-size: 13px !important; line-height: 1.3; }
@@ -4884,14 +4839,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   box-shadow: 0 14px 36px -22px rgba(58, 58, 58, 0.18), 0 1px 0 rgba(255, 255, 255, 0.7) inset !important;
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
   overflow: hidden;
-}
-.ds-np-comfort-card::before {
-  content: "";
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 160px; height: 160px;
-  background: radial-gradient(circle, rgba(127, 181, 176, 0.12) 0%, transparent 70%);
-  pointer-events: none;
 }
 .ds-np-comfort-card > * { position: relative; }
 .ds-np-comfort-card:hover {
@@ -4920,27 +4867,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   padding: 36px 26px 28px !important;
   box-shadow: 0 14px 36px -22px rgba(58, 58, 58, 0.18), 0 1px 0 rgba(255, 255, 255, 0.7) inset !important;
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
-  counter-increment: np-payment;
   overflow: hidden;
-}
-.ds-np-payment-card::before {
-  content: counter(np-payment, decimal-leading-zero);
-  position: absolute;
-  top: 18px; right: 22px;
-  font-family: 'Amiri', 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--ds-teal-light);
-  line-height: 1;
-  opacity: 0.7;
-}
-.ds-np-payment-card::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--ds-teal-light) 0%, var(--ds-teal) 100%);
 }
 .ds-np-payment-card:hover {
   transform: translateY(-4px);
@@ -4955,8 +4882,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 .ds-cost-factor-card {
   position: relative !important;
   background: linear-gradient(135deg, #fff 0%, #FAFCFB 100%) !important;
-  border: 1px solid rgba(127, 181, 176, 0.18) !important;
-  border-left: 3px solid var(--ds-teal) !important;
+  border: 1px solid rgba(127, 181, 176, 0.22) !important;
   border-radius: 12px !important;
   padding: 18px 20px !important;
   box-shadow: 0 6px 18px -10px rgba(58, 58, 58, 0.12) !important;
@@ -4964,7 +4890,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 }
 .ds-cost-factor-card:hover {
   transform: translateX(3px);
-  border-left-color: var(--ds-teal-dark) !important;
+  border-color: rgba(127, 181, 176, 0.5) !important;
   box-shadow: 0 12px 28px -14px rgba(58, 58, 58, 0.20) !important;
 }
 .ds-cost-factor-card__icon {
@@ -5017,21 +4943,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease !important;
   overflow: hidden;
 }
-.ds-cost-financing-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--ds-teal-light) 0%, var(--ds-teal) 100%);
-}
-.ds-cost-financing-card::after {
-  content: "";
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 160px; height: 160px;
-  background: radial-gradient(circle, rgba(127, 181, 176, 0.10) 0%, transparent 70%);
-  pointer-events: none;
-}
 .ds-cost-financing-card > * { position: relative; }
 .ds-cost-financing-card:hover {
   transform: translateY(-4px);
@@ -5059,21 +4970,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   box-shadow: 0 14px 36px -22px rgba(58, 58, 58, 0.18), 0 1px 0 rgba(255, 255, 255, 0.7) inset !important;
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease !important;
   overflow: hidden;
-}
-.ds-proc-type-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--ds-teal-light) 0%, var(--ds-teal) 100%);
-}
-.ds-proc-type-card::after {
-  content: "";
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 160px; height: 160px;
-  background: radial-gradient(circle, rgba(127, 181, 176, 0.10) 0%, transparent 70%);
-  pointer-events: none;
 }
 .ds-proc-type-card > * { position: relative; }
 .ds-proc-type-card:hover {
@@ -5119,8 +5015,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   .ds-proc-type-card.is-featured { transform: translateY(-8px); }
   .ds-proc-type-card.is-featured:hover { transform: translateY(-12px); }
 }
-.ds-proc-type-card.is-featured::before { background: linear-gradient(90deg, var(--ds-teal-light) 0%, #fff 100%); }
-.ds-proc-type-card.is-featured::after { background: radial-gradient(circle, rgba(255, 255, 255, 0.10) 0%, transparent 70%); }
 .ds-proc-type-card.is-featured .ds-proc-type-card__icon {
   background: rgba(255, 255, 255, 0.15) !important;
   color: var(--ds-teal-light) !important;
@@ -5164,7 +5058,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   position: relative;
   padding: 12px 16px 12px 44px;
   background: linear-gradient(135deg, rgba(127, 181, 176, 0.06) 0%, transparent 60%);
-  border-left: 3px solid var(--ds-teal);
+  border: 1px solid rgba(127, 181, 176, 0.18);
   border-radius: 8px;
   font-size: 14.5px;
   color: var(--ds-warm-gray);
@@ -5296,14 +5190,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   box-shadow: 0 18px 44px -22px rgba(58, 58, 58, 0.20), 0 0 0 1px rgba(127, 181, 176, 0.18);
   position: relative;
   overflow: hidden;
-}
-.ds-faq-help__inner::before {
-  content: "";
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 220px; height: 220px;
-  background: radial-gradient(circle, rgba(127, 181, 176, 0.12) 0%, transparent 70%);
-  pointer-events: none;
 }
 .ds-faq-help__inner > * { position: relative; }
 
@@ -5785,7 +5671,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
    DREAMSMILE — Patient Education / Blog Index
    Blog-style article cards on /patient-education/. Reuses the .ds-wrap and
    .ds-label tokens, adds editorial card styling distinct from the
-   .ds-implants-nav-card service grid (no icon, type-led, monospace read-time).
+   .ds-implants-nav-card service grid (no icon, type-led, read-time in the meta row).
    ========================================================================== */
 
 .ds-pated-intro {
@@ -5876,14 +5762,18 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   box-shadow: 0 12px 28px rgba(58, 58, 58, 0.08);
   border-color: #DDDDD9;
 }
+/* "Restorative Care" didn't fit beside the read time in a 260px card and
+   broke onto two lines; keep it whole and let the time drop below instead. */
 .ds-pated-card__meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 4px 10px;
   margin-bottom: 14px;
   font-family: 'Montserrat', sans-serif;
 }
 .ds-pated-card__cat {
+  white-space: nowrap;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -5902,8 +5792,9 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-family: 'JetBrains Mono', 'Menlo', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 11px;
+  font-variant-numeric: tabular-nums;
   color: var(--ds-warm-gray);
 }
 .ds-pated-card__time svg { opacity: 0.6; }
@@ -5922,7 +5813,9 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   line-height: 1.6;
   color: var(--ds-dark-slate);
   margin: 0 0 18px;
-  flex: 1;
+  /* No flex:1 here. Stretching a line-clamped box past three lines lets
+     Chrome paint line four under the "Read article" link. The CTA's
+     margin-top:auto already pins it to the bottom of the card. */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -5997,9 +5890,11 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
      restyled into long-form prose, no card backgrounds, no big numbers.
    ========================================================================== */
 
+/* Top padding = the 81px fixed navbar + breathing room. At 56px the
+   "Patient Education" back link sat under the navbar. */
 .ds-article-hero {
   background: #FAFAF8;
-  padding: 56px 0 48px;
+  padding: 136px 0 48px;
   border-bottom: 1px solid #ECECEA;
 }
 .ds-article-hero .ds-wrap { max-width: 760px; }
@@ -6055,8 +5950,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-family: 'JetBrains Mono', 'Menlo', monospace;
-  font-size: 12px;
+  font-variant-numeric: tabular-nums;
 }
 .ds-article-hero__time svg { opacity: 0.6; }
 .ds-article-hero__reviewed {
@@ -6184,6 +6078,120 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   padding: 14px 28px;
 }
 
+/* Blog: single.html, home.html, archive.html, patterns/blog-query.php.
+   Posts reuse the generic-page head and reading column above; the index
+   and archives get cards in the .ds-pated-card style. */
+.ds-post-head .ds-article-hero__title { margin-bottom: 14px; }
+.ds-post-head .ds-article-hero__meta { display: block; }
+.ds-blog-head .ds-article-hero__lede { margin: 16px 0 0; font-size: 20px; }
+.ds-blog-head .ds-article-hero__lede:empty { display: none; }
+.ds-blog-head .ds-label { margin: 0 0 14px; }
+.ds-main > .ds-article-figure { margin-top: 0; margin-bottom: 0; }
+
+.ds-blog-query {
+  max-width: var(--ds-max-width, 1200px);
+  margin: 0 auto;
+  padding: 48px 24px 88px;
+}
+.ds-blog-query .ds-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ds-blog-grid > li { margin: 0; }
+.ds-blog-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ECECEA;
+  border-radius: 12px;
+  padding: 24px 24px 22px;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.ds-blog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(58, 58, 58, 0.08);
+  border-color: #DDDDD9;
+}
+.ds-blog-card > * { margin: 0; }
+.ds-blog-card .ds-blog-card__media { margin: -8px -8px 18px; }
+.ds-blog-card__media img { border-radius: 8px; display: block; width: 100%; }
+.ds-blog-card__date {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ds-teal-dark);
+  margin-bottom: 10px;
+}
+.ds-blog-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+  margin-bottom: 10px;
+}
+.ds-blog-card__title a { color: var(--ds-charcoal); text-decoration: none; }
+.ds-blog-card__title a:hover { color: var(--ds-teal-dark); }
+.ds-blog-card__excerpt {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ds-dark-slate);
+  margin-bottom: 18px;
+}
+.ds-blog-card__excerpt p { margin: 0; }
+/* The theme's own "Read article" link below replaces core's "…" more link. */
+.ds-blog-card__excerpt .wp-block-post-excerpt__more-text { display: none; }
+.ds-blog-card .ds-blog-card__more {
+  margin-top: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ds-teal-dark);
+  text-decoration: none;
+}
+.ds-blog-card__more::after { content: " \2192"; }
+.ds-blog-card__more:hover { color: var(--ds-teal); }
+
+.ds-blog-pagination {
+  margin-top: 40px;
+  gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+.ds-blog-pagination a,
+.ds-blog-pagination .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--ds-teal-dark);
+  text-decoration: none;
+}
+.ds-blog-pagination .page-numbers.current { background: var(--ds-teal-dark); color: #fff; }
+.ds-blog-pagination a:hover { background: #F0F5F4; }
+.ds-blog-empty { text-align: center; color: var(--ds-warm-gray); }
+
+@media (max-width: 720px) {
+  .ds-blog-query { padding: 32px 20px 64px; }
+  .ds-blog-query .ds-blog-grid { grid-template-columns: 1fr; gap: 16px; }
+  .ds-blog-card { padding: 20px 20px 18px; }
+  .ds-blog-head .ds-article-hero__lede { font-size: 18px; }
+}
+
 /* Editorial body — narrower reading column, no numbered cards, no pillar
    chips. Steps become flowing subsections; references are right-aligned
    below the prose. */
@@ -6230,9 +6238,9 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   box-shadow: none;
   padding: 0;
   margin: 0 0 10px;
-  font-family: 'JetBrains Mono', 'Menlo', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.14em;
   line-height: 1;
   color: var(--ds-teal-dark, #5A9A93);
@@ -6272,7 +6280,7 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 }
 
 @media (max-width: 720px) {
-  .ds-article-hero { padding: 40px 0 36px; }
+  .ds-article-hero { padding: 116px 0 36px; }
   .ds-article-hero__lede { font-size: 18px; }
   .ds-service--article .ds-np-steps { padding: 32px 0 48px; }
   .ds-service--article .ds-np-step__body p { font-size: 16px; }
@@ -6291,9 +6299,11 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   color: var(--ds-charcoal);
   margin: 8px 0 0;
 }
+/* auto-fit, not auto-fill: there are only ever three related cards, and
+   auto-fill left an empty fourth column at desktop widths. */
 .ds-article-related__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 18px;
 }
 .ds-article-related__index {
@@ -6589,9 +6599,21 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 /* ─── Town pages (/contact-us/…, town-page.php) ───────────────────────────
    The old site's town-page copy in the location-page components above. */
 
-/* Location bands sit flush. WordPress's flow layout puts 1.2rem above each
-   top-level block, which showed as pale seams between the coloured bands. */
-.ds-main > section[class^="ds-loc-"] { margin-block-start: 0; }
+/* Sections sit flush on every page. WordPress's flow layout puts 1.2rem
+   above each top-level block, which showed as a pale 19px stripe between
+   bands - most visibly between two dark ones (Patient Promise ->
+   Frustrations, any dark CTA -> Meet Dr. Burns). Editor content inside
+   post-content keeps its spacing; only whole sections are reset. */
+.wp-block-group.ds-main > *,
+.wp-block-group.ds-main > .wp-block-post-content > section,
+.wp-block-group.ds-main > .wp-block-post-content > .wp-block-group { margin-block-start: 0; }
+/* Same 1.2rem gap one level up, between <main> and the footer. */
+.wp-site-blocks > footer.wp-block-template-part { margin-block-start: 0; }
+
+/* Headings balance their lines. Twenty Twenty-Five sets text-wrap:pretty,
+   which only protects the last line, so two-line headings split mid-phrase
+   ("you on a great / day", "we'll help / you pick.", "AACD- / Award"). */
+.ds-main :is(h1, h2, h3) { text-wrap: balance; }
 
 /* Hero: a wider copy column so the long "Schedule Your DreamSmile™
    Assessment" button and "Call Now" share one row. */

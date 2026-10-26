@@ -52,7 +52,6 @@ $items = [
         <div class="ds-benefit-card ds-reveal" style="animation-delay: <?php echo ( $i * 70 ); ?>ms">
           <div class="ds-benefit-card__top">
             <div class="ds-benefit-card__icon"><?php echo $icons[ $item[0] ]; ?></div>
-            <span class="ds-benefit-card__index">0<?php echo ( $i + 1 ); ?></span>
           </div>
           <h3 class="ds-benefit-card__title"><?php echo $item[1]; ?></h3>
           <p class="ds-benefit-card__desc"><?php echo $item[2]; ?></p>

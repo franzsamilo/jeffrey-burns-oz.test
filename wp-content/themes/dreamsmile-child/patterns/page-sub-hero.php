@@ -41,7 +41,7 @@ $variants = [
   ],
   'contact' => [
     'label'    => 'CONTACT',
-    'title'    => 'Visit <em>DreamSmile</em><sup class="ds-tm">&trade;</sup> in New Market, VA.',
+    'title'    => 'Visit <em>DreamSmile</em><sup class="ds-tm">&trade;</sup> in New&nbsp;Market, VA.',
     'subtitle' => '9626 South Congress St &middot; (540) 740-8937 &middot; Mon&ndash;Thu, 8 AM &ndash; 3 PM.',
     'cta1'     => [ 'label' => 'Schedule a Visit', 'href' => '/#quiz' ],
     'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
