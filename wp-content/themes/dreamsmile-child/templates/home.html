@@ -1,0 +1,36 @@
+<!--
+  /blog/ (the posts page). Without this file WordPress used Twenty Twenty-
+  Five's home.html, which printed every post's full text in one long column.
+  Cards here; the article header is the same one /disclaimer/ and the
+  patient-education articles use.
+-->
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"ds-main","layout":{"type":"default"}} -->
+<main id="top" class="wp-block-group ds-main">
+
+<!-- wp:group {"tagName":"header","className":"ds-article-hero ds-page-head ds-blog-head","layout":{"type":"default"}} -->
+<header class="wp-block-group ds-article-hero ds-page-head ds-blog-head">
+<!-- wp:group {"className":"ds-wrap","layout":{"type":"default"}} -->
+<div class="wp-block-group ds-wrap">
+<!-- wp:paragraph {"className":"ds-label ds-article-hero__cat"} -->
+<p class="ds-label ds-article-hero__cat">From Dr. Burns&rsquo;s office</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":1,"className":"ds-article-hero__title"} -->
+<h1 class="wp-block-heading ds-article-hero__title">Blog</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"className":"ds-article-hero__lede"} -->
+<p class="ds-article-hero__lede">Plain-English answers about dental implants: what to expect, how recovery goes, and what it costs.</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+</header>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"dreamsmile/blog-query"} /-->
+<!-- wp:pattern {"slug":"dreamsmile/about-dr-burns"} /-->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

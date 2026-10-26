@@ -6209,6 +6209,120 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   padding: 14px 28px;
 }
 
+/* Blog: single.html, home.html, archive.html, patterns/blog-query.php.
+   Posts reuse the generic-page head and reading column above; the index
+   and archives get cards in the .ds-pated-card style. */
+.ds-post-head .ds-article-hero__title { margin-bottom: 14px; }
+.ds-post-head .ds-article-hero__meta { display: block; }
+.ds-blog-head .ds-article-hero__lede { margin: 16px 0 0; font-size: 20px; }
+.ds-blog-head .ds-article-hero__lede:empty { display: none; }
+.ds-blog-head .ds-label { margin: 0 0 14px; }
+.ds-main > .ds-article-figure { margin-top: 0; margin-bottom: 0; }
+
+.ds-blog-query {
+  max-width: var(--ds-max-width, 1200px);
+  margin: 0 auto;
+  padding: 48px 24px 88px;
+}
+.ds-blog-query .ds-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ds-blog-grid > li { margin: 0; }
+.ds-blog-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ECECEA;
+  border-radius: 12px;
+  padding: 24px 24px 22px;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.ds-blog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(58, 58, 58, 0.08);
+  border-color: #DDDDD9;
+}
+.ds-blog-card > * { margin: 0; }
+.ds-blog-card .ds-blog-card__media { margin: -8px -8px 18px; }
+.ds-blog-card__media img { border-radius: 8px; display: block; width: 100%; }
+.ds-blog-card__date {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ds-teal-dark);
+  margin-bottom: 10px;
+}
+.ds-blog-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+  margin-bottom: 10px;
+}
+.ds-blog-card__title a { color: var(--ds-charcoal); text-decoration: none; }
+.ds-blog-card__title a:hover { color: var(--ds-teal-dark); }
+.ds-blog-card__excerpt {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ds-dark-slate);
+  margin-bottom: 18px;
+}
+.ds-blog-card__excerpt p { margin: 0; }
+/* The theme's own "Read article" link below replaces core's "…" more link. */
+.ds-blog-card__excerpt .wp-block-post-excerpt__more-text { display: none; }
+.ds-blog-card .ds-blog-card__more {
+  margin-top: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ds-teal-dark);
+  text-decoration: none;
+}
+.ds-blog-card__more::after { content: " \2192"; }
+.ds-blog-card__more:hover { color: var(--ds-teal); }
+
+.ds-blog-pagination {
+  margin-top: 40px;
+  gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+.ds-blog-pagination a,
+.ds-blog-pagination .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--ds-teal-dark);
+  text-decoration: none;
+}
+.ds-blog-pagination .page-numbers.current { background: var(--ds-teal-dark); color: #fff; }
+.ds-blog-pagination a:hover { background: #F0F5F4; }
+.ds-blog-empty { text-align: center; color: var(--ds-warm-gray); }
+
+@media (max-width: 720px) {
+  .ds-blog-query { padding: 32px 20px 64px; }
+  .ds-blog-query .ds-blog-grid { grid-template-columns: 1fr; gap: 16px; }
+  .ds-blog-card { padding: 20px 20px 18px; }
+  .ds-blog-head .ds-article-hero__lede { font-size: 18px; }
+}
+
 /* Editorial body — narrower reading column, no numbered cards, no pillar
    chips. Steps become flowing subsections; references are right-aligned
    below the prose. */

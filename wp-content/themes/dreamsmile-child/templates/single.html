@@ -1,0 +1,40 @@
+<!--
+  Blog posts. Without this file WordPress used Twenty Twenty-Five's
+  single.html: a body-size title, "Written by in Uncategorized" with no
+  name, a comment form and an unstyled "More posts" list. This uses the
+  article header plus the .ds-page-head reading column that /disclaimer/
+  already has (pages.css, "Generic pages"). No comment form - the practice
+  answers questions by phone, and an open form on a medical site draws spam.
+-->
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"ds-main","layout":{"type":"default"}} -->
+<main id="top" class="wp-block-group ds-main">
+
+<!-- wp:group {"tagName":"header","className":"ds-article-hero ds-page-head ds-post-head","layout":{"type":"default"}} -->
+<header class="wp-block-group ds-article-hero ds-page-head ds-post-head">
+<!-- wp:group {"className":"ds-wrap","layout":{"type":"default"}} -->
+<div class="wp-block-group ds-wrap">
+<!-- wp:html -->
+<nav class="ds-article-hero__crumbs" aria-label="Breadcrumb">
+  <a href="/blog/" class="ds-article-hero__crumb">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    <span>Blog</span>
+  </a>
+</nav>
+<!-- /wp:html -->
+<!-- wp:post-title {"level":1,"className":"ds-article-hero__title"} /-->
+<!-- wp:post-date {"className":"ds-article-hero__meta"} /-->
+</div>
+<!-- /wp:group -->
+</header>
+<!-- /wp:group -->
+
+<!-- wp:post-featured-image {"className":"ds-article-figure"} /-->
+<!-- wp:post-content {"layout":{"type":"default"}} /-->
+<!-- wp:pattern {"slug":"dreamsmile/about-dr-burns"} /-->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
