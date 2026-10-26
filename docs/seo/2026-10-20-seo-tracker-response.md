@@ -13,6 +13,66 @@ SEO's schema only; links, redirects and the Slim SEO hand-off exercised end to e
 
 ---
 
+## 0. Update 2026-10-25: staging steps, in order
+
+Three updates are now merged into `main`: this SEO tracker work (PR #1), the GoHighLevel quiz,
+smile preview and free guide (PR #2), and the Harrisonburg and Make a Payment pages (PR #3).
+The `setup/staging-and-deployment` branch now matches `main`. Staging was still serving theme
+**1.2.7** when we checked on 2026-10-25, so none of this is visible there yet.
+
+### Step 1: deploy (everything else depends on this)
+
+1. Build the theme zip from `setup/staging-and-deployment`: `python build_zip.py` writes
+   `dreamsmile-child.zip`.
+2. In staging's WordPress admin: *Appearance → Themes → Add New Theme → Upload Theme*, choose
+   the zip, then **Replace active with uploaded**.
+3. Purge the Pressable cache.
+4. Check: the page source should show `dreamsmile-child/style.css?ver=` followed by the new
+   version (anything after 1.2.7).
+
+### Step 2: right after the deploy
+
+- **Create the payment page.** *Pages → Add New*, title "Make a Payment", slug
+  `make-a-payment`, leave the content empty, publish. It is a 404 on staging right now. Until
+  it exists, the new theme sends `/make-a-payment/` to the payment portal so no link breaks.
+- **Remove the old Smile Reveal script.** It is printed just after the site footer: a script
+  tag loading `app.smilereveal.io/smile-reveal-funnel.js`, plus a script containing a
+  `placeSmileReveal()` function. It targets the old theme's layout and does nothing on the new
+  one, because the theme now places Smile Reveal itself. It was still on staging on 2026-10-25.
+- **Run the Slim SEO hand-off** in §2 (`/wp-admin/?ds_seed_slim_seo=1`, then *Apply*). It only
+  exists once the new theme is deployed.
+
+### Step 3: still open from this response
+
+We could only check what is visible from outside the admin:
+
+- **Redirects (R9, R10): not imported yet.** On 2026-10-25, old addresses such as
+  `/about-our-practice/our-services/` and `/office-information/make-an-appointment/` still
+  returned 404, `/winchester/` still redirected through `http://`, and the theme's `/elkton/`
+  page was still live. Follow the order in §3: draft the old pages, import the CSV, then make
+  the manual edits.
+- **Not checkable from outside, so skip any already done:** Tag Manager setup (§5), the 14
+  videos (§6), Slim SEO Schema business details (§4), the blog content in R11/R22, unpublishing
+  `/admin/` and `/sitemap/` (R23), and hiding author archives (R31).
+
+### Heads-up: town pages now take their text from the theme
+
+After the deploy, `/contact-us/dental-implants-harrisonburg-area/` shows the old site's text
+word for word in the new layout. That text comes from the theme, so **edits to the page body
+in WordPress no longer show**. Send wording changes to us. The page's Slim SEO title and
+description still work as normal.
+
+The other seven town pages are built the same way and waiting in PR #4. They stay on their
+current WordPress content until the SEO team confirms they want them moved.
+
+### Launch day (not yet)
+
+Untick *Discourage search engines*, confirm *Settings → General* uses `https://www`, submit
+`/sitemap.xml` in Search Console, remove `Crawl-delay` from robots.txt (R12, R33), and agree who
+has live-site admin access before the 48 blank live pages are set to draft (R17).
+
+---
+
 ## 1. Launch Checklist — status by row
 
 **Who:** *Theme* = done in this branch. *SEO team* = Slim SEO / WordPress settings on
