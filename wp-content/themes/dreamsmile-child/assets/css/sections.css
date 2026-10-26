@@ -617,11 +617,21 @@ body.admin-bar .ds-navbar { top: 32px; }
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
+/* inline-flex + flex-grow: while both buttons fit they keep their natural
+   width; once they wrap (tablets, phones, the narrow split-hero column)
+   each grows to the full column, so they stack as two equal pills instead
+   of two ragged ones. 26px sides keep the longest pair ("Schedule Free
+   Assessment" + "Call") on one row in the 560px desktop column. */
 .ds-hero__ctas {
-  display: flex;
+  display: inline-flex;
   gap: 14px;
   flex-wrap: wrap;
   align-items: center;
+}
+.ds-hero__ctas .ds-btn {
+  flex: 1 0 auto;
+  padding-left: 26px;
+  padding-right: 26px;
 }
 
 /* â”€â”€â”€ Quiz & Guide â€” bottom-aligned triptych, center invades hero â”€â”€â”€â”€â”€â”€â”€ */
@@ -1682,6 +1692,9 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   gap: 20px;
   padding-bottom: 32px;
 }
+/* The section's own padding closes the list; 32px more after step 6 left
+   ~110px of empty charcoal before the Warranty. */
+.ds-step:last-child { padding-bottom: 0; }
 .ds-step:not(:last-child)::before {
   content: "";
   position: absolute;
@@ -1944,7 +1957,6 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   border-radius: var(--ds-card-radius);
   background: rgba(127, 181, 176, 0.10);
   border: 1px solid rgba(127, 181, 176, 0.30);
-  border-left: 3px solid var(--ds-teal);
   text-align: center;
 }
 .ds-frustrations__bridge p {
@@ -1957,8 +1969,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 
 .ds-frustration-card {
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-left: 3px solid rgba(127, 181, 176, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: var(--ds-card-radius);
   padding: 24px;
   transition: background-color .2s ease, border-color .2s ease;
@@ -2284,7 +2295,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   position: relative;
   padding: 28px 28px 28px 72px;
   background: rgba(255, 255, 255, 0.04);
-  border-left: 3px solid var(--ds-teal);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
 }
 .ds-about__quote-mark {

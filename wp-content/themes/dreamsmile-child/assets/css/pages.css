@@ -528,23 +528,11 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   min-height: 100%;
   overflow: hidden;
 }
-.ds-benefit-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--ds-teal) 0%, var(--ds-teal-light) 100%);
-  opacity: 0;
-  transition: opacity .25s ease;
-}
 .ds-benefit-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 24px 48px -12px rgba(58, 58, 58, 0.12);
   border-color: rgba(127, 181, 176, 0.35);
 }
-.ds-benefit-card:hover::before { opacity: 1; }
 
 .ds-benefit-card__top {
   display: flex;
@@ -562,14 +550,6 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   justify-content: center;
 }
 .ds-benefit-card__icon svg { width: 28px; height: 28px; }
-.ds-benefit-card__index {
-  font-family: 'Amiri', 'Playfair Display', serif;
-  font-size: 28px;
-  font-style: italic;
-  font-weight: 700;
-  color: rgba(127, 181, 176, 0.55);
-  line-height: 1;
-}
 .ds-benefit-card__title {
   font-family: 'Amiri', 'Playfair Display', serif;
   font-size: 19px;
@@ -3300,22 +3280,11 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   gap: 10px;
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
-.ds-proc-type-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--ds-teal) 0%, var(--ds-teal-light) 100%);
-  opacity: 0;
-  transition: opacity .25s ease;
-  border-radius: 16px 16px 0 0;
-}
 .ds-proc-type-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 22px 44px -16px rgba(58, 58, 58, 0.16);
   border-color: rgba(127, 181, 176, 0.45);
 }
-.ds-proc-type-card:hover::before { opacity: 1; }
 
 .ds-proc-type-card.is-featured {
   background: linear-gradient(175deg, #fff 0%, #E9F5F2 100%);
@@ -3323,7 +3292,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   box-shadow: 0 24px 56px -18px rgba(127, 181, 176, 0.5);
   padding: 32px 24px 26px;
 }
-.ds-proc-type-card.is-featured::before { opacity: 1; height: 5px; }
 .ds-proc-type-card.is-featured .ds-proc-type-card__icon {
   background: var(--ds-teal);
   color: #fff;
@@ -3732,10 +3700,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 .ds-service--implants .ds-np-welcome__title .ds-italic,
 .ds-service--implants .ds-np-steps__title .ds-italic { color: var(--ds-teal-dark); }
 .ds-service--implants .ds-np-step__num {
-  background: linear-gradient(135deg, var(--ds-teal-dark) 0%, var(--ds-teal) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--ds-teal-dark);
   font-weight: 700;
 }
 .ds-service--implants .ds-implants-nav-card { border-top: 2px solid var(--ds-teal-dark); }
@@ -3769,12 +3734,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 .ds-service--cosmetic .ds-implants-nav-card {
   border-radius: 14px;
   border-image: linear-gradient(135deg, rgba(208, 178, 110, 0.4), rgba(127, 181, 176, 0.2)) 1;
-}
-.ds-service--cosmetic .ds-label {
-  background: linear-gradient(90deg, var(--ds-teal-dark), #B8985A);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 /* RESTORATIVE — earthy/foundational. Sienna brown accent. */
@@ -3983,7 +3942,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 .ds-cost-factors__head, .ds-cost-financing__head, .ds-proc-types__head, .ds-faq__head { text-align: center; }
 
 .ds-cost-factor-card:first-child {
-  border-left: 3px solid var(--ds-teal);
   background: linear-gradient(90deg, rgba(127, 181, 176, 0.06), transparent 60%);
 }
 
@@ -4243,7 +4201,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   padding: 14px 18px;
   background: #fff;
   border-radius: 10px;
-  border-left: 3px solid var(--ds-teal);
+  border: 1px solid rgba(127, 181, 176, 0.22);
   font-size: 13.5px;
   color: var(--ds-warm-gray);
   line-height: 1.45;
@@ -4804,21 +4762,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease !important;
   overflow: hidden;
 }
-.ds-np-pillar::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--ds-teal) 0%, var(--ds-teal-light) 100%);
-}
-.ds-np-pillar::after {
-  content: "";
-  position: absolute;
-  top: -30px; right: -30px;
-  width: 130px; height: 130px;
-  background: radial-gradient(circle, rgba(127, 181, 176, 0.14) 0%, transparent 70%);
-  pointer-events: none;
-}
 .ds-np-pillar:hover {
   transform: translateY(-4px);
   border-color: rgba(127, 181, 176, 0.42) !important;
@@ -4849,11 +4792,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   border-color: rgba(127, 181, 176, 0.32);
 }
 .ds-np-step__num {
-  background: linear-gradient(135deg, var(--ds-teal-dark) 0%, var(--ds-teal) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: var(--ds-teal-dark);
 }
 
 /* What to Bring: 2-col compact checklist + image as visual anchor */
@@ -4866,15 +4805,14 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 }
 .ds-np-before__list li {
   padding: 12px 16px !important;
-  border-left-width: 3px !important;
   background: linear-gradient(135deg, #fff 0%, #FAFCFB 100%) !important;
   border-radius: 10px !important;
   box-shadow: 0 4px 12px -8px rgba(58, 58, 58, 0.10) !important;
-  transition: transform .2s ease, box-shadow .2s ease, border-left-color .2s ease;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 .ds-np-before__list li:hover {
   transform: translateX(2px);
-  border-left-color: var(--ds-teal-dark) !important;
+  border-color: rgba(127, 181, 176, 0.5) !important;
   box-shadow: 0 8px 18px -10px rgba(58, 58, 58, 0.20) !important;
 }
 .ds-np-before__list strong { font-size: 13px !important; line-height: 1.3; }
@@ -4901,14 +4839,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   box-shadow: 0 14px 36px -22px rgba(58, 58, 58, 0.18), 0 1px 0 rgba(255, 255, 255, 0.7) inset !important;
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
   overflow: hidden;
-}
-.ds-np-comfort-card::before {
-  content: "";
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 160px; height: 160px;
-  background: radial-gradient(circle, rgba(127, 181, 176, 0.12) 0%, transparent 70%);
-  pointer-events: none;
 }
 .ds-np-comfort-card > * { position: relative; }
 .ds-np-comfort-card:hover {
@@ -4937,27 +4867,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   padding: 36px 26px 28px !important;
   box-shadow: 0 14px 36px -22px rgba(58, 58, 58, 0.18), 0 1px 0 rgba(255, 255, 255, 0.7) inset !important;
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
-  counter-increment: np-payment;
   overflow: hidden;
-}
-.ds-np-payment-card::before {
-  content: counter(np-payment, decimal-leading-zero);
-  position: absolute;
-  top: 18px; right: 22px;
-  font-family: 'Amiri', 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--ds-teal-light);
-  line-height: 1;
-  opacity: 0.7;
-}
-.ds-np-payment-card::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--ds-teal-light) 0%, var(--ds-teal) 100%);
 }
 .ds-np-payment-card:hover {
   transform: translateY(-4px);
@@ -4972,8 +4882,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 .ds-cost-factor-card {
   position: relative !important;
   background: linear-gradient(135deg, #fff 0%, #FAFCFB 100%) !important;
-  border: 1px solid rgba(127, 181, 176, 0.18) !important;
-  border-left: 3px solid var(--ds-teal) !important;
+  border: 1px solid rgba(127, 181, 176, 0.22) !important;
   border-radius: 12px !important;
   padding: 18px 20px !important;
   box-shadow: 0 6px 18px -10px rgba(58, 58, 58, 0.12) !important;
@@ -4981,7 +4890,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 }
 .ds-cost-factor-card:hover {
   transform: translateX(3px);
-  border-left-color: var(--ds-teal-dark) !important;
+  border-color: rgba(127, 181, 176, 0.5) !important;
   box-shadow: 0 12px 28px -14px rgba(58, 58, 58, 0.20) !important;
 }
 .ds-cost-factor-card__icon {
@@ -5034,21 +4943,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease !important;
   overflow: hidden;
 }
-.ds-cost-financing-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--ds-teal-light) 0%, var(--ds-teal) 100%);
-}
-.ds-cost-financing-card::after {
-  content: "";
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 160px; height: 160px;
-  background: radial-gradient(circle, rgba(127, 181, 176, 0.10) 0%, transparent 70%);
-  pointer-events: none;
-}
 .ds-cost-financing-card > * { position: relative; }
 .ds-cost-financing-card:hover {
   transform: translateY(-4px);
@@ -5076,21 +4970,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   box-shadow: 0 14px 36px -22px rgba(58, 58, 58, 0.18), 0 1px 0 rgba(255, 255, 255, 0.7) inset !important;
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease !important;
   overflow: hidden;
-}
-.ds-proc-type-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--ds-teal-light) 0%, var(--ds-teal) 100%);
-}
-.ds-proc-type-card::after {
-  content: "";
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 160px; height: 160px;
-  background: radial-gradient(circle, rgba(127, 181, 176, 0.10) 0%, transparent 70%);
-  pointer-events: none;
 }
 .ds-proc-type-card > * { position: relative; }
 .ds-proc-type-card:hover {
@@ -5136,8 +5015,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   .ds-proc-type-card.is-featured { transform: translateY(-8px); }
   .ds-proc-type-card.is-featured:hover { transform: translateY(-12px); }
 }
-.ds-proc-type-card.is-featured::before { background: linear-gradient(90deg, var(--ds-teal-light) 0%, #fff 100%); }
-.ds-proc-type-card.is-featured::after { background: radial-gradient(circle, rgba(255, 255, 255, 0.10) 0%, transparent 70%); }
 .ds-proc-type-card.is-featured .ds-proc-type-card__icon {
   background: rgba(255, 255, 255, 0.15) !important;
   color: var(--ds-teal-light) !important;
@@ -5181,7 +5058,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   position: relative;
   padding: 12px 16px 12px 44px;
   background: linear-gradient(135deg, rgba(127, 181, 176, 0.06) 0%, transparent 60%);
-  border-left: 3px solid var(--ds-teal);
+  border: 1px solid rgba(127, 181, 176, 0.18);
   border-radius: 8px;
   font-size: 14.5px;
   color: var(--ds-warm-gray);
@@ -5313,14 +5190,6 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   box-shadow: 0 18px 44px -22px rgba(58, 58, 58, 0.20), 0 0 0 1px rgba(127, 181, 176, 0.18);
   position: relative;
   overflow: hidden;
-}
-.ds-faq-help__inner::before {
-  content: "";
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 220px; height: 220px;
-  background: radial-gradient(circle, rgba(127, 181, 176, 0.12) 0%, transparent 70%);
-  pointer-events: none;
 }
 .ds-faq-help__inner > * { position: relative; }
 
@@ -5802,7 +5671,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
    DREAMSMILE — Patient Education / Blog Index
    Blog-style article cards on /patient-education/. Reuses the .ds-wrap and
    .ds-label tokens, adds editorial card styling distinct from the
-   .ds-implants-nav-card service grid (no icon, type-led, monospace read-time).
+   .ds-implants-nav-card service grid (no icon, type-led, read-time in the meta row).
    ========================================================================== */
 
 .ds-pated-intro {
@@ -5923,8 +5792,9 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-family: 'JetBrains Mono', 'Menlo', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 11px;
+  font-variant-numeric: tabular-nums;
   color: var(--ds-warm-gray);
 }
 .ds-pated-card__time svg { opacity: 0.6; }
@@ -6080,8 +5950,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-family: 'JetBrains Mono', 'Menlo', monospace;
-  font-size: 12px;
+  font-variant-numeric: tabular-nums;
 }
 .ds-article-hero__time svg { opacity: 0.6; }
 .ds-article-hero__reviewed {
@@ -6369,9 +6238,9 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   box-shadow: none;
   padding: 0;
   margin: 0 0 10px;
-  font-family: 'JetBrains Mono', 'Menlo', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.14em;
   line-height: 1;
   color: var(--ds-teal-dark, #5A9A93);
@@ -6730,9 +6599,21 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 /* ─── Town pages (/contact-us/…, town-page.php) ───────────────────────────
    The old site's town-page copy in the location-page components above. */
 
-/* Location bands sit flush. WordPress's flow layout puts 1.2rem above each
-   top-level block, which showed as pale seams between the coloured bands. */
-.ds-main > section[class^="ds-loc-"] { margin-block-start: 0; }
+/* Sections sit flush on every page. WordPress's flow layout puts 1.2rem
+   above each top-level block, which showed as a pale 19px stripe between
+   bands - most visibly between two dark ones (Patient Promise ->
+   Frustrations, any dark CTA -> Meet Dr. Burns). Editor content inside
+   post-content keeps its spacing; only whole sections are reset. */
+.wp-block-group.ds-main > *,
+.wp-block-group.ds-main > .wp-block-post-content > section,
+.wp-block-group.ds-main > .wp-block-post-content > .wp-block-group { margin-block-start: 0; }
+/* Same 1.2rem gap one level up, between <main> and the footer. */
+.wp-site-blocks > footer.wp-block-template-part { margin-block-start: 0; }
+
+/* Headings balance their lines. Twenty Twenty-Five sets text-wrap:pretty,
+   which only protects the last line, so two-line headings split mid-phrase
+   ("you on a great / day", "we'll help / you pick.", "AACD- / Award"). */
+.ds-main :is(h1, h2, h3) { text-wrap: balance; }
 
 /* Hero: a wider copy column so the long "Schedule Your DreamSmile™
    Assessment" button and "Call Now" share one row. */
