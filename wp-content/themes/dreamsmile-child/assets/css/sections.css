@@ -106,6 +106,12 @@ body.admin-bar .ds-navbar { top: 32px; }
   border-color: var(--ds-teal);
 }
 .ds-btn--solid:hover { background: var(--ds-teal-dark); border-color: var(--ds-teal-dark); color: #fff; }
+/* Phones: long labels ("Find out if you're a candidate for dental implants")
+   ran to three lines inside a full-width pill. Less side padding and
+   tracking keeps them to one or two. */
+@media (max-width: 480px) {
+  .ds-btn { padding-left: 22px; padding-right: 22px; letter-spacing: 0.05em; }
+}
 
 .ds-btn--outlined {
   background: transparent;
@@ -240,11 +246,14 @@ body.admin-bar .ds-navbar { top: 32px; }
   border: 0;
   cursor: pointer;
 }
+/* Charcoal from the start: the navbar is solid white at every scroll
+   position now, and the old white-over-the-hero lines were invisible until
+   the visitor scrolled 50px. */
 .ds-navbar__toggle span {
   display: block;
   width: 24px;
   height: 2px;
-  background: #fff;
+  background: var(--ds-charcoal);
   transition: background-color .2s ease;
 }
 .ds-navbar.is-scrolled .ds-navbar__toggle span { background: var(--ds-charcoal); }
@@ -608,11 +617,21 @@ body.admin-bar .ds-navbar { top: 32px; }
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
+/* inline-flex + flex-grow: while both buttons fit they keep their natural
+   width; once they wrap (tablets, phones, the narrow split-hero column)
+   each grows to the full column, so they stack as two equal pills instead
+   of two ragged ones. 26px sides keep the longest pair ("Schedule Free
+   Assessment" + "Call") on one row in the 560px desktop column. */
 .ds-hero__ctas {
-  display: flex;
+  display: inline-flex;
   gap: 14px;
   flex-wrap: wrap;
   align-items: center;
+}
+.ds-hero__ctas .ds-btn {
+  flex: 1 0 auto;
+  padding-left: 26px;
+  padding-right: 26px;
 }
 
 /* â”€â”€â”€ Quiz & Guide â€” bottom-aligned triptych, center invades hero â”€â”€â”€â”€â”€â”€â”€ */
@@ -1379,6 +1398,16 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   /* stretch = every card's CTA is the same size regardless of label/desc length */
   align-self: stretch;
 }
+/* On a tablet the cards are ~224px wide, so two labels wrap and "Learn More"
+   doesn't. Give all three the two-line height so the row lines up. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ds-service-card .ds-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(2.4em + 28px);
+  }
+}
 /* Same-Day Teeth flag line on the Implants service card (client priority). */
 .ds-service-card__flag {
   display: flex;
@@ -1663,6 +1692,9 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   gap: 20px;
   padding-bottom: 32px;
 }
+/* The section's own padding closes the list; 32px more after step 6 left
+   ~110px of empty charcoal before the Warranty. */
+.ds-step:last-child { padding-bottom: 0; }
 .ds-step:not(:last-child)::before {
   content: "";
   position: absolute;
@@ -1925,7 +1957,6 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   border-radius: var(--ds-card-radius);
   background: rgba(127, 181, 176, 0.10);
   border: 1px solid rgba(127, 181, 176, 0.30);
-  border-left: 3px solid var(--ds-teal);
   text-align: center;
 }
 .ds-frustrations__bridge p {
@@ -1938,8 +1969,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 
 .ds-frustration-card {
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-left: 3px solid rgba(127, 181, 176, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: var(--ds-card-radius);
   padding: 24px;
   transition: background-color .2s ease, border-color .2s ease;
@@ -2164,25 +2194,28 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   .ds-testi-rail { padding-bottom: 56px; }
 }
 
-/* Dots indicator */
+/* Dots indicator. Each dot draws 9px but takes a 24px tap: the padding is
+   clear because the background is clipped to the content box. */
 .ds-testi-rail__dots {
   display: flex;
-  gap: 10px;
+  gap: 0;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 12px;
 }
 .ds-testi-rail__dots button {
+  box-sizing: content-box;
   width: 9px;
   height: 9px;
   border-radius: 99px;
   border: 0;
   background: #C9D2D1;
-  padding: 0;
+  background-clip: content-box;
+  padding: 7.5px;
   cursor: pointer;
   transition: width .28s ease, background .28s ease, transform .2s ease;
 }
-.ds-testi-rail__dots button:hover { background: var(--ds-teal-light); transform: scale(1.15); }
-.ds-testi-rail__dots button.is-active { background: var(--ds-teal); width: 30px; }
+.ds-testi-rail__dots button:hover { background-color: var(--ds-teal-light); transform: scale(1.15); }
+.ds-testi-rail__dots button.is-active { background-color: var(--ds-teal); width: 30px; }
 
 /* CTA below the carousel */
 .ds-testimonials__cta { text-align: center; margin-top: 40px; }
@@ -2262,7 +2295,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   position: relative;
   padding: 28px 28px 28px 72px;
   background: rgba(255, 255, 255, 0.04);
-  border-left: 3px solid var(--ds-teal);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
 }
 .ds-about__quote-mark {
@@ -2403,6 +2436,12 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 @media (min-width: 1024px) {
   .ds-about__photo { aspect-ratio: auto; max-height: none; }
+}
+/* Stacked (tablet/phone): full column width plus the 480px height cap
+   turned this 4:5 portrait into a 720x480 strip that cut off the top of
+   Dr. Burns's head and blew the 571px file up 1.26x. Keep it 4:5. */
+@media (max-width: 1023px) {
+  .ds-about__photo { max-width: 384px; }
 }
 
 /* Credential badges â€” icon + text pair */
@@ -2550,7 +2589,9 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   /* Hero — kill min-height + watermark on phones, trim vertical padding */
   .ds-hero { min-height: auto; }
   .ds-hero__watermark { display: none; }
-  .ds-hero__inner { padding: 72px 20px 88px; }
+  /* Top padding has to clear the 81px fixed navbar; at 72px the first line
+     of the headline sat under it. */
+  .ds-hero__inner { padding: 104px 20px 88px; }
   /* The inline 100deg gradient thins to alpha .34 on the right — fine on
      desktop where text stops at 620px, but on phones the bullets span the
      full width and white text drops below 3:1 there. Extra flat scrim. */

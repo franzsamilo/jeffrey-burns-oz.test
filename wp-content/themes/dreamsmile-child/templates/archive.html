@@ -1,0 +1,36 @@
+<!--
+  Category, tag and date archives. Same cards as /blog/ (home.html); the H1
+  is the term name. Author archives are meant to be switched off in Slim SEO
+  (SEO tracker R31), but if one is reached it lands here too.
+-->
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"ds-main","layout":{"type":"default"}} -->
+<main id="top" class="wp-block-group ds-main">
+
+<!-- wp:group {"tagName":"header","className":"ds-article-hero ds-page-head ds-blog-head","layout":{"type":"default"}} -->
+<header class="wp-block-group ds-article-hero ds-page-head ds-blog-head">
+<!-- wp:group {"className":"ds-wrap","layout":{"type":"default"}} -->
+<div class="wp-block-group ds-wrap">
+<!-- wp:html -->
+<nav class="ds-article-hero__crumbs" aria-label="Breadcrumb">
+  <a href="/blog/" class="ds-article-hero__crumb">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    <span>All articles</span>
+  </a>
+</nav>
+<!-- /wp:html -->
+<!-- wp:query-title {"type":"archive","showPrefix":false,"className":"ds-article-hero__title"} /-->
+<!-- wp:term-description {"className":"ds-article-hero__lede"} /-->
+</div>
+<!-- /wp:group -->
+</header>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"dreamsmile/blog-query"} /-->
+<!-- wp:pattern {"slug":"dreamsmile/about-dr-burns"} /-->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

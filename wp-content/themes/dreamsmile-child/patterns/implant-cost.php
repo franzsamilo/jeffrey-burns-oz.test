@@ -23,7 +23,7 @@ $financing = [
     'accent' => '#E96B8D',
     'desc'   => 'Simple monthly payments for eligible patients with fast online approval.',
     'chip'   => 'Apply in 60 seconds',
-    'svg'    => '<svg viewBox="0 0 64 28" width="100" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="0" y="22" font-family="Playfair Display, serif" font-size="24" font-weight="700" font-style="italic" fill="#E96B8D">cherry</text><circle cx="56" cy="8" r="3" fill="#E96B8D"/><path d="M56 11v3" stroke="#5A9A93" stroke-width="1.5" fill="none"/></svg>',
+    'svg'    => '<svg viewBox="0 0 84 28" width="100" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="0" y="22" font-family="Playfair Display, serif" font-size="24" font-weight="700" font-style="italic" fill="#E96B8D">cherry</text><circle cx="78" cy="8" r="3" fill="#E96B8D"/><path d="M78 11v3" stroke="#5A9A93" stroke-width="1.5" fill="none"/></svg>',
   ],
   [
     'name'   => 'CareCredit',
