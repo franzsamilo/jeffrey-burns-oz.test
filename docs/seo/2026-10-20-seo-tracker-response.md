@@ -15,10 +15,11 @@ SEO's schema only; links, redirects and the Slim SEO hand-off exercised end to e
 
 ## 0. Update 2026-10-26: staging steps, in order
 
-Four updates are now merged into `main`: this SEO tracker work (PR #1), the GoHighLevel quiz,
-smile preview and free guide (PR #2), the Harrisonburg and Make a Payment pages (PR #3), and a
-visual pass over every page plus proper blog layouts (PR #5, theme **1.5.2**). The
-`setup/staging-and-deployment` branch now matches `main`. Staging was still serving theme
+Five updates are now merged into `main`: this SEO tracker work (PR #1), the GoHighLevel quiz,
+smile preview and free guide (PR #2), the Harrisonburg and Make a Payment pages (PR #3), a
+visual pass over every page plus proper blog layouts (PR #5), and the other seven town pages in
+Harrisonburg's layout (PR #4). Theme **1.6.1**. The `setup/staging-and-deployment` branch now
+matches `main`. Staging was still serving theme
 **1.2.7** when we checked on 2026-10-26, so none of this is visible there yet.
 
 ### Step 1: deploy (everything else depends on this)
@@ -28,7 +29,7 @@ visual pass over every page plus proper blog layouts (PR #5, theme **1.5.2**). T
 2. In staging's WordPress admin: *Appearance → Themes → Add New Theme → Upload Theme*, choose
    the zip, then **Replace active with uploaded**.
 3. Purge the Pressable cache.
-4. Check: the page source should show `dreamsmile-child/style.css?ver=1.5.2` (or a later
+4. Check: the page source should show `dreamsmile-child/style.css?ver=1.6.1` (or a later
    version). If it still says 1.2.7, the old theme is still active or the cache wasn't purged.
 
 ### Step 2: right after the deploy
@@ -56,15 +57,19 @@ We could only check what is visible from outside the admin:
   videos (§6), Slim SEO Schema business details (§4), the blog content in R11/R22, unpublishing
   `/admin/` and `/sitemap/` (R23), and hiding author archives (R31).
 
-### Heads-up: town pages now take their text from the theme
+### Heads-up: all eight town pages now take their text from the theme
 
 After the deploy, `/contact-us/dental-implants-harrisonburg-area/` shows the old site's text
-word for word in the new layout. That text comes from the theme, so **edits to the page body
-in WordPress no longer show**. Send wording changes to us. The page's Slim SEO title and
-description still work as normal.
+word for word in the new layout, as the client asked. The other seven `/contact-us/` town pages
+(Winchester, Elkton, Bridgewater, Woodstock, Luray, Broadway, Timberville) now use the same
+layout, so all eight match. Their wording does not change: it is the same old-site text they
+already have in WordPress.
 
-The other seven town pages are built the same way and waiting in PR #4. They stay on their
-current WordPress content until the SEO team confirms they want them moved.
+That text now comes from the theme, so **edits to the body of any of the eight pages in
+WordPress no longer show**. Send wording changes to us. Each page's Slim SEO title and
+description still work as normal, so headline changes after Oliver's edits can still be made
+in Slim SEO. The Google reviews widget and the "Schedule Your Dream Smile Consultation" button
+that were pasted into the seven pages are replaced by the same blocks Harrisonburg uses.
 
 ### Heads-up: blog posts and /blog/ now use the site's own layout
 

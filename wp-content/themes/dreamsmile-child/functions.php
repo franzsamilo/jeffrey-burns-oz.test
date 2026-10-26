@@ -353,8 +353,8 @@ function ds_town_pages() {
 
 /**
  * The old site's copy for the town pages above, keyed by page slug
- * (inc/town-pages.php). Towns are moved over one at a time; Harrisonburg was
- * first (client request, 2026-10-24).
+ * (inc/town-pages.php). Harrisonburg was the client's request (2026-10-24);
+ * the other seven followed, so all eight are listed.
  */
 function ds_town_copy() {
     static $cache = null;
