@@ -30,8 +30,12 @@
  * now show on all eight.
  *
  * A town with an entry here gets templates/page-town.html (see the
- * page_template_hierarchy filter in functions.php), and its wp-admin text no
- * longer shows.
+ * page_template_hierarchy filter in functions.php). This copy shows while the
+ * page's wp-admin text is still the January text it was taken from. Once the
+ * SEO team replaces that text in WordPress (their original-text restore, SEO
+ * tracker Nov 2026), the page shows theirs instead: see ds_town_render_copy().
+ * The section headings below are how the theme recognises the January text,
+ * so keep them as they were on the old site.
  */
 defined( 'ABSPATH' ) || exit;
 

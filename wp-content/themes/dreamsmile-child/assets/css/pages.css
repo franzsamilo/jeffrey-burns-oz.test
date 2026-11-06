@@ -6351,6 +6351,26 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   line-height: 1.7;
   margin: 0 0 14px;
 }
+.ds-np-prose__list {
+  color: var(--ds-dark-slate);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 14px;
+  padding-left: 1.25em;
+}
+.ds-np-prose__list li { margin-bottom: 6px; }
+.ds-np-prose__list li::marker { color: var(--ds-teal-dark); }
+.ds-np-prose__p a,
+.ds-np-prose__list a {
+  color: var(--ds-charcoal);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ds-teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.ds-np-prose__p a:hover,
+.ds-np-prose__list a:hover { color: var(--ds-teal-dark); }
 
 /* Explanatory diagram (inline SVG schematic — used in place of clinical photos) */
 .ds-np-figure { background: #fff; padding-block: 52px; }
@@ -6660,7 +6680,8 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 .ds-loc-hero__sub a,
 .ds-loc-intro__body a,
 .ds-loc-point__text a,
-.ds-loc-cta__body a {
+.ds-loc-cta__body a,
+.ds-loc-list a {
   color: var(--ds-charcoal);
   font-weight: 600;
   text-decoration: underline;
@@ -6708,6 +6729,30 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   max-width: 64ch;
 }
 .ds-loc-intro__body p:last-child { margin-bottom: 0; }
+/* Middle sections of town text pasted in wp-admin, when there aren't three. */
+.ds-loc-intro--grey { background: var(--ds-light-gray); }
+
+/* Lists and H3s in town text pasted in wp-admin (ds_town_editor_copy()). */
+.ds-loc-list {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ds-dark-slate);
+  margin: 0 0 14px;
+  padding-left: 1.25em;
+  max-width: 64ch;
+}
+.ds-loc-list li { margin-bottom: 6px; }
+.ds-loc-list li::marker { color: var(--ds-teal-dark); }
+.ds-loc-list:last-child { margin-bottom: 0; }
+.ds-loc-subhead {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ds-charcoal);
+  margin: 20px 0 6px;
+}
 
 /* Old sections 2–4: three columns on grey, split by hairlines, not boxed. */
 .ds-loc-points { background: var(--ds-light-gray); padding: 56px 0; }

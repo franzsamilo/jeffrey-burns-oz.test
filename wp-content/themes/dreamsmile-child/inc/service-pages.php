@@ -553,6 +553,33 @@ return [
         [ 'icon' => 'magnet',  'title' => 'Easy implant upgrade later',     'desc' => 'If your conventional denture starts to slip down the road, we can place 2&ndash;4 implants and convert to a snap-in denture without starting over.' ],
       ],
     ],
+    // SEO tracker content gap (Nov 2026): six old denture pages (immediate
+    // dentures, care, relines, rebase & repairs, exams, soft liners) redirect
+    // here, so their substance lives here now.
+    'prose' => [
+      'label'  => 'DENTURE CARE &amp; SERVICES',
+      'title'  => 'Immediate dentures, relines, repairs and everyday care.',
+      'blocks' => [
+        [ 'h' => 'Immediate dentures', 'p' => [
+          'If your remaining teeth have to be removed, an immediate denture means you never go without teeth. We take impressions before the extractions and place the denture at the same appointment. Because it can&rsquo;t be tried in before the teeth come out, small compromises in appearance are sometimes needed.',
+          'Your gums and bone shrink as they heal, so temporary linings keep the fit right in the months after, and a permanent reline follows once healing is complete. Follow your after-extraction instructions closely and keep your check-ups during this time.',
+        ] ],
+        [ 'h' => 'Relines and soft liners', 'p' => [
+          'Your gums change over time, so even a well-made denture slowly loosens. A hard reline every one to two years reshapes the inside of the denture to fit your gums again. If your gums are tender or have sore spots, a soft reline or a permanent soft liner cushions the denture and makes chewing more comfortable. If an old denture has left the gums red or swollen, a temporary medicated liner lets them settle before the new reline or denture is made.',
+          'If a loose denture keeps causing problems, <a href="/implant-supported-dentures/">implant-supported dentures</a> are the lasting fix.',
+        ] ],
+        [ 'h' => 'Rebases and repairs', 'p' => [
+          'When the denture teeth are still in good shape but the pink base is old, weak or cracked, a rebase replaces the whole base and keeps your teeth. A chipped or broken denture should be seen promptly; many repairs can be done the same day, and we&rsquo;ll tell you how to keep it from happening again.',
+        ] ],
+        [ 'h' => 'Caring for your dentures', 'ul' => [
+          'Brush your denture inside and out every day with a soft denture brush and a denture cleaner. Toothpaste is too abrasive and scratches it.',
+          'Rinse it in cool water. Hot water can warp a denture.',
+          'When it&rsquo;s out of your mouth, keep it in water or a soaking solution so it doesn&rsquo;t dry out.',
+          'Have a loose denture checked soon. It rubs and presses on your gums and the bone underneath.',
+          'Come in once a year for a denture exam: we update your health history, check your gums, bone and bite, screen for oral cancer, and clean and polish the denture.',
+        ] ],
+      ],
+    ],
     'cta' => [
       'label' => 'NEED FULL DENTURES?',
       'title' => 'Schedule a denture assessment.',
@@ -1321,6 +1348,12 @@ return [
         ] ],
         [ 'h' => 'The benefits of a modern, tooth-coloured filling', 'p' => [
           'Today&rsquo;s composite fillings are nothing like the dark silver fillings of the past. They&rsquo;re matched to your natural tooth shade so no one can see them, they bond to the tooth for a tighter seal against future decay, and they let us preserve more of your healthy tooth than older materials ever did.',
+        ] ],
+        // SEO tracker content gap (Nov 2026): the old /cosmetic-dentistry-4/inlays-onlays/
+        // page redirects here, so its substance lives here now.
+        [ 'h' => 'Inlays and onlays: when a filling isn&rsquo;t enough', 'p' => [
+          'When more than half of a tooth&rsquo;s biting surface is damaged, an inlay or onlay is often a better fit than a filling. Both are made to measure in porcelain, composite resin or gold, then bonded to the tooth. An inlay sits within the cusps (the raised points) of the tooth, much like a filling; an onlay is larger and extends over one or more of the cusps.',
+          'They take two visits. At the first, we remove the damaged area or old filling, take an impression for the lab, and protect the tooth with a temporary. At the second, we check the fit and bond the final piece in place with a strong resin. Bonded this way, inlays and onlays strengthen the tooth rather than weaken it, and they can last 10 to 30 years. When a tooth needs more than a filling but not a full crown, an onlay is often the right middle ground.',
         ] ],
       ],
     ],

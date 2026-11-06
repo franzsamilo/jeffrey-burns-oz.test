@@ -200,6 +200,11 @@ $article_title = $svc['sub_hero']['label'] ?? '';
         <?php foreach ( (array) ( $blk['p'] ?? [] ) as $para ) : ?>
           <p class="ds-np-prose__p"><?php echo $para; ?></p>
         <?php endforeach; ?>
+        <?php if ( ! empty( $blk['ul'] ) ) : ?>
+          <ul class="ds-np-prose__list">
+            <?php foreach ( $blk['ul'] as $li ) : ?><li><?php echo $li; ?></li><?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
       <?php endforeach; ?>
     </div>
   </div>

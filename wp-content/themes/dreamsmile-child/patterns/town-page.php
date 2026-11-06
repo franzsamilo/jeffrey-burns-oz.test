@@ -27,12 +27,17 @@
  * blurbs carry the DreamSmile™ mark and fix two typos in the old text
  * ("taught to Dentists", "long-lasting DreamSmile"). Renders nothing for a
  * page without copy.
+ *
+ * Text pasted into the page in wp-admin replaces the theme's copy once the
+ * January text is gone from the editor (ds_town_render_copy(), SEO tracker
+ * Nov 2026). It fills the same slots: H1 + intro, first H2 section, middle
+ * H2 sections, last H2 section. Three middle sections keep the three columns;
+ * any other number stacks as heading-beside-text rows on alternating bands.
+ * Its lists and H3s keep their tags.
  */
 defined( 'ABSPATH' ) || exit;
 
-$slug = '';
-if ( is_page() && ( $p = get_post() ) ) { $slug = $p->post_name; }
-$town = ds_town_copy()[ $slug ] ?? null;
+$town = ( is_page() && ( $p = get_post() ) ) ? ds_town_render_copy( $p ) : null;
 if ( ! $town ) { return; }
 
 $base     = get_stylesheet_directory_uri() . '/assets/arrange';
@@ -44,6 +49,32 @@ $lead    = array_shift( $points );
 $closing = array_pop( $points );
 // The old pages put benefits, technology and comfort in between, in that order.
 $icons = [ 'tooth', 'cpu', 'shield' ];
+// Pasted text can put anything in between, so its icons follow the heading.
+$icon_for = function ( $heading, $i ) use ( $town, $icons ) {
+  if ( 'editor' === $town['source'] ) {
+    $h = strtolower( wp_strip_all_tags( $heading ) );
+    foreach ( [
+      'sparkle' => [ 'cosmetic', 'veneer', 'whiten', 'bonding', 'makeover', 'aesthetic' ],
+      'cpu'     => [ 'technolog', '3d', 'scan', 'imaging', 'digital' ],
+      'shield'  => [ 'comfort', 'sedation', 'anxi', 'why', 'choose', 'trust', 'care', 'safe' ],
+      'tooth'   => [ 'implant', 'restor', 'crown', 'bridge', 'denture', 'filling', 'extraction', 'tooth', 'teeth' ],
+    ] as $icon => $words ) {
+      foreach ( $words as $w ) {
+        if ( false !== strpos( $h, $w ) ) { return $icon; }
+      }
+    }
+  }
+  return $icons[ $i % 3 ];
+};
+// One block of copy: a paragraph (string), or a list / subheading pasted in
+// wp-admin ([ 'ul'|'ol'|'h3' => inner HTML ], from ds_town_editor_copy()).
+$block = function ( $b, $p_class = '' ) {
+  if ( is_string( $b ) ) {
+    return '<p' . ( $p_class ? ' class="' . esc_attr( $p_class ) . '"' : '' ) . '>' . $b . '</p>';
+  }
+  $tag = key( $b );
+  return '<' . $tag . ' class="' . ( 'h3' === $tag ? 'ds-loc-subhead' : 'ds-loc-list' ) . '">' . current( $b ) . '</' . $tag . '>';
+};
 
 $svg = [
   'pin'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
@@ -53,6 +84,7 @@ $svg = [
   'tooth'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c2.5 0 4.5 1 6 2 1.5 1 2 3 1.5 5l-1 5c-.3 1.5-.8 3-1.5 4.5-.5 1-1.5 1.5-2.5 1.5-1 0-1.5-.5-2-1.5l-.5-3.5c-.2-1.5-1.5-1.5-1.7 0L9.5 19c-.5 1-1 1.5-2 1.5-1 0-2-.5-2.5-1.5C4.3 17.5 3.8 16 3.5 14.5l-1-5c-.5-2 0-4 1.5-5 1.5-1 3.5-2 6-2z"/></svg>',
   'cpu'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>',
   'shield' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>',
+  'sparkle'=> '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/></svg>',
 ];
 
 $schedule_attr = ' data-ds-schedule-location="' . esc_attr( $town['town'] ) . '"';
@@ -69,9 +101,7 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode
           <span><strong>5.0</strong> &middot; Google rating</span>
         </div>
         <h1 class="ds-loc-hero__title"><?php echo esc_html( $town['h1'] ); ?></h1>
-        <?php foreach ( $town['intro'] as $line ) : ?>
-          <p class="ds-loc-hero__sub"><?php echo $line; ?></p>
-        <?php endforeach; ?>
+        <?php foreach ( $town['intro'] as $line ) { echo $block( $line, 'ds-loc-hero__sub' ); } ?>
         <div class="ds-loc-hero__meta">
           <span class="ds-loc-hero__meta-item">
             <?php echo $svg['pin']; ?>
@@ -115,26 +145,37 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode
       <h2 class="ds-loc-intro__title"><?php echo $lead[0]; ?></h2>
     </div>
     <div class="ds-loc-intro__body ds-reveal">
-      <?php foreach ( $lead[1] as $para ) : ?>
-        <p><?php echo $para; ?></p>
-      <?php endforeach; ?>
+      <?php foreach ( $lead[1] as $para ) { echo $block( $para ); } ?>
     </div>
   </div>
 </section>
 
+<?php if ( 3 === count( $points ) ) : ?>
 <section class="ds-loc-points">
   <div class="ds-wrap ds-loc-points__grid">
     <?php foreach ( $points as $i => $pt ) : ?>
       <div class="ds-loc-point ds-reveal">
-        <span class="ds-loc-point__icon"><?php echo $svg[ $icons[ $i % 3 ] ]; ?></span>
+        <span class="ds-loc-point__icon"><?php echo $svg[ $icon_for( $pt[0], $i ) ]; ?></span>
         <h2 class="ds-loc-point__title"><?php echo $pt[0]; ?></h2>
-        <?php foreach ( $pt[1] as $para ) : ?>
-          <p class="ds-loc-point__text"><?php echo $para; ?></p>
-        <?php endforeach; ?>
+        <?php foreach ( $pt[1] as $para ) { echo $block( $para, 'ds-loc-point__text' ); } ?>
       </div>
     <?php endforeach; ?>
   </div>
 </section>
+<?php else : ?>
+  <?php foreach ( $points as $i => $pt ) : ?>
+<section class="ds-loc-intro<?php echo 0 === $i % 2 ? ' ds-loc-intro--grey' : ''; ?>">
+  <div class="ds-wrap ds-loc-intro__grid">
+    <div class="ds-loc-intro__head ds-reveal">
+      <h2 class="ds-loc-intro__title"><?php echo $pt[0]; ?></h2>
+    </div>
+    <div class="ds-loc-intro__body ds-reveal">
+      <?php foreach ( $pt[1] as $para ) { echo $block( $para ); } ?>
+    </div>
+  </div>
+</section>
+  <?php endforeach; ?>
+<?php endif; ?>
 
 <section class="ds-loc-doctor">
   <div class="ds-wrap">
@@ -215,9 +256,7 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode
   <div class="ds-wrap">
     <div class="ds-loc-cta__inner ds-reveal">
       <h2 class="ds-loc-cta__title"><?php echo $closing[0]; ?></h2>
-      <?php foreach ( $closing[1] as $para ) : ?>
-        <p class="ds-loc-cta__body"><?php echo $para; ?></p>
-      <?php endforeach; ?>
+      <?php foreach ( $closing[1] as $para ) { echo $block( $para, 'ds-loc-cta__body' ); } ?>
       <div class="ds-loc-cta__ctas">
         <a href="#quiz" class="ds-btn ds-btn--solid"<?php echo $schedule_attr; ?>>Schedule Your DreamSmile<sup class="ds-tm">&trade;</sup> Assessment</a>
         <a href="tel:<?php echo esc_attr( $office['phone_tel'] ); ?>" class="ds-btn ds-btn--outlined">Call <?php echo esc_html( $office['phone'] ); ?></a>
