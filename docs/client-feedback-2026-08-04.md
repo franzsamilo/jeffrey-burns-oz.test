@@ -1,6 +1,6 @@
 # Client Meeting — Aug 4, 2026 (Burns / DreamSmile)
 
-Source: Zoom recording `GMT20260804-000844` (53 min), Drive folder "Aug. 4, 2026 Meeting Notes → Meeting recording".
+Source: Zoom recording (53 min), Drive folder "Aug. 4, 2026 Meeting Notes → Meeting recording".
 The read.ai chat log in that folder is empty — the bot was denied recording permission, so this brief is transcribed from the audio.
 
 Participants: **Spencer** (client-side strategist, drove the review), **Chris** (marketing), **Bobby** (client liaison, Antipolo), **Matthew** (OZ design/dev lead).
@@ -128,7 +128,7 @@ Every option strip in it is the shipped homepage screenshotted offline through t
 
 ## Drive asset audit (2026-08-07)
 
-Source: `Assets` folder `1RJysG8r9n4M5HTYXPvBrfxLypbyjo3yg`. Listing method that works: `WebFetch` on `https://drive.google.com/embeddedfolderview?id=<ID>#list`, then `curl` on `https://drive.usercontent.google.com/download?id=<FILE_ID>&export=download`. The Drive MCP's `parentId` search returns `{}` for these folders and cannot be used.
+Source: `Assets` folder (link in the team's shared Drive). Listing method that works: `WebFetch` on `https://drive.google.com/embeddedfolderview?id=<ID>#list`, then `curl` on `https://drive.usercontent.google.com/download?id=<FILE_ID>&export=download`. The Drive MCP's `parentId` search returns `{}` for these folders and cannot be used.
 
 **Already in the theme** (verified by MD5, so no duplicates were introduced):
 

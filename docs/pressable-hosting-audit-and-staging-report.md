@@ -12,8 +12,8 @@ This report establishes the verified hosting infrastructure of `https://www.jeff
 
 ### Key Audit Findings
 1. **Hosting Provider Confirmed:** The production site is definitively hosted on **Pressable (Automattic WP Cloud)**, operating out of the Burbank, CA datacenter (`BUR`).
-2. **Account Disconnect Diagnosed:** The production website was created and is actively managed by an agency partner (**PBHS / Automattic for Agencies**). Dr. Jeffrey Burns recently purchased an independent **`Signature 1 Yearly` Pressable subscription** (`drjeff8104@gmail.com`), but the agency has not yet added Dr. Burns' account as a collaborator or initiated a site transfer.
-3. **Current Capacity:** Dr. Burns' Pressable account (`1446010`) has **2 staging site slots** ready and available for immediate deployment.
+2. **Account Disconnect Diagnosed:** The production website was created and is actively managed by an agency partner (**PBHS / Automattic for Agencies**). Dr. Jeffrey Burns recently purchased an independent **`Signature 1 Yearly` Pressable subscription** (`<Dr. Burns' account email>`), but the agency has not yet added Dr. Burns' account as a collaborator or initiated a site transfer.
+3. **Current Capacity:** Dr. Burns' Pressable account (`<account ID>`) has **2 staging site slots** ready and available for immediate deployment.
 4. **Theme Safeguarding Complete:** The new `dreamsmile-child` theme has been safeguarded to prevent accidental page overwrites, and the seeder is locked down behind an explicit administrative query flag (`?ds_run_page_seeder=1`).
 
 ```
@@ -22,7 +22,7 @@ This report establishes the verified hosting infrastructure of `https://www.jeff
 |                        https://www.jeffreyburns.com                               |
 |                                                                                   |
 |  - Host: Pressable (WP Cloud / Automattic)                                        |
-|  - IP: 199.16.172.129 (Burbank Datacenter 'BUR')                                   |
+|  - IP: <server IP> (Burbank Datacenter 'BUR')                                   |
 |  - Parent Account: PBHS / Automattic for Agencies                                 |
 |  - WordPress: 7.1.2 | PHP: 8.3.33                                                 |
 |  - 81 Published Pages | Active Gravity Forms & Patient Intake                     |
@@ -32,7 +32,7 @@ This report establishes the verified hosting infrastructure of `https://www.jeff
                                           v
 +-----------------------------------------------------------------------------------+
 |                        DR. JEFFREY BURNS' PRESSABLE ACCOUNT                       |
-|                          Account ID: 1446010 | drjeff8104@gmail.com               |
+|                          Account ID: <redacted> | <owner email redacted>            |
 |                                                                                   |
 |  - Plan: Signature 1 Yearly (Active)                                              |
 |  - Available Capacity: 1 Billable Live Slot | 2 Free Staging Slots                |
@@ -48,7 +48,7 @@ This report establishes the verified hosting infrastructure of `https://www.jeff
 Comprehensive forensic checks confirm beyond doubt that `www.jeffreyburns.com` is hosted on Pressable:
 
 ### A. ARIN Network Registration (RDAP / WHOIS)
-* **IP Address:** `199.16.172.129` (and secondary `199.16.173.82`)
+* **IP Address:** `<server IP>` (and secondary `<secondary IP>`)
 * **Network Name:** `PRESSABLE`
 * **Net Handle:** `NET-199-16-172-0-1`
 * **Registrant / Organization:** `PRESS-17` &rarr; **Pressable Inc.** (San Antonio, TX)
@@ -70,11 +70,11 @@ Direct inspection of HTTP response headers reveals Automattic/Pressable propriet
 
 ## 3. Account Hierarchy & Root Cause Analysis
 
-When connecting to Pressable MCP using token `rk1U0S7r1WGvHqq8VTj4ofrlpbmm6N7akiSNnn32TFM`, the API returns:
+When connecting to Pressable MCP using token `<API token — redacted>`, the API returns:
 
 ```json
 {
-  "email": "drjeff8104@gmail.com",
+  "email": "<Dr. Burns' account email>",
   "name": "Jeffrey Burns",
   "organization": "JEFFREY S BURNS DDS PC",
   "product_name": "Signature 1 Yearly",
@@ -118,7 +118,7 @@ Dr. Burns or practice administration sends the following notice to PBHS support 
 > We are preparing a staging site to preview an updated theme for **jeffreyburns.com**.  
 > 
 > Please add our internal account as a Collaborator with site management permissions on **jeffreyburns.com** in the Pressable dashboard:  
-> &bull; **Collaborator Email:** `drjeff8104@gmail.com`  
+> &bull; **Collaborator Email:** `<Dr. Burns' account email>`  
 > 
 > Once added, our development pipeline will spin up an isolated staging branch without impacting the live site.  
 > 
@@ -155,7 +155,7 @@ Execute Pressable MCP `create_site`:
   "name": "drjeffreyburns-staging",
   "staging": true,
   "php_version": "8.3",
-  "wp_admin_email": "drjeff8104@gmail.com"
+  "wp_admin_email": "<Dr. Burns' account email>"
 }
 ```
 * Uses 1 of Dr. Burns' 2 staging slots.
@@ -174,8 +174,8 @@ Execute Pressable MCP `create_site`:
 ### Option 3: Full Agency Site Transfer (Long-Term Autonomy)
 **Best for:** If Dr. Burns is terminating the PBHS retainer and taking full hosting ownership.
 
-1. Dr. Burns requests PBHS to initiate a **Pressable Site Transfer** to Account ID `1446010`.
-2. Dr. Burns receives a transfer invitation email at `drjeff8104@gmail.com` and clicks **Accept Transfer**.
+1. Dr. Burns requests PBHS to initiate a **Pressable Site Transfer** to Account ID `<account ID>`.
+2. Dr. Burns receives a transfer invitation email at `<Dr. Burns' account email>` and clicks **Accept Transfer**.
 3. `jeffreyburns.com` becomes the 1 active billable site on his `Signature 1 Yearly` plan.
 4. Future hosting fees are billed directly to Dr. Burns' card rather than marked up through PBHS.
 
