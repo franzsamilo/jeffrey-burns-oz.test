@@ -56,7 +56,7 @@
 
         if (dotsWrap) {
           var dots = dotsWrap.querySelectorAll('button');
-          dots.forEach(function (d, i) { d.classList.toggle('is-active', i === index); });
+          dots.forEach(function (d, i) { d.classList.toggle('is-active', i === index); if (i === index) { d.setAttribute('aria-current', 'true'); } else { d.removeAttribute('aria-current'); } });
         }
 
         if (prev) prev.toggleAttribute('disabled', index === 0);
@@ -72,7 +72,7 @@
             var b = document.createElement('button');
             b.type = 'button';
             b.setAttribute('aria-label', 'Go to testimonial group ' + (n + 1));
-            if (n === index) b.classList.add('is-active');
+            if (n === index) { b.classList.add('is-active'); b.setAttribute('aria-current', 'true'); }
             b.addEventListener('click', function (e) { e.preventDefault(); index = n; render(); });
             dotsWrap.appendChild(b);
           })(i);

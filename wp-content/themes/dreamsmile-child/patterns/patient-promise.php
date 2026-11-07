@@ -5,12 +5,12 @@
  * Categories: dreamsmile
  *
  * Background photo + coded promise list + working schedule CTA. Visual
- * matches the original `the-patient-promise.jpg` backdrop with a dark
+ * matches the original `the-patient-promise.webp` backdrop with a dark
  * scrim, but every promise + the button is real markup.
  */
 defined( 'ABSPATH' ) || exit;
 $base = get_stylesheet_directory_uri() . '/assets/arrange';
-$bg   = $base . '/the-patient-promise.jpg';
+$bg   = $base . '/the-patient-promise.webp';
 
 $promises = [
   'We promise to always put you and your healthcare first',

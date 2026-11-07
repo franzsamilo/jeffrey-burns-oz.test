@@ -6,7 +6,7 @@
  */
 defined( 'ABSPATH' ) || exit;
 $base       = get_stylesheet_directory_uri() . '/assets/arrange';
-$visual_img = $base . '/service-implants.jpg';
+$visual_img = $base . '/service-implants.webp';
 
 $factors = [
   [ 'tooth',    'Number of Implants Needed',  'Single, multiple, or full-arch &mdash; count drives cost.' ],
@@ -60,7 +60,7 @@ ds_render_split_hero( [
   'title' => 'Dental Implant Costs, <em>Made Clear.</em>',
   'sub'   => 'Transparent pricing, flexible financing, and the factors that shape your total &mdash; no surprises.',
   'alt'   => 'Dental implant cost and financing — a transparent treatment plan',
-  'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-cost-hero.jpg',
+  'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-cost-hero.webp',
   'ctas'  => [
     [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     [ 'label' => 'Call (540) 740-8937',   'href' => 'tel:+15407408937', 'variant' => 'outlined-white' ],

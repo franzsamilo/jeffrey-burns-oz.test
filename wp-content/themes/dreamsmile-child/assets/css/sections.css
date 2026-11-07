@@ -10,6 +10,13 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* Read by screen readers, hidden on screen. Also kept in a link's text for
+   Google's "descriptive link text" check, e.g. "Learn more<sr> about …</sr>". */
+.ds-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
 /* â”€â”€â”€ WP overrides (kill TT5 default spacing + admin-bar offset) â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 main.ds-main,
@@ -46,7 +53,7 @@ body.admin-bar .ds-navbar { top: 32px; }
   /* Bigger little titles so older readers can read them (client request, applies to every kicker). */
   font-size: 13px;
   font-weight: 700;
-  color: var(--ds-teal);
+  color: var(--ds-teal-ink);
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -102,10 +109,10 @@ body.admin-bar .ds-navbar { top: 32px; }
 }
 .ds-btn--solid {
   background: var(--ds-teal);
-  color: #fff;
+  color: var(--ds-charcoal);
   border-color: var(--ds-teal);
 }
-.ds-btn--solid:hover { background: var(--ds-teal-dark); border-color: var(--ds-teal-dark); color: #fff; }
+.ds-btn--solid:hover { background: var(--ds-teal-light); border-color: var(--ds-teal-light); color: var(--ds-charcoal); }
 /* Phones: long labels ("Find out if you're a candidate for dental implants")
    ran to three lines inside a full-width pill. Less side padding and
    tracking keeps them to one or two. */
@@ -115,10 +122,10 @@ body.admin-bar .ds-navbar { top: 32px; }
 
 .ds-btn--outlined {
   background: transparent;
-  color: var(--ds-teal);
+  color: var(--ds-teal-ink);
   border-color: var(--ds-teal);
 }
-.ds-btn--outlined:hover { background: var(--ds-teal); color: #fff; }
+.ds-btn--outlined:hover { background: var(--ds-teal); color: var(--ds-charcoal); }
 
 .ds-btn--outlined-white {
   color: #fff;
@@ -221,17 +228,17 @@ body.admin-bar .ds-navbar { top: 32px; }
 
 /* Transparent-nav state: solid teal pill with white border halo â€” pops on dark hero. */
 .ds-navbar__cta {
-  color: #fff;
+  color: var(--ds-charcoal);
   border-color: #fff;
 }
 .ds-navbar__cta:hover { background: #fff; color: var(--ds-charcoal); border-color: #fff; }
 /* Scrolled state: flip to outlined â€” transparent bg, teal text, teal border. */
 .ds-navbar.is-scrolled .ds-navbar__cta {
   background: transparent;
-  color: var(--ds-teal);
+  color: var(--ds-teal-ink);
   border-color: var(--ds-teal);
 }
-.ds-navbar.is-scrolled .ds-navbar__cta:hover { background: var(--ds-teal); color: #fff; border-color: var(--ds-teal); }
+.ds-navbar.is-scrolled .ds-navbar__cta:hover { background: var(--ds-teal); color: var(--ds-charcoal); border-color: var(--ds-teal); }
 
 @media (max-width: 767px) {
   .ds-navbar__cta { display: none; }
@@ -337,7 +344,7 @@ body.admin-bar .ds-navbar { top: 32px; }
 .ds-footer__script {
   font-family: 'Dancing Script', cursive;
   font-size: 20px;
-  color: var(--ds-teal);
+  color: var(--ds-teal-ink);
   margin: 8px 0;
 }
 .ds-footer__tag {
@@ -351,7 +358,7 @@ body.admin-bar .ds-navbar { top: 32px; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--ds-teal);
+  color: var(--ds-teal-ink);
   margin: 0 0 20px;
 }
 .ds-footer__links p {
@@ -395,7 +402,7 @@ body.admin-bar .ds-navbar { top: 32px; }
   margin: 0;
   text-align: center;
   font-size: 12px;
-  color: #777777;
+  color: var(--ds-warm-gray);
 }
 .ds-footer__legal {
   list-style: none;
@@ -912,6 +919,9 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   margin-left: -80px;
   padding-left: 100px;
   z-index: 1;
+  /* The ribbon is darker than the page, so its text takes darker inks to stay
+     at 4.5:1. Anything inside that uses --ds-teal-ink picks this up. */
+  --ds-teal-ink: #2F6661;
 }
 @media (min-width: 1024px) {
   .ds-guide-card {
@@ -928,7 +938,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   line-height: 1.35;
   max-width: 22ch;
   margin-top: 8px;
@@ -937,7 +947,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   font-weight: 500;
-  color: var(--ds-warm-gray);
+  color: var(--ds-dark-slate);
   margin: 0;
   line-height: 1.5;
   max-width: 24ch;
@@ -987,7 +997,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   margin: 6px 0 0;
 }
 .ds-intro-grid {
@@ -1329,7 +1339,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   margin-top: 4px;
 }
 .ds-stat__subtitle {
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.75);
   font-size: 12px;
   margin-top: 4px;
   letter-spacing: 0.04em;
@@ -1418,7 +1428,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   font-size: 12.5px;
   font-weight: 600;
   line-height: 1.4;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
 }
 .ds-service-card__flag svg { width: 14px; height: 14px; flex: 0 0 auto; margin-top: 1px; color: var(--ds-teal); }
 
@@ -1544,7 +1554,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   left: 50%;
   transform: translateX(-50%);
   background: var(--ds-teal);
-  color: #fff;
+  color: var(--ds-charcoal);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -2237,6 +2247,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   color: rgba(255, 255, 255, 0.78);
   padding-block: 80px;
 }
+.ds-about .ds-label { color: var(--ds-teal); }
 @media (min-width: 768px) { .ds-about { padding-block: 96px; } }
 .ds-about__head {
   text-align: left;
@@ -2319,7 +2330,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 .ds-about__quote-cite {
   display: block;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.75);
   font-size: 13px;
   margin-top: 12px;
   font-style: normal;
@@ -2474,7 +2485,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-light);
   text-decoration: none;
   border-bottom: 1px solid rgba(127, 181, 176, 0.5);
   padding-bottom: 4px;
@@ -2644,13 +2655,13 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
     margin-top: 6px;
     padding-block: 12px;
     background: var(--ds-teal);
-    color: #fff;
+    color: var(--ds-charcoal);
     border-color: var(--ds-teal);
   }
   .ds-guide-card__cta:hover {
-    background: var(--ds-teal-dark);
-    border-color: var(--ds-teal-dark);
-    color: #fff;
+    background: var(--ds-teal-light);
+    border-color: var(--ds-teal-light);
+    color: var(--ds-charcoal);
   }
 }
 
@@ -3009,17 +3020,17 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   margin: 0 0 8px 0;
 }
 .ds-service-footnotes__link {
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   text-decoration: underline;
   transition: color 0.15s ease;
 }
 .ds-service-footnotes__link:hover {
-  color: var(--ds-teal);
+  color: var(--ds-charcoal);
 }
 .ds-service-footnotes__disclaimer {
   margin: 0;
   font-style: italic;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 /* ─── Smile Reveal — AI smile preview (agency embed, under the quiz row) ─── */
@@ -3043,7 +3054,7 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   margin: 10px 0 12px;
   text-wrap: balance;
 }
-.ds-smile-reveal__title .ds-italic { color: var(--ds-teal-dark); }
+.ds-smile-reveal__title .ds-italic { color: var(--ds-teal-ink); }
 .ds-smile-reveal__sub { margin: 0 0 20px; }
 .ds-smile-reveal__steps {
   list-style: none;

@@ -17,7 +17,7 @@ $towns    = ds_town_pages();
 
 // Per-card image fallback: cities that don't have a real photo on disk yet
 // drop back to the hero image so the grid never shows broken-image icons.
-$ds_locations_fallback = $base . '/hero-image.png';
+$ds_locations_fallback = $base . '/hero-image.webp';
 
 /**
  * Per-city cards. `name` is the community served, `image` is a city-flavor
@@ -25,13 +25,13 @@ $ds_locations_fallback = $base . '/hero-image.png';
  * ds_town_pages(), keyed by the name.
  */
 $locations = [
-  [ 'Harrisonburg', 'Serving Harrisonburg &amp; Rockingham County',  'Harrisonburg-8locations.jpg', 'harrisonburg', false ],
-  [ 'Winchester',   'Serving Winchester &amp; Frederick County',     'Winchester-8locations.jpg',   'winchester',   false ],
-  [ 'Broadway',     'Serving Broadway &amp; the central valley',     'Broadway-8locations.jpg',     'broadway',     false ],
+  [ 'Harrisonburg', 'Serving Harrisonburg &amp; Rockingham County',  'Harrisonburg-8locations.webp', 'harrisonburg', false ],
+  [ 'Winchester',   'Serving Winchester &amp; Frederick County',     'Winchester-8locations.webp',   'winchester',   false ],
+  [ 'Broadway',     'Serving Broadway &amp; the central valley',     'Broadway-8locations.webp',     'broadway',     false ],
   [ 'Bridgewater',  'Serving Bridgewater &amp; the College',         'Bridgewater-8locations.jpg',  'bridgewater',  false ],
-  [ 'Luray',        'Serving Luray &amp; Page County',               'Luray-8locations.jpg',        'luray',        false ],
-  [ 'Woodstock',    'Serving Woodstock &amp; Shenandoah County',     'Woodstock-8locations.jpg',    'woodstock',    false ],
-  [ 'Elkton',       'Serving Elkton &amp; east Rockingham',          'Elkton-8locations.jpg',       'elkton',       false ],
+  [ 'Luray',        'Serving Luray &amp; Page County',               'Luray-8locations.webp',        'luray',        false ],
+  [ 'Woodstock',    'Serving Woodstock &amp; Shenandoah County',     'Woodstock-8locations.webp',    'woodstock',    false ],
+  [ 'Elkton',       'Serving Elkton &amp; east Rockingham',          'Elkton-8locations.webp',       'elkton',       false ],
   [ 'Timberville',  'Serving Timberville &amp; the orchard country', 'Timberville-8locations.jpg', 'timberville', false ],
 ];
 ?>
@@ -63,7 +63,7 @@ $locations = [
           <div class="ds-location-card__body">
             <h3 class="ds-location-card__name">Dental Implants <?php echo $loc[4] ? 'in' : 'Near'; ?> <?php echo esc_html( $loc[0] ); ?></h3>
             <p class="ds-location-card__addr"><?php echo $loc[1]; ?></p>
-            <a href="<?php echo esc_url( $towns[ $loc[0] ] ?? '/locations/' ); ?>" class="ds-btn ds-btn--outlined ds-btn--sm" aria-label="Learn more about dental care near <?php echo esc_attr( $loc[0] ); ?>">Learn More &rarr;</a>
+            <a href="<?php echo esc_url( $towns[ $loc[0] ] ?? '/locations/' ); ?>" class="ds-btn ds-btn--outlined ds-btn--sm">Learn More<span class="ds-sr-only"> about dental care near <?php echo esc_html( $loc[0] ); ?></span> <span aria-hidden="true">&rarr;</span></a>
           </div>
         </article>
       <?php endforeach; ?>

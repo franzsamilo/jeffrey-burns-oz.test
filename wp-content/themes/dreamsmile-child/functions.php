@@ -23,6 +23,49 @@ add_action( 'wp_enqueue_scripts', function () {
     }
 } );
 
+/*
+ * Speed (SEO tracker, Launch Checklist "Speed", Nov 2026 recheck).
+ *
+ * Hero photos are CSS backgrounds, which the browser only discovers after the
+ * stylesheets arrive; Lighthouse put the homepage's main paint at ~8 s on a
+ * phone. A block theme renders the whole template before wp_head() runs, so
+ * the hero pattern names its photo via ds_preload_hero() and <head> asks for
+ * it first, at high priority.
+ */
+function ds_preload_hero( $url = null ) {
+    static $hero = '';
+    if ( null !== $url && '' === $hero ) {
+        $hero = (string) $url;
+    }
+    return $hero;
+}
+add_action( 'wp_head', function () {
+    $hero = ds_preload_hero();
+    if ( '' !== $hero ) {
+        echo '<link rel="preload" as="image" href="' . esc_url( $hero ) . '" fetchpriority="high">' . "\n";
+    }
+}, 1 );
+
+// Open the Google Fonts connections while the HTML is still arriving.
+add_filter( 'wp_resource_hints', function ( $urls, $relation ) {
+    if ( 'preconnect' === $relation ) {
+        $urls[] = 'https://fonts.googleapis.com';
+        $urls[] = [ 'href' => 'https://fonts.gstatic.com', 'crossorigin' ];
+    }
+    return $urls;
+}, 10, 2 );
+
+// WordPress's emoji script (~20 KB) only adds colour emoji to old browsers.
+// Every browser this site targets draws them natively.
+add_action( 'init', function () {
+    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+    remove_action( 'wp_print_styles', 'print_emoji_styles' );
+    remove_action( 'wp_enqueue_scripts', 'wp_enqueue_emoji_styles' );
+    remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+    remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+    remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+} );
+
 add_action( 'init', function () {
     register_block_pattern_category( 'dreamsmile', [ 'label' => __( 'DreamSmile', 'dreamsmile-child' ) ] );
 } );
@@ -654,8 +697,9 @@ function ds_render_split_hero( array $a ) {
     $title = $a['title'] ?? '';
     $sub   = $a['sub']   ?? '';
     $alt   = $a['alt']   ?? 'DreamSmile by Dr. Jeffrey S. Burns';
-    $bg    = $a['bg']    ?? ( get_stylesheet_directory_uri() . '/assets/arrange/hero-image.png' );
+    $bg    = $a['bg']    ?? ( get_stylesheet_directory_uri() . '/assets/arrange/hero-image.webp' );
     $ctas  = $a['ctas']  ?? [];
+    ds_preload_hero( $bg );
     ?>
     <section class="ds-hero ds-hero--sub ds-hero--split" id="hero">
       <div class="ds-hero-split">
@@ -791,6 +835,30 @@ function ds_get_video_url( $video_name ) {
         return get_stylesheet_directory_uri() . '/assets/arrange/' . $video_name;
     }
     return 'https://github.com/franzsamilo/jeffrey-burns-oz.test/releases/download/v2/' . $video_name;
+}
+
+/**
+ * Poster frame for a video, from assets/arrange/posters/<video name>.webp.
+ * Empty string when there is none.
+ *
+ * With a poster the video can wait for the play button (preload="none")
+ * instead of fetching part of the file on page load: the homepage's two
+ * videos alone cost about 600 KB that way (Lighthouse, Nov 2026).
+ */
+function ds_video_poster( $video_name ) {
+    $rel = '/assets/arrange/posters/' . preg_replace( '/\.mp4$/i', '', $video_name ) . '.webp';
+    return file_exists( get_stylesheet_directory() . $rel ) ? get_stylesheet_directory_uri() . $rel : '';
+}
+
+/**
+ * The poster and preload attributes for a <video> tag, already escaped.
+ * Pass $poster to use a poster from elsewhere (e.g. a before/after still).
+ */
+function ds_video_load_attrs( $video_name, $poster = '' ) {
+    $poster = $poster ? $poster : ds_video_poster( $video_name );
+    return $poster
+        ? 'poster="' . esc_url( $poster ) . '" preload="none"'
+        : 'preload="metadata"';
 }
 
 /**

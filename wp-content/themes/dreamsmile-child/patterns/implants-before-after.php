@@ -14,9 +14,9 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
 // own testimonial reels (2026-09-11) at the moment each one shows the
 // finished smile — so no slide opens on a black video frame.
 $shots = [
-  [ 'Curtis-Cloude-Testimonial.mp4', 'DreamSmile transformation — Curtis Cloude', 'Curtis Cloude', 'DreamSmile™ Transformation', 'testimonial-ba-curtis.jpg' ],
-  [ 'Angela-Burker-Testimonial.mp4', 'DreamSmile transformation — Angela Burker', 'Angela Burker', 'DreamSmile™ Transformation', 'testimonial-ba-angela.jpg' ],
-  [ 'Peter-Encheff-Testimonial.mp4', 'DreamSmile transformation — Peter Encheff', 'Peter Encheff', 'DreamSmile™ Transformation', 'testimonial-ba-peter.jpg' ],
+  [ 'Curtis-Cloude-Testimonial.mp4', 'DreamSmile transformation — Curtis Cloude', 'Curtis Cloude', 'DreamSmile™ Transformation', 'testimonial-ba-curtis.webp' ],
+  [ 'Angela-Burker-Testimonial.mp4', 'DreamSmile transformation — Angela Burker', 'Angela Burker', 'DreamSmile™ Transformation', 'testimonial-ba-angela.webp' ],
+  [ 'Peter-Encheff-Testimonial.mp4', 'DreamSmile transformation — Peter Encheff', 'Peter Encheff', 'DreamSmile™ Transformation', 'testimonial-ba-peter.webp' ],
 ];
 $count = count( $shots );
 ?>
@@ -37,8 +37,7 @@ $count = count( $shots );
               <video
                 class="ds-ba__video"
                 src="<?php echo esc_url( ds_get_video_url( $s[0] ) ); ?>"
-                <?php if ( ! empty( $s[4] ) ) : ?>poster="<?php echo esc_url( $base . '/' . $s[4] ); ?>"<?php endif; ?>
-                preload="metadata"
+                <?php echo ds_video_load_attrs( $s[0], ! empty( $s[4] ) ? $base . '/' . $s[4] : '' ); ?>
                 playsinline
                 muted
                 controls
@@ -66,9 +65,9 @@ $count = count( $shots );
         </span>
       </div>
 
-      <div class="ds-ba__dots" data-ds-carousel-dots aria-hidden="true">
+      <div class="ds-ba__dots" data-ds-carousel-dots>
         <?php foreach ( $shots as $i => $s ) : ?>
-          <button type="button" class="<?php echo $i === 0 ? 'is-active' : ''; ?>" data-ds-carousel-dot="<?php echo (int) $i; ?>" aria-label="Go to slide <?php echo (int) ( $i + 1 ); ?>"></button>
+          <button type="button" class="<?php echo $i === 0 ? 'is-active' : ''; ?>"<?php echo $i === 0 ? ' aria-current="true"' : ''; ?> data-ds-carousel-dot="<?php echo (int) $i; ?>" aria-label="Go to slide <?php echo (int) ( $i + 1 ); ?>"></button>
         <?php endforeach; ?>
       </div>
     </div>

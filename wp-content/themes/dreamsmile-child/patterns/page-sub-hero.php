@@ -27,7 +27,7 @@ $variants = [
     'subtitle' => 'A permanent solution for missing or damaged teeth &mdash; placed personally by Dr. Burns.',
     'cta1'     => [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     'cta2'     => [ 'label' => 'Free Assessment',     'href' => '/#quiz' ],
-    'bg'       => $base . '/dental-implants-hero.jpg',
+    'bg'       => $base . '/dental-implants-hero.webp',
     'alt'      => 'Dr. Burns reviewing a dental implant case',
   ],
   'locations' => [
@@ -36,7 +36,7 @@ $variants = [
     'subtitle' => 'One office in New Market, VA &mdash; serving patients from across the valley, led personally by Dr. Burns.',
     'cta1'     => [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     'cta2'     => [ 'label' => 'Free Assessment',     'href' => '/#quiz' ],
-    'bg'       => $base . '/Harrison-Hero.jpg',
+    'bg'       => $base . '/Harrison-Hero.webp',
     'alt'      => 'Dr. Burns&rsquo;s dental implant office in New Market, VA',
   ],
   'contact' => [
@@ -45,7 +45,7 @@ $variants = [
     'subtitle' => '9626 South Congress St &middot; (540) 740-8937 &middot; Mon&ndash;Thu, 8 AM &ndash; 3 PM.',
     'cta1'     => [ 'label' => 'Schedule a Visit', 'href' => '/#quiz' ],
     'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
-    'bg'       => $base . '/contact-hero.jpg',
+    'bg'       => $base . '/contact-hero.webp',
     'alt'      => 'DreamSmile Dentistry &mdash; New Market, VA',
   ],
   'general-dentistry' => [
@@ -54,7 +54,7 @@ $variants = [
     'subtitle' => 'Bridges, crowns, extractions, root canals, dentures, and more &mdash; from a nationally recognized doctor with 30+ years of experience.',
     'cta1'     => [ 'label' => 'Schedule a Visit', 'href' => '/#quiz' ],
     'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
-    'bg'       => $base . '/general-dentistry-hero.jpg',
+    'bg'       => $base . '/general-dentistry-hero.webp',
     'alt'      => 'General dentistry care at DreamSmile',
   ],
   'cosmetic-dentistry' => [
@@ -63,7 +63,7 @@ $variants = [
     'subtitle' => 'Veneers, whitening, and clear braces designed around your face, your smile, and the result you actually want.',
     'cta1'     => [ 'label' => 'Schedule a Visit', 'href' => '/#quiz' ],
     'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
-    'bg'       => $base . '/cosmetic-dentistry-hero.jpg',
+    'bg'       => $base . '/cosmetic-dentistry-hero.webp',
     'alt'      => 'Cosmetic dentistry at DreamSmile',
   ],
   'meet-dr-burns' => [
@@ -72,7 +72,7 @@ $variants = [
     'subtitle' => 'Nationally recognized implant expert. Creator of the Burns Protocol. AACD award recipient. Teaches dentists across the United States.',
     'cta1'     => [ 'label' => 'Schedule an Assessment', 'href' => '/#quiz' ],
     'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
-    'bg'       => $base . '/surgical-photo-burns.png',
+    'bg'       => $base . '/surgical-photo-burns.webp',
     'alt'      => 'Dr. Jeffrey S. Burns, DDS &mdash; in surgical loupes',
   ],
   'restorative-care' => [
@@ -81,7 +81,7 @@ $variants = [
     'subtitle' => 'Fillings, crowns, bridges, root canals, extractions, and implants &mdash; every restorative option you might need, planned and performed by the same doctor.',
     'cta1'     => [ 'label' => 'Schedule an Assessment', 'href' => '/#quiz' ],
     'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
-    'bg'       => $base . '/restorative-care-hero.jpg',
+    'bg'       => $base . '/restorative-care-hero.webp',
     'alt'      => 'Restorative dentistry at DreamSmile',
   ],
   'gum-disease' => [
@@ -90,7 +90,7 @@ $variants = [
     'subtitle' => 'Gum disease is the leading cause of tooth loss in adults &mdash; and it&rsquo;s almost always reversible when caught in time. Deep cleaning + maintenance, planned for the long haul.',
     'cta1'     => [ 'label' => 'Schedule an Assessment', 'href' => '/#quiz' ],
     'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
-    'bg'       => $base . '/gum-disease-hero.jpg',
+    'bg'       => $base . '/gum-disease-hero.webp',
     'alt'      => 'Gum disease treatment',
   ],
   'resources' => [
@@ -99,7 +99,7 @@ $variants = [
     'subtitle' => 'Helpful info before, during, and after your visit &mdash; new patient forms, financing options, and patient-friendly articles.',
     'cta1'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
     'cta2'     => [ 'label' => 'Visit Contact Page', 'href' => '/contact/' ],
-    'bg'       => $base . '/resources-hero.jpg',
+    'bg'       => $base . '/resources-hero.webp',
     'alt'      => 'Patient resources at DreamSmile',
   ],
   'new-patients' => [
@@ -108,7 +108,7 @@ $variants = [
     'subtitle' => 'Your first visit, your forms, your free assessment &mdash; everything you need to get started.',
     'cta1'     => [ 'label' => 'Schedule Your Visit', 'href' => '/#quiz' ],
     'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
-    'bg'       => $base . '/new-patients-hero.jpg',
+    'bg'       => $base . '/new-patients-hero.webp',
     'alt'      => 'Dr. Burns greeting a new patient',
   ],
   // The old site's Make a Payment intro, word for word (make-a-payment.php).
@@ -118,7 +118,7 @@ $variants = [
     'subtitle' => 'Paying your bill online is quick and secure. Click the button below to make a payment through our secure payment portal, or scan the QR code with your phone&rsquo;s camera.',
     'cta1'     => [ 'label' => 'Pay Your Bill Online', 'href' => ds_payment_url() ],
     'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
-    'bg'       => $base . '/contact-hero.jpg',
+    'bg'       => $base . '/contact-hero.webp',
     'alt'      => 'Dr. Jeffrey S. Burns, DDS &mdash; New Market, VA office',
   ],
 ];
@@ -136,7 +136,7 @@ if ( ! isset( $variants[ $slug ] ) ) {
             'subtitle' => $sh['subtitle'] ?? '',
             'cta1'     => $sh['cta1']     ?? [ 'label' => 'Schedule Free Assessment', 'href' => '#quiz' ],
             'cta2'     => $sh['cta2']     ?? [ 'label' => 'Call (540) 740-8937',   'href' => 'tel:+15407408937' ],
-            'bg'       => $base . '/' . ( $sh['bg'] ?? 'hero-image.png' ),
+            'bg'       => $base . '/' . ( $sh['bg'] ?? 'hero-image.webp' ),
             'alt'      => $sh['alt']      ?? 'DreamSmile by Dr. Jeffrey S. Burns',
         ];
     }

@@ -4,8 +4,9 @@ Response to the **Nov 5, 2026 recheck** of "Dr. Jeffrey Burns - SEO Issues Track
 Engine). It covers every row still marked **Not started**, plus the other open rows the
 recheck called out.
 
-Theme **1.7.0**, branch `fix/seo-tracker-nov5`. Everything below was tested on a local
-WordPress running this theme. Staging shows none of it until 1.7.0 is deployed (steps at the end).
+Theme **1.8.0**, branch `fix/seo-tracker-nov5` (1.7.0 = sections 1–5; 1.8.0 adds the speed and
+accessibility work in section 6). Everything below was tested on a local WordPress running this
+theme. Staging shows none of it until 1.8.0 is deployed (steps in section 7).
 
 ---
 
@@ -113,20 +114,80 @@ If any new post goes live on the current site before launch, it needs the same t
 | Homepage blurb (Metadata row 22) | Paste the suggested blurb into the homepage's Slim SEO box. | SEO team |
 | Business details for Google (Launch row 18) | The Google Business Profile link, address, hours and map location are Slim SEO Schema settings. | SEO team |
 | Privacy Policy page | The practice or its legal team needs to supply the text. The footer already links /disclaimer/. | Client |
-| Speed (59) and accessibility (88) | After-launch developer items. 1.7.0 already fixes the low-contrast teal links in service-page text. | Developer, after launch |
+| Speed (59) and accessibility (88) | **Done in 1.8.0**, see section 6. | Developer (done) + plugins at launch |
 | robots.txt Crawl-delay, full Slim SEO redirect list recheck | Launch day. | Launch day |
 
-## 6. Deploying 1.7.0 to staging
+## 6. Launch Checklist "Speed" and "Accessibility" rows (theme 1.8.0)
+
+Measured with Google's Lighthouse (phone settings) on a local copy of the site, before and after.
+Staging's homepage gave the same accessibility warnings as the local copy, so the fixes carry over.
+
+| Homepage | Before | After 1.8.0 |
+|---|---|---|
+| Accessibility score | 88 | **100** (Dental Implants page: 100 too) |
+| Page weight | 3.2 MB | **1.6 MB** |
+| Speed index | 9.1 s | 5.2 s |
+| Layout shift | 0 | 0 |
+
+The local copy has no file compression and a slow server, so its speed score (63, was 58) runs
+lower than staging's will. Retest on staging after the deploy.
+
+**Accessibility.** Lighthouse only checks what is on screen when it runs, and this site fades
+sections in as you scroll. So we also checked every section on 26 pages at phone and desktop
+widths (six of them at four widths), plus the open menus, the phone menu, the booking form and
+the FAQ answers. All of them pass now.
+
+- Colour contrast. The brand teal (#7FB5B0) is too light for small text on white, so small teal
+  text now uses a deeper teal (#3D7872). Teal buttons keep their teal and get dark text instead
+  of white; on hover they lighten. The "Platinum" warranty card is a shade deeper. Headline
+  colours and photos are unchanged.
+- Screen reader labels: star ratings, carousel dots, the FAQ topic filter, the diagrams and the
+  scrolling photo strip are now announced properly; the header menus use the standard pattern.
+- Headings no longer skip levels, and each page has one header and one footer region.
+- Links without clear text: the three "Learn more" buttons now tell screen readers and Google
+  where they go ("Learn more about cosmetic dentistry"). They look the same.
+
+**Speed (theme side, all done).**
+
+- JPG/PNG images: the theme's photos now load as WebP, sized to how big they show on screen.
+  That's the "about 320 KB" from the tracker on the homepage, and about 4 MB across the site.
+  (Two town photos, the logos and the payment QR code stay as they are: WebP saved nothing.)
+- The homepage photo (the slow "main content") is now requested first, before the stylesheets
+  finish. The same applies to every service page's top photo.
+- Videos wait for the play button and show a still frame until then. Before, the homepage
+  downloaded about 600 KB of video on load. The before/after carousel on /dental-implants/ was
+  streaming a 189 MB video to every visitor on load; it now starts only when scrolled to.
+- Smaller fixes: images below the fold load as you scroll, image sizes are reserved so nothing
+  jumps, the Google Fonts connection opens earlier, and WordPress's emoji script is removed.
+
+**Still slowing staging down, outside the theme (for launch day):**
+
+| What | Cost on staging's homepage | Fix |
+|---|---|---|
+| Old PBHS plugins (pbhs-common-plugin, pbhsthemehelper) | Load jQuery, a script and a stylesheet before the page can show | Deactivate. The new theme uses neither. |
+| Widget Google Reviews plugin | Its stylesheet loads on every page | Deactivate if the reviews widget isn't placed anywhere (the town pages no longer use it). |
+| Dashicons + admin-bar CSS for logged-out visitors | About 40 KB that blocks the page | Pressable's cache plugin toolbar loads them; check its settings or ask Pressable. |
+| Google Tag Manager | About 0.4 s of main-thread time, 180 KB | Review the tags in the container (whoever manages GTM). |
+| Server response | 1.9 s for the first byte | Usually better on the live host with page caching on; retest at launch. |
+
+**One follow-up we recommend:** the three before/after testimonial videos (Curtis, Angela,
+Peter) are the original 136–191 MB files. They now load only when someone scrolls to them, but
+they should still be shrunk to a few MB each, like the homepage testimonials. Then re-upload
+them to the Media Library under the same file names.
+
+## 7. Deploying 1.8.0 to staging
 
 1. Once `fix/seo-tracker-nov5` is merged into `main`, merge `main` into
    `setup/staging-and-deployment`. That branch also carries Dale's Oct 24 migration-script work.
 2. `python build_zip.py`, then upload the zip in Appearance → Themes ("Replace active with
    uploaded"), then purge the Pressable cache.
-3. Check the page source shows `dreamsmile-child/style.css?ver=1.7.0`, and that a page's
+3. Check the page source shows `dreamsmile-child/style.css?ver=1.8.0`, and that a page's
    canonical now starts with https://.
-4. Import the three posts (section 3).
+4. If the header or footer still shows the old markup, someone edited the templates in the Site
+   Editor; reset them there (Appearance → Editor → Templates → Reset) so the theme files apply.
+5. Import the three posts (section 3).
 
-## 7. Questions for the practice
+## 8. Questions for the practice
 
 1. Is Dr. James Whitney still practicing at the office? (section 2)
 2. Who is on the team today, and would they like a team section on Meet Dr. Burns? (section 4)

@@ -118,7 +118,7 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode
         </div>
       </div>
       <div class="ds-loc-hero__media ds-reveal">
-        <img src="<?php echo esc_url( $base . '/' . $town['image'] ); ?>" alt="<?php echo esc_attr( $town['image_alt'] ); ?>"<?php echo $img_dims ? ' width="' . (int) $img_dims[0] . '" height="' . (int) $img_dims[1] . '"' : ''; ?> />
+        <img src="<?php echo esc_url( $base . '/' . $town['image'] ); ?>" alt="<?php echo esc_attr( $town['image_alt'] ); ?>" fetchpriority="high"<?php echo $img_dims ? ' width="' . (int) $img_dims[0] . '" height="' . (int) $img_dims[1] . '"' : ''; ?> />
       </div>
     </div>
   </div>
@@ -181,13 +181,13 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode
   <div class="ds-wrap">
     <div class="ds-loc-doctor__grid">
       <div class="ds-loc-doctor__media ds-reveal">
-        <img src="<?php echo esc_url( $base . '/dr-burns-portrait.jpg' ); ?>" alt="Dr. Jeffrey S. Burns, DDS" width="571" height="800" loading="lazy" />
+        <img src="<?php echo esc_url( $base . '/dr-burns-portrait.webp' ); ?>" alt="Dr. Jeffrey S. Burns, DDS" width="571" height="800" loading="lazy" />
       </div>
       <div class="ds-reveal">
         <span class="ds-label">MEET THE DOCTOR</span>
         <h2 class="ds-loc-doctor__name">Meet Dr. Jeffrey Burns</h2>
         <p class="ds-loc-doctor__bio">Dr. Jeffrey S. Burns is a nationally recognized leader in dental implantology and smile design with over 30 years of hands-on implant experience. He is the creator of the Burns Protocol, a proven multi-step system he has taught to dentists across the United States to consistently deliver healthy, long-lasting DreamSmiles<sup class="ds-tm">&trade;</sup>. Dr. Burns combines elite expertise with genuine care&mdash;so much so that every DreamSmile<sup class="ds-tm">&trade;</sup> patient receives his personal cell phone number, ensuring direct access, confidence, and peace of mind throughout their transformation.</p>
-        <a href="/meet-dr-burns/" class="ds-btn ds-btn--outlined-white ds-btn--sm">Learn More</a>
+        <a href="/meet-dr-burns/" class="ds-btn ds-btn--outlined-white ds-btn--sm">Learn More<span class="ds-sr-only"> about Dr. Burns</span></a>
       </div>
     </div>
   </div>
@@ -205,7 +205,7 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode
         <video
           class="ds-loc-testimonials__video"
           src="<?php echo esc_url( ds_get_video_url( 'Hall-of-Fame-Patients.mp4' ) ); ?>"
-          preload="metadata"
+          <?php echo ds_video_load_attrs( 'Hall-of-Fame-Patients.mp4' ); ?>
           playsinline
           muted
           controls

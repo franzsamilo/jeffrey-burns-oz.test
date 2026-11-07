@@ -22,7 +22,7 @@ $tools         = ds_lead_tools();
              thing that is supposed to pull the visitor down. It paints as-is. -->
         <div class="ds-quiz-card" data-ds-quiz>
           <span class="ds-quiz-card__label">FIND OUT IF YOU&rsquo;RE A</span>
-          <h3 class="ds-quiz-card__title">CANDIDATE FOR DENTAL IMPLANTS</h3>
+          <h2 class="ds-quiz-card__title">CANDIDATE FOR DENTAL IMPLANTS</h2>
           <p class="ds-quiz-card__subtitle">Take this 30 second quiz</p>
           <p class="ds-quiz-card__question">What best describes your current condition?</p>
 
@@ -64,7 +64,7 @@ $tools         = ds_lead_tools();
            baked into the artwork — an image that reads as a button but isn't. The
            GET THE FREE GUIDE control in the aside is the only real CTA here. -->
       <figure class="ds-quiz-ipad" aria-hidden="false">
-        <img src="<?php echo esc_url( $quiz_card_img ); ?>" alt="The Ultimate Guide to Dental Implants &mdash; free pricing and information guide from Dr. Jeffrey S. Burns" loading="lazy" />
+        <img src="<?php echo esc_url( $quiz_card_img ); ?>" alt="The Ultimate Guide to Dental Implants &mdash; free pricing and information guide from Dr. Jeffrey S. Burns" width="700" height="750" loading="lazy" />
       </figure>
 
       <!-- RIGHT — Guide CTA -->
@@ -80,5 +80,4 @@ $tools         = ds_lead_tools();
     </div>
   </div>
 </section>
-<style>.ds-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 <!-- /wp:html -->

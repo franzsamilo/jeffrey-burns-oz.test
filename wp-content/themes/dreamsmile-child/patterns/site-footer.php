@@ -34,14 +34,14 @@ if ( $disclaimer && 'publish' === $disclaimer->post_status ) {
 
       <div>
         <a href="/" class="ds-footer__brand" aria-label="J. Burns DreamSmile — Home">
-          <img class="ds-footer__logo-img" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/jb-logo-clean.png' ); ?>" alt="J. Burns DreamSmile D.D.S. Logo" style="height: 44px; width: auto;" />
+          <img class="ds-footer__logo-img" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/arrange/jb-logo-clean.png' ); ?>" alt="J. Burns DreamSmile D.D.S. Logo" width="220" height="81" loading="lazy" style="height: 44px; width: auto;" />
         </a>
         <p class="ds-footer__script">DreamSmile<sup class="ds-footer__tm">&trade;</sup></p>
         <p class="ds-footer__tag">A DreamSmile<sup class="ds-tm">&trade;</sup> You&rsquo;ll Never Have to Hide.</p>
       </div>
 
       <div>
-        <h4 class="ds-footer__heading">Contact</h4>
+        <h2 class="ds-footer__heading">Contact</h2>
         <div class="ds-footer__links">
           <p>9626 South Congress St<br/>New Market, VA 22844</p>
           <p>Mon&ndash;Thu &middot; 8 AM &ndash; 3 PM</p>
@@ -52,7 +52,7 @@ if ( $disclaimer && 'publish' === $disclaimer->post_status ) {
       </div>
 
       <div>
-        <h4 class="ds-footer__heading">Dental Implants</h4>
+        <h2 class="ds-footer__heading">Dental Implants</h2>
         <div class="ds-footer__links">
           <p><a href="/dental-implants/">Overview</a></p>
           <p><a href="/implant-cost/">Cost &amp; Financing</a></p>
@@ -63,7 +63,7 @@ if ( $disclaimer && 'publish' === $disclaimer->post_status ) {
       </div>
 
       <nav aria-label="Areas we serve">
-        <h4 class="ds-footer__heading">Areas We Serve</h4>
+        <h2 class="ds-footer__heading">Areas We Serve</h2>
         <ul class="ds-footer__links ds-footer__areas">
           <?php foreach ( ds_town_pages() as $town => $path ) : ?>
             <li><a href="<?php echo esc_url( $path ); ?>"><?php echo esc_html( $town ); ?></a></li>

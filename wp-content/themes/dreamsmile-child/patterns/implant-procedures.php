@@ -6,7 +6,7 @@
  */
 defined( 'ABSPATH' ) || exit;
 $base     = get_stylesheet_directory_uri() . '/assets/arrange';
-$surgical = $base . '/surgical-photo-burns.png';
+$surgical = $base . '/surgical-photo-burns.webp';
 
 $types = [
   [ 'tooth',    'Single Tooth Implant',      'Missing one tooth',            'Replace one missing tooth without affecting neighbors. Most common, least invasive.' ],
@@ -34,7 +34,7 @@ ds_render_split_hero( [
   'title' => 'The Right Implant Solution <em>for Every Smile.</em>',
   'sub'   => 'Six proven procedures &mdash; from a single tooth to a full-arch rebuild. Find the one that fits.',
   'alt'   => 'Dental implant procedures — surgical precision and modern technology',
-  'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-procedures-hero.jpg',
+  'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-procedures-hero.webp',
   'ctas'  => [
     [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     [ 'label' => 'Call (540) 740-8937',   'href' => 'tel:+15407408937', 'variant' => 'outlined-white' ],

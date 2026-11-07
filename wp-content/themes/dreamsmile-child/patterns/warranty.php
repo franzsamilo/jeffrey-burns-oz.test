@@ -5,12 +5,12 @@
  * Categories: dreamsmile
  *
  * Background photo + coded tier cards + working schedule CTA. Visual
- * matches the original `dream-smile-warranty.jpg` backdrop, but every
+ * matches the original `dream-smile-warranty.webp` backdrop, but every
  * element is real markup so the button actually opens the schedule modal.
  */
 defined( 'ABSPATH' ) || exit;
 $base = get_stylesheet_directory_uri() . '/assets/arrange';
-$bg   = $base . '/dream-smile-warranty.jpg';
+$bg   = $base . '/dream-smile-warranty.webp';
 
 $tiers = [
   // [ key, name, implants_value, teeth_value, recommended ]

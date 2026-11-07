@@ -54,7 +54,7 @@ defined( 'ABSPATH' ) || exit;
         <video
           class="ds-expertise__video-el"
           src="<?php echo esc_url( ds_get_video_url( 'showcase-expertise.mp4' ) ); ?>"
-          preload="metadata"
+          <?php echo ds_video_load_attrs( 'showcase-expertise.mp4' ); ?>
           playsinline
           controls
           aria-label="Showcase 12-12-25 DR BURNS — Dr. Burns Expertise Video"

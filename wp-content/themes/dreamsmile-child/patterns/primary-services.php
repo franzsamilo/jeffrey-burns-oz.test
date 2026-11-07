@@ -34,7 +34,7 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
         <h3 class="ds-service-card__title">Cosmetic Dentistry</h3>
         <p class="ds-service-card__desc">Transform your smile with veneers, whitening, and cosmetic treatments designed to give you the confidence you deserve.</p>
         <p class="ds-service-card__flag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>AACD-Awarded Care &mdash; custom veneers, whitening &amp; clear aligners</p>
-        <a href="/cosmetic-dentistry/" class="ds-btn ds-btn--solid ds-btn--sm">LEARN MORE</a>
+        <a href="/cosmetic-dentistry/" class="ds-btn ds-btn--solid ds-btn--sm">LEARN MORE<span class="ds-sr-only"> about cosmetic dentistry</span></a>
       </div>
     </div>
   </div>
