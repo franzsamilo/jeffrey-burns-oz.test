@@ -96,7 +96,7 @@ $svg = [
 </section>
 
 <?php // SEO tracker content gap (Nov 2026): the old /cosmetic-dentistry-4/dental-bonding/ page redirects here. ?>
-<section class="ds-np-prose">
+<section class="ds-np-prose ds-np-prose--grey">
   <div class="ds-wrap ds-np-prose__wrap">
     <div class="ds-np-prose__head ds-reveal">
       <span class="ds-label">ALSO AVAILABLE</span>

@@ -557,6 +557,7 @@ return [
     // dentures, care, relines, rebase & repairs, exams, soft liners) redirect
     // here, so their substance lives here now.
     'prose' => [
+      'tone'   => 'grey', // sits between the white steps and service-card bands
       'label'  => 'DENTURE CARE &amp; SERVICES',
       'title'  => 'Immediate dentures, relines, repairs and everyday care.',
       'blocks' => [

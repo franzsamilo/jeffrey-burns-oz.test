@@ -6330,6 +6330,8 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 /* Prose */
 .ds-np-prose { background: #fff; padding-block: 52px; }
 @media (min-width: 768px) { .ds-np-prose { padding-block: 64px; } }
+/* For a prose band that lands between two white sections. */
+.ds-np-prose--grey { background: var(--ds-light-gray); }
 .ds-np-prose__wrap { max-width: 760px; }
 .ds-np-prose__head { margin-bottom: 14px; }
 .ds-np-prose__title {

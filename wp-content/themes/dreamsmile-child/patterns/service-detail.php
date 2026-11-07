@@ -188,7 +188,7 @@ $article_title = $svc['sub_hero']['label'] ?? '';
 
 <?php // ── Explanatory prose (what it is / why it matters) ─────────────────── ?>
 <?php if ( $prose && ! empty( $prose['blocks'] ) ) : ?>
-<section class="ds-np-prose">
+<section class="ds-np-prose<?php echo 'grey' === ( $prose['tone'] ?? '' ) ? ' ds-np-prose--grey' : ''; ?>">
   <div class="ds-wrap ds-np-prose__wrap">
     <div class="ds-np-prose__head ds-reveal">
       <?php if ( ! empty( $prose['label'] ) ) : ?><span class="ds-label"><?php echo esc_html( $prose['label'] ); ?></span><?php endif; ?>
