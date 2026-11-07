@@ -23,6 +23,49 @@ add_action( 'wp_enqueue_scripts', function () {
     }
 } );
 
+/*
+ * Speed (SEO tracker, Launch Checklist "Speed", Nov 2026 recheck).
+ *
+ * Hero photos are CSS backgrounds, which the browser only discovers after the
+ * stylesheets arrive; Lighthouse put the homepage's main paint at ~8 s on a
+ * phone. A block theme renders the whole template before wp_head() runs, so
+ * the hero pattern names its photo via ds_preload_hero() and <head> asks for
+ * it first, at high priority.
+ */
+function ds_preload_hero( $url = null ) {
+    static $hero = '';
+    if ( null !== $url && '' === $hero ) {
+        $hero = (string) $url;
+    }
+    return $hero;
+}
+add_action( 'wp_head', function () {
+    $hero = ds_preload_hero();
+    if ( '' !== $hero ) {
+        echo '<link rel="preload" as="image" href="' . esc_url( $hero ) . '" fetchpriority="high">' . "\n";
+    }
+}, 1 );
+
+// Open the Google Fonts connections while the HTML is still arriving.
+add_filter( 'wp_resource_hints', function ( $urls, $relation ) {
+    if ( 'preconnect' === $relation ) {
+        $urls[] = 'https://fonts.googleapis.com';
+        $urls[] = [ 'href' => 'https://fonts.gstatic.com', 'crossorigin' ];
+    }
+    return $urls;
+}, 10, 2 );
+
+// WordPress's emoji script (~20 KB) only adds colour emoji to old browsers.
+// Every browser this site targets draws them natively.
+add_action( 'init', function () {
+    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+    remove_action( 'wp_print_styles', 'print_emoji_styles' );
+    remove_action( 'wp_enqueue_scripts', 'wp_enqueue_emoji_styles' );
+    remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+    remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+    remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+} );
+
 add_action( 'init', function () {
     register_block_pattern_category( 'dreamsmile', [ 'label' => __( 'DreamSmile', 'dreamsmile-child' ) ] );
 } );
@@ -354,7 +397,8 @@ function ds_town_pages() {
 /**
  * The old site's copy for the town pages above, keyed by page slug
  * (inc/town-pages.php). Harrisonburg was the client's request (2026-10-24);
- * the other seven followed, so all eight are listed.
+ * the other seven followed, so all eight are listed. Pages read it through
+ * ds_town_render_copy(), which prefers new text pasted in wp-admin.
  */
 function ds_town_copy() {
     static $cache = null;
@@ -373,6 +417,168 @@ add_filter( 'page_template_hierarchy', function ( $templates ) {
     }
     return $templates;
 } );
+
+/**
+ * The copy a town page shows: the text in its WordPress editor once someone
+ * has replaced the January text there, otherwise the theme's copy.
+ *
+ * SEO tracker, Nov 5 2026 recheck: the SEO team is restoring each town page's
+ * original text (cut down to implants only on Jan 22, 2026) and will paste it
+ * into WordPress. Until then the editor still holds the January text, which
+ * inc/town-pages.php carries in cleaned-up form (assessment, not consultation;
+ * no "specializes"; the Google-reviews widget and old button gone), so that
+ * copy keeps showing. ds_town_editor_copy() tells the two apart.
+ *
+ * Same shape as a ds_town_copy() entry, plus 'source' => 'editor'|'theme'.
+ *
+ * @param WP_Post $post A page listed in ds_town_copy().
+ * @return array|null
+ */
+function ds_town_render_copy( WP_Post $post ) {
+    $theme = ds_town_copy()[ $post->post_name ] ?? null;
+    if ( ! $theme ) {
+        return null;
+    }
+    $editor = ds_town_editor_copy( $post );
+    if ( ! $editor ) {
+        return $theme + [ 'source' => 'theme' ];
+    }
+    return array_merge( $theme, [
+        'h1'       => '' !== $editor['h1'] ? $editor['h1'] : $theme['h1'],
+        'intro'    => $editor['intro'],
+        'sections' => $editor['sections'],
+        'source'   => 'editor',
+    ] );
+}
+
+/**
+ * Reads a town page's WordPress text into ds_town_copy()'s shape: the first H1,
+ * the paragraphs before the first H2 (intro), then one [ heading, blocks ]
+ * section per H2. Blocks are paragraph HTML strings, or [ 'ul'|'ol'|'h3' =>
+ * inner HTML ] for lists and subheadings. Everything else (shortcodes, widgets,
+ * buttons, images, embeds) is dropped, and empty bold marks are removed.
+ *
+ * Returns null while the text still has two or more of the January section
+ * headings the theme's copy was taken from (so saving only the Slim SEO title
+ * never swaps the text), or when it has fewer than two sections.
+ *
+ * @param WP_Post $post A page listed in ds_town_copy().
+ * @return array|null
+ */
+function ds_town_editor_copy( WP_Post $post ) {
+    static $cache = [];
+    if ( array_key_exists( $post->ID, $cache ) ) {
+        return $cache[ $post->ID ];
+    }
+    $cache[ $post->ID ] = null;
+
+    $theme = ds_town_copy()[ $post->post_name ] ?? null;
+    $html  = strip_shortcodes( (string) $post->post_content );
+    // strip_shortcodes() only knows the shortcodes of active plugins; drop the rest too.
+    $html = preg_replace( '/\[\/?[a-z][a-z0-9_-]*(?:\s[^\[\]]*)?\]/i', '', $html );
+    if ( ! $theme || '' === trim( $html ) || ! class_exists( 'DOMDocument' ) ) {
+        return null;
+    }
+    if ( ! has_blocks( $html ) ) {
+        $html = wpautop( $html );
+    }
+
+    $doc  = new DOMDocument();
+    $prev = libxml_use_internal_errors( true );
+    $doc->loadHTML( '<?xml encoding="utf-8"?><body>' . $html . '</body>' );
+    libxml_clear_errors();
+    libxml_use_internal_errors( $prev );
+
+    $kept    = [ 'h1', 'h2', 'h3', 'h4', 'p', 'ul', 'ol' ];
+    $allowed = [
+        'a'      => [ 'href' => true, 'title' => true, 'target' => true, 'rel' => true ],
+        'strong' => [], 'b' => [], 'em' => [], 'i' => [], 'br' => [], 'sup' => [], 'li' => [],
+    ];
+    $plain = function ( $s ) {
+        return trim( html_entity_decode( wp_strip_all_tags( $s ), ENT_QUOTES, 'UTF-8' ), " \t\n\r\0\x0B\xC2\xA0" );
+    };
+
+    $copy = [ 'h1' => '', 'intro' => [], 'sections' => [] ];
+    foreach ( ( new DOMXPath( $doc ) )->query( '//h1|//h2|//h3|//h4|//p|//ul|//ol' ) as $node ) {
+        // A <p> inside a list item belongs to the list.
+        for ( $up = $node->parentNode; $up instanceof DOMElement; $up = $up->parentNode ) {
+            if ( in_array( $up->nodeName, $kept, true ) ) {
+                continue 2;
+            }
+        }
+        $inner = '';
+        foreach ( $node->childNodes as $child ) {
+            $inner .= $doc->saveHTML( $child );
+        }
+        $inner = wp_kses( $inner, $allowed );
+        $inner = trim( preg_replace( '#<(strong|b|em|i)>(\s|&nbsp;|\xC2\xA0)*</\1>#u', ' ', $inner ) );
+        if ( '' === $plain( $inner ) ) {
+            continue;
+        }
+
+        $tag = $node->nodeName;
+        if ( 'h1' === $tag && '' === $copy['h1'] ) {
+            $copy['h1'] = $plain( $inner );
+        } elseif ( 'h1' === $tag || 'h2' === $tag ) {
+            $copy['sections'][] = [ $inner, [] ];
+        } else {
+            $block = 'p' === $tag ? $inner : [ ( 'h4' === $tag ? 'h3' : $tag ) => $inner ];
+            if ( $copy['sections'] ) {
+                $copy['sections'][ count( $copy['sections'] ) - 1 ][1][] = $block;
+            } else {
+                $copy['intro'][] = $block;
+            }
+        }
+    }
+    // A heading whose section held only a widget or a button has nothing left.
+    $copy['sections'] = array_values( array_filter( $copy['sections'], function ( $s ) {
+        return ! empty( $s[1] );
+    } ) );
+
+    $key = function ( $s ) use ( $plain ) {
+        return preg_replace( '/[^a-z0-9]+/', '', strtolower( $plain( $s ) ) );
+    };
+    $editor_heads  = array_map( $key, array_column( $copy['sections'], 0 ) );
+    $january_heads = array_map( $key, array_column( $theme['sections'], 0 ) );
+    if ( count( $copy['sections'] ) < 2 || count( array_intersect( $january_heads, $editor_heads ) ) >= 2 ) {
+        return null;
+    }
+    return $cache[ $post->ID ] = $copy;
+}
+
+// Tells whoever edits a town page in wp-admin which text the page shows.
+add_action( 'add_meta_boxes_page', function ( $post ) {
+    if ( ! isset( ds_town_copy()[ $post->post_name ] ) ) {
+        return;
+    }
+    add_meta_box( 'ds-town-text', __( 'Town page text', 'dreamsmile-child' ), function ( $post ) {
+        if ( ds_town_editor_copy( $post ) ) {
+            echo '<p><strong>The page shows the text in this editor.</strong></p>';
+            echo '<p>Layout: the H1 and the paragraphs above the first H2 open the page. The first H2 section comes after the eligibility quiz. The H2 sections between the first and the last follow (three sit side by side; any other number stack). The last H2 section closes the page, above the call buttons. Lists and H3 subheadings are kept. Images, buttons, shortcodes and widgets are left out; the page adds its own.</p>';
+        } else {
+            echo '<p><strong>The page shows the theme&rsquo;s copy, not the text in this editor.</strong></p>';
+            echo '<p>To use your own text, replace the text in this editor: an H1, a short intro, then one H2 heading per section. Update the page and it switches over, once the January headings (&ldquo;' . wp_kses_post( ds_town_copy()[ $post->post_name ]['sections'][0][0] ) . '&rdquo; and the rest) are gone.</p>';
+        }
+        echo '<p>The Google headline and blurb are set in the Slim SEO box, as on every page.</p>';
+    }, 'page', 'side', 'high' );
+} );
+
+/**
+ * Page addresses follow the site's https (SEO tracker blocker, Nov 5 recheck).
+ *
+ * On staging every page (all 57, old and new) came out as http:// in its
+ * canonical, its Open Graph URL, the sitemap and the REST API, while posts and
+ * categories were https://. That is a page_link filter outside this theme;
+ * staging still runs the old vendor's pbhs-common-plugin and pbhsthemehelper.
+ * The live site, same plugins, is fine. Running last, this puts https back on
+ * any page link whenever the site is served over https.
+ */
+add_filter( 'page_link', function ( $link ) {
+    if ( is_ssl() || 'https' === wp_parse_url( (string) get_option( 'home' ), PHP_URL_SCHEME ) ) {
+        $link = set_url_scheme( $link, 'https' );
+    }
+    return $link;
+}, PHP_INT_MAX );
 
 /**
  * Online bill payment (Balance Collect), requested by Dr. Burns 2026-10.
@@ -491,8 +697,9 @@ function ds_render_split_hero( array $a ) {
     $title = $a['title'] ?? '';
     $sub   = $a['sub']   ?? '';
     $alt   = $a['alt']   ?? 'DreamSmile by Dr. Jeffrey S. Burns';
-    $bg    = $a['bg']    ?? ( get_stylesheet_directory_uri() . '/assets/arrange/hero-image.png' );
+    $bg    = $a['bg']    ?? ( get_stylesheet_directory_uri() . '/assets/arrange/hero-image.webp' );
     $ctas  = $a['ctas']  ?? [];
+    ds_preload_hero( $bg );
     ?>
     <section class="ds-hero ds-hero--sub ds-hero--split" id="hero">
       <div class="ds-hero-split">
@@ -631,8 +838,36 @@ function ds_get_video_url( $video_name ) {
 }
 
 /**
+ * Poster frame for a video, from assets/arrange/posters/<video name>.webp.
+ * Empty string when there is none.
+ *
+ * With a poster the video can wait for the play button (preload="none")
+ * instead of fetching part of the file on page load: the homepage's two
+ * videos alone cost about 600 KB that way (Lighthouse, Nov 2026).
+ */
+function ds_video_poster( $video_name ) {
+    $rel = '/assets/arrange/posters/' . preg_replace( '/\.mp4$/i', '', $video_name ) . '.webp';
+    return file_exists( get_stylesheet_directory() . $rel ) ? get_stylesheet_directory_uri() . $rel : '';
+}
+
+/**
+ * The poster and preload attributes for a <video> tag, already escaped.
+ * Pass $poster to use a poster from elsewhere (e.g. a before/after still).
+ */
+function ds_video_load_attrs( $video_name, $poster = '' ) {
+    $poster = $poster ? $poster : ds_video_poster( $video_name );
+    return $poster
+        ? 'poster="' . esc_url( $poster ) . '" preload="none"'
+        : 'preload="metadata"';
+}
+
+/**
  * Every video in the Media Library, keyed by lower-cased file name.
  * One query per request, and only on pages that actually render a video.
+ *
+ * When two uploads share a file name (a smaller re-encode uploaded in a
+ * later month's folder, say), the newest one wins, so replacing a video
+ * never needs the old attachment deleted first.
  *
  * @return array<string,string> file name => URL.
  */
@@ -647,6 +882,8 @@ function ds_media_library_videos() {
         'post_status'    => 'inherit',
         'post_mime_type' => 'video',
         'posts_per_page' => 200,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
         'fields'         => 'ids',
         'no_found_rows'  => true,
     ] );
@@ -656,8 +893,9 @@ function ds_media_library_videos() {
     foreach ( $ids as $id ) {
         $file = get_post_meta( $id, '_wp_attached_file', true );
         $url  = wp_get_attachment_url( $id );
-        if ( $file && $url ) {
-            $map[ strtolower( wp_basename( $file ) ) ] = $url;
+        $key  = $file ? strtolower( wp_basename( $file ) ) : '';
+        if ( $key && $url && ! isset( $map[ $key ] ) ) {
+            $map[ $key ] = $url;
         }
     }
     return $map;

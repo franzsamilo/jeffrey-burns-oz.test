@@ -6,6 +6,10 @@
  */
 defined( 'ABSPATH' ) || exit;
 $office  = function_exists( 'ds_office_data' ) ? ds_office_data() : [ 'phone' => '(540) 740-8937', 'phone_tel' => '+15407408937' ];
+// The photo is a CSS background (sections.css); have <head> preload it.
+if ( function_exists( 'ds_preload_hero' ) ) {
+    ds_preload_hero( get_stylesheet_directory_uri() . '/assets/arrange/hero-shot.webp' );
+}
 ?>
 <!-- wp:html -->
 <section class="ds-hero" id="hero">

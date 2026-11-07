@@ -30,8 +30,12 @@
  * now show on all eight.
  *
  * A town with an entry here gets templates/page-town.html (see the
- * page_template_hierarchy filter in functions.php), and its wp-admin text no
- * longer shows.
+ * page_template_hierarchy filter in functions.php). This copy shows while the
+ * page's wp-admin text is still the January text it was taken from. Once the
+ * SEO team replaces that text in WordPress (their original-text restore, SEO
+ * tracker Nov 2026), the page shows theirs instead: see ds_town_render_copy().
+ * The section headings below are how the theme recognises the January text,
+ * so keep them as they were on the old site.
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -42,7 +46,7 @@ return [
         'town'      => 'Harrisonburg',
         'state'     => 'VA',
         'h1'        => 'Dental Implants Near Harrisonburg, VA',
-        'image'     => 'Harrisonburg-8locations.jpg',
+        'image'     => 'Harrisonburg-8locations.webp',
         'image_alt' => 'The Rockingham County Courthouse in downtown Harrisonburg, VA',
         'travel'    => 'A short drive north on I-81 from Harrisonburg &mdash; easy highway access the whole way to our New Market office.',
         'intro'     => [
@@ -91,7 +95,7 @@ return [
         'town'      => 'Winchester',
         'state'     => 'VA',
         'h1'        => 'Dental Implants Near Winchester, VA',
-        'image'     => 'Winchester-8locations.jpg',
+        'image'     => 'Winchester-8locations.webp',
         'image_alt' => 'The Old Town walking mall in Winchester, VA',
         'travel'    => 'A scenic drive south on I-81 from Winchester to our New Market office &mdash; easy highway access the whole way.',
         'intro'     => [
@@ -140,7 +144,7 @@ return [
         'town'      => 'Elkton',
         'state'     => 'VA',
         'h1'        => 'Dental Implants Near Elkton, VA',
-        'image'     => 'Elkton-8locations.jpg',
+        'image'     => 'Elkton-8locations.webp',
         'image_alt' => 'Storefronts and flags on the main street of Elkton, VA',
         'travel'    => 'A short trip up Rt. 33 to I-81 north from Elkton to our New Market office.',
         'intro'     => [
@@ -239,7 +243,7 @@ return [
         'town'      => 'Woodstock',
         'state'     => 'VA',
         'h1'        => 'Dental Implants Near Woodstock, VA',
-        'image'     => 'Woodstock-8locations.jpg',
+        'image'     => 'Woodstock-8locations.webp',
         'image_alt' => 'Aerial view of Woodstock, VA in the Shenandoah Valley',
         'travel'    => 'A quick drive south on I-81 from Woodstock to our New Market office &mdash; about 15 minutes.',
         'intro'     => [
@@ -288,7 +292,7 @@ return [
         'town'      => 'Luray',
         'state'     => 'VA',
         'h1'        => 'Dental Implants Near Luray, VA',
-        'image'     => 'Luray-8locations.jpg',
+        'image'     => 'Luray-8locations.webp',
         'image_alt' => 'Shops and hanging flower baskets on Main Street in Luray, VA',
         'travel'    => 'Across the valley from Luray to our New Market office &mdash; a beautiful drive on Rt. 211 W and Rt. 11.',
         'intro'     => [
@@ -337,7 +341,7 @@ return [
         'town'      => 'Broadway',
         'state'     => 'VA',
         'h1'        => 'Dental Implants Near Broadway, VA',
-        'image'     => 'Broadway-8locations.jpg',
+        'image'     => 'Broadway-8locations.webp',
         'image_alt' => 'Storefronts on Main Street in Broadway, VA',
         'travel'    => 'Quick trip up Rt. 11 from Broadway to our New Market office.',
         'intro'     => [

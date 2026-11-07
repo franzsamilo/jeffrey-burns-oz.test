@@ -18,10 +18,14 @@
       var index     = 0;
       var autoTimer = null;
       var paused    = false;
+      // Videos only play while the carousel is on screen. Playing slide one on
+      // page load streamed a 189 MB file to every visitor, even ones who never
+      // scrolled down to it (Lighthouse, Nov 2026).
+      var inView    = !('IntersectionObserver' in window);
 
-      function playVideo(v) {
-        if (!v) return;
-        try { v.currentTime = 0; } catch (e) {}
+      function playVideo(v, fromStart) {
+        if (!v || !inView) return;
+        if (fromStart) { try { v.currentTime = 0; } catch (e) {} }
         var p = v.play();
         if (p && typeof p.catch === 'function') p.catch(function () {});
       }
@@ -36,9 +40,9 @@
           var isActive = idx === next;
           s.classList.toggle('is-active', isActive);
           var v = s.querySelector('video');
-          if (isActive) playVideo(v); else pauseVideo(v);
+          if (isActive) playVideo(v, true); else pauseVideo(v);
         });
-        dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === next); });
+        dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === next); if (idx === next) { d.setAttribute('aria-current', 'true'); } else { d.removeAttribute('aria-current'); } });
         if (counterEl) counterEl.textContent = String(next + 1);
         index = next;
         restartAuto();
@@ -104,6 +108,14 @@
           if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
           touchStart = null;
         });
+      }
+
+      if (!inView) {
+        new IntersectionObserver(function (entries) {
+          inView = entries[entries.length - 1].isIntersecting;
+          var v = slides[index] && slides[index].querySelector('video');
+          if (inView) playVideo(v, false); else pauseVideo(v);
+        }, { threshold: 0.25 }).observe(root);
       }
 
       render(0);

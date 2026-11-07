@@ -44,7 +44,7 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
 
       <figure class="ds-is-figure ds-reveal" style="position: relative;">
         <img src="<?php echo $is_photo; ?>" alt="DreamSmile patient smiling with confidence" loading="lazy" style="border-radius: 12px; object-fit: cover;" />
-        <img class="ds-is-figure__watermark-img" src="<?php echo esc_url( $base ); ?>/dreamsmile-banner-logo.png" alt="DreamSmile Logo" style="position: absolute; bottom: 16px; right: 16px; height: 36px; width: auto; background: rgba(255,255,255,0.9); padding: 4px 8px; border-radius: 6px; pointer-events: none;" />
+        <img class="ds-is-figure__watermark-img" src="<?php echo esc_url( $base ); ?>/dreamsmile-banner-logo.png" alt="DreamSmile Logo" width="700" height="268" loading="lazy" style="position: absolute; bottom: 16px; right: 16px; height: 36px; width: auto; background: rgba(255,255,255,0.9); padding: 4px 8px; border-radius: 6px; pointer-events: none;" />
       </figure>
     </div>
 

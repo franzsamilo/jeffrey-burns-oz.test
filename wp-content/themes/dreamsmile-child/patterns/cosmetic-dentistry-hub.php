@@ -95,6 +95,22 @@ $svg = [
   </div>
 </section>
 
+<?php // SEO tracker content gap (Nov 2026): the old /cosmetic-dentistry-4/dental-bonding/ page redirects here. ?>
+<section class="ds-np-prose ds-np-prose--grey">
+  <div class="ds-wrap ds-np-prose__wrap">
+    <div class="ds-np-prose__head ds-reveal">
+      <span class="ds-label">ALSO AVAILABLE</span>
+      <h2 class="ds-np-prose__title">Dental bonding: small fixes in a single visit.</h2>
+    </div>
+    <div class="ds-np-prose__body ds-reveal">
+      <h3 class="ds-np-prose__h">What is dental bonding?</h3>
+      <p class="ds-np-prose__p">Bonding repairs a tooth that is chipped, cracked, discolored or slightly out of line, and it is a simpler alternative to veneers for small changes. We lightly roughen the tooth&rsquo;s surface and apply a bonding liquid, then sculpt tooth-colored resin into shape, harden it, and polish it to match your natural teeth.</p>
+      <h3 class="ds-np-prose__h">Is bonding right for me?</h3>
+      <p class="ds-np-prose__p">It is usually done in one visit and can change how a tooth looks a great deal. The resin is not as strong as natural enamel, though, so it can stain, chip or break more easily, and it typically lasts three to five years before it needs repair. For bigger or longer-lasting changes, <a href="/porcelain-veneers/">porcelain veneers</a> are often the better choice.</p>
+    </div>
+  </div>
+</section>
+
 <section class="ds-subpage-cta">
   <div class="ds-wrap">
     <div class="ds-subpage-cta__inner ds-reveal">
