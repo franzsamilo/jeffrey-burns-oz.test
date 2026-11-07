@@ -155,8 +155,9 @@ the FAQ answers. All of them pass now.
 - The homepage photo (the slow "main content") is now requested first, before the stylesheets
   finish. The same applies to every service page's top photo.
 - Videos wait for the play button and show a still frame until then. Before, the homepage
-  downloaded about 600 KB of video on load. The before/after carousel on /dental-implants/ was
-  streaming a 189 MB video to every visitor on load; it now starts only when scrolled to.
+  downloaded about 600 KB of video on load. The before/after carousel on /dental-implants/
+  started its first video as soon as the page opened (16 MB on staging); it now starts only
+  when scrolled to.
 - Smaller fixes: images below the fold load as you scroll, image sizes are reserved so nothing
   jumps, the Google Fonts connection opens earlier, and WordPress's emoji script is removed.
 
@@ -170,10 +171,34 @@ the FAQ answers. All of them pass now.
 | Google Tag Manager | About 0.4 s of main-thread time, 180 KB | Review the tags in the container (whoever manages GTM). |
 | Server response | 1.9 s for the first byte | Usually better on the live host with page caching on; retest at launch. |
 
-**One follow-up we recommend:** the three before/after testimonial videos (Curtis, Angela,
-Peter) are the original 136–191 MB files. They now load only when someone scrolls to them, but
-they should still be shrunk to a few MB each, like the homepage testimonials. Then re-upload
-them to the Media Library under the same file names.
+**Videos (optional on staging).** Staging's Media Library copies of the eight long videos are
+already compressed: 96 MB together. The online preview, and any site without those uploads,
+used the 4K originals from GitHub instead (1.2 GB together). Those are now replaced with 720p
+copies, 49 MB together, with the same picture, captions and sound. That is still sharper than
+the video boxes on the site need.
+
+Uploading the same copies to staging halves its video weight again. The before/after videos,
+which play as soon as they're scrolled to, go from about 16 MB to 8 MB each.
+
+| Video | Where it plays | Staging now | New copy |
+|---|---|---|---|
+| Curtis-Cloude-Testimonial.mp4 | Dental Implants, before/after | 15.8 MB | 8.3 MB |
+| Angela-Burker-Testimonial.mp4 | Dental Implants, before/after | 16.0 MB | 8.0 MB |
+| Peter-Encheff-Testimonial.mp4 | Dental Implants, before/after | 15.3 MB | 7.7 MB |
+| Educational-One-Day-Teeth.mp4 | Dental Implants | 12.4 MB | 6.5 MB |
+| FAQ-Permanent-Teeth-One-Day.mp4 | Implant FAQs | 16.0 MB | 8.3 MB |
+| FAQ-Implant-Success-Rate.mp4 | Implant FAQs | 9.2 MB | 4.6 MB |
+| FAQ-Implant-Lifespan.mp4 | Implant FAQs | 7.1 MB | 3.7 MB |
+| Hall-of-Fame-Patients.mp4 | Town and location pages | 4.0 MB | 1.9 MB |
+
+To use them, **after 1.8.0 is deployed**:
+
+1. Download the files from the GitHub release:
+   https://github.com/franzsamilo/jeffrey-burns-oz.test/releases/tag/v2
+2. Upload them in Media → Add New Media File, keeping the file names exactly as they are.
+
+The site uses the newest upload with a given name, so the old copies can stay or be deleted
+later. Older themes kept using the first upload, which is why this step waits for 1.8.0.
 
 ## 7. Deploying 1.8.0 to staging
 
@@ -186,6 +211,7 @@ them to the Media Library under the same file names.
 4. If the header or footer still shows the old markup, someone edited the templates in the Site
    Editor; reset them there (Appearance → Editor → Templates → Reset) so the theme files apply.
 5. Import the three posts (section 3).
+6. Optional: upload the smaller videos (end of section 6).
 
 ## 8. Questions for the practice
 

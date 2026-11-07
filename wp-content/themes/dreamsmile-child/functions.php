@@ -865,6 +865,10 @@ function ds_video_load_attrs( $video_name, $poster = '' ) {
  * Every video in the Media Library, keyed by lower-cased file name.
  * One query per request, and only on pages that actually render a video.
  *
+ * When two uploads share a file name (a smaller re-encode uploaded in a
+ * later month's folder, say), the newest one wins, so replacing a video
+ * never needs the old attachment deleted first.
+ *
  * @return array<string,string> file name => URL.
  */
 function ds_media_library_videos() {
@@ -878,6 +882,8 @@ function ds_media_library_videos() {
         'post_status'    => 'inherit',
         'post_mime_type' => 'video',
         'posts_per_page' => 200,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
         'fields'         => 'ids',
         'no_found_rows'  => true,
     ] );
@@ -887,8 +893,9 @@ function ds_media_library_videos() {
     foreach ( $ids as $id ) {
         $file = get_post_meta( $id, '_wp_attached_file', true );
         $url  = wp_get_attachment_url( $id );
-        if ( $file && $url ) {
-            $map[ strtolower( wp_basename( $file ) ) ] = $url;
+        $key  = $file ? strtolower( wp_basename( $file ) ) : '';
+        if ( $key && $url && ! isset( $map[ $key ] ) ) {
+            $map[ $key ] = $url;
         }
     }
     return $map;
