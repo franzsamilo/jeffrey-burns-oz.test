@@ -4,9 +4,16 @@ Response to the **Nov 5, 2026 recheck** of "Dr. Jeffrey Burns - SEO Issues Track
 Engine). It covers every row still marked **Not started**, plus the other open rows the
 recheck called out.
 
-Theme **1.8.0**, branch `fix/seo-tracker-nov5` (1.7.0 = sections 1–5; 1.8.0 adds the speed and
-accessibility work in section 6). Everything below was tested on a local WordPress running this
-theme. Staging shows none of it until 1.8.0 is deployed (steps in section 7).
+Theme **1.8.1**, branch `fix/seo-tracker-nov5`. 1.7.0 has the town pages, the https links and the
+content gaps. 1.8.0 adds the speed and accessibility work (section 7). 1.8.1 adds the one-click
+fix for old links in posts (section 4) and the call-back time fix (section 6).
+Everything below was tested on a local WordPress running this theme. Staging shows none of it
+until 1.8.1 is deployed (steps in section 8).
+
+**Updated Nov 8.** We rechecked this response against every tab of the tracker. Added: section 4,
+and three rows the first version missed (the blank live pages, the booking form's call-back time,
+and the general dentistry text). Section 5 now says plainly that the post-op content went
+somewhere other than the tracker suggested.
 
 ---
 
@@ -26,9 +33,9 @@ How to restore a town page (per page):
 2. Replace **all** of the page text with the restored text, laid out like this:
    - one **H1** (the page headline, for example "Dental Implants Near Harrisonburg, VA");
    - a short intro: the paragraphs before the first H2;
-   - one **H2** per section. The first H2 section comes right after the eligibility quiz. The
-     last H2 section closes the page above the call buttons. Lists and H3 subheadings are
-     kept.
+   - one **H2** per section, and at least two of them. The first H2 section comes right after
+     the eligibility quiz. The last H2 section closes the page above the call buttons. Lists
+     and H3 subheadings are kept.
 3. Update the page. A box in the editor sidebar, **"Town page text"**, says which text the
    page is showing.
 
@@ -40,13 +47,15 @@ Things to know:
   Leave images, buttons, the Google-reviews widget and any shortcodes out of the pasted text.
   They are dropped automatically if they slip in.
 - Empty bold marks (the `** **` problem on the fix list) are removed automatically.
-- **Links still need the new addresses** (fix list row "Every link points to an old address").
-  Use the Redirect Map's New address column.
+- **Old links can stay in the pasted text** (fix list row "Every link points to an old
+  address"). Once the pages are restored, run the link fix in section 4. It points every old
+  link at its new address. You can also use the Redirect Map's New address column while pasting.
 - The headline and blurb from the Area Pages tab go in each page's **Slim SEO** box, as on every
   page. Editing only the Slim SEO box never changes the page text.
-- Practice wording rules for the pasted text: say "assessment", not "consultation". Never call
-  Dr. Burns a "specialist", and don't say the practice "specializes". The office is in New Market,
-  so towns are "near", not "in". Write the brand as DreamSmile™ (one word).
+- Wording the practice asked for in its Aug 4 review of the new site: say "assessment", not
+  "consultation". Never call Dr. Burns a "specialist", and don't say the practice "specializes".
+  Write the brand as DreamSmile™ (one word). The office is in New Market, so towns are "near",
+  not "in", as in your new headlines.
 
 Every other row on the fix list is a wording fix in the restored text, so it is on Oliver's side
 and no longer waiting on us.
@@ -64,11 +73,12 @@ Whitney's patients".
 ## 3. Launch Checklist rows 12 (Blocker) and 16: the 3 missing blog posts
 
 All three posts are on the live site and missing from staging. Nothing newer has been published
-since Oct 16:
+since Oct 16 (rechecked Nov 8):
 
 - /dental-implant-cost-factors/ (Oct 2)
 - /how-long-pain-lasts-after-dental-implants/ (Oct 9)
-- /what-to-do-after-dental-implant-surgery/ (Oct 16; this is the row 16 "Aftercare" post)
+- /what-to-do-after-dental-implant-surgery/ (Oct 16; this is the row 16 "Aftercare" post. The
+  tracker says Oct 14, which is when it was last edited. It was published Oct 16.)
 
 **Ready to import:** `docs/seo/missing-blog-posts-2026-11.xml`. It holds all three posts with
 the same address, title, date and categories, the featured image, and the **Slim SEO headline
@@ -95,17 +105,53 @@ We left the wording as published. Change it if you'd like it to follow the rules
 
 If any new post goes live on the current site before launch, it needs the same treatment.
 
-## 4. Content Gaps tab
+## 4. Launch Checklist row 22: old links in blog posts (theme 1.8.1)
 
-| Gap | Status in 1.7.0 |
+The tracker has this as an after-launch item. It is now one click, so it can be done on staging
+before launch.
+
+On staging today, 47 of the 61 posts have 96 links to old addresses (the tracker counts 97). 43
+go to /contact-us/ and 17 to /restorative-dentistry/dental-implants/. Each one works through a
+single redirect, so nothing is broken. The fix removes that extra step.
+
+How to run it:
+
+1. Log in to staging as an administrator.
+2. Open **/wp-admin/?ds_fix_post_links=1**. A preview lists every link that will change: the
+   post, the old link and the new one. Nothing changes yet.
+3. Click **Apply**.
+
+How it behaves:
+
+- It reads Slim SEO's own redirect list (Slim SEO → Redirects). It matches each link the same
+  way Slim SEO matches a visit, and follows chains to the last stop. Nothing is hard-coded, so
+  later edits to the redirect list are picked up.
+- Only the address inside each link changes. Link text and formatting stay the same, relative
+  links stay relative, and a #section part is kept.
+- Each changed post is saved normally, so its Revisions screen can put it back.
+- It covers posts and pages: published, scheduled, draft, pending and private.
+- It is safe to run again, because links already at their new address are left alone. Run it
+  again after the town text is restored (section 1).
+- Some links are left alone and listed for a look by hand: those whose redirect ends at a 410,
+  goes round in a loop, or lands on an address with no published page.
+
+We tested it on a local WordPress that had a copy of staging's posts and pages, the 87 redirects,
+and 11 made-up edge cases (chains, a loop, a 410, prefix and pattern rules, #section and ?utm
+links). It changed 109 links in 49 posts and nothing else in them. Every changed post got a
+revision. Every new link loads its page directly, with no redirect.
+
+## 5. Content Gaps tab
+
+| Gap | Status |
 |---|---|
-| Care after surgery (post-op) | **Done.** /implant-procedures/ (where redirect #18 already sends the old After Implant Placement page) now has "What to expect after your implant surgery", built from the old page's answers. It links to the aftercare and pain posts once they are imported. |
+| Care after surgery (post-op) | **Done, but not where the tracker suggested.** The tracker asked for a Patient Education article. We put the content on /implant-procedures/ instead, because redirect #18 already sends the old After Implant Placement page there. That way the old page's links and rankings land on the content that replaced it. The new section is "What to expect after your implant surgery", built from the old page's answers. It links to the aftercare and pain posts once they are imported. If you still want it under Patient Education, we can add a card there that links to it. |
 | Inlays and onlays, dental bonding | **Done.** An inlays and onlays section on /dental-fillings/, and a bonding section on /cosmetic-dentistry/, both from the old pages' text. |
 | Denture care, relines, repairs, immediate dentures | **Done.** /full-dentures/ now covers immediate dentures, relines and soft liners, rebases and repairs, a care checklist, and the yearly denture exam. |
 | Team / staff page | **Needs the client.** The old Meet the Staff page lists 8 people (photos from Feb 2024). We'll build the section on /meet-dr-burns/ once the practice confirms who is on the team today. |
 | Testimonials page | Optional. We'll build it only if the practice wants one. |
+| Harrisonburg and Winchester targeting | **Theme part done** (since October, /dental-implants/ and /full-mouth-dental-implants/ name and link both towns). The rest is restoring those two town pages' text (section 1). |
 
-## 5. Other open rows from the recheck
+## 6. Other open rows from the recheck
 
 | Row | What we found / did | Owner |
 |---|---|---|
@@ -113,11 +159,15 @@ If any new post goes live on the current site before launch, it needs the same t
 | Author pages not hidden from Google | Slim SEO's robots rules are switched off while "Discourage search engines" is ticked on staging, so nothing can be confirmed there until launch. Simplest fix: turn on Slim SEO's built-in noindex option for author archives, in its Meta Tags settings (Dale's branch also adds a theme filter that does the same). The usernames in the addresses need each user's "nicename" changed, which takes admin access or a plugin. | SEO team / launch day |
 | Homepage blurb (Metadata row 22) | Paste the suggested blurb into the homepage's Slim SEO box. | SEO team |
 | Business details for Google (Launch row 18) | The Google Business Profile link, address, hours and map location are Slim SEO Schema settings. | SEO team |
+| **Blank pages still public on the live site** (one of the three launch blockers in the recheck summary; 48 in the Oct 14 audit) | Not a theme item. They are on www.jeffreyburns.com, so someone with admin access to the live site needs to set them to draft. Please agree who that is. We haven't changed anything on the live site. | Team |
+| Office hours note (Launch row 13): the booking form offered a 12 to 5 pm call-back | **Fixed in 1.8.1.** The afternoon option now reads 12 pm – 3 pm, inside office hours (Mon–Thu, 8 AM – 3 PM). | Developer (done) |
+| Old links in blog posts (Launch row 22) | **Ready now**, see section 4. | SEO team (one click) |
 | Privacy Policy page | The practice or its legal team needs to supply the text. The footer already links /disclaimer/. | Client |
-| Speed (59) and accessibility (88) | **Done in 1.8.0**, see section 6. | Developer (done) + plugins at launch |
+| Speed (59) and accessibility (88) | **Done in 1.8.0**, see section 7. | Developer (done) + plugins at launch |
+| General dentistry pages share text (Launch row 28) | After launch, as the tracker says. These 7 pages get their text from the theme, so new wording goes through us. Send the copy, or ask us to draft it. | After launch |
 | robots.txt Crawl-delay, full Slim SEO redirect list recheck | Launch day. | Launch day |
 
-## 6. Launch Checklist "Speed" and "Accessibility" rows (theme 1.8.0)
+## 7. Launch Checklist "Speed" and "Accessibility" rows (theme 1.8.0)
 
 Measured with Google's Lighthouse (phone settings) on a local copy of the site, before and after.
 Staging's homepage gave the same accessibility warnings as the local copy, so the fixes carry over.
@@ -191,30 +241,35 @@ which play as soon as they're scrolled to, go from about 16 MB to 8 MB each.
 | FAQ-Implant-Lifespan.mp4 | Implant FAQs | 7.1 MB | 3.7 MB |
 | Hall-of-Fame-Patients.mp4 | Town and location pages | 4.0 MB | 1.9 MB |
 
-To use them, **after 1.8.0 is deployed**:
+To use them, **after 1.8.1 is deployed**:
 
 1. Download the files from the GitHub release:
    https://github.com/franzsamilo/jeffrey-burns-oz.test/releases/tag/v2
 2. Upload them in Media → Add New Media File, keeping the file names exactly as they are.
 
 The site uses the newest upload with a given name, so the old copies can stay or be deleted
-later. Older themes kept using the first upload, which is why this step waits for 1.8.0.
+later. Themes before 1.8.0 kept using the first upload, which is why this step waits for the
+deploy.
 
-## 7. Deploying 1.8.0 to staging
+## 8. Deploying 1.8.1 to staging
 
 1. Once `fix/seo-tracker-nov5` is merged into `main`, merge `main` into
    `setup/staging-and-deployment`. That branch also carries Dale's Oct 24 migration-script work.
 2. `python build_zip.py`, then upload the zip in Appearance → Themes ("Replace active with
    uploaded"), then purge the Pressable cache.
-3. Check the page source shows `dreamsmile-child/style.css?ver=1.8.0`, and that a page's
+3. Check the page source shows `dreamsmile-child/style.css?ver=1.8.1`, and that a page's
    canonical now starts with https://.
-4. If the header or footer still shows the old markup, someone edited the templates in the Site
-   Editor; reset them there (Appearance → Editor → Templates → Reset) so the theme files apply.
+4. If the header or footer still shows the old markup (for example the booking form still says
+   12 pm – 5 pm), the templates were edited in the Site Editor at some point. Reset them there
+   (Appearance → Editor → Templates → Reset) so the theme files apply.
 5. Import the three posts (section 3).
-6. Optional: upload the smaller videos (end of section 6).
+6. Run the link fix (section 4).
+7. Optional: upload the smaller videos (end of section 7).
 
-## 8. Questions for the practice
+## 9. Questions for the practice
 
 1. Is Dr. James Whitney still practicing at the office? (section 2)
-2. Who is on the team today, and would they like a team section on Meet Dr. Burns? (section 4)
+2. Who is on the team today, and would they like a team section on Meet Dr. Burns? (section 5)
 3. Text for a Privacy Policy page.
+4. Do the office hours on the site (Mon–Thu, 8 AM – 3 PM) match the Google Business Profile?
+   (Launch row 13 asks for this check.)
