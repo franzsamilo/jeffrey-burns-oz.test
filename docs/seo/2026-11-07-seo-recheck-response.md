@@ -6,14 +6,17 @@ recheck called out.
 
 Theme **1.8.1**, branch `fix/seo-tracker-nov5`. 1.7.0 has the town pages, the https links and the
 content gaps. 1.8.0 adds the speed and accessibility work (section 7). 1.8.1 adds the one-click
-fix for old links in posts (section 4) and the call-back time fix (section 6).
+fix for old links in posts (section 4), plus the call-back time and review count fixes
+(section 6).
 Everything below was tested on a local WordPress running this theme. Staging shows none of it
 until 1.8.1 is deployed (steps in section 8).
 
 **Updated Nov 8.** We rechecked this response against every tab of the tracker. Added: section 4,
 and three rows the first version missed (the blank live pages, the booking form's call-back time,
 and the general dentistry text). Section 5 now says plainly that the post-op content went
-somewhere other than the tracker suggested.
+somewhere other than the tracker suggested. The questions we had for the practice are now
+answered from the tracker and the live site (sections 2, 5 and 6). Only the Privacy Policy still
+needs the practice (section 9).
 
 ---
 
@@ -60,15 +63,22 @@ Things to know:
 Every other row on the fix list is a wording fix in the restored text, so it is on Oliver's side
 and no longer waiting on us.
 
-## 2. Redirect Map #58–61 and Content Gaps "Dr. James Whitney": needs the client
+## 2. Redirect Map #58–61 and Content Gaps "Dr. James Whitney": he is still there
 
-We left these four pages alone. **Question for the practice: is Dr. James Whitney still
-practicing at the New Market office?** One more detail for that conversation: the old Meet the
-Staff page (photos updated Feb 2024) still lists Tara Weaver as "patient coordinator for Dr.
-Whitney's patients".
+Every source we checked says Dr. Whitney still practices inside the New Market office:
 
-- If yes: keep the pages, and we add a short Dr. Whitney section (and link) on the new site.
-- If no: draft the pages and add the four redirects from the Redirect Map.
+- His four pages on the live site say "Dr. Whitney's Oral Surgery is located within the dental
+  office of Jeffrey S. Burns D.D.S. in New Market". They list extractions and wisdom teeth
+  removal, hours of Mon–Wed 9 AM – 3 PM, and the office phone.
+- The live Meet the Staff page (its text is from 2022 or later) lists Tara Weaver as "patient
+  coordinator for Dr. Whitney's patients".
+- The national provider registry (NPI, last updated Nov 2024) lists him, oral and maxillofacial
+  surgery, at 9626 S Congress St with the office's phone number.
+
+So we keep his four pages live and leave the four redirects out, which is how staging is today.
+The content gap is a mention on the new site, for example on /wisdom-teeth-removal/ and
+/tooth-extraction/, linking to his page. If the practice tells us he has left, we draft the
+pages and add the redirects instead.
 
 ## 3. Launch Checklist rows 12 (Blocker) and 16: the 3 missing blog posts
 
@@ -147,7 +157,7 @@ revision. Every new link loads its page directly, with no redirect.
 | Care after surgery (post-op) | **Done, but not where the tracker suggested.** The tracker asked for a Patient Education article. We put the content on /implant-procedures/ instead, because redirect #18 already sends the old After Implant Placement page there. That way the old page's links and rankings land on the content that replaced it. The new section is "What to expect after your implant surgery", built from the old page's answers. It links to the aftercare and pain posts once they are imported. If you still want it under Patient Education, we can add a card there that links to it. |
 | Inlays and onlays, dental bonding | **Done.** An inlays and onlays section on /dental-fillings/, and a bonding section on /cosmetic-dentistry/, both from the old pages' text. |
 | Denture care, relines, repairs, immediate dentures | **Done.** /full-dentures/ now covers immediate dentures, relines and soft liners, rebases and repairs, a care checklist, and the yearly denture exam. |
-| Team / staff page | **Needs the client.** The old Meet the Staff page lists 8 people (photos from Feb 2024). We'll build the section on /meet-dr-burns/ once the practice confirms who is on the team today. |
+| Team / staff page | **Can be built from the live site.** The live Meet the Staff page has all 8 team members with bios and photos (6 of the photos are from Feb 2024). A team section on /meet-dr-burns/ can reuse that text, which is what visitors see on the live site today. |
 | Testimonials page | Optional. We'll build it only if the practice wants one. |
 | Harrisonburg and Winchester targeting | **Theme part done** (since October, /dental-implants/ and /full-mouth-dental-implants/ name and link both towns). The rest is restoring those two town pages' text (section 1). |
 
@@ -160,7 +170,8 @@ revision. Every new link loads its page directly, with no redirect.
 | Homepage blurb (Metadata row 22) | Paste the suggested blurb into the homepage's Slim SEO box. | SEO team |
 | Business details for Google (Launch row 18) | The Google Business Profile link, address, hours and map location are Slim SEO Schema settings. | SEO team |
 | **Blank pages still public on the live site** (one of the three launch blockers in the recheck summary; 48 in the Oct 14 audit) | Not a theme item. They are on www.jeffreyburns.com, so someone with admin access to the live site needs to set them to draft. Please agree who that is. We haven't changed anything on the live site. | Team |
-| Office hours note (Launch row 13): the booking form offered a 12 to 5 pm call-back | **Fixed in 1.8.1.** The afternoon option now reads 12 pm – 3 pm, inside office hours (Mon–Thu, 8 AM – 3 PM). | Developer (done) |
+| Office hours (Launch row 13): confirm against the Google Business Profile, and the booking form's 12 to 5 pm call-back | **Hours match.** The live contact page, the new site and the practice's claimed Birdeye profile all say Mon–Thu, 8 AM – 3 PM, closed Fri–Sun. **Fixed in 1.8.1:** the call-back option now reads 12 pm – 3 pm. | Developer (done) |
+| "5.0 from 200+ Google reviews" on /dental-implants/ (not in the tracker; found on Nov 8) | The live site's Google reviews widget says 5.0, based on 188 reviews, so "200+" wasn't true. **Fixed in 1.8.1:** it now reads "180+", which stays true as reviews come in. | Developer (done) |
 | Old links in blog posts (Launch row 22) | **Ready now**, see section 4. | SEO team (one click) |
 | Privacy Policy page | The practice or its legal team needs to supply the text. The footer already links /disclaimer/. | Client |
 | Speed (59) and accessibility (88) | **Done in 1.8.0**, see section 7. | Developer (done) + plugins at launch |
@@ -266,10 +277,12 @@ deploy.
 6. Run the link fix (section 4).
 7. Optional: upload the smaller videos (end of section 7).
 
-## 9. Questions for the practice
+## 9. What still needs the practice
 
-1. Is Dr. James Whitney still practicing at the office? (section 2)
-2. Who is on the team today, and would they like a team section on Meet Dr. Burns? (section 5)
-3. Text for a Privacy Policy page.
-4. Do the office hours on the site (Mon–Thu, 8 AM – 3 PM) match the Google Business Profile?
-   (Launch row 13 asks for this check.)
+Only the Privacy Policy (Launch row 24). Neither site has one; the live site has only
+/disclaimer/. The practice or its legal team has to approve the text. We can draft it from what
+the site actually collects: the booking and forms requests, Google Tag Manager, and the
+GoHighLevel quiz and guide.
+
+Everything else we could answer from the tracker and the live site: Dr. Whitney (section 2),
+the team (section 5) and the office hours (section 6).

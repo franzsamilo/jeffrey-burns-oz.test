@@ -352,17 +352,17 @@ function ds_service_pages() {
  * Shared real-practice data — single physical practice in New Market, VA.
  * Address and hours confirmed against the client's own site 2026-05-09.
  *
- * `reviews` is still unverified. It no longer reaches any schema (the theme
- * prints none — see the SEO section above), but it still feeds the visible
- * "200+ reviews" line on the theme's own town pages, which are being retired
- * in favour of the /contact-us/ town pages.
+ * `reviews` is the visible "180+" Google review count (/dental-implants/ and
+ * the theme's retiring town pages). On 2026-11-08 the live site's Google
+ * reviews widget read "5.0, based on 188 reviews"; "180+" stays true as more
+ * come in. It reaches no schema (the theme prints none).
  */
 function ds_office_data() {
     return [
         'address'    => '9626 South Congress St, New Market, VA 22844',
         'maps_q'     => '9626 South Congress St, New Market, VA 22844',
         'hours'      => 'Mon&ndash;Thu &middot; 8 am &ndash; 3 pm',
-        'reviews'    => '200', // TODO: verified site-wide review count
+        'reviews'    => '180', // Google: 188 on 2026-11-08.
         'years'      => '30',
         'parking'    => 'Free on-site parking with step-free, ADA-accessible entry.',
         'home_city'  => 'New Market',

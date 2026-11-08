@@ -55,7 +55,7 @@ defined( 'ABSPATH' ) || exit;
           <?php endfor; ?>
         </div>
         <strong>5.0</strong>
-        <span>from 200+ Google reviews</span>
+        <span>from <?php echo esc_html( ds_office_data()['reviews'] ); ?>+ Google reviews</span>
       </div>
     </div>
 
