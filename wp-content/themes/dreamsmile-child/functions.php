@@ -308,6 +308,9 @@ add_action( 'wp_head', function () {
 // One-time hand-off of the theme's old titles/descriptions into Slim SEO.
 require_once trailingslashit( get_stylesheet_directory() ) . 'inc/seo-migration.php';
 
+// One-click fix for old internal links in posts and pages: /wp-admin/?ds_fix_post_links=1
+require_once trailingslashit( get_stylesheet_directory() ) . 'inc/post-links.php';
+
 function ds_faq_data() {
     return [
         [ 'pain',      'Is the procedure painful?',       'Most patients are surprised at how comfortable the procedure is. With our on-staff anesthesiologist and modern techniques, you&rsquo;ll be relaxed and pain-free throughout. Mild soreness in the days after is normal and easily managed.' ],
