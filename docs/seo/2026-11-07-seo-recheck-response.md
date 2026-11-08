@@ -280,9 +280,12 @@ deploy.
 ## 9. What still needs the practice
 
 Only the Privacy Policy (Launch row 24). Neither site has one; the live site has only
-/disclaimer/. The practice or its legal team has to approve the text. We can draft it from what
-the site actually collects: the booking and forms requests, Google Tag Manager, and the
-GoHighLevel quiz and guide.
+/disclaimer/. A policy does exist for the practice, though: The Implant Engine's, at
+https://jeffrey-burns.implant-services.com/jeffrey-burns-privacy-policy (last updated Dec 1,
+2025). It names Jeffrey S. Burns DDS but covers only that funnel site. We can adapt it for
+/privacy-policy/. That means naming www.jeffreyburns.com, adding the site's own booking and forms
+requests and Google Tag Manager, and using the office phone. Whoever owns that text (the
+practice or The Implant Engine) then only has to approve the adapted copy.
 
 Everything else we could answer from the tracker and the live site: Dr. Whitney (section 2),
 the team (section 5) and the office hours (section 6).
