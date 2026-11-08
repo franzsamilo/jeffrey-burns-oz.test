@@ -373,6 +373,23 @@ function ds_office_data() {
 }
 
 /**
+ * Dr. James Whitney's page (oral surgeon working inside the office), or ''.
+ *
+ * SEO tracker, Nov 5 recheck: his 4 old pages stay live, and the new site
+ * should link to them. The live site (Nov 2026) says his oral surgery runs
+ * inside Dr. Burns's office. Every mention of him reads this, so if his
+ * pages are ever drafted, the mentions disappear with them.
+ */
+function ds_whitney_url() {
+    static $url = null;
+    if ( null === $url ) {
+        $page = get_page_by_path( 'about-us/whitney-oral-surgery/dr-james-whitney' );
+        $url  = ( $page && 'publish' === $page->post_status ) ? (string) get_permalink( $page ) : '';
+    }
+    return $url;
+}
+
+/**
  * The 8 town (area) pages, in the order the SEO team ranks them.
  *
  * These are the long-standing /contact-us/ pages, not the theme's own

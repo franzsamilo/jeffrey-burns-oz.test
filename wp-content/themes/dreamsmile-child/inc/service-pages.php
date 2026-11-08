@@ -812,7 +812,7 @@ return [
       'title' => 'Done <span class="ds-italic">in-house</span>, with the comfort options you&rsquo;d expect from a hospital.',
       'sub'   => 'Wisdom teeth often need to come out: impacted, crowding, hard to clean. Most offices refer this procedure out. We do it in-house with the same anesthesiology coverage we use for full-arch implant surgery.',
       'pillars' => [
-        [ 'strong' => 'In-House Procedure', 'span' => 'no oral-surgeon referral needed' ],
+        [ 'strong' => 'In-House Procedure', 'span' => 'no referral to another office' ],
         [ 'strong' => 'Full Sedation Option', 'span' => 'sleep through it if you want' ],
         [ 'strong' => 'Same-Day Recovery Plan', 'span' => 'clear instructions, direct cell line' ],
       ],
@@ -832,7 +832,12 @@ return [
       'title' => 'A wisdom-teeth procedure done right.',
       'cards' => [
         [ 'icon' => 'safety', 'title' => 'On-staff anesthesiology',     'desc' => 'A board-certified physician anesthesiologist for sedation cases &mdash; not a dentist double-handling sedation while operating.' ],
-        [ 'icon' => 'doctor', 'title' => 'Done by Dr. Burns himself',  'desc' => 'No referral to a separate oral surgeon. Same office, same doctor, same standards.' ],
+        // The live site (Nov 2026) has oral surgeon Dr. Whitney doing extractions and
+        // wisdom teeth inside the office, so this card names him rather than
+        // claiming Dr. Burns does every case himself.
+        ds_whitney_url()
+          ? [ 'icon' => 'doctor', 'title' => 'An oral surgeon in our office', 'desc' => 'Dr. James Whitney, an oral and maxillofacial surgeon, sees patients right here in New Market. No referral across town. <a href="' . esc_url( ds_whitney_url() ) . '">Meet Dr. Whitney</a>' ]
+          : [ 'icon' => 'doctor', 'title' => 'In our own office',             'desc' => 'No referral across town. Same office, same anesthesiology coverage, same standards.' ],
         [ 'icon' => 'phone',  'title' => 'Recovery line you can call', 'desc' => 'Recovery questions go to Dr. Burns&rsquo;s personal cell &mdash; not a generic answering service.' ],
       ],
     ],

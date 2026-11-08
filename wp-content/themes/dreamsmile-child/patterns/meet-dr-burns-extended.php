@@ -134,6 +134,42 @@ $svg = [
   </div>
 </section>
 
+<?php
+// SEO tracker Content Gaps (Nov 2026): a team section here, and a link to
+// Dr. Whitney. Roles, not names: the live Meet the Staff page has bios for 8
+// people, but the newer team photo shows 12, so a named list would be out of
+// date. Every role below is one the live staff page lists.
+$whitney = ds_whitney_url();
+?>
+<!-- The team: reuses .ds-np-before (photo + copy + list), with a landscape photo -->
+<section class="ds-np-before" id="team">
+  <div class="ds-wrap">
+    <div class="ds-np-before__grid ds-np-before__grid--with-media ds-np-before__grid--wide-media">
+      <figure class="ds-np-before__media ds-np-before__media--wide ds-reveal">
+        <img src="<?php echo esc_url( $base . '/team-group.webp' ); ?>"
+             alt="Dr. Jeffrey Burns with his team in the New Market office"
+             width="1200" height="801" loading="lazy" decoding="async" />
+      </figure>
+      <div class="ds-np-before__content">
+        <div class="ds-np-before__copy ds-reveal">
+          <span class="ds-label">MEET THE TEAM</span>
+          <h2 class="ds-np-before__title">The people you&rsquo;ll see <span class="ds-italic">at every visit</span>.</h2>
+          <p>One office, one team. Hygienists, licensed dental assistants and coordinators work alongside Dr. Burns, some of them since the 1990s.</p>
+        </div>
+        <ul class="ds-np-before__list ds-reveal">
+          <li><strong>Dental hygienists</strong><span>Your cleanings and hygiene visits</span></li>
+          <li><strong>Licensed dental assistants</strong><span>Board-certified and expanded-function assistants at the chair with Dr. Burns</span></li>
+          <li><strong>Patient and treatment coordinators</strong><span>Scheduling, questions and your treatment plan</span></li>
+          <li><strong>Financial and insurance coordinator</strong><span>Treatment and financing options, and the most from your insurance</span></li>
+          <?php if ( $whitney ) : ?>
+          <li><strong>Dr. James Whitney, oral surgeon</strong><span>Extractions and wisdom teeth removal, here in our office. <a href="<?php echo esc_url( $whitney ); ?>">Meet Dr. Whitney</a></span></li>
+          <?php endif; ?>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Final CTA (dark charcoal, .ds-subpage-cta — same as implant subpages) -->
 <section class="ds-subpage-cta">
   <div class="ds-wrap">

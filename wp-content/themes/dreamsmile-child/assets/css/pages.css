@@ -6861,3 +6861,28 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 .ds-loc-map--light .ds-loc-map__addr { color: var(--ds-dark-slate); }
 .ds-loc-map--light .ds-loc-doctor__bullets li { color: var(--ds-dark-slate); }
 .ds-loc-map--light .ds-loc-map__embed--qr { box-shadow: 0 18px 40px -22px rgba(58, 58, 58, 0.28); }
+
+/* ─── Meet Dr. Burns team section + Dr. Whitney links (theme 1.8.2) ───
+   Reuses .ds-np-before with a landscape group photo: kept at 3:2 so the
+   stretch-to-column rule above never crops people off the edges. */
+.ds-np-before__media--wide { aspect-ratio: 3 / 2; }
+@media (min-width: 900px) {
+  .ds-np-before__grid--wide-media { grid-template-columns: 1.1fr 0.9fr; align-items: center !important; }
+  .ds-np-before__grid--wide-media .ds-np-before__media {
+    aspect-ratio: 3 / 2 !important;
+    min-height: 0;
+    align-self: center;
+  }
+}
+.ds-np-before__grid--wide-media .ds-np-before__list li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.ds-np-before__list a,
+.ds-implants-nav-card__desc a {
+  color: var(--ds-charcoal);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ds-teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.ds-np-before__list a:hover,
+.ds-implants-nav-card__desc a:hover { color: var(--ds-teal-ink); }

@@ -4,19 +4,20 @@ Response to the **Nov 5, 2026 recheck** of "Dr. Jeffrey Burns - SEO Issues Track
 Engine). It covers every row still marked **Not started**, plus the other open rows the
 recheck called out.
 
-Theme **1.8.1**, branch `fix/seo-tracker-nov5`. 1.7.0 has the town pages, the https links and the
+Theme **1.8.2**, branch `fix/seo-tracker-nov5`. 1.7.0 has the town pages, the https links and the
 content gaps. 1.8.0 adds the speed and accessibility work (section 7). 1.8.1 adds the one-click
 fix for old links in posts (section 4), plus the call-back time and review count fixes
-(section 6).
+(section 6). 1.8.2 adds the team section and the links to Dr. Whitney (sections 2 and 5).
 Everything below was tested on a local WordPress running this theme. Staging shows none of it
-until 1.8.1 is deployed (steps in section 8).
+until 1.8.2 is deployed (steps in section 8).
 
 **Updated Nov 8.** We rechecked this response against every tab of the tracker. Added: section 4,
 and three rows the first version missed (the blank live pages, the booking form's call-back time,
 and the general dentistry text). Section 5 now says plainly that the post-op content went
 somewhere other than the tracker suggested. The questions we had for the practice are now
-answered from the tracker and the live site (sections 2, 5 and 6). Only the Privacy Policy still
-needs the practice (section 9).
+answered from the tracker and the live site (sections 2, 5 and 6). The two content gaps that
+followed from those answers, Dr. Whitney and the team, are now built. Only the Privacy Policy
+still needs the practice (section 9).
 
 ---
 
@@ -76,9 +77,18 @@ Every source we checked says Dr. Whitney still practices inside the New Market o
   surgery, at 9626 S Congress St with the office's phone number.
 
 So we keep his four pages live and leave the four redirects out, which is how staging is today.
-The content gap is a mention on the new site, for example on /wisdom-teeth-removal/ and
-/tooth-extraction/, linking to his page. If the practice tells us he has left, we draft the
-pages and add the redirects instead.
+
+**Linked from the new site (1.8.2),** as the Redirect Map note asks ("keep it and link to it"):
+
+- **/meet-dr-burns/** lists him in the new team section (section 5), with a link to his page.
+- **/wisdom-teeth-removal/** has a card, "An oral surgeon in our office", with the same link.
+  It replaces a card that said Dr. Burns does every wisdom tooth case himself with no oral
+  surgeon involved. The live site doesn't support that: its wisdom teeth page talks about the
+  oral surgeon, and his page says he does extractions and wisdom teeth.
+
+Both mentions read his page's status. If his pages are ever set to draft, the mentions go away
+and the card falls back to a general "in our own office" line. So if the practice tells us he has
+left, the only steps are drafting his pages and adding the four redirects.
 
 ## 3. Launch Checklist rows 12 (Blocker) and 16: the 3 missing blog posts
 
@@ -157,7 +167,8 @@ revision. Every new link loads its page directly, with no redirect.
 | Care after surgery (post-op) | **Done, but not where the tracker suggested.** The tracker asked for a Patient Education article. We put the content on /implant-procedures/ instead, because redirect #18 already sends the old After Implant Placement page there. That way the old page's links and rankings land on the content that replaced it. The new section is "What to expect after your implant surgery", built from the old page's answers. It links to the aftercare and pain posts once they are imported. If you still want it under Patient Education, we can add a card there that links to it. |
 | Inlays and onlays, dental bonding | **Done.** An inlays and onlays section on /dental-fillings/, and a bonding section on /cosmetic-dentistry/, both from the old pages' text. |
 | Denture care, relines, repairs, immediate dentures | **Done.** /full-dentures/ now covers immediate dentures, relines and soft liners, rebases and repairs, a care checklist, and the yearly denture exam. |
-| Team / staff page | **Can be built from the live site.** The live Meet the Staff page has all 8 team members with bios and photos (6 of the photos are from Feb 2024). A team section on /meet-dr-burns/ can reuse that text, which is what visitors see on the live site today. |
+| Team / staff page | **Done in 1.8.2.** /meet-dr-burns/ has a "Meet the team" section with the recent team photo and the roles from the live Meet the Staff page: hygienists, licensed dental assistants, patient and treatment coordinators, the financial and insurance coordinator, and Dr. Whitney. It names roles, not people. The live page has bios for 8, but the newer team photo shows 12, so a named list would already be out of date. If the practice wants names and bios shown, send the current list and we'll add them. |
+| Dr. James Whitney / oral surgery | **Done in 1.8.2**, see section 2. |
 | Testimonials page | Optional. We'll build it only if the practice wants one. |
 | Harrisonburg and Winchester targeting | **Theme part done** (since October, /dental-implants/ and /full-mouth-dental-implants/ name and link both towns). The rest is restoring those two town pages' text (section 1). |
 
@@ -252,7 +263,7 @@ which play as soon as they're scrolled to, go from about 16 MB to 8 MB each.
 | FAQ-Implant-Lifespan.mp4 | Implant FAQs | 7.1 MB | 3.7 MB |
 | Hall-of-Fame-Patients.mp4 | Town and location pages | 4.0 MB | 1.9 MB |
 
-To use them, **after 1.8.1 is deployed**:
+To use them, **after 1.8.2 is deployed**:
 
 1. Download the files from the GitHub release:
    https://github.com/franzsamilo/jeffrey-burns-oz.test/releases/tag/v2
@@ -262,13 +273,13 @@ The site uses the newest upload with a given name, so the old copies can stay or
 later. Themes before 1.8.0 kept using the first upload, which is why this step waits for the
 deploy.
 
-## 8. Deploying 1.8.1 to staging
+## 8. Deploying 1.8.2 to staging
 
 1. Once `fix/seo-tracker-nov5` is merged into `main`, merge `main` into
    `setup/staging-and-deployment`. That branch also carries Dale's Oct 24 migration-script work.
 2. `python build_zip.py`, then upload the zip in Appearance → Themes ("Replace active with
    uploaded"), then purge the Pressable cache.
-3. Check the page source shows `dreamsmile-child/style.css?ver=1.8.1`, and that a page's
+3. Check the page source shows `dreamsmile-child/style.css?ver=1.8.2`, and that a page's
    canonical now starts with https://.
 4. If the header or footer still shows the old markup (for example the booking form still says
    12 pm – 5 pm), the templates were edited in the Site Editor at some point. Reset them there
