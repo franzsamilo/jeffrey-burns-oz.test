@@ -28,24 +28,24 @@ $LOCATIONS = [
   'harrisonburg' => [
     'name'      => 'Harrisonburg',
     'state'     => 'VA',
-    'image'     => 'Harrisonburg-8locations.jpg',
-    'hero_bg'   => 'Harrison-Hero.jpg',
+    'image'     => 'Harrisonburg-8locations.webp',
+    'hero_bg'   => 'Harrison-Hero.webp',
     'local_why' => 'Patients from Harrisonburg, JMU, and Rockingham County trust Dr. Burns for the Burns Protocol &mdash; just a quick trip up I-81 to our New Market office.',
     'travel'    => 'A short drive north on I-81 from Harrisonburg &mdash; easy highway access the whole way to our New Market office.',
   ],
   'winchester' => [
     'name'      => 'Winchester',
     'state'     => 'VA',
-    'image'     => 'Winchester-8locations.jpg',
-    'hero_bg'   => 'Winchester-8locations.jpg',
+    'image'     => 'Winchester-8locations.webp',
+    'hero_bg'   => 'Winchester-8locations.webp',
     'local_why' => 'Patients from Winchester regularly make the drive south for Dr. Burns&rsquo;s implant expertise &mdash; the level of specialized care is hard to find anywhere else in the valley.',
     'travel'    => 'A scenic drive south on I-81 from Winchester to our New Market office &mdash; easy highway access the whole way.',
   ],
   'broadway' => [
     'name'      => 'Broadway',
     'state'     => 'VA',
-    'image'     => 'Broadway-8locations.jpg',
-    'hero_bg'   => 'Broadway-8locations.jpg',
+    'image'     => 'Broadway-8locations.webp',
+    'hero_bg'   => 'Broadway-8locations.webp',
     'local_why' => 'A short drive from Broadway and the central valley &mdash; close enough to keep follow-ups simple.',
     'travel'    => 'Quick trip up Rt. 11 from Broadway to our New Market office.',
   ],
@@ -60,24 +60,24 @@ $LOCATIONS = [
   'luray' => [
     'name'      => 'Luray',
     'state'     => 'VA',
-    'image'     => 'Luray-8locations.jpg',
-    'hero_bg'   => 'Luray-8locations.jpg',
+    'image'     => 'Luray-8locations.webp',
+    'hero_bg'   => 'Luray-8locations.webp',
     'local_why' => 'Patients from Luray and Page County make the trip for the Burns Protocol &mdash; the same trusted process from assessment through final reveal.',
     'travel'    => 'Across the valley from Luray to our New Market office &mdash; a beautiful drive on Rt. 211 W and Rt. 11.',
   ],
   'woodstock' => [
     'name'      => 'Woodstock',
     'state'     => 'VA',
-    'image'     => 'Woodstock-8locations.jpg',
-    'hero_bg'   => 'Woodstock-8locations.jpg',
+    'image'     => 'Woodstock-8locations.webp',
+    'hero_bg'   => 'Woodstock-8locations.webp',
     'local_why' => 'A simple drive from Woodstock and Shenandoah County &mdash; same office, same doctor, every visit.',
     'travel'    => 'A quick drive south on I-81 from Woodstock to our New Market office &mdash; about 15 minutes.',
   ],
   'elkton' => [
     'name'      => 'Elkton',
     'state'     => 'VA',
-    'image'     => 'Elkton-8locations.jpg',
-    'hero_bg'   => 'Elkton-8locations.jpg',
+    'image'     => 'Elkton-8locations.webp',
+    'hero_bg'   => 'Elkton-8locations.webp',
     'local_why' => 'A scenic drive from Elkton and east Rockingham County &mdash; close enough that even multi-step implant treatment fits easily into your week.',
     'travel'    => 'A short trip up Rt. 33 to I-81 north from Elkton to our New Market office.',
   ],
@@ -106,7 +106,7 @@ $is_home_city = ! empty( $loc['is_home'] );
 $loc_image_path = trailingslashit( get_stylesheet_directory() ) . 'assets/arrange/' . $loc['image'];
 $loc_image_url  = file_exists( $loc_image_path )
   ? $base . '/' . $loc['image']
-  : $base . '/hero-image.png'; // fallback to existing hero-image.png
+  : $base . '/hero-image.webp'; // fallback to existing hero-image.webp
 
 $why_cards = [
   [
@@ -183,7 +183,7 @@ $hero_prefix = $is_home_city ? 'in' : 'Near';
         <img src="<?php echo esc_url( $loc_image_url ); ?>"
              alt="DreamSmile dental implants &mdash; serving <?php echo esc_attr( $loc['name'] ); ?>, <?php echo esc_attr( $loc['state'] ); ?>"
              loading="lazy"
-             onerror="this.onerror=null; this.src='<?php echo esc_url( $base . '/hero-image.png' ); ?>'" />
+             onerror="this.onerror=null; this.src='<?php echo esc_url( $base . '/hero-image.webp' ); ?>'" />
       </div>
     </div>
   </div>
@@ -223,7 +223,7 @@ echo do_blocks( '<!-- wp:pattern {"slug":"dreamsmile/implants-quiz-banner"} /-->
       <video
         class="ds-loc-testimonials__video"
         src="<?php echo esc_url( ds_get_video_url( 'Hall-of-Fame-Patients.mp4' ) ); ?>"
-        preload="metadata"
+        <?php echo ds_video_load_attrs( 'Hall-of-Fame-Patients.mp4' ); ?>
         playsinline
         muted
         controls

@@ -188,7 +188,7 @@ $article_title = $svc['sub_hero']['label'] ?? '';
 
 <?php // ── Explanatory prose (what it is / why it matters) ─────────────────── ?>
 <?php if ( $prose && ! empty( $prose['blocks'] ) ) : ?>
-<section class="ds-np-prose">
+<section class="ds-np-prose<?php echo 'grey' === ( $prose['tone'] ?? '' ) ? ' ds-np-prose--grey' : ''; ?>">
   <div class="ds-wrap ds-np-prose__wrap">
     <div class="ds-np-prose__head ds-reveal">
       <?php if ( ! empty( $prose['label'] ) ) : ?><span class="ds-label"><?php echo esc_html( $prose['label'] ); ?></span><?php endif; ?>
@@ -200,6 +200,11 @@ $article_title = $svc['sub_hero']['label'] ?? '';
         <?php foreach ( (array) ( $blk['p'] ?? [] ) as $para ) : ?>
           <p class="ds-np-prose__p"><?php echo $para; ?></p>
         <?php endforeach; ?>
+        <?php if ( ! empty( $blk['ul'] ) ) : ?>
+          <ul class="ds-np-prose__list">
+            <?php foreach ( $blk['ul'] as $li ) : ?><li><?php echo $li; ?></li><?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
       <?php endforeach; ?>
     </div>
   </div>
@@ -209,6 +214,11 @@ $article_title = $svc['sub_hero']['label'] ?? '';
 <?php // ── Explanatory diagram (inline SVG schematic, or image) ──────────── ?>
 <?php if ( $figure && ( ! empty( $figure['svg'] ) || ! empty( $figure['image'] ) ) ) :
     $svg = ! empty( $figure['svg'] ) ? ds_diagram_svg( $figure['svg'] ) : '';
+    // The SVGs carry role="img", so screen readers need a name: the figure title.
+    if ( $svg ) {
+        $svg_name = trim( wp_strip_all_tags( html_entity_decode( $figure['title'] ?? 'Explanatory diagram', ENT_QUOTES, 'UTF-8' ) ) );
+        $svg      = preg_replace( '/<svg\b/', '<svg aria-label="' . esc_attr( $svg_name ) . '"', $svg, 1 );
+    }
     $img_url = ! empty( $figure['image'] ) ? get_stylesheet_directory_uri() . '/assets/arrange/' . $figure['image'] : '';
 ?>
 <section class="ds-np-figure">

@@ -12,11 +12,11 @@ $base = get_stylesheet_directory_uri() . '/assets/arrange';
 // card reads as a before/after even before anyone presses play. Without a
 // poster these videos render as an empty black frame.
 $testimonials = [
-  [ 'testi-angela.mp4', 'Angela Burker', 'DreamSmile™ Patient', 'testimonial-ba-angela.jpg' ],
-  [ 'testi-danny.mp4',  'Danny',          'DreamSmile™ Patient', 'testimonial-ba-danny.jpg'  ],
-  [ 'testi-kelly.mp4',  'Kelly',          'DreamSmile™ Patient', 'testimonial-ba-kelly.jpg'  ],
-  [ 'testi-mike.mp4',   'Mike Woolard',   'DreamSmile™ Patient', 'testimonial-ba-mike.jpg'   ],
-  [ 'testi-ron.mp4',    'Ron',            'DreamSmile™ Patient', 'testimonial-ba-ron.jpg'    ],
+  [ 'testi-angela.mp4', 'Angela Burker', 'DreamSmile™ Patient', 'testimonial-ba-angela.webp' ],
+  [ 'testi-danny.mp4',  'Danny',          'DreamSmile™ Patient', 'testimonial-ba-danny.webp'  ],
+  [ 'testi-kelly.mp4',  'Kelly',          'DreamSmile™ Patient', 'testimonial-ba-kelly.webp'  ],
+  [ 'testi-mike.mp4',   'Mike Woolard',   'DreamSmile™ Patient', 'testimonial-ba-mike.webp'   ],
+  [ 'testi-ron.mp4',    'Ron',            'DreamSmile™ Patient', 'testimonial-ba-ron.webp'    ],
 ];
 
 $star = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
@@ -42,8 +42,7 @@ $star = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 
                 <video
                   class="ds-testi-card__video"
                   src="<?php echo esc_url( ds_get_video_url( $t[0] ) ); ?>"
-                  poster="<?php echo esc_url( $base . '/' . $t[3] ); ?>"
-                  preload="metadata"
+                  <?php echo ds_video_load_attrs( $t[0], $base . '/' . $t[3] ); ?>
                   playsinline
                   muted
                   aria-label="<?php echo esc_attr( $t[1] ); ?> &mdash; DreamSmile testimonial, before and after"
@@ -53,7 +52,7 @@ $star = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 
                 </button>
               </div>
               <div class="ds-testi-card__meta">
-                <div class="ds-stars" aria-label="5 out of 5 stars">
+                <div class="ds-stars" role="img" aria-label="5 out of 5 stars">
                   <?php echo str_repeat( $star, 5 ); ?>
                 </div>
                 <p class="ds-testi-card__name"><?php echo esc_html( $t[1] ); ?></p>
@@ -68,7 +67,7 @@ $star = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
       </button>
 
-      <div class="ds-testi-rail__dots" data-ds-testi-dots aria-hidden="true"></div>
+      <div class="ds-testi-rail__dots" data-ds-testi-dots></div>
     </div>
 
     <div class="ds-testimonials__cta ds-reveal">

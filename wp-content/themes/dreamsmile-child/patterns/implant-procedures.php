@@ -6,7 +6,7 @@
  */
 defined( 'ABSPATH' ) || exit;
 $base     = get_stylesheet_directory_uri() . '/assets/arrange';
-$surgical = $base . '/surgical-photo-burns.png';
+$surgical = $base . '/surgical-photo-burns.webp';
 
 $types = [
   [ 'tooth',    'Single Tooth Implant',      'Missing one tooth',            'Replace one missing tooth without affecting neighbors. Most common, least invasive.' ],
@@ -34,7 +34,7 @@ ds_render_split_hero( [
   'title' => 'The Right Implant Solution <em>for Every Smile.</em>',
   'sub'   => 'Six proven procedures &mdash; from a single tooth to a full-arch rebuild. Find the one that fits.',
   'alt'   => 'Dental implant procedures — surgical precision and modern technology',
-  'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-procedures-hero.jpg',
+  'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-procedures-hero.webp',
   'ctas'  => [
     [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     [ 'label' => 'Call (540) 740-8937',   'href' => 'tel:+15407408937', 'variant' => 'outlined-white' ],
@@ -91,6 +91,44 @@ ds_render_split_hero( [
           <li><strong>Lifetime warranty available</strong> &mdash; the Platinum tier protects your investment.</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<?php
+// SEO tracker content gap (Nov 2026): the old After Implant Placement page
+// (/restorative-dentistry/dental-implants/after-implant-placement/) redirects
+// here, so its answers live here now. The two aftercare posts are linked once
+// they exist on the site (they were missing from staging in Nov 2026).
+$aftercare = [];
+foreach ( [
+  'what-to-do-after-dental-implant-surgery'   => 'Immediate Dental Implant Aftercare Steps to Take',
+  'how-long-pain-lasts-after-dental-implants' => 'How Long Does Pain Last After Dental Implant Surgery',
+] as $post_slug => $post_title ) {
+  $aftercare_post = get_page_by_path( $post_slug, OBJECT, 'post' );
+  if ( $aftercare_post && 'publish' === $aftercare_post->post_status ) {
+    $aftercare[] = '<a href="' . esc_url( get_permalink( $aftercare_post ) ) . '">' . esc_html( $post_title ) . '</a>';
+  }
+}
+?>
+<section class="ds-np-prose ds-np-prose--grey">
+  <div class="ds-wrap ds-np-prose__wrap">
+    <div class="ds-np-prose__head ds-reveal">
+      <span class="ds-label">AFTER IMPLANT PLACEMENT</span>
+      <h2 class="ds-np-prose__title">What to expect after your implant surgery.</h2>
+    </div>
+    <div class="ds-np-prose__body ds-reveal">
+      <h3 class="ds-np-prose__h">What will I use for teeth while the implants heal?</h3>
+      <p class="ds-np-prose__p">You won&rsquo;t be left without teeth. Depending on your case, we can make temporary removable teeth or a temporary bridge, adjust your current denture or make a new temporary one, or place transitional implants that hold fixed temporary teeth the same day. Some implants can even be &ldquo;loaded&rdquo; right away, with a temporary or final tooth attached on, or shortly after, the day of surgery.</p>
+      <h3 class="ds-np-prose__h">Will it hurt afterwards?</h3>
+      <p class="ds-np-prose__p">Most patients don&rsquo;t have severe pain after implant surgery, and we prescribe pain medication and antibiotics to keep recovery as easy as possible. Occasionally an infection needs more antibiotics. Rarely, the nerve in the lower jaw is irritated, causing tingling or numbness in the lip, chin or tongue. It usually settles with time, but not always, so call us right away if you notice numbness and we can manage it properly.</p>
+      <h3 class="ds-np-prose__h">When are the new teeth attached?</h3>
+      <p class="ds-np-prose__p">Usually once the implants have fused firmly with the jawbone, although some cases can start right away or shortly after placement. We take impressions and bite records, make the abutments (the posts that connect your new teeth to the implants), and build your teeth to fit. A few teeth can take as few as three short visits; an implant-supported denture can take up to five over several months. In general, treatment is finished 1 to 12 months after the implants are placed.</p>
+      <h3 class="ds-np-prose__h">How do I care for my implant teeth?</h3>
+      <p class="ds-np-prose__p">Much like natural teeth: brush and floss every day, use any cleaning aids we recommend, and keep your hygiene visits. Implant parts wear like any restoration and may in time need small repairs, such as a new clip, a reline, or a tightened screw. With good care, implants last a long time. If one ever fails to heal or loosens, it can be removed and, once the site heals, usually replaced.</p>
+      <?php if ( $aftercare ) : ?>
+        <p class="ds-np-prose__p">More on recovery from our blog: <?php echo implode( ' and ', $aftercare ); ?>.</p>
+      <?php endif; ?>
     </div>
   </div>
 </section>

@@ -49,13 +49,13 @@ defined( 'ABSPATH' ) || exit;
       </div>
 
       <div class="ds-awards__rating">
-        <div class="ds-awards__stars" aria-label="5.0 out of 5 stars">
+        <div class="ds-awards__stars" role="img" aria-label="5.0 out of 5 stars">
           <?php for ( $i = 0; $i < 5; $i++ ) : ?>
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
           <?php endfor; ?>
         </div>
         <strong>5.0</strong>
-        <span>from 200+ Google reviews</span>
+        <span>from <?php echo esc_html( ds_office_data()['reviews'] ); ?>+ Google reviews</span>
       </div>
     </div>
 
@@ -68,7 +68,7 @@ defined( 'ABSPATH' ) || exit;
         <video
           class="ds-awards__video-el"
           src="<?php echo esc_url( ds_get_video_url( 'Educational-One-Day-Teeth.mp4' ) ); ?>"
-          preload="metadata"
+          <?php echo ds_video_load_attrs( 'Educational-One-Day-Teeth.mp4' ); ?>
           playsinline
           muted
           controls

@@ -320,7 +320,7 @@ body:has(.ds-subhero) .ds-navbar__dropdown-trigger { color: var(--ds-charcoal); 
 .ds-navbar__mobile-acc-trigger:hover { background: rgba(127, 181, 176, 0.06); }
 .ds-navbar__mobile-acc-trigger svg { transition: transform .25s ease; flex-shrink: 0; }
 .ds-navbar__mobile-acc-trigger[aria-expanded="true"] {
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   background: rgba(127, 181, 176, 0.06);
 }
 .ds-navbar__mobile-acc-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
@@ -341,7 +341,7 @@ body:has(.ds-subhero) .ds-navbar__dropdown-trigger { color: var(--ds-charcoal); 
   font-weight: 700 !important;
   letter-spacing: 0.14em !important;
   text-transform: uppercase !important;
-  color: var(--ds-teal-dark) !important;
+  color: var(--ds-teal-ink) !important;
   border-bottom: 0 !important;
   text-decoration: none;
 }
@@ -1268,7 +1268,7 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
 .ds-how-step__num {
   font-family: 'Montserrat', sans-serif;
   font-size: 10px;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -1290,7 +1290,7 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   align-self: flex-start;
   padding: 4px 9px;
   background: rgba(127, 181, 176, 0.1);
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   border-radius: 99px;
   font-family: 'Montserrat', sans-serif;
   font-size: 10px;
@@ -2225,7 +2225,7 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   flex-direction: column;
   gap: 16px;
 }
-.ds-modal__form .ds-label { color: var(--ds-teal-dark); }
+.ds-modal__form .ds-label { color: var(--ds-teal-ink); }
 
 .ds-modal__title {
   font-family: 'Amiri', 'Playfair Display', serif;
@@ -2267,7 +2267,7 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   text-transform: none;
   letter-spacing: 0;
   color: var(--ds-warm-gray);
-  opacity: 0.7;
+  opacity: 1;
 }
 .ds-modal__field:has(input[required]) > span::after,
 .ds-modal__field:has(select[required]) > span::after,
@@ -2334,11 +2334,11 @@ a.ds-navbar__mobile-acc-head:hover { background: transparent; }
   margin: 6px 0 0;
 }
 .ds-modal__note a {
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   font-weight: 700;
   border-bottom: 1px dashed currentColor;
 }
-.ds-modal__note a:hover { color: var(--ds-teal); border-bottom-color: var(--ds-teal); }
+.ds-modal__note a:hover { color: var(--ds-charcoal); border-bottom-color: var(--ds-charcoal); }
 
 .ds-modal__error {
   font-size: 13px;
@@ -2961,8 +2961,8 @@ body:has(.ds-loc-hero) .ds-navbar__sub { color: var(--ds-warm-gray); }
 body:has(.ds-loc-hero) .ds-navbar__logo-j { color: var(--ds-teal); }
 /* Same outlined look as the scrolled navbar; the base CTA is a solid teal pill,
    so teal text alone would vanish into it. */
-body:has(.ds-loc-hero) .ds-navbar__cta { background: transparent; color: var(--ds-teal); border-color: var(--ds-teal); }
-body:has(.ds-loc-hero) .ds-navbar__cta:hover { background: var(--ds-teal); color: #fff; }
+body:has(.ds-loc-hero) .ds-navbar__cta { background: transparent; color: var(--ds-teal-ink); border-color: var(--ds-teal); }
+body:has(.ds-loc-hero) .ds-navbar__cta:hover { background: var(--ds-teal); color: var(--ds-charcoal); }
 body:has(.ds-loc-hero) .ds-navbar__nav a { color: var(--ds-charcoal); }
 body:has(.ds-loc-hero) .ds-navbar__nav a:hover { color: var(--ds-teal); }
 body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal); }
@@ -3613,7 +3613,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   margin-top: 4px;
 }
 .ds-implants-nav-card__cta svg { width: 14px; height: 14px; transition: transform .2s ease; }
@@ -4243,7 +4243,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   font-family: 'Amiri', 'Playfair Display', serif;
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   margin: 0 0 10px;
 }
 .ds-np-comfort-card p { color: var(--ds-warm-gray); font-size: 14px; line-height: 1.55; margin: 0; }
@@ -4598,7 +4598,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   box-shadow: 0 16px 40px -20px rgba(58, 58, 58, 0.22), 0 4px 10px -4px rgba(58, 58, 58, 0.08);
 }
 .ds-warranty-card--recommended {
-  background: var(--ds-teal-dark);
+  background: var(--ds-teal-ink);
   color: #fff;
   padding: 44px 28px;
   box-shadow: 0 28px 56px -20px rgba(90, 154, 147, 0.55), 0 8px 18px -8px rgba(58, 58, 58, 0.18);
@@ -4613,7 +4613,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   font-weight: 700;
@@ -4652,7 +4652,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   color: var(--ds-warm-gray);
   margin: 0;
 }
-.ds-warranty-card--recommended .ds-warranty-term__label { color: rgba(255, 255, 255, 0.7); }
+.ds-warranty-card--recommended .ds-warranty-term__label { color: rgba(255, 255, 255, 0.92); }
 .ds-warranty-term__value {
   font-family: 'Amiri', 'Playfair Display', serif;
   font-size: 1.6rem;
@@ -4727,7 +4727,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 }
 .ds-promise__cta { margin-top: 8px; }
 
-/* What to Bring — image + (copy+list) split layout when extra.jpg is provided */
+/* What to Bring — image + (copy+list) split layout when extra.webp is provided */
 .ds-np-before__grid--with-media {
   grid-template-columns: 1fr;
   gap: 36px;
@@ -5104,9 +5104,9 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   transform: translateY(-1px);
 }
 .ds-faq-cat.is-active {
-  background: var(--ds-teal-dark) !important;
+  background: var(--ds-teal-ink) !important;
   color: #fff !important;
-  border-color: var(--ds-teal-dark) !important;
+  border-color: var(--ds-teal-ink) !important;
   box-shadow: 0 8px 18px -8px rgba(90, 154, 147, 0.55) !important;
 }
 
@@ -5226,18 +5226,18 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   color: var(--ds-warm-gray) !important;
 }
 .ds-faq-help .ds-label {
-  color: var(--ds-teal-dark) !important;
+  color: var(--ds-teal-ink) !important;
 }
 /* The "Take the Quiz" button was outlined-white (white border + white text) for
    the dark bg — on white bg we need teal-outlined instead. */
 .ds-faq-help .ds-btn--outlined-white {
-  color: var(--ds-teal-dark) !important;
+  color: var(--ds-teal-ink) !important;
   border-color: var(--ds-teal) !important;
   background: transparent !important;
 }
 .ds-faq-help .ds-btn--outlined-white:hover {
   background: var(--ds-teal) !important;
-  color: #fff !important;
+  color: var(--ds-charcoal) !important;
   border-color: var(--ds-teal) !important;
 }
 
@@ -5270,7 +5270,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   left: auto !important;
   transform: none !important;
   background: #fff !important;
-  color: var(--ds-teal-dark) !important;
+  color: var(--ds-teal-ink) !important;
   font-family: 'Montserrat', sans-serif !important;
   font-size: 10px !important;
   font-weight: 700 !important;
@@ -5350,7 +5350,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 .ds-np-steps__title .ds-italic,
 .ds-np-before__title .ds-italic,
 .ds-cities-bar__title .ds-italic {
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   font-style: italic;
   font-weight: 600;
 }
@@ -5386,7 +5386,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   background: var(--ds-teal);
-  color: #fff;
+  color: var(--ds-charcoal);
   padding: 5px 10px;
   border-radius: 99px;
   line-height: 1;
@@ -5493,7 +5493,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   font-weight: 700;
   margin-bottom: 12px;
 }
@@ -5566,7 +5566,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   gap: 8px;
   padding: 10px 12px;
   border-radius: 8px;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -5663,8 +5663,8 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   font-size: 14px;
   color: var(--ds-warm-gray);
 }
-.ds-np-forms__assist a { color: var(--ds-teal-dark); font-weight: 600; }
-.ds-np-forms__assist a:hover { color: var(--ds-teal); text-decoration: underline; }
+.ds-np-forms__assist a { color: var(--ds-teal-ink); font-weight: 600; }
+.ds-np-forms__assist a:hover { color: var(--ds-charcoal); text-decoration: underline; }
 /* /DREAMSMILE-NP-FORMS */
 
 /* ==========================================================================
@@ -5778,7 +5778,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
 }
 .ds-pated-card__cat--guide { color: var(--ds-charcoal); }
 .ds-pated-card__dot {
@@ -5829,7 +5829,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   margin-top: auto;
 }
 .ds-pated-card__cta svg { transition: transform .18s ease; }
@@ -5850,6 +5850,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
 }
 .ds-pated-ask__inner { max-width: 780px; margin: 0 auto; text-align: center; }
 .ds-pated-ask .ds-label { color: var(--ds-teal-light, #A8D5D0); }
+.ds-pated-ask .ds-btn--outlined { color: var(--ds-teal); }
 .ds-pated-ask__title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(26px, 3.4vw, 34px);
@@ -5904,7 +5905,7 @@ body:has(.ds-loc-hero) .ds-navbar__toggle span { background: var(--ds-charcoal);
   font-family: 'Montserrat', sans-serif;
   font-size: 13px; font-weight: 600;
   letter-spacing: 0.02em;
-  color: var(--ds-teal-dark);
+  color: var(--ds-teal-ink);
   text-decoration: none;
   transition: color .15s ease;
 }
@@ -6243,7 +6244,7 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   font-weight: 700;
   letter-spacing: 0.14em;
   line-height: 1;
-  color: var(--ds-teal-dark, #5A9A93);
+  color: var(--ds-teal-ink);
 }
 .ds-service--article .ds-np-step__body h3 {
   font-family: 'Playfair Display', serif;
@@ -6330,6 +6331,8 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 /* Prose */
 .ds-np-prose { background: #fff; padding-block: 52px; }
 @media (min-width: 768px) { .ds-np-prose { padding-block: 64px; } }
+/* For a prose band that lands between two white sections. */
+.ds-np-prose--grey { background: var(--ds-light-gray); }
 .ds-np-prose__wrap { max-width: 760px; }
 .ds-np-prose__head { margin-bottom: 14px; }
 .ds-np-prose__title {
@@ -6351,6 +6354,26 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   line-height: 1.7;
   margin: 0 0 14px;
 }
+.ds-np-prose__list {
+  color: var(--ds-dark-slate);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 14px;
+  padding-left: 1.25em;
+}
+.ds-np-prose__list li { margin-bottom: 6px; }
+.ds-np-prose__list li::marker { color: var(--ds-teal-dark); }
+.ds-np-prose__p a,
+.ds-np-prose__list a {
+  color: var(--ds-charcoal);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ds-teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.ds-np-prose__p a:hover,
+.ds-np-prose__list a:hover { color: var(--ds-teal-dark); }
 
 /* Explanatory diagram (inline SVG schematic — used in place of clinical photos) */
 .ds-np-figure { background: #fff; padding-block: 52px; }
@@ -6381,7 +6404,7 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   font-size: 15px;
   line-height: 1.66;
 }
-.ds-np-figure__cap strong { color: var(--ds-teal-dark); font-weight: 700; }
+.ds-np-figure__cap strong { color: var(--ds-teal-ink); font-weight: 700; }
 
 /* Comparison (text, 3 columns) */
 .ds-np-compare { background: var(--ds-light-gray); padding-block: 52px; }
@@ -6418,7 +6441,7 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   left: 50%;
   transform: translateX(-50%);
   background: var(--ds-teal);
-  color: #fff;
+  color: var(--ds-charcoal);
   font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -6588,13 +6611,14 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 /* Was a hard inline max-height:72px. Now fluid and ~1.4x larger at desktop so
    the wordmark carries the section the way the kicker above it implies. */
 .ds-intro-section__logo {
-  max-height: clamp(88px, 8.5vw, 104px);
+  /* A set height (not max-height) keeps its box while the lazy image loads. */
+  height: clamp(88px, 8.5vw, 104px);
   width: auto;
   display: inline-block;
   margin-inline: auto;
 }
 
-.ds-guide-card__note { margin: 10px 0 0; font-size: 12px; line-height: 1.5; color: var(--ds-warm-gray); font-family: 'Montserrat', sans-serif; }
+.ds-guide-card__note { margin: 10px 0 0; font-size: 12px; line-height: 1.5; color: var(--ds-dark-slate); font-family: 'Montserrat', sans-serif; }
 
 /* ─── Town pages (/contact-us/…, town-page.php) ───────────────────────────
    The old site's town-page copy in the location-page components above. */
@@ -6607,8 +6631,10 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 .wp-block-group.ds-main > *,
 .wp-block-group.ds-main > .wp-block-post-content > section,
 .wp-block-group.ds-main > .wp-block-post-content > .wp-block-group { margin-block-start: 0; }
-/* Same 1.2rem gap one level up, between <main> and the footer. */
-.wp-site-blocks > footer.wp-block-template-part { margin-block-start: 0; }
+/* Same 1.2rem gap one level up, between <main> and the footer. The header and
+   footer parts are plain divs: the <header> and <footer> inside them are the
+   page's only banner and contentinfo landmarks. */
+.wp-site-blocks > .wp-block-template-part { margin-block-start: 0; }
 
 /* Headings balance their lines. Twenty Twenty-Five sets text-wrap:pretty,
    which only protects the last line, so two-line headings split mid-phrase
@@ -6660,7 +6686,8 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 .ds-loc-hero__sub a,
 .ds-loc-intro__body a,
 .ds-loc-point__text a,
-.ds-loc-cta__body a {
+.ds-loc-cta__body a,
+.ds-loc-list a {
   color: var(--ds-charcoal);
   font-weight: 600;
   text-decoration: underline;
@@ -6708,6 +6735,30 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   max-width: 64ch;
 }
 .ds-loc-intro__body p:last-child { margin-bottom: 0; }
+/* Middle sections of town text pasted in wp-admin, when there aren't three. */
+.ds-loc-intro--grey { background: var(--ds-light-gray); }
+
+/* Lists and H3s in town text pasted in wp-admin (ds_town_editor_copy()). */
+.ds-loc-list {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ds-dark-slate);
+  margin: 0 0 14px;
+  padding-left: 1.25em;
+  max-width: 64ch;
+}
+.ds-loc-list li { margin-bottom: 6px; }
+.ds-loc-list li::marker { color: var(--ds-teal-dark); }
+.ds-loc-list:last-child { margin-bottom: 0; }
+.ds-loc-subhead {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ds-charcoal);
+  margin: 20px 0 6px;
+}
 
 /* Old sections 2–4: three columns on grey, split by hairlines, not boxed. */
 .ds-loc-points { background: var(--ds-light-gray); padding: 56px 0; }
@@ -6805,8 +6856,33 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 /* Light .ds-loc-map, for a page whose hero is already dark (Make a Payment):
    two charcoal bands back to back read as one heavy block. */
 .ds-loc-map--light { background: var(--ds-light-gray); color: var(--ds-dark-slate); }
-.ds-loc-map--light .ds-loc-map__head .ds-label { color: var(--ds-teal-dark); }
+.ds-loc-map--light .ds-loc-map__head .ds-label { color: var(--ds-teal-ink); }
 .ds-loc-map--light .ds-loc-map__title { color: var(--ds-charcoal); }
 .ds-loc-map--light .ds-loc-map__addr { color: var(--ds-dark-slate); }
 .ds-loc-map--light .ds-loc-doctor__bullets li { color: var(--ds-dark-slate); }
 .ds-loc-map--light .ds-loc-map__embed--qr { box-shadow: 0 18px 40px -22px rgba(58, 58, 58, 0.28); }
+
+/* ─── Meet Dr. Burns team section + Dr. Whitney links (theme 1.8.2) ───
+   Reuses .ds-np-before with a landscape group photo: kept at 3:2 so the
+   stretch-to-column rule above never crops people off the edges. */
+.ds-np-before__media--wide { aspect-ratio: 3 / 2; }
+@media (min-width: 900px) {
+  .ds-np-before__grid--wide-media { grid-template-columns: 1.1fr 0.9fr; align-items: center !important; }
+  .ds-np-before__grid--wide-media .ds-np-before__media {
+    aspect-ratio: 3 / 2 !important;
+    min-height: 0;
+    align-self: center;
+  }
+}
+.ds-np-before__grid--wide-media .ds-np-before__list li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.ds-np-before__list a,
+.ds-implants-nav-card__desc a {
+  color: var(--ds-charcoal);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ds-teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.ds-np-before__list a:hover,
+.ds-implants-nav-card__desc a:hover { color: var(--ds-teal-ink); }

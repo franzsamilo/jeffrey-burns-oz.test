@@ -15,20 +15,20 @@ $base     = get_stylesheet_directory_uri() . '/assets/arrange';
 $base_dir = trailingslashit( get_stylesheet_directory() ) . 'assets/arrange/';
 
 /**
- * Per-section image slots. Drop in `np-welcome-banner.jpg` and
- * `np-first-visit.jpg` (recommended dimensions in the comments above each
+ * Per-section image slots. Drop in `np-welcome-banner.webp` and
+ * `np-first-visit.webp` (recommended dimensions in the comments above each
  * fallback) — until then, sensible existing photos stand in.
  */
-$np_welcome_banner = file_exists( $base_dir . 'np-welcome-banner.jpg' )
-  ? $base . '/np-welcome-banner.jpg'
-  : $base . '/Harrison-Hero.jpg'; // 1920×720 banner — replace with office/welcome photo
+$np_welcome_banner = file_exists( $base_dir . 'np-welcome-banner.webp' )
+  ? $base . '/np-welcome-banner.webp'
+  : $base . '/Harrison-Hero.webp'; // 1920×720 banner — replace with office/welcome photo
 
-$np_first_visit_img = file_exists( $base_dir . 'np-first-visit.jpg' )
-  ? $base . '/np-first-visit.jpg'
-  : $base . '/casual-photo-burns.png';
+$np_first_visit_img = file_exists( $base_dir . 'np-first-visit.webp' )
+  ? $base . '/np-first-visit.webp'
+  : $base . '/casual-photo-burns.webp';
 
-$np_extra_img = file_exists( $base_dir . 'extra.jpg' )
-  ? $base . '/extra.jpg'
+$np_extra_img = file_exists( $base_dir . 'extra.webp' )
+  ? $base . '/extra.webp'
   : ''; // 600×800 portrait — Dr. Burns + patient assessment
 
 $icon_safety = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>';

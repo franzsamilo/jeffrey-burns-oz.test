@@ -24,7 +24,7 @@ ds_render_split_hero( [
   'title' => 'Everything You Need to Know, <em>Answered.</em>',
   'sub'   => 'Real answers to the questions patients ask before choosing DreamSmile<sup class="ds-tm">&trade;</sup> &mdash; pain, healing, cost, and more.',
   'alt'   => 'Dental implant FAQs — Dr. Burns answering patient questions',
-  'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-faqs-hero.jpg',
+  'bg'    => get_stylesheet_directory_uri() . '/assets/arrange/implant-faqs-hero.webp',
   'ctas'  => [
     [ 'label' => 'Take the Implant Quiz', 'href' => '/#quiz', 'survey' => true ],
     [ 'label' => 'Call (540) 740-8937',   'href' => 'tel:+15407408937', 'variant' => 'outlined-white' ],
@@ -39,7 +39,7 @@ ds_render_split_hero( [
       <h2 class="ds-faq__title">Questions, <span class="ds-italic">Answered.</span></h2>
     </div>
 
-    <div class="ds-faq-cats ds-reveal" role="tablist">
+    <div class="ds-faq-cats ds-reveal" role="group" aria-label="Filter questions by topic">
       <?php foreach ( $cats as $key => $label ) : ?>
         <button type="button"
           class="ds-faq-cat<?php echo 'all' === $key ? ' is-active' : ''; ?>"
@@ -65,7 +65,7 @@ ds_render_split_hero( [
               <video
                 class="ds-faq-item__video"
                 src="<?php echo esc_url( ds_get_video_url( $f[3] ) ); ?>"
-                preload="metadata"
+                <?php echo ds_video_load_attrs( $f[3] ); ?>
                 playsinline
                 muted
                 controls

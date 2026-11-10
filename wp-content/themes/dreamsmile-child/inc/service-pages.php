@@ -31,7 +31,7 @@ return [
       'label'    => 'SINGLE DENTAL IMPLANTS',
       'title'    => 'A Single Implant That Looks &amp; Feels Like Your <em>Own Tooth</em>.',
       'subtitle' => 'Replace one missing tooth without compromising the healthy teeth on either side. Permanent, natural-looking, designed to last a lifetime.',
-      'bg'       => 'dental-implants-hero.jpg',
+      'bg'       => 'dental-implants-hero.webp',
       'alt'      => 'Single dental implant &mdash; Dr. Burns&rsquo;s practice',
     ],
     'intro' => [
@@ -125,7 +125,7 @@ return [
       'label'    => 'IMPLANT-SUPPORTED BRIDGES',
       'title'    => 'Replace Several Teeth in a Row &mdash; <em>Without a Removable Bridge</em>.',
       'subtitle' => 'Two implants anchor a custom bridge to fill the gap of multiple missing teeth. Stable, permanent, indistinguishable from natural teeth.',
-      'bg'       => 'implant-cost-hero.jpg',
+      'bg'       => 'implant-cost-hero.webp',
       'alt'      => 'Implant-supported bridge assessment',
     ],
     'intro' => [
@@ -179,7 +179,7 @@ return [
       'label'    => 'HOW DENTAL IMPLANTS WORK',
       'title'    => 'The <em>Science</em> Behind a Smile That Lasts a Lifetime.',
       'subtitle' => 'A plain-English explanation of how dental implants integrate with the jawbone, why they outperform every alternative, and what makes them last.',
-      'bg'       => 'implant-procedures-hero.jpg',
+      'bg'       => 'implant-procedures-hero.webp',
       'alt'      => 'Dental implant explained',
     ],
     'intro' => [
@@ -234,7 +234,7 @@ return [
       'label'    => 'FULL MOUTH DENTAL IMPLANTS',
       'title'    => 'A Whole New Smile &mdash; <em>Permanently Anchored</em>.',
       'subtitle' => 'For patients missing all (or most) of their teeth. A full-arch fixed bridge supported by 4&ndash;6 implants &mdash; the All-on-4 / All-on-6 approach.',
-      'bg'       => 'full-mouth-implants-hero.jpg',
+      'bg'       => 'full-mouth-implants-hero.webp',
       'alt'      => 'Patient smiling confidently with a full new smile',
     ],
     'intro' => [
@@ -307,7 +307,7 @@ return [
       'label'    => 'IMPLANT-SUPPORTED DENTURES',
       'title'    => 'Dentures That <em>Stay Where They Belong</em>.',
       'subtitle' => 'Snap-in dentures anchored to 2&ndash;4 implants &mdash; the comfort and stability of fixed teeth, with the convenience of a removable appliance.',
-      'bg'       => 'implant-faqs-hero.jpg',
+      'bg'       => 'implant-faqs-hero.webp',
       'alt'      => 'Implant-supported dentures assessment',
     ],
     'intro' => [
@@ -364,7 +364,7 @@ return [
       'label'    => 'DENTAL BRIDGES',
       'title'    => 'Bridge a Gap. <em>Restore Your Bite</em>.',
       'subtitle' => 'Traditional bridges and modern implant-supported alternatives &mdash; we&rsquo;ll help you choose the right approach for your case.',
-      'bg'       => 'bridges-hero.jpg',
+      'bg'       => 'bridges-hero.webp',
       'alt'      => 'Dental bridge assessment',
     ],
     'intro' => [
@@ -417,7 +417,7 @@ return [
       'label'    => 'TOOTH EXTRACTION',
       'title'    => 'When a Tooth Must Come Out &mdash; <em>Done Right</em>.',
       'subtitle' => 'Comfortable, anxiety-aware extractions with a clear plan for what comes next. Implant-ready extraction sites whenever possible.',
-      'bg'       => 'extraction-hero.jpg',
+      'bg'       => 'extraction-hero.webp',
       'alt'      => 'Comfortable tooth extraction at DreamSmile',
     ],
     'intro' => [
@@ -462,7 +462,7 @@ return [
       'label'    => 'BONE GRAFTING',
       'title'    => 'Rebuild the Foundation &mdash; <em>Get Back on the Implant Track</em>.',
       'subtitle' => 'When bone loss has put implants out of reach, modern bone grafting often opens the door back up. The "yes" when other offices said no.',
-      'bg'       => 'bone-graft-hero.jpg',
+      'bg'       => 'bone-graft-hero.webp',
       'alt'      => 'Bone grafting assessment',
     ],
     'intro' => [
@@ -521,7 +521,7 @@ return [
       'label'    => 'FULL DENTURES',
       'title'    => 'Full Dentures &mdash; <em>Done With Care</em>.',
       'subtitle' => 'Traditional full dentures fitted with attention to comfort, fit, and natural appearance. Or upgrade to implant-stabilized for a no-slip solution.',
-      'bg'       => 'full-dentures-hero.jpg',
+      'bg'       => 'full-dentures-hero.webp',
       'alt'      => 'Full dentures fitting',
     ],
     'intro' => [
@@ -553,6 +553,34 @@ return [
         [ 'icon' => 'magnet',  'title' => 'Easy implant upgrade later',     'desc' => 'If your conventional denture starts to slip down the road, we can place 2&ndash;4 implants and convert to a snap-in denture without starting over.' ],
       ],
     ],
+    // SEO tracker content gap (Nov 2026): six old denture pages (immediate
+    // dentures, care, relines, rebase & repairs, exams, soft liners) redirect
+    // here, so their substance lives here now.
+    'prose' => [
+      'tone'   => 'grey', // sits between the white steps and service-card bands
+      'label'  => 'DENTURE CARE &amp; SERVICES',
+      'title'  => 'Immediate dentures, relines, repairs and everyday care.',
+      'blocks' => [
+        [ 'h' => 'Immediate dentures', 'p' => [
+          'If your remaining teeth have to be removed, an immediate denture means you never go without teeth. We take impressions before the extractions and place the denture at the same appointment. Because it can&rsquo;t be tried in before the teeth come out, small compromises in appearance are sometimes needed.',
+          'Your gums and bone shrink as they heal, so temporary linings keep the fit right in the months after, and a permanent reline follows once healing is complete. Follow your after-extraction instructions closely and keep your check-ups during this time.',
+        ] ],
+        [ 'h' => 'Relines and soft liners', 'p' => [
+          'Your gums change over time, so even a well-made denture slowly loosens. A hard reline every one to two years reshapes the inside of the denture to fit your gums again. If your gums are tender or have sore spots, a soft reline or a permanent soft liner cushions the denture and makes chewing more comfortable. If an old denture has left the gums red or swollen, a temporary medicated liner lets them settle before the new reline or denture is made.',
+          'If a loose denture keeps causing problems, <a href="/implant-supported-dentures/">implant-supported dentures</a> are the lasting fix.',
+        ] ],
+        [ 'h' => 'Rebases and repairs', 'p' => [
+          'When the denture teeth are still in good shape but the pink base is old, weak or cracked, a rebase replaces the whole base and keeps your teeth. A chipped or broken denture should be seen promptly; many repairs can be done the same day, and we&rsquo;ll tell you how to keep it from happening again.',
+        ] ],
+        [ 'h' => 'Caring for your dentures', 'ul' => [
+          'Brush your denture inside and out every day with a soft denture brush and a denture cleaner. Toothpaste is too abrasive and scratches it.',
+          'Rinse it in cool water. Hot water can warp a denture.',
+          'When it&rsquo;s out of your mouth, keep it in water or a soaking solution so it doesn&rsquo;t dry out.',
+          'Have a loose denture checked soon. It rubs and presses on your gums and the bone underneath.',
+          'Come in once a year for a denture exam: we update your health history, check your gums, bone and bite, screen for oral cancer, and clean and polish the denture.',
+        ] ],
+      ],
+    ],
     'cta' => [
       'label' => 'NEED FULL DENTURES?',
       'title' => 'Schedule a denture assessment.',
@@ -574,7 +602,7 @@ return [
       'label'    => 'PARTIAL DENTURES',
       'title'    => 'Replace Several Teeth &mdash; <em>Without Touching the Others</em>.',
       'subtitle' => 'Discreet, well-fitted partial dentures fill the gaps where teeth are missing &mdash; while preserving every healthy tooth you still have.',
-      'bg'       => 'partial-dentures-hero.jpg',
+      'bg'       => 'partial-dentures-hero.webp',
       'alt'      => 'Partial denture fitting',
     ],
     'intro' => [
@@ -618,7 +646,7 @@ return [
       'label'    => 'PEDIATRIC DENTAL CARE',
       'title'    => 'A Warm First Visit &mdash; <em>That Builds Lifelong Habits</em>.',
       'subtitle' => 'Gentle, patient pediatric care for our youngest patients. Cavity prevention, sealants, exams, and the kind of friendly first-visit experience that takes the fear out of the chair.',
-      'bg'       => 'pediatric-hero.jpg',
+      'bg'       => 'pediatric-hero.webp',
       'alt'      => 'Pediatric dental care at DreamSmile',
     ],
     'intro' => [
@@ -663,7 +691,7 @@ return [
       'label'    => 'DENTAL CROWNS',
       'title'    => 'A Crown That Looks Like the Tooth <em>Was Always There</em>.',
       'subtitle' => 'Custom ceramic crowns that protect cracked, weakened, or restored teeth &mdash; shaded to disappear into your smile, and often made and fitted the same day with CEREC.',
-      'bg'       => 'crowns-hero.jpg',
+      'bg'       => 'crowns-hero.webp',
       'alt'      => 'Patient smiling after receiving a custom porcelain crown',
     ],
     'intro' => [
@@ -731,7 +759,7 @@ return [
       'label'    => 'ROOT CANAL THERAPY',
       'title'    => 'Save the Tooth. <em>End the Pain</em>.',
       'subtitle' => 'Modern, virtually painless root canal therapy that saves a damaged tooth from extraction &mdash; with the comfort techniques to make it nothing like the horror story.',
-      'bg'       => 'root-canal-hero.jpg',
+      'bg'       => 'root-canal-hero.webp',
       'alt'      => 'Root canal therapy',
     ],
     'intro' => [
@@ -776,7 +804,7 @@ return [
       'label'    => 'WISDOM TEETH REMOVAL',
       'title'    => 'A Comfortable Way Through &mdash; <em>With On-Staff Anesthesiology</em>.',
       'subtitle' => 'Safe, expertly planned wisdom-teeth removal &mdash; from a single tooth to all four, with full sedation if you want it.',
-      'bg'       => 'wisdom-teeth-hero.jpg',
+      'bg'       => 'wisdom-teeth-hero.webp',
       'alt'      => 'Wisdom teeth removal assessment',
     ],
     'intro' => [
@@ -784,7 +812,7 @@ return [
       'title' => 'Done <span class="ds-italic">in-house</span>, with the comfort options you&rsquo;d expect from a hospital.',
       'sub'   => 'Wisdom teeth often need to come out: impacted, crowding, hard to clean. Most offices refer this procedure out. We do it in-house with the same anesthesiology coverage we use for full-arch implant surgery.',
       'pillars' => [
-        [ 'strong' => 'In-House Procedure', 'span' => 'no oral-surgeon referral needed' ],
+        [ 'strong' => 'In-House Procedure', 'span' => 'no referral to another office' ],
         [ 'strong' => 'Full Sedation Option', 'span' => 'sleep through it if you want' ],
         [ 'strong' => 'Same-Day Recovery Plan', 'span' => 'clear instructions, direct cell line' ],
       ],
@@ -804,7 +832,12 @@ return [
       'title' => 'A wisdom-teeth procedure done right.',
       'cards' => [
         [ 'icon' => 'safety', 'title' => 'On-staff anesthesiology',     'desc' => 'A board-certified physician anesthesiologist for sedation cases &mdash; not a dentist double-handling sedation while operating.' ],
-        [ 'icon' => 'doctor', 'title' => 'Done by Dr. Burns himself',  'desc' => 'No referral to a separate oral surgeon. Same office, same doctor, same standards.' ],
+        // The live site (Nov 2026) has oral surgeon Dr. Whitney doing extractions and
+        // wisdom teeth inside the office, so this card names him rather than
+        // claiming Dr. Burns does every case himself.
+        ds_whitney_url()
+          ? [ 'icon' => 'doctor', 'title' => 'An oral surgeon in our office', 'desc' => 'Dr. James Whitney, an oral and maxillofacial surgeon, sees patients right here in New Market. No referral across town. <a href="' . esc_url( ds_whitney_url() ) . '">Meet Dr. Whitney</a>' ]
+          : [ 'icon' => 'doctor', 'title' => 'In our own office',             'desc' => 'No referral across town. Same office, same anesthesiology coverage, same standards.' ],
         [ 'icon' => 'phone',  'title' => 'Recovery line you can call', 'desc' => 'Recovery questions go to Dr. Burns&rsquo;s personal cell &mdash; not a generic answering service.' ],
       ],
     ],
@@ -825,7 +858,7 @@ return [
       'label'    => 'PORCELAIN VENEERS',
       'title'    => 'A Smile That Looks Like You &mdash; <em>On Your Best Day</em>.',
       'subtitle' => 'Custom-crafted ultra-thin porcelain shells that reshape, brighten, and rebuild a smile in just a few visits. Designed by an AACD-award-winning expert.',
-      'bg'       => 'veneers-hero.jpg',
+      'bg'       => 'veneers-hero.webp',
       'alt'      => 'Porcelain veneers smile design',
     ],
     'intro' => [
@@ -870,7 +903,7 @@ return [
       'label'    => 'TEETH WHITENING',
       'title'    => 'A Brighter Smile &mdash; <em>Without the Sensitivity</em>.',
       'subtitle' => 'Professional in-office and take-home whitening tailored to your enamel &mdash; safe, dramatic, and not the over-the-counter trip you&rsquo;ve had before.',
-      'bg'       => 'whitening-hero.jpg',
+      'bg'       => 'whitening-hero.webp',
       'alt'      => 'Professional teeth whitening',
     ],
     'intro' => [
@@ -914,7 +947,7 @@ return [
       'label'    => 'CLEAR BRACES',
       'title'    => 'Straighten Your Smile &mdash; <em>Without the Metal</em>.',
       'subtitle' => 'Discreet clear-aligner treatment for crowding, gaps, or bite issues. Removable, comfortable, and supervised personally by Dr. Burns.',
-      'bg'       => 'aligners-hero.jpg',
+      'bg'       => 'aligners-hero.webp',
       'alt'      => 'Clear braces / aligners assessment',
     ],
     'intro' => [
@@ -963,7 +996,7 @@ return [
       'label'    => 'ANESTHESIA &amp; SEDATION',
       'title'    => 'Comfort Options &mdash; <em>From Local Numbing to Full Sedation</em>.',
       'subtitle' => 'Whatever your procedure, whatever your comfort level, we have an option that fits. With a board-certified physician anesthesiologist on staff for sedation cases.',
-      'bg'       => 'anesthesia-hero.jpg',
+      'bg'       => 'anesthesia-hero.webp',
       'alt'      => 'Anesthesia and sedation options',
     ],
     'intro' => [
@@ -1008,7 +1041,7 @@ return [
       'label'    => 'DENTAL EXAMS &amp; CHECK-UPS',
       'title'    => 'A Six-Month Visit That <em>Actually Catches Things Early</em>.',
       'subtitle' => 'Comprehensive dental exams that go beyond the perfunctory peek &mdash; oral cancer screening, bite analysis, gum health, and a real conversation about what we see.',
-      'bg'       => 'exams-hero.jpg',
+      'bg'       => 'exams-hero.webp',
       'alt'      => 'Dental exam and check-up',
     ],
     'intro' => [
@@ -1053,7 +1086,7 @@ return [
       'label'    => 'ORAL HYGIENE',
       'title'    => 'The Daily Habits That <em>Save Your Teeth</em>.',
       'subtitle' => 'Brushing, flossing, mouthwash, diet, electric vs. manual &mdash; the home-care basics, explained without the lecture.',
-      'bg'       => 'oral-hygiene-hero.jpg',
+      'bg'       => 'oral-hygiene-hero.webp',
       'alt'      => 'Oral hygiene coaching',
     ],
     'intro' => [
@@ -1097,7 +1130,7 @@ return [
       'label'    => 'TEETH CLEANING',
       'title'    => 'Professional Cleaning That <em>Leaves Your Teeth Squeaky Clean</em>.',
       'subtitle' => 'Routine professional cleanings that remove the buildup brushing can&rsquo;t reach &mdash; the foundation of good oral health.',
-      'bg'       => 'gum-disease-hero.jpg',
+      'bg'       => 'gum-disease-hero.webp',
       'alt'      => 'Professional teeth cleaning',
     ],
     'intro' => [
@@ -1142,7 +1175,7 @@ return [
       'label'    => 'DENTAL SEALANTS',
       'title'    => 'A Thin Coating That <em>Prevents Cavities Before They Start</em>.',
       'subtitle' => 'A simple protective coating on the chewing surface of molars &mdash; especially for kids and teens whose new permanent teeth are most cavity-prone.',
-      'bg'       => 'sealants-hero.jpg',
+      'bg'       => 'sealants-hero.webp',
       'alt'      => 'Dental sealants for cavity prevention',
     ],
     'intro' => [
@@ -1186,7 +1219,7 @@ return [
       'label'    => 'DEEP TEETH CLEANING',
       'title'    => 'When a Routine Cleaning <em>Isn&rsquo;t Enough</em>.',
       'subtitle' => 'Scaling and root planing for early gum disease &mdash; gentle, thorough, and the right step before things get worse.',
-      'bg'       => 'deep-cleaning-hero.jpg',
+      'bg'       => 'deep-cleaning-hero.webp',
       'alt'      => 'Deep teeth cleaning &mdash; scaling and root planing',
     ],
     'intro' => [
@@ -1231,7 +1264,7 @@ return [
       'label'    => 'PERIODONTAL MAINTENANCE',
       'title'    => 'Keeping Gum Disease <em>From Coming Back</em>.',
       'subtitle' => 'Specialized maintenance cleanings every 3&ndash;4 months for patients who&rsquo;ve had gum disease &mdash; the way to stay ahead of it long-term.',
-      'bg'       => 'perio-maint-hero.jpg',
+      'bg'       => 'perio-maint-hero.webp',
       'alt'      => 'Periodontal maintenance cleanings',
     ],
     'intro' => [
@@ -1279,7 +1312,7 @@ return [
       'label'    => 'DENTAL FILLINGS',
       'title'    => 'Tooth-Colored Fillings &mdash; <em>The Way Modern Dentistry Should Look</em>.',
       'subtitle' => 'Composite fillings that match your natural tooth shade &mdash; no more silver flashes when you laugh.',
-      'bg'       => 'fillings-hero.jpg',
+      'bg'       => 'fillings-hero.webp',
       'alt'      => 'Tooth-colored composite fillings',
     ],
     'intro' => [
@@ -1302,7 +1335,7 @@ return [
       ],
     ],
     // Friendly schematic replaces the clinical "scary" hero imagery the client
-    // flagged. fillings-hero.jpg can still be swapped for a smiling-patient photo.
+    // flagged. fillings-hero.webp can still be swapped for a smiling-patient photo.
     'figure' => [
       'svg'     => 'filling-process',
       'label'   => 'STEP BY STEP',
@@ -1322,13 +1355,19 @@ return [
         [ 'h' => 'The benefits of a modern, tooth-coloured filling', 'p' => [
           'Today&rsquo;s composite fillings are nothing like the dark silver fillings of the past. They&rsquo;re matched to your natural tooth shade so no one can see them, they bond to the tooth for a tighter seal against future decay, and they let us preserve more of your healthy tooth than older materials ever did.',
         ] ],
+        // SEO tracker content gap (Nov 2026): the old /cosmetic-dentistry-4/inlays-onlays/
+        // page redirects here, so its substance lives here now.
+        [ 'h' => 'Inlays and onlays: when a filling isn&rsquo;t enough', 'p' => [
+          'When more than half of a tooth&rsquo;s biting surface is damaged, an inlay or onlay is often a better fit than a filling. Both are made to measure in porcelain, composite resin or gold, then bonded to the tooth. An inlay sits within the cusps (the raised points) of the tooth, much like a filling; an onlay is larger and extends over one or more of the cusps.',
+          'They take two visits. At the first, we remove the damaged area or old filling, take an impression for the lab, and protect the tooth with a temporary. At the second, we check the fit and bond the final piece in place with a strong resin. Bonded this way, inlays and onlays strengthen the tooth rather than weaken it, and they can last 10 to 30 years. When a tooth needs more than a filling but not a full crown, an onlay is often the right middle ground.',
+        ] ],
       ],
     ],
     'before_after' => [
       'label' => 'BEFORE &amp; AFTER',
       'title' => 'A filling you&rsquo;ll never notice.',
       'sub'   => 'Tooth-coloured composite blends in completely &mdash; see the difference on real cases.',
-      'images' => [ 'fillings-before-after.png' ],
+      'images' => [ 'fillings-before-after.webp' ],
     ],
     'why' => [
       'label' => 'WHY DR. BURNS',
@@ -1356,7 +1395,7 @@ return [
       'label'    => 'FINANCING &amp; INSURANCE',
       'title'    => 'Flexible Payment &mdash; <em>So Cost Isn&rsquo;t the Reason You Wait</em>.',
       'subtitle' => 'Most major insurance accepted. Cherry, CareCredit, and Sunbit financing for what insurance doesn&rsquo;t cover. Turnkey pricing &mdash; no surprise bills.',
-      'bg'       => 'financing-hero.jpg',
+      'bg'       => 'financing-hero.webp',
       'alt'      => 'Financing and insurance options',
     ],
     'intro' => [
@@ -1401,7 +1440,7 @@ return [
       'label'    => 'PATIENT EDUCATION',
       'title'    => 'Plain-English Articles on <em>Real Dentistry</em>.',
       'subtitle' => 'Honest, jargon-free articles on procedures, recovery, and what to expect &mdash; reviewed by Dr.&nbsp;Burns&rsquo;s office, written for patients.',
-      'bg'       => 'resources-hero.jpg',
+      'bg'       => 'resources-hero.webp',
       'alt'      => 'Patient education articles',
     ],
     'intro' => [
