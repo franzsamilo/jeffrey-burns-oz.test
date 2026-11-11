@@ -91,6 +91,17 @@ function ds_slim_seo_seed() {
         '/theburnsprotocol/' => [ 'The Burns Protocol for Dental Implants | Dr. Burns', '' ],
         '/blog/' => [ 'Dental Implant & Oral Health Blog | Dr. Jeffrey Burns', 'Tips and answers on dental implants, cosmetic care, and oral health from Dr. Jeffrey Burns in New Market, VA.' ],
         '/disclaimer/' => [ 'Website Disclaimer | Dr. Jeffrey Burns', '' ],
+        '/privacy-policy/' => [ 'Privacy Policy | Dr. Jeffrey Burns', 'Privacy Policy for the dental practice of Dr. Jeffrey Burns DDS in New Market, VA. How we handle patient inquiries, scheduling, and information.' ],
+
+        // The SEO tracker's Area Pages tab (Rows 7–14), verbatim headlines and blurbs.
+        '/contact-us/dental-implants-harrisonburg-area/' => [ 'Dental Implants Near Harrisonburg, VA | Dr. Jeffrey Burns', 'Full-arch implants and Teeth in a Day for Harrisonburg patients from Dr. Jeffrey Burns, 25 minutes north in New Market. Call 540-740-8937.' ],
+        '/contact-us/winchester-dentist-dental-implants/' => [ 'Dental Implants Near Winchester, VA | Dr. Jeffrey Burns', "Winchester patients drive to New Market for Dr. Jeffrey Burns' DreamSmile implants: fewer visits and up to lifetime warranty coverage. Call 540-740-8937." ],
+        '/contact-us/cosmetic-dentist-elkton-area/' => [ 'Dental Implants Near Elkton, VA | Dr. Jeffrey Burns', 'Failing or broken tooth? Elkton patients get extractions, bone grafting, and dental implants with Dr. Jeffrey Burns in New Market. Call 540-740-8937.' ],
+        '/contact-us/dental-implants-dentist-near-bridgewater/' => [ 'Dental Implants Near Bridgewater, VA | Dr. Jeffrey Burns', 'Bridgewater patients: see what affects dental implant cost, what insurance covers, and financing options with Dr. Jeffrey Burns. Call 540-740-8937.' ],
+        '/contact-us/dentist-near-woodstock-cosmetic-implants/' => [ 'Dental Implants Near Woodstock, VA | Dr. Jeffrey Burns', 'Missing a tooth? Woodstock patients get single-tooth dental implants from Dr. Jeffrey Burns, about 15 minutes away in New Market. Call 540-740-8937.' ],
+        '/contact-us/cosmetic-dentist-near-luray/' => [ 'Dental Implants Near Luray, VA | Dr. Jeffrey Burns', "Nervous about implants? Luray patients get IV sedation with on-site anesthesiologists at Dr. Jeffrey Burns' New Market office. Call 540-740-8937." ],
+        '/contact-us/cosmetic-dentist-near-broadway/' => [ 'Dental Implants Near Broadway, VA | Dr. Jeffrey Burns', 'Broadway patients get dental implants planned with 3D cone beam scans and 3D-printed surgical guides by Dr. Jeffrey Burns in New Market. Call 540-740-8937.' ],
+        '/contact-us/dental-implants-timberville-va/' => [ 'Dental Implants Near Timberville, VA | Dr. Jeffrey Burns', 'Tired of loose dentures? Timberville patients get implant-supported dentures from Dr. Jeffrey Burns, 20 minutes away in New Market. Call 540-740-8937.' ],
     ];
 }
 
@@ -161,3 +172,386 @@ add_action( 'admin_init', function () {
     <?php
     wp_die( ob_get_clean(), esc_html__( 'Slim SEO hand-off', 'dreamsmile-child' ), [ 'response' => 200 ] );
 } );
+
+
+/**
+ * Import the 3 missing October 2026 blog posts from inc/missing-blog-posts-2026-11.xml
+ * if they are not yet published on the site (Launch Checklist Rows 12 & 16).
+ */
+function ds_import_missing_blog_posts() {
+    $xml_file = trailingslashit( get_stylesheet_directory() ) . 'inc/missing-blog-posts-2026-11.xml';
+    if ( ! file_exists( $xml_file ) || ! function_exists( 'simplexml_load_file' ) ) {
+        return 0;
+    }
+
+    $xml = @simplexml_load_file( $xml_file );
+    if ( ! $xml || empty( $xml->channel->item ) ) {
+        return 0;
+    }
+
+    $author_user = get_user_by( 'login', 'upwardengine' );
+    $author_id   = $author_user ? (int) $author_user->ID : 1;
+
+    // Ensure categories 'Blog' and 'Dental Implant' exist
+    $cat_ids = [];
+    foreach ( [ 'blog' => 'Blog', 'dental-implant' => 'Dental Implant' ] as $slug => $name ) {
+        $term = get_term_by( 'slug', $slug, 'category' );
+        if ( ! $term ) {
+            $res = wp_insert_term( $name, 'category', [ 'slug' => $slug ] );
+            if ( ! is_wp_error( $res ) && ! empty( $res['term_id'] ) ) {
+                $cat_ids[] = (int) $res['term_id'];
+            }
+        } else {
+            $cat_ids[] = (int) $term->term_id;
+        }
+    }
+
+    // First pass: collect attachment metadata by old post_id
+    $attachments = [];
+    foreach ( $xml->channel->item as $item ) {
+        $wp = $item->children( 'http://wordpress.org/export/1.2/' );
+        if ( 'attachment' === (string) $wp->post_type ) {
+            $old_id = (int) $wp->post_id;
+            $alt    = '';
+            foreach ( $wp->postmeta as $pm ) {
+                if ( '_wp_attachment_image_alt' === (string) $pm->meta_key ) {
+                    $alt = (string) $pm->meta_value;
+                }
+            }
+            $attachments[ $old_id ] = [
+                'url'   => (string) $wp->attachment_url,
+                'title' => (string) $item->title,
+                'name'  => (string) $wp->post_name,
+                'alt'   => $alt,
+            ];
+        }
+    }
+
+    $imported = 0;
+    foreach ( $xml->channel->item as $item ) {
+        $wp      = $item->children( 'http://wordpress.org/export/1.2/' );
+        $content = $item->children( 'http://purl.org/rss/1.0/modules/content/' );
+        if ( 'post' !== (string) $wp->post_type ) {
+            continue;
+        }
+
+        $slug     = (string) $wp->post_name;
+        $existing = get_page_by_path( $slug, OBJECT, 'post' );
+        if ( $existing && 'publish' === $existing->post_status ) {
+            continue;
+        }
+
+        $post_data = [
+            'post_title'    => (string) $item->title,
+            'post_name'     => $slug,
+            'post_content'  => (string) $content->encoded,
+            'post_status'   => 'publish',
+            'post_type'     => 'post',
+            'post_author'   => $author_id,
+            'post_date'     => (string) $wp->post_date,
+            'post_date_gmt' => (string) $wp->post_date_gmt,
+            'comment_status'=> 'closed',
+            'ping_status'   => 'closed',
+            'post_category' => $cat_ids,
+        ];
+        if ( $existing ) {
+            $post_data['ID'] = $existing->ID;
+            $post_id         = wp_update_post( wp_slash( $post_data ) );
+        } else {
+            $post_id = wp_insert_post( wp_slash( $post_data ) );
+        }
+
+        if ( ! $post_id || is_wp_error( $post_id ) ) {
+            continue;
+        }
+
+        $thumb_old_id = 0;
+        foreach ( $wp->postmeta as $pm ) {
+            $mkey = (string) $pm->meta_key;
+            $mval = (string) $pm->meta_value;
+            if ( 'slim_seo' === $mkey ) {
+                $unser = maybe_unserialize( $mval );
+                if ( is_array( $unser ) ) {
+                    update_post_meta( $post_id, 'slim_seo', $unser );
+                }
+            } elseif ( '_thumbnail_id' === $mkey ) {
+                $thumb_old_id = (int) $mval;
+            }
+        }
+
+        if ( $thumb_old_id && isset( $attachments[ $thumb_old_id ] ) && ! has_post_thumbnail( $post_id ) ) {
+            $att_info = $attachments[ $thumb_old_id ];
+            if ( ! function_exists( 'media_sideload_image' ) ) {
+                require_once ABSPATH . 'wp-admin/includes/media.php';
+                require_once ABSPATH . 'wp-admin/includes/file.php';
+                require_once ABSPATH . 'wp-admin/includes/image.php';
+            }
+            $att_id = @media_sideload_image( $att_info['url'], $post_id, $att_info['title'], 'id' );
+            if ( ! is_wp_error( $att_id ) && is_numeric( $att_id ) ) {
+                set_post_thumbnail( $post_id, (int) $att_id );
+                if ( '' !== $att_info['alt'] ) {
+                    update_post_meta( (int) $att_id, '_wp_attachment_image_alt', $att_info['alt'] );
+                }
+            }
+        }
+
+        $imported++;
+    }
+
+    return $imported;
+}
+
+/**
+ * One-time automatic execution of v1.8.2 SEO tracker database tasks on `init`:
+ * 1. Seeds all ds_slim_seo_seed() titles & descriptions, force-updating the 8 town pages
+ *    (Area Pages Rows 7–14) and the 147-char homepage blurb (Metadata Issues Row 22).
+ * 2. Imports the 3 missing October 2026 blog posts (Launch Checklist Rows 12 & 16).
+ * 3. Rewrites all 97 old internal links in blog posts and pages (Launch Checklist Row 22).
+ * 4. Sets author archives to noindex in Slim SEO and cleans exposed author slugs
+ *    (upwardengine -> dr-jeffrey-burns, meganjburnsdds-com -> megan) (Launch Checklist Row 25).
+ */
+add_action( 'init', function () {
+    if ( get_option( 'ds_v190_auto_migrate_done' ) === '1' ) {
+        return;
+    }
+
+    // 1. Seed Slim SEO titles & descriptions (force-updating '/' description and the 8 town pages)
+    $force_paths = [
+        '/',
+        '/contact-us/dental-implants-harrisonburg-area/',
+        '/contact-us/winchester-dentist-dental-implants/',
+        '/contact-us/cosmetic-dentist-elkton-area/',
+        '/contact-us/dental-implants-dentist-near-bridgewater/',
+        '/contact-us/dentist-near-woodstock-cosmetic-implants/',
+        '/contact-us/cosmetic-dentist-near-luray/',
+        '/contact-us/cosmetic-dentist-near-broadway/',
+        '/contact-us/dental-implants-timberville-va/',
+    ];
+
+    foreach ( ds_slim_seo_seed() as $path => $seed ) {
+        $id = '/' === $path ? (int) get_option( 'page_on_front' ) : url_to_postid( home_url( $path ) );
+        if ( ! $id ) {
+            $trimmed = trim( $path, '/' );
+            if ( '' !== $trimmed ) {
+                $p = get_page_by_path( $trimmed, OBJECT, [ 'page', 'post' ] );
+                if ( $p ) {
+                    $id = (int) $p->ID;
+                }
+            }
+        }
+        if ( ! $id ) {
+            continue;
+        }
+        $meta  = get_post_meta( $id, 'slim_seo', true );
+        $meta  = is_array( $meta ) ? $meta : [];
+        $dirty = false;
+        $force = in_array( $path, $force_paths, true );
+
+        foreach ( [ 'title' => $seed[0], 'description' => $seed[1] ] as $field => $value ) {
+            if ( '' === $value ) {
+                continue;
+            }
+            if ( '/' === $path && 'title' === $field && ! empty( $meta['title'] ) ) {
+                continue;
+            }
+            if ( ! $force && ! empty( $meta[ $field ] ) ) {
+                continue;
+            }
+            if ( ( $meta[ $field ] ?? '' ) !== $value ) {
+                $meta[ $field ] = sanitize_text_field( $value );
+                $dirty          = true;
+            }
+        }
+        if ( $dirty ) {
+            update_post_meta( $id, 'slim_seo', $meta );
+        }
+    }
+
+    // 2. Import the 3 missing October 2026 blog posts
+    ds_import_missing_blog_posts();
+
+    // 2b. Ensure /privacy-policy/ is published and linked (Launch Checklist Row 24)
+    ds_ensure_privacy_policy_page();
+
+    // 3. Rewrite the 97 old internal links across posts and pages
+    if ( function_exists( 'ds_post_links_rules' ) && function_exists( 'ds_post_links_scan' ) ) {
+        $rules = ds_post_links_rules();
+        if ( ! empty( $rules ) ) {
+            $posts = get_posts( [
+                'post_type'        => [ 'post', 'page' ],
+                'post_status'      => [ 'publish', 'future', 'draft', 'pending', 'private' ],
+                'posts_per_page'   => -1,
+                'no_found_rows'    => true,
+                'suppress_filters' => true,
+            ] );
+            $kses = (bool) has_filter( 'content_save_pre', 'wp_filter_post_kses' );
+            if ( $kses ) {
+                kses_remove_filters();
+            }
+            foreach ( $posts as $p ) {
+                if ( false === stripos( $p->post_content, 'href' ) ) {
+                    continue;
+                }
+                $scan = ds_post_links_scan( $p->post_content, $rules );
+                if ( ! empty( $scan['changes'] ) ) {
+                    wp_update_post( wp_slash( [ 'ID' => $p->ID, 'post_content' => $scan['content'] ] ) );
+                }
+            }
+            if ( $kses ) {
+                kses_init_filters();
+            }
+        }
+    }
+
+    // 4. Author archive noindex in Slim SEO option + clean user_nicename slugs
+    $slim_opt = get_option( 'slim_seo', [] );
+    if ( is_array( $slim_opt ) ) {
+        if ( empty( $slim_opt['author'] ) || ! is_array( $slim_opt['author'] ) ) {
+            $slim_opt['author'] = [];
+        }
+        $slim_opt['author']['noindex'] = 1;
+        update_option( 'slim_seo', $slim_opt );
+    }
+
+    global $wpdb;
+    $nicename_map = [
+        'upwardengine'       => [ 'nicename' => 'dr-jeffrey-burns', 'display' => 'Dr. Jeffrey S. Burns, DDS' ],
+        'meganjburnsdds-com' => [ 'nicename' => 'megan',            'display' => 'Megan' ],
+    ];
+    foreach ( $nicename_map as $login => $info ) {
+        $u = get_user_by( 'login', $login );
+        if ( $u ) {
+            $wpdb->update(
+                $wpdb->users,
+                [
+                    'user_nicename' => $info['nicename'],
+                    'display_name'  => $info['display'],
+                ],
+                [ 'ID' => $u->ID ]
+            );
+            clean_user_cache( $u->ID );
+        }
+    }
+
+    update_option( 'ds_v190_auto_migrate_done', '1' );
+}, 25 );
+
+
+/**
+ * Launch Checklist Row 24:
+ * Ensure the /privacy-policy/ page exists and is set in wp_page_for_privacy_policy.
+ */
+function ds_ensure_privacy_policy_page() {
+    $page = get_page_by_path( 'privacy-policy' );
+    $content = <<<HTML
+<!-- wp:paragraph -->
+<p><em>Last updated: November 2026</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2} -->
+<h2>1. Introduction & Overview</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>At the dental practice of <strong>Dr. Jeffrey S. Burns, DDS (Jeffrey S. Burns DDS, PC)</strong> ("we," "our," or "us"), we are committed to safeguarding the privacy and confidential personal information of our patients and website visitors. This Privacy Policy explains how we collect, use, and protect your information when you visit <a href="/">www.jeffreyburns.com</a> or use our online appointment scheduling and patient inquiry tools.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2} -->
+<h2>2. Information We Collect</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>We only collect personal information that you voluntarily submit to us, which may include:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul>
+  <li><strong>Contact Details:</strong> Your name, email address, telephone number, and preferred contact method.</li>
+  <li><strong>Appointment & Care Notes:</strong> Preferred consultation times, service interests (e.g., dental implants, DreamSmile&trade; assessment, cosmetic dentistry, dentures), and optional notes you provide regarding your dental needs.</li>
+  <li><strong>New Patient Inquiries:</strong> Requests for new patient registration paperwork or digital resources.</li>
+  <li><strong>Technical & Usage Data:</strong> Non-personally identifiable information collected automatically via cookies and tracking tools (e.g., Google Tag Manager, Google Analytics), such as device type, browser, approximate geographic location, and pages visited.</li>
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":2} -->
+<h2>3. How We Use Your Information</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The information we collect is strictly used to:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul>
+  <li>Schedule and confirm dental consultations, assessments, and follow-up appointments.</li>
+  <li>Communicate directly with you regarding your dental care and inquiries.</li>
+  <li>Provide requested patient educational materials and guides.</li>
+  <li>Operate, maintain, and optimize the functionality and speed of our website.</li>
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>We do not sell, rent, trade, or share your personal contact details with third parties for commercial or promotional marketing purposes under any circumstances.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2} -->
+<h2>4. SMS and Phone Communication Disclosure</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you provide your telephone number through our contact forms or scheduling tool, you may receive phone calls or SMS text messages regarding your appointment requests and care reminders from our New Market office. <strong>No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.</strong> Message and data rates may apply. You may opt out of SMS communications at any time by replying STOP.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2} -->
+<h2>5. Health Information (HIPAA)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Our website is designed for general informational and scheduling purposes. Protected Health Information (PHI) provided during in-office visits or via secure patient intake systems is governed by the Health Insurance Portability and Accountability Act (HIPAA) and our practice Notice of Privacy Practices.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2} -->
+<h2>6. Contact Us</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you have any questions about this Privacy Policy or our privacy practices, please contact us:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Dr. Jeffrey Burns DDS</strong><br/>
+9626 South Congress St<br/>
+New Market, VA 22844<br/>
+Phone: <a href="tel:+15407408937">(540) 740-8937</a><br/>
+Website: <a href="/">www.jeffreyburns.com</a></p>
+<!-- /wp:paragraph -->
+HTML;
+
+    if ( ! $page ) {
+        $page_id = wp_insert_post( [
+            'post_title'   => 'Privacy Policy',
+            'post_name'    => 'privacy-policy',
+            'post_type'    => 'page',
+            'post_status'  => 'publish',
+            'post_content' => $content,
+        ] );
+    } else {
+        $page_id = $page->ID;
+        if ( 'publish' !== $page->post_status || empty( trim( $page->post_content ) ) ) {
+            wp_update_post( [
+                'ID'           => $page_id,
+                'post_status'  => 'publish',
+                'post_content' => $content,
+            ] );
+        }
+    }
+
+    if ( $page_id && ! is_wp_error( $page_id ) ) {
+        update_option( 'wp_page_for_privacy_policy', (int) $page_id );
+        $meta = get_post_meta( $page_id, 'slim_seo', true );
+        $meta = is_array( $meta ) ? $meta : [];
+        $meta['title']       = 'Privacy Policy | Dr. Jeffrey Burns';
+        $meta['description'] = 'Privacy Policy for the dental practice of Dr. Jeffrey Burns DDS in New Market, VA. How we handle patient inquiries, scheduling, and information.';
+        update_post_meta( $page_id, 'slim_seo', $meta );
+    }
+}

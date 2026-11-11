@@ -940,3 +940,211 @@ function ds_media_library_videos() {
     }
     return $map;
 }
+
+
+/**
+ * R31 / Launch Checklist Row 25 / Metadata Issues Row 23:
+ * Hide author archive pages from Google (noindex).
+ */
+add_filter( 'slim_seo_robots_index', function ( $value, $object_id = 0 ) {
+    if ( is_author() ) {
+        return false;
+    }
+    return $value;
+}, 10, 2 );
+
+/**
+ * Launch Checklist Rows 8, 13 & 18:
+ * Enrich Slim SEO's single Organization schema entity into a full Dentist
+ * entity with street address, hours (Mon–Thu 8 AM – 3 PM), phone, geo
+ * coordinates, map link, and https URLs across the graph.
+ */
+add_filter( 'slim_seo_schema_graph', function ( $graph ) {
+    if ( ! is_array( $graph ) ) {
+        return $graph;
+    }
+    foreach ( $graph as $k => $node ) {
+        if ( ! is_array( $node ) ) {
+            continue;
+        }
+        foreach ( [ '@id', 'url', 'target' ] as $url_field ) {
+            if ( isset( $node[ $url_field ] ) && is_string( $node[ $url_field ] ) && 0 === strpos( $node[ $url_field ], 'http://' ) ) {
+                $graph[ $k ][ $url_field ] = set_url_scheme( $node[ $url_field ], 'https' );
+            }
+        }
+        $type = $node['@type'] ?? '';
+        $id   = $node['@id'] ?? '';
+        if ( 'Organization' === $type || 'Dentist' === $type || false !== strpos( (string) $id, '#organization' ) ) {
+            $graph[ $k ]['@type']     = 'Dentist';
+            $graph[ $k ]['name']      = 'Dr. Jeffrey Burns';
+            $graph[ $k ]['telephone'] = '+1-540-740-8937';
+            $graph[ $k ]['address']   = [
+                '@type'           => 'PostalAddress',
+                'streetAddress'   => '9626 South Congress St',
+                'addressLocality' => 'New Market',
+                'addressRegion'   => 'VA',
+                'postalCode'      => '22844',
+                'addressCountry'  => 'US',
+            ];
+            $graph[ $k ]['geo'] = [
+                '@type'     => 'GeoCoordinates',
+                'latitude'  => 38.6473,
+                'longitude' => -78.6711,
+            ];
+            $graph[ $k ]['hasMap'] = 'https://www.google.com/maps?q=9626+South+Congress+St,+New+Market,+VA+22844';
+            $graph[ $k ]['openingHoursSpecification'] = [
+                [
+                    '@type'     => 'OpeningHoursSpecification',
+                    'dayOfWeek' => [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday' ],
+                    'opens'     => '08:00',
+                    'closes'    => '15:00',
+                ],
+            ];
+            $same_as = isset( $graph[ $k ]['sameAs'] ) && is_array( $graph[ $k ]['sameAs'] ) ? $graph[ $k ]['sameAs'] : [];
+            foreach ( [
+                'https://www.facebook.com/JeffreySBurnsDDS/',
+                'https://www.instagram.com/jeffreys.burnsdds/',
+                'https://www.google.com/maps?q=Jeffrey+S.+Burns+DDS+9626+South+Congress+St+New+Market+VA+22844',
+            ] as $profile ) {
+                if ( ! in_array( $profile, $same_as, true ) ) {
+                    $same_as[] = $profile;
+                }
+            }
+            $graph[ $k ]['sameAs'] = array_values( $same_as );
+        }
+    }
+    return $graph;
+}, 999 );
+
+/**
+ * Fix Old Redirects Tab (Rows 4–12) & Legacy Snippet Cleanup:
+ * Prevents case-insensitive self-redirect loops (/Blog -> /blog/, /Contact -> /contact/)
+ * in ss_redirects, handles case-sensitive /Blog and /Contact + the 6 manual rules at
+ * priority 1 on template_redirect, and strips legacy placeSmileReveal() footer injections.
+ */
+add_action( 'init', function () {
+    if ( get_option( 'ds_v162_cleanup_done' ) === '1' ) {
+        return;
+    }
+
+    $opt_name  = defined( 'SLIM_SEO_REDIRECTS' ) ? SLIM_SEO_REDIRECTS : 'ss_redirects';
+    $redirects = get_option( $opt_name, [] );
+    if ( is_array( $redirects ) ) {
+        $manual_fixes = [
+            'cosmetic-dentistry/clear-braces'      => '/clear-braces/',
+            'cosmetic-dentistry/porcelain-veneers' => '/porcelain-veneers/',
+            'cosmetic-dentistry/teeth-whitening'   => '/teeth-whitening/',
+            'cosmetic-dentistry/dental-bonding'    => '/cosmetic-dentistry/',
+            'cosmetic-dentistry/inlays-onlays'     => '/dental-fillings/',
+            'about'                                => '/meet-dr-burns/',
+            'About'                                => '/meet-dr-burns/',
+        ];
+        $found_keys = [];
+        foreach ( $redirects as $k => $r ) {
+            if ( ! is_array( $r ) ) {
+                continue;
+            }
+            $from_norm = trim( $r['from'] ?? '', '/' );
+            $to_path   = trim( (string) wp_parse_url( $r['to'] ?? '', PHP_URL_PATH ), '/' );
+            if ( strtolower( $from_norm ) === strtolower( $to_path ) ) {
+                unset( $redirects[ $k ] );
+                continue;
+            }
+            foreach ( $manual_fixes as $mf_from => $mf_to ) {
+                if ( strcasecmp( $from_norm, $mf_from ) === 0 ) {
+                    $redirects[ $k ]['to']               = home_url( $mf_to );
+                    $redirects[ $k ]['type']             = 301;
+                    $redirects[ $k ]['condition']        = 'exact-match';
+                    $redirects[ $k ]['enable']           = 1;
+                    $redirects[ $k ]['ignoreParameters'] = 1;
+                    $found_keys[ strtolower( $mf_from ) ] = true;
+                }
+            }
+            if ( isset( $redirects[ $k ]['to'] ) && strpos( $redirects[ $k ]['to'], 'http://' ) === 0 ) {
+                $redirects[ $k ]['to'] = set_url_scheme( $redirects[ $k ]['to'], 'https' );
+            }
+        }
+        foreach ( $manual_fixes as $mf_from => $mf_to ) {
+            if ( empty( $found_keys[ strtolower( $mf_from ) ] ) ) {
+                $redirects[ uniqid() ] = [
+                    'type'             => 301,
+                    'condition'        => 'exact-match',
+                    'from'             => $mf_from,
+                    'to'               => home_url( $mf_to ),
+                    'note'             => 'SEO tracker Section 3 manual rule',
+                    'enable'           => 1,
+                    'ignoreParameters' => 1,
+                ];
+                $found_keys[ strtolower( $mf_from ) ] = true;
+            }
+        }
+        update_option( $opt_name, $redirects );
+    }
+
+    $snippets = get_posts( [
+        'post_type'      => 'wpcode',
+        'post_status'    => [ 'publish', 'draft', 'any' ],
+        'posts_per_page' => 50,
+    ] );
+    foreach ( $snippets as $snip ) {
+        if ( strpos( $snip->post_content, 'placeSmileReveal' ) !== false || strpos( $snip->post_content, 'smile-reveal-funnel.js' ) !== false ) {
+            wp_update_post( [
+                'ID'          => $snip->ID,
+                'post_status' => 'draft',
+            ] );
+        }
+    }
+    foreach ( [ 'ihaf_insert_footer', 'ihaf_insert_header', 'ihaf_insert_body' ] as $ihaf_key ) {
+        $val = get_option( $ihaf_key, '' );
+        if ( is_string( $val ) && ( strpos( $val, 'placeSmileReveal' ) !== false || strpos( $val, 'smile-reveal-funnel.js' ) !== false ) ) {
+            $val = preg_replace( '#<script[^>]*smile-reveal-funnel\.js[^>]*>\s*</script>#i', '', $val );
+            $val = preg_replace( '#<script[^>]*>[^<]*placeSmileReveal[\s\S]*?</script>#i', '', $val );
+            update_option( $ihaf_key, trim( $val ) );
+        }
+    }
+    delete_transient( 'wpcode_snippets' );
+    delete_option( 'wpcode_snippets' );
+
+    update_option( 'ds_v162_cleanup_done', '1' );
+}, 20 );
+
+add_action( 'template_redirect', function () {
+    $req_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+    if ( 'Blog' === $req_path ) {
+        wp_safe_redirect( home_url( '/blog/' ), 301 );
+        exit;
+    }
+    if ( 'Contact' === $req_path ) {
+        wp_safe_redirect( home_url( '/contact/' ), 301 );
+        exit;
+    }
+    $legacy_map = [
+        'cosmetic-dentistry/clear-braces'      => '/clear-braces/',
+        'cosmetic-dentistry/porcelain-veneers' => '/porcelain-veneers/',
+        'cosmetic-dentistry/teeth-whitening'   => '/teeth-whitening/',
+        'cosmetic-dentistry/dental-bonding'    => '/cosmetic-dentistry/',
+        'cosmetic-dentistry/inlays-onlays'     => '/dental-fillings/',
+        'about'                                => '/meet-dr-burns/',
+    ];
+    $key = strtolower( $req_path );
+    if ( isset( $legacy_map[ $key ] ) ) {
+        wp_safe_redirect( home_url( $legacy_map[ $key ] ), 301 );
+        exit;
+    }
+}, 1 );
+
+add_action( 'wp_footer', function () {
+    ob_start();
+}, 0 );
+
+add_action( 'wp_footer', function () {
+    $footer_html = ob_get_clean();
+    if ( false === $footer_html ) {
+        return;
+    }
+    if ( strpos( $footer_html, 'placeSmileReveal' ) !== false || strpos( $footer_html, 'smile-reveal-funnel.js' ) !== false ) {
+        $footer_html = preg_replace( '#<script[^>]*smile-reveal-funnel\.js[^>]*>\s*</script>#i', '', $footer_html );
+        $footer_html = preg_replace( '#<script[^>]*>[^<]*placeSmileReveal[\s\S]*?</script>#i', '', $footer_html );
+    }
+    echo $footer_html;
+}, 99999 );
