@@ -292,18 +292,34 @@ add_action( 'wp_head', function () {
     }
     echo '<meta name="theme-color" content="#7FB5B0">' . "\n";
 
-    // FAQPage mirrors the question list the implant-faqs pattern renders from
-    // ds_faq_data(), so it can only stay in sync if it comes from the same
-    // place. Slim SEO prints no FAQPage, so this is not a second copy.
+    // FAQPage mirrors the questions a page shows, so it is built from the same
+    // data: ds_faq_data() on /implant-faqs/, the town copy's 'faq' list on the
+    // town pages (Rev 2 docs: "add an FAQ accordion with FAQPage schema").
+    // Slim SEO prints no FAQPage, so neither is a second copy.
     if ( is_page( 'implant-faqs' ) ) {
-        $main_entity = [];
-        foreach ( ds_faq_data() as $f ) {
-            // Brand convention: DreamSmile&trade; on visible UI only — strip the mark from schema text.
-            $main_entity[] = [ '@type' => 'Question', 'name' => str_replace( '™', '', wp_strip_all_tags( html_entity_decode( $f[1] ) ) ), 'acceptedAnswer' => [ '@type' => 'Answer', 'text' => str_replace( '™', '', wp_strip_all_tags( html_entity_decode( $f[2] ) ) ) ] ];
+        echo ds_faq_schema( array_map( function ( $f ) { return [ $f[1], $f[2] ]; }, ds_faq_data() ) );
+    } elseif ( is_page() && ( $page = get_queried_object() ) instanceof WP_Post && isset( ds_town_copy()[ $page->post_name ] ) ) {
+        $town = ds_town_render_copy( $page );
+        if ( ! empty( $town['faq'] ) ) {
+            echo ds_faq_schema( $town['faq'] );
         }
-        echo '<script type="application/ld+json">' . wp_json_encode( [ '@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $main_entity ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
     }
 }, 5 );
+
+/**
+ * FAQPage JSON-LD for [ question, answer ] pairs written as page HTML.
+ * Brand convention: DreamSmile™ on visible UI only, so the mark is stripped.
+ */
+function ds_faq_schema( array $pairs ) {
+    $text = function ( $html ) {
+        return trim( str_replace( '™', '', wp_strip_all_tags( html_entity_decode( $html, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) ) );
+    };
+    $main_entity = [];
+    foreach ( $pairs as $f ) {
+        $main_entity[] = [ '@type' => 'Question', 'name' => $text( $f[0] ), 'acceptedAnswer' => [ '@type' => 'Answer', 'text' => $text( $f[1] ) ] ];
+    }
+    return '<script type="application/ld+json">' . wp_json_encode( [ '@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $main_entity ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}
 
 // One-time hand-off of the theme's old titles/descriptions into Slim SEO.
 require_once trailingslashit( get_stylesheet_directory() ) . 'inc/seo-migration.php';
@@ -415,10 +431,10 @@ function ds_town_pages() {
 }
 
 /**
- * The old site's copy for the town pages above, keyed by page slug
- * (inc/town-pages.php). Harrisonburg was the client's request (2026-10-24);
- * the other seven followed, so all eight are listed. Pages read it through
- * ds_town_render_copy(), which prefers new text pasted in wp-admin.
+ * The copy for the town pages above, keyed by page slug (inc/town-pages.php):
+ * the SEO team's Rev 2 text since theme 1.9.0, the old site's January text
+ * before that. Pages read it through ds_town_render_copy(), which prefers new
+ * text pasted in wp-admin.
  */
 function ds_town_copy() {
     static $cache = null;
@@ -442,14 +458,14 @@ add_filter( 'page_template_hierarchy', function ( $templates ) {
  * The copy a town page shows: the text in its WordPress editor once someone
  * has replaced the January text there, otherwise the theme's copy.
  *
- * SEO tracker, Nov 5 2026 recheck: the SEO team is restoring each town page's
- * original text (cut down to implants only on Jan 22, 2026) and will paste it
- * into WordPress. Until then the editor still holds the January text, which
- * inc/town-pages.php carries in cleaned-up form (assessment, not consultation;
- * no "specializes"; the Google-reviews widget and old button gone), so that
- * copy keeps showing. ds_town_editor_copy() tells the two apart.
+ * SEO tracker, Nov 5 2026 recheck: the SEO team planned to paste each town
+ * page's original text into WordPress. They sent the Rev 2 rewrite for the
+ * theme instead (2026-11-11), and every editor on staging still holds the
+ * January text, so the theme's copy shows. ds_town_editor_copy() tells pasted
+ * text from the January text (and from the Rev 2 text, if that is pasted).
  *
  * Same shape as a ds_town_copy() entry, plus 'source' => 'editor'|'theme'.
+ * Pasted text has no details or FAQ: those belong to the theme's copy.
  *
  * @param WP_Post $post A page listed in ds_town_copy().
  * @return array|null
@@ -467,6 +483,8 @@ function ds_town_render_copy( WP_Post $post ) {
         'h1'       => '' !== $editor['h1'] ? $editor['h1'] : $theme['h1'],
         'intro'    => $editor['intro'],
         'sections' => $editor['sections'],
+        'details'  => [],
+        'faq'      => [],
         'source'   => 'editor',
     ] );
 }
@@ -478,9 +496,10 @@ function ds_town_render_copy( WP_Post $post ) {
  * inner HTML ] for lists and subheadings. Everything else (shortcodes, widgets,
  * buttons, images, embeds) is dropped, and empty bold marks are removed.
  *
- * Returns null while the text still has two or more of the January section
- * headings the theme's copy was taken from (so saving only the Slim SEO title
- * never swaps the text), or when it has fewer than two sections.
+ * Returns null while the text still has two or more of the headings the theme
+ * already carries a version of (the January ones in 'january', or the theme
+ * copy's own), so saving only the Slim SEO title never swaps the text, or
+ * when it has fewer than two sections.
  *
  * @param WP_Post $post A page listed in ds_town_copy().
  * @return array|null
@@ -558,9 +577,9 @@ function ds_town_editor_copy( WP_Post $post ) {
     $key = function ( $s ) use ( $plain ) {
         return preg_replace( '/[^a-z0-9]+/', '', strtolower( $plain( $s ) ) );
     };
-    $editor_heads  = array_map( $key, array_column( $copy['sections'], 0 ) );
-    $january_heads = array_map( $key, array_column( $theme['sections'], 0 ) );
-    if ( count( $copy['sections'] ) < 2 || count( array_intersect( $january_heads, $editor_heads ) ) >= 2 ) {
+    $editor_heads = array_map( $key, array_column( $copy['sections'], 0 ) );
+    $known_heads  = array_unique( array_map( $key, array_merge( $theme['january'] ?? [], array_column( $theme['sections'], 0 ) ) ) );
+    if ( count( $copy['sections'] ) < 2 || count( array_intersect( $known_heads, $editor_heads ) ) >= 2 ) {
         return null;
     }
     return $cache[ $post->ID ] = $copy;
@@ -577,7 +596,8 @@ add_action( 'add_meta_boxes_page', function ( $post ) {
             echo '<p>Layout: the H1 and the paragraphs above the first H2 open the page. The first H2 section comes after the eligibility quiz. The H2 sections between the first and the last follow (three sit side by side; any other number stack). The last H2 section closes the page, above the call buttons. Lists and H3 subheadings are kept. Images, buttons, shortcodes and widgets are left out; the page adds its own.</p>';
         } else {
             echo '<p><strong>The page shows the theme&rsquo;s copy, not the text in this editor.</strong></p>';
-            echo '<p>To use your own text, replace the text in this editor: an H1, a short intro, then one H2 heading per section. Update the page and it switches over, once the January headings (&ldquo;' . wp_kses_post( ds_town_copy()[ $post->post_name ]['sections'][0][0] ) . '&rdquo; and the rest) are gone.</p>';
+            $town = ds_town_copy()[ $post->post_name ];
+            echo '<p>To use your own text, replace the text in this editor: an H1, a short intro, then one H2 heading per section. Update the page and it switches over, once the January headings (&ldquo;' . wp_kses_post( $town['january'][0] ?? $town['sections'][0][0] ) . '&rdquo; and the rest) are gone and it doesn&rsquo;t reuse the theme&rsquo;s own (&ldquo;' . wp_kses_post( $town['sections'][0][0] ) . '&rdquo; and the rest). Your text replaces the theme&rsquo;s comparison section and FAQ too.</p>';
         }
         echo '<p>The Google headline and blurb are set in the Slim SEO box, as on every page.</p>';
     }, 'page', 'side', 'high' );
