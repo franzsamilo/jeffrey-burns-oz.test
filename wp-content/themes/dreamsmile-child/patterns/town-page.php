@@ -6,34 +6,38 @@
  * Inserter: no
  *
  * Body of the /contact-us/ town pages (ds_town_pages()) whose copy is in
- * inc/town-pages.php: the old site's text, word for word, in the theme's
+ * inc/town-pages.php: the SEO team's Rev 2 text (Nov 2026), in the theme's
  * location-page components. Like single-location.php, it is a local-SEO page:
  * the address, hours, map and patient stories are the one New Market office's.
  *
- * The old town pages all share one shape, and the layout follows it:
+ * The blocks run in the order the Rev 2 docs place them:
  *   H1 + intro            → .ds-loc-hero
  *   the eligibility survey → inline GHL survey on a charcoal band, at the old
  *                            #see-if-you-qualify anchor
- *   section 1             → .ds-loc-intro (heading beside its two paragraphs)
- *   sections 2–4          → .ds-loc-points (three columns on grey)
+ *   section 1             → .ds-loc-intro (heading beside its text)
+ *   sections 2–4          → .ds-loc-points (three cards on grey)
+ *   details               → .ds-loc-intro--wide: full-width sections with a
+ *                            table, steps, or both
  *   Meet Dr. Jeffrey Burns → .ds-loc-doctor (dark)
  *   the DreamSmile blurb   → .ds-loc-dreamsmile, beside the patient-stories video
+ *   travel + service area → .ds-loc-map, "Visit us" (dark)
+ *   faq                   → .ds-faq accordion (+ FAQPage schema, functions.php)
  *   section 5             → .ds-loc-cta, the closing call to action
- * plus the office map (.ds-loc-map), as on every location page. The light and
- * dark bands alternate so no more than two light sections meet (client review
- * notes: "needs more greys").
+ * Light and dark bands alternate, with never more than three light sections
+ * in a row (client review notes: "needs more greys").
  *
- * Old headings stay H2s, even where a card styles them small. The two shared
- * blurbs carry the DreamSmile™ mark and fix two typos in the old text
- * ("taught to Dentists", "long-lasting DreamSmile"). Renders nothing for a
- * page without copy.
+ * Every heading stays an H2, even where a card styles it small, and FAQ
+ * questions are H3s, as in the docs. The two shared blurbs carry the
+ * DreamSmile™ mark and fix two typos in the old text ("taught to Dentists",
+ * "long-lasting DreamSmile"). Renders nothing for a page without copy.
  *
- * Text pasted into the page in wp-admin replaces the theme's copy once the
- * January text is gone from the editor (ds_town_render_copy(), SEO tracker
+ * Text pasted into the page in wp-admin replaces the theme's copy once it no
+ * longer repeats the theme's headings (ds_town_render_copy(), SEO tracker
  * Nov 2026). It fills the same slots: H1 + intro, first H2 section, middle
  * H2 sections, last H2 section. Three middle sections keep the three columns;
  * any other number stacks as heading-beside-text rows on alternating bands.
- * Its lists and H3s keep their tags.
+ * Its lists and H3s keep their tags. The theme's details and FAQ belong to
+ * the theme's copy, so pasted text shows without them.
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -47,10 +51,15 @@ $img_dims = wp_getimagesize( get_stylesheet_directory() . '/assets/arrange/' . $
 $points  = $town['sections'];
 $lead    = array_shift( $points );
 $closing = array_pop( $points );
-// The old pages put benefits, technology and comfort in between, in that order.
+// The theme's cards name their own icon. The fallback order is the old
+// pages' benefits, technology and comfort.
 $icons = [ 'tooth', 'cpu', 'shield' ];
 // Pasted text can put anything in between, so its icons follow the heading.
-$icon_for = function ( $heading, $i ) use ( $town, $icons ) {
+$icon_for = function ( $pt, $i ) use ( $town, $icons ) {
+  $heading = $pt[0];
+  if ( 'editor' !== $town['source'] && ! empty( $pt[2] ) ) {
+    return $pt[2];
+  }
   if ( 'editor' === $town['source'] ) {
     $h = strtolower( wp_strip_all_tags( $heading ) );
     foreach ( [
@@ -66,15 +75,53 @@ $icon_for = function ( $heading, $i ) use ( $town, $icons ) {
   }
   return $icons[ $i % 3 ];
 };
-// One block of copy: a paragraph (string), or a list / subheading pasted in
-// wp-admin ([ 'ul'|'ol'|'h3' => inner HTML ], from ds_town_editor_copy()).
-$block = function ( $b, $p_class = '' ) {
+// A comparison table from inc/town-pages.php. The first cell of each row is
+// its header. Under 640px each row becomes a card, so every cell carries its
+// column name (data-label); the ARIA roles keep it a table for screen readers
+// once CSS changes its display. 'em' tints the column or row the copy argues for.
+$table = function ( array $t ) {
+  $head   = $t['head'] ?? [];
+  $em_col = $t['em']['col'] ?? null;
+  $em_row = $t['em']['row'] ?? null;
+  $html   = '<div class="ds-loc-table-wrap"><table class="ds-loc-table" role="table">';
+  if ( $head ) {
+    $html .= '<thead role="rowgroup"><tr role="row">';
+    foreach ( $head as $c => $h ) {
+      $em    = $c === $em_col ? ' class="is-em"' : '';
+      $html .= '' === $h ? '<td role="cell"></td>' : '<th scope="col" role="columnheader"' . $em . '>' . $h . '</th>';
+    }
+    $html .= '</tr></thead>';
+  }
+  $html .= '<tbody role="rowgroup">';
+  foreach ( $t['rows'] as $r => $row ) {
+    $html .= '<tr role="row"' . ( $r === $em_row ? ' class="is-em"' : '' ) . '>';
+    foreach ( $row as $c => $cell ) {
+      if ( 0 === $c ) {
+        $html .= '<th scope="row" role="rowheader">' . $cell . '</th>';
+        continue;
+      }
+      $label = isset( $head[ $c ] ) ? trim( wp_strip_all_tags( $head[ $c ] ) ) : '';
+      $html .= '<td role="cell"' . ( '' !== $label ? ' data-label="' . esc_attr( $label ) . '"' : '' ) . ( $c === $em_col ? ' class="is-em"' : '' ) . '>' . $cell . '</td>';
+    }
+    $html .= '</tr>';
+  }
+  return $html . '</tbody></table></div>';
+};
+// One block of copy: a paragraph (string), a list or subheading ([ 'ul'|'ol'|'h3'
+// => inner HTML ], from inc/town-pages.php or ds_town_editor_copy()), or a table.
+$block = function ( $b, $p_class = '' ) use ( $table ) {
   if ( is_string( $b ) ) {
     return '<p' . ( $p_class ? ' class="' . esc_attr( $p_class ) . '"' : '' ) . '>' . $b . '</p>';
   }
   $tag = key( $b );
+  if ( 'table' === $tag ) {
+    return $table( current( $b ) );
+  }
   return '<' . $tag . ' class="' . ( 'h3' === $tag ? 'ds-loc-subhead' : 'ds-loc-list' ) . '">' . current( $b ) . '</' . $tag . '>';
 };
+// "Proudly serving…" from the live site's town pages, which the Rev 2 docs
+// restore under the "Visit us" text. The same on all eight.
+$areas = 'Proudly serving Shenandoah County, Page County, Rockingham County, and the communities of Timberville, Broadway, Mount Jackson, Stanley, Luray, Harrisonburg, Quicksburg, Woodstock, Basye, Edinburg, Elkton, and Bridgewater.';
 
 $svg = [
   'pin'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
@@ -85,6 +132,11 @@ $svg = [
   'cpu'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>',
   'shield' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>',
   'sparkle'=> '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/></svg>',
+  'check'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16.2 9.6"/></svg>',
+  'clock'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>',
+  'award'  => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.6 14.1L7 22l5-3 5 3-1.6-7.9"/></svg>',
+  'dollar' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+  'card'   => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>',
 ];
 
 $schedule_attr = ' data-ds-schedule-location="' . esc_attr( $town['town'] ) . '"';
@@ -155,7 +207,7 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode
   <div class="ds-wrap ds-loc-points__grid">
     <?php foreach ( $points as $i => $pt ) : ?>
       <div class="ds-loc-point ds-reveal">
-        <span class="ds-loc-point__icon"><?php echo $svg[ $icon_for( $pt[0], $i ) ]; ?></span>
+        <span class="ds-loc-point__icon"><?php echo $svg[ $icon_for( $pt, $i ) ] ?? $svg['tooth']; ?></span>
         <h2 class="ds-loc-point__title"><?php echo $pt[0]; ?></h2>
         <?php foreach ( $pt[1] as $para ) { echo $block( $para, 'ds-loc-point__text' ); } ?>
       </div>
@@ -175,6 +227,21 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode
   </div>
 </section>
   <?php endforeach; ?>
+<?php endif; ?>
+
+<?php if ( ! empty( $town['details'] ) ) : ?>
+<section class="ds-loc-intro ds-loc-intro--wide">
+  <div class="ds-wrap ds-loc-details">
+    <?php foreach ( $town['details'] as $d ) : ?>
+      <div class="ds-loc-detail ds-reveal">
+        <h2 class="ds-loc-intro__title"><?php echo $d[0]; ?></h2>
+        <div class="ds-loc-intro__body ds-loc-detail__body">
+          <?php foreach ( $d[1] as $b ) { echo $block( $b ); } ?>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</section>
 <?php endif; ?>
 
 <section class="ds-loc-doctor">
@@ -222,7 +289,10 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode
     <div class="ds-loc-map__head ds-reveal">
       <span class="ds-label">MAP &amp; DIRECTIONS</span>
       <h2 class="ds-loc-map__title">Visit us &mdash; a short drive from <?php echo esc_html( $town['town'] ); ?>.</h2>
-      <p class="ds-loc-map__travel"><?php echo $town['travel']; ?></p>
+      <?php foreach ( (array) $town['travel'] as $line ) : ?>
+        <p class="ds-loc-map__travel ds-loc-map__travel--long"><?php echo $line; ?></p>
+      <?php endforeach; ?>
+      <p class="ds-loc-map__areas"><?php echo esc_html( $areas ); ?></p>
     </div>
     <div class="ds-loc-map__grid">
       <div class="ds-loc-map__info ds-reveal">
@@ -251,6 +321,30 @@ $maps_dir      = 'https://www.google.com/maps/dir/?api=1&origin=' . rawurlencode
     </div>
   </div>
 </section>
+
+<?php if ( ! empty( $town['faq'] ) ) : ?>
+<section class="ds-faq ds-loc-faq">
+  <div class="ds-wrap">
+    <div class="ds-faq__head ds-reveal">
+      <span class="ds-label">FREQUENTLY ASKED</span>
+      <h2 class="ds-faq__title"><?php echo esc_html( $town['town'] ); ?> Dental Implant FAQ</h2>
+    </div>
+    <div class="ds-faq__list">
+      <?php foreach ( $town['faq'] as $i => $f ) : ?>
+        <details class="ds-faq-item ds-reveal"<?php echo 0 === $i ? ' open' : ''; ?>>
+          <summary class="ds-faq-item__q">
+            <h3 class="ds-faq-item__h"><?php echo $f[0]; ?></h3>
+            <span class="ds-faq-item__chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </summary>
+          <div class="ds-faq-item__a"><?php echo $f[1]; ?></div>
+        </details>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 <section class="ds-loc-cta" id="schedule">
   <div class="ds-wrap">

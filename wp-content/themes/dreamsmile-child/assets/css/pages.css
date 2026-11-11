@@ -6853,6 +6853,125 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 }
 .ds-loc-cta__body--note { font-size: 13.5px; margin-top: 8px; }
 
+/* ─── Town pages, Rev 2 copy (theme 1.9.0) ───────────────────────────────
+   The SEO team's Rev 2 docs add lists inside the cards, a full-width section
+   with a table or steps after them, a longer "Visit us" text with the
+   service-area line, and an FAQ. They reuse .ds-loc-intro's type, .ds-loc-list
+   and the .ds-faq accordion. */
+.ds-loc-point .ds-loc-list { margin: 0; }
+.ds-loc-list a:hover { color: var(--ds-teal-dark); }
+/* Body copy is Montserrat 300, where plain <strong> only reaches 400. The
+   bold lead-ins ("Insurance:", "3D scan and virtual planning:") need 700. */
+.ds-loc-intro__body strong,
+.ds-loc-point strong { font-weight: 700; color: var(--ds-charcoal); }
+
+/* A heading over its text, full width so a 4-column table has room. */
+.ds-loc-details { max-width: 1080px; }
+.ds-loc-detail { display: flex; flex-direction: column; gap: 22px; }
+.ds-loc-detail + .ds-loc-detail {
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(58, 58, 58, 0.12);
+}
+
+.ds-loc-table-wrap {
+  margin: 4px 0 22px;
+  border: 1px solid rgba(58, 58, 58, 0.12);
+  border-radius: 12px;
+  overflow-x: auto;
+  background: #fff;
+}
+.ds-loc-table-wrap:last-child { margin-bottom: 0; }
+.ds-loc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ds-dark-slate);
+}
+.ds-loc-table th,
+.ds-loc-table td { padding: 13px 18px; text-align: left; vertical-align: top; }
+.ds-loc-table thead > tr > * {
+  background: var(--ds-charcoal);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.ds-loc-table thead .is-em { background: var(--ds-teal); color: var(--ds-charcoal); }
+.ds-loc-table tbody tr + tr > * { border-top: 1px solid rgba(58, 58, 58, 0.1); }
+.ds-loc-table tbody th { width: 26%; font-weight: 700; color: var(--ds-charcoal); }
+/* The option the copy argues for (the implant), tinted like a recommendation. */
+.ds-loc-table tbody .is-em,
+.ds-loc-table tbody tr.is-em > * { background: rgba(127, 181, 176, 0.14); }
+.ds-loc-table tbody tr.is-em > td { color: var(--ds-charcoal); font-weight: 600; }
+
+/* Phones: each row becomes a card, every value under its column name. */
+@media (max-width: 639px) {
+  .ds-loc-table-wrap { border: 0; border-radius: 0; background: none; overflow: visible; }
+  .ds-loc-table,
+  .ds-loc-table tbody,
+  .ds-loc-table tr,
+  .ds-loc-table th,
+  .ds-loc-table td { display: block; width: auto; }
+  .ds-loc-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .ds-loc-table tbody tr {
+    background: #fff;
+    border: 1px solid rgba(58, 58, 58, 0.12);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .ds-loc-table tbody tr + tr { margin-top: 10px; }
+  .ds-loc-table tbody tr + tr > * { border-top: 0; }
+  .ds-loc-table tbody th { width: auto; padding: 0 0 4px; font-size: 15px; }
+  .ds-loc-table tbody td { padding: 6px 0 0; }
+  .ds-loc-table td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ds-teal-ink);
+  }
+  .ds-loc-table tbody tr.is-em { border-color: var(--ds-teal); background: rgba(127, 181, 176, 0.1); }
+  .ds-loc-table tbody tr.is-em > * { background: none; }
+  .ds-loc-table tbody td.is-em { margin: 6px -10px 0; padding: 6px 10px; border-radius: 8px; }
+}
+
+/* "Visit us": the Rev 2 docs give it a short paragraph or two, so it reads
+   as body text (not the one-line italic caption), then the service area. */
+.ds-loc-map__travel--long { font-style: normal; font-size: 15px; line-height: 1.6; max-width: 62ch; }
+.ds-loc-map__areas {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.66);
+  max-width: 72ch;
+  margin: 10px 0 0;
+}
+
+/* FAQ after the map. Questions are H3s (as in the docs) styled as the
+   accordion's question line. */
+.ds-loc-faq { padding: 56px 0; }
+@media (min-width: 768px) { .ds-loc-faq { padding: 80px 0; } }
+.ds-loc-faq .ds-faq__title { font-weight: 700; }
+.ds-faq-item__h {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+}
+
 /* Light .ds-loc-map, for a page whose hero is already dark (Make a Payment):
    two charcoal bands back to back read as one heavy block. */
 .ds-loc-map--light { background: var(--ds-light-gray); color: var(--ds-dark-slate); }
