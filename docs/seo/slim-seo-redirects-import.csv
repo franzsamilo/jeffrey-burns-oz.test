@@ -52,7 +52,7 @@ Type,Condition,From,To,Note,Enable,Ignore Parameters
 301,exact-match,/cosmetic-dentistry-4/dental-bonding/,/cosmetic-dentistry/,SEO tracker Redirect Map #52 (Low),1,1
 301,exact-match,/about-us/,/meet-dr-burns/,SEO tracker Redirect Map #53 (High),1,1
 301,exact-match,/about-us/dr-jeffrey-burns/,/meet-dr-burns/,SEO tracker Redirect Map #54 (High),1,1
-301,exact-match,/about-us/meet-the-staff/,/meet-dr-burns/,SEO tracker Redirect Map #55 (Medium),1,1
+301,exact-match,/about-us/meet-the-staff/,/meet-the-team/,SEO tracker Redirect Map #55 (Medium); team page since theme 1.9.1,1,1
 301,exact-match,/about-us/3d-imaging/,/dental-implants/,SEO tracker Redirect Map #56 (Low),1,1
 301,exact-match,/about-us/advanced-technology/,/dental-implants/,SEO tracker Redirect Map #57 (Low),1,1
 301,exact-match,/patient-information/,/new-patients/,SEO tracker Redirect Map #62 (Medium),1,1
@@ -73,7 +73,7 @@ Type,Condition,From,To,Note,Enable,Ignore Parameters
 301,exact-match,/sitemap/,/,SEO tracker Redirect Map #77 (Medium),1,1
 301,exact-match,/admin/,/,SEO tracker Redirect Map #78 (Medium),1,1
 301,exact-match,/office-information/,/contact/,SEO tracker Reclaim 404 Backlinks (10 linking sites),1,1
-301,exact-match,/about-our-practice/our-team/,/meet-dr-burns/,SEO tracker Reclaim 404 Backlinks (7 linking sites),1,1
+301,exact-match,/about-our-practice/our-team/,/meet-the-team/,SEO tracker Reclaim 404 Backlinks (7 linking sites); team page since theme 1.9.1,1,1
 301,exact-match,/about-our-practice/,/meet-dr-burns/,SEO tracker Reclaim 404 Backlinks (6 linking sites),1,1
 301,exact-match,/patient-forms/,/new-patients/,SEO tracker Reclaim 404 Backlinks (3 linking sites),1,1
 301,exact-match,/common-problems,/patient-education/,SEO tracker Reclaim 404 Backlinks (5 linking sites),1,1

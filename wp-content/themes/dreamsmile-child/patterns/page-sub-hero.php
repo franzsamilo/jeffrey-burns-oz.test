@@ -75,6 +75,17 @@ $variants = [
     'bg'       => $base . '/surgical-photo-burns.webp',
     'alt'      => 'Dr. Jeffrey S. Burns, DDS &mdash; in surgical loupes',
   ],
+  // /meet-the-team/ (inc/team.php). The H1 names the place, as the SEO team's
+  // headlines do: "Meet Our Dental Team in New Market, VA".
+  'meet-the-team' => [
+    'label'    => 'MEET THE TEAM',
+    'title'    => 'Meet Our Dental Team in <em>New Market, VA</em>.',
+    'subtitle' => 'Registered dental hygienists, licensed dental assistants, and coordinators who work alongside Dr. Burns, some of them since the practice opened in 1995.',
+    'cta1'     => [ 'label' => 'Schedule an Assessment', 'href' => '/#quiz' ],
+    'cta2'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
+    'bg'       => $base . '/team-group.webp',
+    'alt'      => 'Dr. Jeffrey Burns with his team in the New Market office',
+  ],
   'restorative-care' => [
     'label'    => 'RESTORATIVE CARE',
     'title'    => 'Restorative Dentistry &mdash; <em>All Under One Roof</em>.',
