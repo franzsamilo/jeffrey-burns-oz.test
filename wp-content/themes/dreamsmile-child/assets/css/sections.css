@@ -1632,10 +1632,16 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   line-height: 1.5;
 }
 .ds-comparison__cta { text-align: center; margin-top: 56px; }
+/* A dark pill to stand apart from the teal cards. .ds-btn--solid's text is
+   charcoal, so it needs white text here or the label disappears (SEO team,
+   Nov 2026). */
 .ds-comparison__cta .ds-btn {
   background: var(--ds-charcoal);
+  border-color: var(--ds-charcoal);
+  color: #fff;
 }
-.ds-comparison__cta .ds-btn:hover { background: #2d2d2d; }
+.ds-comparison__cta .ds-btn:hover,
+.ds-comparison__cta .ds-btn:focus-visible { background: #2d2d2d; border-color: #2d2d2d; color: #fff; }
 
 /* â”€â”€â”€ Burns Protocol â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
