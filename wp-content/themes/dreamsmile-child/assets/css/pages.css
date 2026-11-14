@@ -7005,3 +7005,104 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 }
 .ds-np-before__list a:hover,
 .ds-implants-nav-card__desc a:hover { color: var(--ds-teal-ink); }
+
+/* ── /meet-the-team/ (patterns/meet-the-team.php) ─────────────────────────
+   Head and cards follow .ds-np-comfort: Amiri titles, warm-gray body, white
+   cards with a faint teal border. The 3:4 headshots show square, framed on
+   the face. */
+.ds-np-before__cta { margin-top: 18px !important; }
+
+.ds-team { padding-block: 80px; background: #fff; }
+.ds-team__head { text-align: center; max-width: 720px; margin: 0 auto 44px; }
+.ds-team__title {
+  font-family: 'Amiri', 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 3.4vw, 2.2rem);
+  font-weight: 700;
+  color: var(--ds-charcoal);
+  margin: 10px 0 14px;
+  line-height: 1.25;
+}
+.ds-team__title .ds-italic { color: var(--ds-teal-dark); }
+.ds-team__head p { color: var(--ds-warm-gray); line-height: 1.6; margin: 0; }
+
+.ds-team__grid {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 600px) { .ds-team__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .ds-team__grid { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+
+.ds-team-card {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #fff 0%, #F4F8F7 100%);
+  border: 1px solid rgba(127, 181, 176, 0.22);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.ds-team-card__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 22%;
+  background: #EEF4F3;
+}
+.ds-team-card__body { padding: 20px 22px 24px; }
+.ds-team-card__name {
+  font-family: 'Amiri', 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ds-charcoal);
+  margin: 0;
+  line-height: 1.2;
+}
+.ds-team-card__cred {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ds-warm-gray);
+}
+.ds-team-card__role {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ds-teal-ink);
+  margin: 6px 0 12px;
+  line-height: 1.4;
+}
+.ds-team-card__bio { color: var(--ds-warm-gray); font-size: 14px; line-height: 1.6; margin: 0; }
+
+.ds-team-whitney {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  background: #F4F8F7;
+  border: 1px solid rgba(127, 181, 176, 0.35);
+  border-radius: 14px;
+}
+@media (min-width: 768px) {
+  .ds-team-whitney { flex-direction: row; align-items: center; justify-content: space-between; gap: 32px; }
+  .ds-team-whitney .ds-btn { flex: none; }
+}
+.ds-team-whitney__title {
+  font-family: 'Amiri', 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ds-charcoal);
+  margin: 8px 0 6px;
+}
+.ds-team-whitney p { color: var(--ds-warm-gray); font-size: 14.5px; line-height: 1.6; margin: 0; max-width: 640px; }
