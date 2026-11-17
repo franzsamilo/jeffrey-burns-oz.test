@@ -1,5 +1,7 @@
 # SEO Issues Tracker: developer response to the Nov 5 recheck (2026-11-07)
 
+> **Superseded by the Nov 17, 2026 update:** For everything shipped in themes `1.9.0` and `1.9.1` (Rev 2 town pages, Privacy Policy, auto-migration, `/meet-the-team/`) plus the Row 10 / Dr. Whitney (`#58–#61`) audit, see [2026-11-17-staging-status-and-whitney-audit.md](2026-11-17-staging-status-and-whitney-audit.md).
+
 Response to the **Nov 5, 2026 recheck** of "Dr. Jeffrey Burns - SEO Issues Tracker" (Upward
 Engine). It covers every row still marked **Not started**, plus the other open rows the
 recheck called out.

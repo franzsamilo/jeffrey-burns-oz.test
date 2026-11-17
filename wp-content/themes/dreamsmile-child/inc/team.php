@@ -114,6 +114,8 @@ add_action( 'init', function () {
         return;
     }
 
+    update_option( 'ds_team_page_191_done', '1' );
+
     $page = get_page_by_path( 'meet-the-team' );
     if ( ! $page ) {
         $trashed = get_posts( [
@@ -189,6 +191,4 @@ add_action( 'init', function () {
         }
         update_option( $opt_name, $redirects );
     }
-
-    update_option( 'ds_team_page_191_done', '1' );
 }, 30 );

@@ -446,6 +446,9 @@ return [
       'cards' => [
         [ 'icon' => 'safety', 'title' => 'On-staff anesthesiology',     'desc' => 'A board-certified physician anesthesiologist available for any extraction &mdash; especially complex ones or anxious patients.' ],
         [ 'icon' => 'tooth',  'title' => 'Implant-aware technique',     'desc' => 'How an extraction is done affects whether the spot can hold an implant later. We extract with that future option in mind.' ],
+        ds_whitney_url()
+          ? [ 'icon' => 'doctor', 'title' => 'An oral surgeon in our office', 'desc' => 'Dr. James Whitney, an oral and maxillofacial surgeon, sees patients right here in New Market. No referral across town. <a href="' . esc_url( ds_whitney_url() ) . '">Meet Dr. Whitney</a>' ]
+          : [ 'icon' => 'doctor', 'title' => 'In our own office',             'desc' => 'No referral across town. Same office, same anesthesiology coverage, same standards.' ],
         [ 'icon' => 'phone',  'title' => 'Aftercare you can call about', 'desc' => 'Pain or worry the night after? You have Dr. Burns&rsquo;s personal cell &mdash; not a voicemail or an answering service.' ],
       ],
     ],

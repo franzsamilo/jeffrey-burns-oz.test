@@ -330,6 +330,9 @@ require_once trailingslashit( get_stylesheet_directory() ) . 'inc/post-links.php
 // /meet-the-team/: the team list, and the one-time setup that creates the page.
 require_once trailingslashit( get_stylesheet_directory() ) . 'inc/team.php';
 
+// /about-us/whitney-oral-surgery/dr-james-whitney/: Dr. Whitney consolidation & #58/#60/#61 redirects.
+require_once trailingslashit( get_stylesheet_directory() ) . 'inc/whitney.php';
+
 function ds_faq_data() {
     return [
         [ 'pain',      'Is the procedure painful?',       'Most patients are surprised at how comfortable the procedure is. With our on-staff anesthesiologist and modern techniques, you&rsquo;ll be relaxed and pain-free throughout. Mild soreness in the days after is normal and easily managed.' ],

@@ -55,6 +55,9 @@ Type,Condition,From,To,Note,Enable,Ignore Parameters
 301,exact-match,/about-us/meet-the-staff/,/meet-the-team/,SEO tracker Redirect Map #55 (Medium); team page since theme 1.9.1,1,1
 301,exact-match,/about-us/3d-imaging/,/dental-implants/,SEO tracker Redirect Map #56 (Low),1,1
 301,exact-match,/about-us/advanced-technology/,/dental-implants/,SEO tracker Redirect Map #57 (Low),1,1
+301,exact-match,/about-us/whitney-oral-surgery/,/about-us/whitney-oral-surgery/dr-james-whitney/,SEO tracker Redirect Map #58 (Medium); consolidated into Dr. Whitney page (theme 1.9.2),1,1
+301,exact-match,/about-us/whitney-oral-surgery/information/,/about-us/whitney-oral-surgery/dr-james-whitney/,SEO tracker Redirect Map #60 (Low); consolidated into Dr. Whitney page (theme 1.9.2),1,1
+301,exact-match,/about-us/whitney-oral-surgery/oral-surgery-hours/,/about-us/whitney-oral-surgery/dr-james-whitney/,SEO tracker Redirect Map #61 (Low); consolidated into Dr. Whitney page (theme 1.9.2),1,1
 301,exact-match,/patient-information/,/new-patients/,SEO tracker Redirect Map #62 (Medium),1,1
 301,exact-match,/patient-information/new-patients/,/new-patients/,SEO tracker Redirect Map #63 (Medium),1,1
 301,exact-match,/patient-information/first-visit/,/new-patients/,SEO tracker Redirect Map #64 (Low),1,1
