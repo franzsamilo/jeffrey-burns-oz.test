@@ -86,16 +86,6 @@ $variants = [
     'bg'       => $base . '/team-group.webp',
     'alt'      => 'Dr. Jeffrey Burns with his team in the New Market office',
   ],
-  // /about-us/whitney-oral-surgery/dr-james-whitney/ (inc/whitney.php).
-  'dr-james-whitney' => [
-    'label'    => 'WHITNEY ORAL SURGERY',
-    'title'    => 'Meet Dr. James Whitney, <em>Oral Surgeon in New Market, VA</em>.',
-    'subtitle' => 'Dr. Whitney&rsquo;s Oral Surgery is located within the dental office of Jeffrey S. Burns, D.D.S. in New Market, Virginia &mdash; offering dental extractions and wisdom teeth removal right here in our office.',
-    'cta1'     => [ 'label' => 'Call (540) 740-8937', 'href' => 'tel:+15407408937' ],
-    'cta2'     => [ 'label' => 'Email Whitney Oral Surgery', 'href' => 'mailto:info@whitneyoralsurgery.com' ],
-    'bg'       => $base . '/extraction-hero.webp',
-    'alt'      => 'Whitney Oral Surgery at Dr. Jeffrey Burns\'s office in New Market, VA',
-  ],
   'restorative-care' => [
     'label'    => 'RESTORATIVE CARE',
     'title'    => 'Restorative Dentistry &mdash; <em>All Under One Roof</em>.',

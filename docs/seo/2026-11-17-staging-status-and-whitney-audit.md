@@ -35,17 +35,19 @@ Staging is currently running **`dreamsmile-child` v1.9.1** (`feat/meet-the-team-
 3. **Comparison CTA Readability Fix (`assets/css/sections.css`, `e78e6bc`):**
    - Fixed dark-text contrast on the charcoal "See if you're eligible for a DreamSmile™" comparison CTA button.
 
-### C. Theme `1.9.2` (Implemented Nov 17, 2026 — Pending Upload to Staging)
-Resolves Redirect Map `#58–#61` and the duplicate `/meet-the-team-2/` sitemap entry based on verified confirmation that Dr. James Whitney actively practices inside the New Market office (confirmed by the Nov 2026 live `Meet the Staff` page listing Tara Weaver as Dr. Whitney's coordinator, plus the SEO team's Rev 2 Winchester doc):
-1. **Consolidated DreamSmile Profile Page for `#59` (`/about-us/whitney-oral-surgery/dr-james-whitney/`):**
-   - Added `templates/page-dr-james-whitney.html`, `patterns/dr-james-whitney.php`, `dr-james-whitney` sub-hero variant in `patterns/page-sub-hero.php`, `page_template_hierarchy` mapping in `inc/whitney.php`, and local cropped 4:5 portrait `assets/arrange/dr-james-whitney.webp`.
-   - Consolidates his biography (`#59`), extractions & wisdom teeth services and `info@whitneyoralsurgery.com` referral contact (`#60`), and Mon–Wed 9:00 AM – 3:00 PM hours (`#61`) into one styled page while keeping `#59`'s existing URL (`whitney dental` ranking) and every `ds_whitney_url()` link intact.
-   - Added **Dr. James Whitney** under the **About Us** desktop & mobile menus (`parts/header.html`) and a dynamic `ds_whitney_url()` card on `/tooth-extraction/` (`inc/service-pages.php`).
-2. **One-Time Migration (`ds_whitney_192_done` in `inc/whitney.php`, `init` priority 32) & SEO Seeding:**
-   - Seeds `#59`'s Slim SEO headline (`Dr. James Whitney, Oral Surgeon in New Market | Dr. Burns`, 57 chars) and description (149 chars) if empty, and registers `/about-us/whitney-oral-surgery/dr-james-whitney/` in `ds_slim_seo_seed()`.
-   - Sets the 3 thin/placeholder sibling pages — `#58` (`/about-us/whitney-oral-surgery/`), `#60` (`/information/`), and `#61` (`/oral-surgery-hours/`) — to **`draft`** (not `trash`, preserving `#59`'s hierarchical URL) and activates 301 redirects from `#58`, `#60`, and `#61` → `/about-us/whitney-oral-surgery/dr-james-whitney/` in `ss_redirects` plus a `template_redirect` (priority 1) guard. Updated `docs/seo/slim-seo-redirects-import.csv` and `docs/seo/slim-seo-redirects-on-hold.csv` to match.
-3. **Duplicate Cleanup & Race-Condition Fix:**
-   - Trashes accidental `/meet-the-team-2/` automatically inside `ds_whitney_192_done` when `/meet-the-team/` is published, and moves `update_option( 'ds_team_page_191_done', '1' )` before `wp_insert_post()` in `inc/team.php`.
+### C. Theme `1.9.2` (Deployed to Staging Nov 17 — Superseded by `1.9.3`)
+Temporarily consolidated `#58–#61` onto `/about-us/whitney-oral-surgery/dr-james-whitney/` (`#59`) and cleaned up the accidental `/meet-the-team-2/` duplicate (`ds_whitney_192_done`). Superseded by **Theme `1.9.3`** below per client direction to remove all Dr. Whitney pages and mentions.
+
+### D. Theme `1.9.3` (Implemented Nov 18, 2026 — Pending Upload to Staging)
+Per client instruction (*"we should remove any pages or content about Dr. Whitney"*), retires all 4 Dr. Whitney pages (`#58–#61`) and removes every Dr. Whitney reference across the theme:
+1. **Removed All Dr. Whitney Pages, Templates & Theme Copy:**
+   - Deleted standalone `#59` files (`templates/page-dr-james-whitney.html`, `patterns/dr-james-whitney.php`, `assets/arrange/dr-james-whitney.webp`) and the `dr-james-whitney` hero variant in `patterns/page-sub-hero.php`.
+   - Removed **Dr. James Whitney** from desktop & mobile **About Us** menus (`parts/header.html`), removed the `ds-team-whitney` card from `/meet-the-team/` (`patterns/meet-the-team.php`), removed Dr. Whitney links/copy from `/tooth-extraction/`, `/wisdom-teeth-removal/`, `/contact-us/winchester-dentist-dental-implants/`, and Tara Weaver's bio (`inc/team.php`), and set `ds_whitney_url()` to return `''`.
+2. **One-Time Migration (`ds_whitney_193_done` in `inc/whitney.php`, `init` priority 32):**
+   - Sets all 4 Whitney pages (`#58` `/about-us/whitney-oral-surgery/`, `#59` `/dr-james-whitney/`, `#60` `/information/`, `#61` `/oral-surgery-hours/`) to **`draft`** so all 4 are removed from `sitemap-post-type-page.xml`.
+   - Activates Slim SEO 301 redirects (plus `template_redirect` priority 1 guardrails) matching `Redirect Map` (`gid=169489043`) Column C exactly: `#58–#60` → `/wisdom-teeth-removal/`, `#61` → `/contact/`.
+   - Brings Redirect Map completion to **77 of 78** (with `#19` intentionally kept live). Updated `docs/seo/slim-seo-redirects-import.csv` and `docs/seo/slim-seo-redirects-on-hold.csv` to match.
+   - Keeps `/meet-the-team-2/` duplicate trash cleanup if present.
 
 ---
 
@@ -75,20 +77,19 @@ Live inspection of both `www.jeffreyburns.com` and `jeffreyburnsstagingclone2.ue
 
 ## 3. Resolution Status for `#58–#61`
 
-Implemented via **Option 1 in Theme `1.9.2`** (keeping `#59` live with `#60` + `#61` consolidated onto it, and drafting + 301-redirecting `#58`, `#60`, `#61` → `#59`).
-
-### Option 2 (Contingency — only if the practice later reports Dr. Whitney has left)
-1. Set `#59` (`/about-us/whitney-oral-surgery/dr-james-whitney/`) to **Draft** alongside `#58`, `#60`, and `#61`. `ds_whitney_url()` automatically returns `''`, removing Dr. Whitney links/cards from `/meet-the-team/`, `/tooth-extraction/`, `/wisdom-teeth-removal/`, and `/contact-us/winchester-dentist-dental-implants/` (and update Tara Weaver's bio in `inc/team.php`).
-2. Enable the held `/about-us/whitney-oral-surgery/dr-james-whitney/` → `/wisdom-teeth-removal/` rule in `docs/seo/slim-seo-redirects-on-hold.csv` and repoint `#58`, `#60`, and `#61` to `/wisdom-teeth-removal/` and `/contact/`.
+Implemented via **full removal & Option 2 in Theme `1.9.3`** per client instruction (*"we should remove any pages or content about Dr. Whitney"*):
+1. All 4 Whitney pages (`#58–#61`) are set to **`draft`** (removed from `sitemap.xml`) and 301-redirected directly to their `Redirect Map` (`gid=169489043`) Column C targets (`#58–#60` → `/wisdom-teeth-removal/`, `#61` → `/contact/`).
+2. All theme links, nav items, hero/page templates, `Meet the Team` card, service-page cards, Winchester copy, and Tara Weaver's bio reference have been removed.
+3. Redirect Map progress moves from **73 of 78** to **77 of 78** (with `#19` `/restorative-dentistry/full-mouth-reconstruction/` intentionally kept live).
 
 ---
 
-## 4. Open Launch-Day Items & Notes (Updated Nov 17, 2026)
+## 4. Open Launch-Day Items & Notes (Updated Nov 18, 2026)
 
 1. **Duplicate `/meet-the-team-2/` in Staging Sitemap:**
-   - Inspection of `https://jeffreyburnsstagingclone2.uepreview.com/sitemap-post-type-page.xml` on Nov 17 found both `/meet-the-team/` and an accidental **`/meet-the-team-2/`** (`HTTP 200`). Theme **`1.9.2`** (`inc/whitney.php`) automatically trashes `/meet-the-team-2/` on `init`, and `inc/team.php` now marks `ds_team_page_191_done` before `wp_insert_post()`.
+   - Inspection of `https://jeffreyburnsstagingclone2.uepreview.com/sitemap-post-type-page.xml` on Nov 17 found both `/meet-the-team/` and an accidental **`/meet-the-team-2/`** (`HTTP 200`). It was cleaned up by `inc/whitney.php` in `1.9.2` (verified `HTTP 404` and out of sitemap on Nov 17), and `1.9.3` keeps that guard while `inc/team.php` marks `ds_team_page_191_done` before `wp_insert_post()`.
 2. **Git Branch Sync Note:**
-   - [PR #10](https://github.com/franzsamilo/jeffrey-burns-oz.test/pull/10) (`feat/meet-the-team-about-menu`) targets `main` (`b232cf9`). After deploying and verifying **`1.9.2`** on staging, merge into `main` and sync `setup/staging-and-deployment`.
+   - [PR #10](https://github.com/franzsamilo/jeffrey-burns-oz.test/pull/10) (`feat/meet-the-team-about-menu`) targets `main` (`b232cf9`). After deploying and verifying **`1.9.3`** on staging, merge into `main` and sync `setup/staging-and-deployment`.
 3. **Production Launch-Day Cutover Tasks (Do NOT run on staging):**
    - Uncheck **Settings → Reading → Discourage search engines from indexing this site** on production at cutover.
    - Remove `Crawl-delay: 3` from live `robots.txt` (`https://www.jeffreyburns.com/robots.txt`) and submit `/sitemap.xml` in Google Search Console.

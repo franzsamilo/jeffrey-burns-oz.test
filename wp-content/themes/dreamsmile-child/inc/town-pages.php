@@ -60,8 +60,6 @@ defined( 'ABSPATH' ) || exit;
 
 $tm    = 'DreamSmile<sup class="ds-tm">&trade;</sup>';
 $call  = 'Call <a href="tel:+15407408937">540-740-8937</a>';
-$whit  = function_exists( 'ds_whitney_url' ) ? ds_whitney_url() : '';
-$whit  = $whit ? '<a href="' . esc_url( $whit ) . '">Dr. James Whitney</a>' : 'Dr. James Whitney';
 
 return [
 
@@ -168,7 +166,7 @@ return [
                 'Surgery and Anesthesia Under One Roof',
                 [
                     'Everything your implant needs happens in our New Market office:',
-                    [ 'ul' => '<li>Oral surgeon ' . $whit . ', with more than 40 years of experience, offers same-day assessments</li><li>Board-certified anesthesiologists and certified nurse anesthetists provide <a href="/anesthesia/">IV sedation and general anesthesia</a></li><li>3D imaging, 3D-printed surgical guides, and CEREC crowns are all in-house</li>' ],
+                    [ 'ul' => '<li>Extractions, bone grafting, and implant placement are performed right here in New Market</li><li>Board-certified anesthesiologists and certified nurse anesthetists provide <a href="/anesthesia/">IV sedation and general anesthesia</a></li><li>3D imaging, 3D-printed surgical guides, and CEREC crowns are all in-house</li>' ],
                     'You are not sent to a hospital, surgery center, or outside lab.',
                 ],
                 'shield',

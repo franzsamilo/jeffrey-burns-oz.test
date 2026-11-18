@@ -330,7 +330,7 @@ require_once trailingslashit( get_stylesheet_directory() ) . 'inc/post-links.php
 // /meet-the-team/: the team list, and the one-time setup that creates the page.
 require_once trailingslashit( get_stylesheet_directory() ) . 'inc/team.php';
 
-// /about-us/whitney-oral-surgery/dr-james-whitney/: Dr. Whitney consolidation & #58/#60/#61 redirects.
+// /about-us/whitney-oral-surgery/: retire #58–#61 pages and redirect to /wisdom-teeth-removal/ & /contact/.
 require_once trailingslashit( get_stylesheet_directory() ) . 'inc/whitney.php';
 
 function ds_faq_data() {
@@ -395,20 +395,10 @@ function ds_office_data() {
 }
 
 /**
- * Dr. James Whitney's page (oral surgeon working inside the office), or ''.
- *
- * SEO tracker, Nov 5 recheck: his 4 old pages stay live, and the new site
- * should link to them. The live site (Nov 2026) says his oral surgery runs
- * inside Dr. Burns's office. Every mention of him reads this, so if his
- * pages are ever drafted, the mentions disappear with them.
+ * Oral-surgeon link helper (retired in 1.9.3; always returns '').
  */
 function ds_whitney_url() {
-    static $url = null;
-    if ( null === $url ) {
-        $page = get_page_by_path( 'about-us/whitney-oral-surgery/dr-james-whitney' );
-        $url  = ( $page && 'publish' === $page->post_status ) ? (string) get_permalink( $page ) : '';
-    }
-    return $url;
+    return '';
 }
 
 /**

@@ -10,15 +10,13 @@
  *                     component as /new-patients/). The group photo is the
  *                     sub-hero's, so it isn't repeated here.
  *   - .ds-team        one card per person, from ds_team_members() (inc/team.php)
- *   - .ds-team-whitney Dr. Whitney, while his page is published
  *   - .ds-subpage-cta  the dark closing call to action
  * The shared about-dr-burns block follows, from the template.
  */
 defined( 'ABSPATH' ) || exit;
-$base    = get_stylesheet_directory_uri() . '/assets/arrange';
-$office  = ds_office_data();
-$whitney = ds_whitney_url();
-$tm      = 'DreamSmile<sup class="ds-tm">&trade;</sup>';
+$base   = get_stylesheet_directory_uri() . '/assets/arrange';
+$office = ds_office_data();
+$tm     = 'DreamSmile<sup class="ds-tm">&trade;</sup>';
 ?>
 <!-- wp:html -->
 <section class="ds-np-before" id="team-intro">
@@ -63,17 +61,6 @@ $tm      = 'DreamSmile<sup class="ds-tm">&trade;</sup>';
       </li>
       <?php endforeach; ?>
     </ul>
-
-    <?php if ( $whitney ) : ?>
-    <aside class="ds-team-whitney ds-reveal" aria-labelledby="ds-team-whitney-title">
-      <div>
-        <span class="ds-label">ORAL SURGERY IN OUR OFFICE</span>
-        <h3 class="ds-team-whitney__title" id="ds-team-whitney-title">Dr. James Whitney, oral surgeon</h3>
-        <p>Dr. Whitney&rsquo;s Oral Surgery is located within our New Market office, so extractions and wisdom teeth removal happen right here. Tara coordinates his patients&rsquo; visits.</p>
-      </div>
-      <a href="<?php echo esc_url( $whitney ); ?>" class="ds-btn ds-btn--outlined ds-btn--sm">Meet Dr. Whitney</a>
-    </aside>
-    <?php endif; ?>
   </div>
 </section>
 

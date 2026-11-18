@@ -79,7 +79,7 @@ function ds_team_members() {
             'cred'  => '',
             'role'  => 'Patient Coordinator',
             'photo' => 'tara.webp',
-            'bio'   => 'Tara is the patient coordinator for Dr. Whitney&rsquo;s patients. After years as a pharmacy technician, she joined our office in 2021. She loves working with referring offices, meeting new people and helping our patients.',
+            'bio'   => 'After years as a pharmacy technician, Tara joined our office in 2021 as a patient coordinator. She loves meeting new people and helping our patients feel right at home.',
         ],
         [
             'name'  => 'Katie McNally',
