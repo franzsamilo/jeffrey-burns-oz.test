@@ -6981,7 +6981,7 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
 .ds-loc-map--light .ds-loc-doctor__bullets li { color: var(--ds-dark-slate); }
 .ds-loc-map--light .ds-loc-map__embed--qr { box-shadow: 0 18px 40px -22px rgba(58, 58, 58, 0.28); }
 
-/* ─── Meet Dr. Burns team section + Dr. Whitney links (theme 1.8.2) ───
+/* ─── Meet Dr. Burns team section (theme 1.8.2) ───
    Reuses .ds-np-before with a landscape group photo: kept at 3:2 so the
    stretch-to-column rule above never crops people off the edges. */
 .ds-np-before__media--wide { aspect-ratio: 3 / 2; }
@@ -7081,28 +7081,3 @@ body:has(.ds-page-head) .wp-block-post-content .wp-block-button__link {
   line-height: 1.4;
 }
 .ds-team-card__bio { color: var(--ds-warm-gray); font-size: 14px; line-height: 1.6; margin: 0; }
-
-.ds-team-whitney {
-  max-width: 1100px;
-  margin: 28px auto 0;
-  padding: 26px 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 18px;
-  background: #F4F8F7;
-  border: 1px solid rgba(127, 181, 176, 0.35);
-  border-radius: 14px;
-}
-@media (min-width: 768px) {
-  .ds-team-whitney { flex-direction: row; align-items: center; justify-content: space-between; gap: 32px; }
-  .ds-team-whitney .ds-btn { flex: none; }
-}
-.ds-team-whitney__title {
-  font-family: 'Amiri', 'Playfair Display', serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--ds-charcoal);
-  margin: 8px 0 6px;
-}
-.ds-team-whitney p { color: var(--ds-warm-gray); font-size: 14.5px; line-height: 1.6; margin: 0; max-width: 640px; }

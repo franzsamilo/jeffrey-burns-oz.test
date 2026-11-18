@@ -12,12 +12,14 @@
  * at jeffreyburns.com, and here they're site-relative: every one of those
  * pages is on the new site at the same address. The only other changes follow
  * standing client rules:
- *   - Winchester: Dr. Whitney's "same-day consultations" becomes
- *     "assessments" (client rule: never "consultation");
  *   - DreamSmile™ on the two headings that lacked the mark (Winchester's
  *     "The DreamSmile Approach" card and its warranty question);
- *   - Dr. Whitney's name links to his page while that page is published
- *     (ds_whitney_url(), SEO tracker Nov 2026).
+ *   - Dr. Whitney's pages and every mention of him are gone (Nov 2026,
+ *     theme 1.9.3):
+ *     Winchester's oral-surgeon bullet now reads "Extractions, bone grafting,
+ *     and implant placement are performed right here in New Market", and its
+ *     "Why drive from Winchester" answer says "surgery done right here"
+ *     instead of "an oral surgeon on the team".
  * The docs' optional town-specific Google reviews are left out: they wait on
  * client approval, and the site never shows reviews as one town's.
  *
@@ -218,7 +220,7 @@ return [
         ],
         'faq'       => [
             [ 'How many trips to New Market will my implant take?', 'For a single implant, usually two main appointments: surgery, then crown placement. Full-arch cases and cases that need a bone graft take more visits, and we map them out at your ' . $tm . ' Assessment.' ],
-            [ 'Why drive from Winchester for implants?', 'More than 30 years of implant focus, 3D imaging, in-house crowns, on-site anesthesia, and an oral surgeon on the team, all in one office.' ],
+            [ 'Why drive from Winchester for implants?', 'More than 30 years of implant focus, 3D imaging, in-house crowns, on-site anesthesia, and surgery done right here, all in one office.' ],
             [ 'What does the ' . $tm . ' Warranty cover?', 'DreamSmile restorations carry warranty coverage of up to a lifetime. Ask at your ' . $tm . ' Assessment for the terms that apply to your plan.' ],
             [ 'Can I get a full set of teeth in one day?', 'Patients who qualify can have Teeth in a Day: implants are placed and a full set of teeth is attached in the same procedure.' ],
             [ 'Do you take insurance or offer financing?', 'Our office bills your insurance as a courtesy, and patients can finance treatment through CareCredit or Cherry, subject to approval.' ],
