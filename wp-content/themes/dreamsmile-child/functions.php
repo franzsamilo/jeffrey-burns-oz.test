@@ -327,6 +327,12 @@ require_once trailingslashit( get_stylesheet_directory() ) . 'inc/seo-migration.
 // One-click fix for old internal links in posts and pages: /wp-admin/?ds_fix_post_links=1
 require_once trailingslashit( get_stylesheet_directory() ) . 'inc/post-links.php';
 
+// /meet-the-team/: the team list, and the one-time setup that creates the page.
+require_once trailingslashit( get_stylesheet_directory() ) . 'inc/team.php';
+
+// /about-us/whitney-oral-surgery/: retire #58–#61 pages and redirect to /wisdom-teeth-removal/ & /contact/.
+require_once trailingslashit( get_stylesheet_directory() ) . 'inc/whitney.php';
+
 function ds_faq_data() {
     return [
         [ 'pain',      'Is the procedure painful?',       'Most patients are surprised at how comfortable the procedure is. With our on-staff anesthesiologist and modern techniques, you&rsquo;ll be relaxed and pain-free throughout. Mild soreness in the days after is normal and easily managed.' ],
@@ -389,20 +395,10 @@ function ds_office_data() {
 }
 
 /**
- * Dr. James Whitney's page (oral surgeon working inside the office), or ''.
- *
- * SEO tracker, Nov 5 recheck: his 4 old pages stay live, and the new site
- * should link to them. The live site (Nov 2026) says his oral surgery runs
- * inside Dr. Burns's office. Every mention of him reads this, so if his
- * pages are ever drafted, the mentions disappear with them.
+ * Oral-surgeon link helper (retired in 1.9.3; always returns '').
  */
 function ds_whitney_url() {
-    static $url = null;
-    if ( null === $url ) {
-        $page = get_page_by_path( 'about-us/whitney-oral-surgery/dr-james-whitney' );
-        $url  = ( $page && 'publish' === $page->post_status ) ? (string) get_permalink( $page ) : '';
-    }
-    return $url;
+    return '';
 }
 
 /**

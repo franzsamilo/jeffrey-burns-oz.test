@@ -450,15 +450,18 @@ body.admin-bar .ds-navbar { top: 32px; }
     min-height: min(46vw, 96vh);
   }
   .ds-hero:not(.ds-hero--sub) .ds-hero__inner {
-    /* 88px floor clears the 81px navbar that overlays the hero. */
-    padding-top: clamp(88px, 6.4vw, 116px);
+    /* The navbar (81px) overlays the hero. Nov 2026 feedback (Cris): the
+       headline sat ~16px under it on a laptop and wanted more room, so the
+       floor is now ~30-45px of clear space above the H1. */
+    padding-top: clamp(112px, 8.4vw, 140px);
     padding-bottom: clamp(56px, 6.4vw, 120px);
-    /* The 1200px centred container spent ~130px of left margin on nothing and
-       pushed the copy right, straight onto Dr. Burns - he stands at 35-50% of
-       the frame. Widening the box and hugging the left edge hands that space
-       back to him; at 1920 it is worth ~240px. Paired with the scrim below. */
-    max-width: 1440px;
-    padding-left: clamp(24px, 3.6vw, 56px);
+    /* Same container as the navbar (max-width + 24px), so the copy starts on
+       the logo's line. It used to hug the window edge instead (1440px box,
+       3.6vw padding), which on a 1440-1920 laptop put it ~30px left of the
+       logo: "too aligned to the left" (Cris, Nov 2026). The photo moves right
+       with it (below), so the copy still finishes before Dr. Burns' face. */
+    max-width: 1320px; /* .ds-navbar__inner, pages.css */
+    padding-left: 24px;
   }
 }
 
@@ -480,7 +483,8 @@ body.admin-bar .ds-navbar { top: 32px; }
 .ds-hero:not(.ds-hero--sub) .ds-hero__bg {
   background-image:
     linear-gradient(93deg,
-      rgba(58, 58, 58, 0.95) 0%,
+      rgba(58, 58, 58, 1) 0%,
+      rgba(58, 58, 58, 1) 3.6%,
       rgba(58, 58, 58, 0.92) 27%,
       rgba(58, 58, 58, 0.58) 38%,
       rgba(58, 58, 58, 0.18) 52%,
@@ -518,7 +522,13 @@ body.admin-bar .ds-navbar { top: 32px; }
 @media (min-width: 768px) {
   .ds-hero:not(.ds-hero--sub) .ds-hero__bg {
     background-size: auto, max(100%, 1180px + 10vw, 141vw - 740px) auto;
-    background-position: center, 0% 25%;
+    /* Nudged right (Cris, Nov 2026: "move this patient a little bit over
+       here") so Dr. Burns and the patient keep clear of the copy now that it
+       starts on the logo's line. The strip this opens on the left (at most
+       3.1% of the width, at 768px) sits under the scrim's solid first 3.6%,
+       on the charcoal set here, so there is no seam. */
+    background-position: center, clamp(24px, 2.6vw, 64px) 25%;
+    background-color: var(--ds-charcoal);
   }
   .ds-hero:not(.ds-hero--sub) .ds-hero__content { max-width: 400px; }
 }
@@ -663,6 +673,10 @@ body.admin-bar .ds-navbar { top: 32px; }
   .ds-quiz-card-wrap { position: relative; z-index: 20; }
   /* iPad in front of the guide ribbon (which sits behind it) */
   .ds-quiz-ipad  { position: relative; z-index: 30; }
+  /* Centred on the row like the guide card beside it, rather than pinned to
+     the top of the taller quiz card (Cris, Nov 2026: "moved a little bit
+     down... center it a little bit more"). Still in front of the guide card. */
+  .ds-quiz-ipad  { align-self: center; }
   .ds-guide-card { position: relative; z-index: 10; }
   .ds-quiz-card { min-height: 420px; }
   .ds-guide-card { min-height: 240px; align-self: center; }
@@ -1632,10 +1646,16 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   line-height: 1.5;
 }
 .ds-comparison__cta { text-align: center; margin-top: 56px; }
+/* A dark pill to stand apart from the teal cards. .ds-btn--solid's text is
+   charcoal, so it needs white text here or the label disappears (SEO team,
+   Nov 2026). */
 .ds-comparison__cta .ds-btn {
   background: var(--ds-charcoal);
+  border-color: var(--ds-charcoal);
+  color: #fff;
 }
-.ds-comparison__cta .ds-btn:hover { background: #2d2d2d; }
+.ds-comparison__cta .ds-btn:hover,
+.ds-comparison__cta .ds-btn:focus-visible { background: #2d2d2d; border-color: #2d2d2d; color: #fff; }
 
 /* â”€â”€â”€ Burns Protocol â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
@@ -2462,6 +2482,19 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
   gap: 8px;
   padding: 10px 18px;
 }
+/* Labels, not buttons. Filled #A8D5D0 pills next to the solid teal "Schedule
+   to Meet Dr. Burns" button read as four more buttons (Cris, Nov 2026: "this
+   also looks like a button... not enough contrast between this and the
+   button"). A thin outline on the dark panel keeps them as badges and leaves
+   the one real button as the only filled shape. */
+.ds-about__credential {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(168, 213, 208, 0.38);
+  font-weight: 600;
+  cursor: default;
+}
+.ds-about__credential-icon { color: var(--ds-teal-light); }
 .ds-about__credential-icon {
   width: 16px;
   height: 16px;
@@ -2925,7 +2958,9 @@ main.ds-main, .wp-block-group.ds-main { overflow: visible !important; }
 }
 
 /* About: schedule CTA + "learn more" link row (Burns-notes: add a CTA) */
-.ds-about__ctas { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 4px; }
+/* 20px under the badges (was 4px), so the one real button doesn't read as a
+   fifth badge in the same stack (Cris, Nov 2026). */
+.ds-about__ctas { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 20px; }
 
 /* ════════════════════════════════════════════════════════════════════════
    SPLIT-PANEL SUB-HERO — client: "text on one side with a solid background,

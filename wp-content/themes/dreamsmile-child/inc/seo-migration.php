@@ -42,6 +42,7 @@ function ds_slim_seo_seed() {
         '/general-dentistry/' => [ 'General Dentistry in New Market, VA | Dr. Jeffrey Burns', 'General dentistry from Dr. Jeffrey Burns in New Market, VA: crowns, bridges, extractions, root canals, dentures, and more, all in one office.' ],
         '/cosmetic-dentistry/' => [ 'Cosmetic Dentistry in New Market, VA | Dr. Jeffrey Burns', 'Cosmetic dentistry from an AACD award-winning dentist: porcelain veneers, teeth whitening, and clear aligners designed around the smile you want.' ],
         '/meet-dr-burns/' => [ 'Meet Dr. Jeffrey Burns, DDS | Dental Implant Expert', '30+ years placing dental implants, AACD award recipient, and creator of the Burns Protocol. Every implant patient gets his personal cell number.' ],
+        '/meet-the-team/' => function_exists( 'ds_team_seo' ) ? ds_team_seo() : [ '', '' ],
         '/restorative-care/' => [ 'Restorative Dentistry in New Market, VA | Dr. Jeffrey Burns', 'Fillings, crowns, bridges, root canals, extractions, and implants, every restorative option planned and performed by the same doctor in New Market, VA.' ],
         '/gum-disease/' => [ 'Gum Disease Treatment in New Market, VA | Dr. Jeffrey Burns', 'Catch gum disease early and stay ahead of it. Deep teeth cleaning and periodontal maintenance at Dr. Jeffrey Burns\'s New Market, VA office.' ],
         '/resources/' => [ 'Patient Resources | Dr. Jeffrey Burns', 'New patient forms, financing and insurance, online bill pay, and patient education articles from Dr. Jeffrey Burns\'s office in New Market, VA.' ],
