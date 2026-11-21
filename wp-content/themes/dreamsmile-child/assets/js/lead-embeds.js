@@ -105,6 +105,37 @@
     });
 
     if (inline) mount('');
+
+    // The survey is slow to appear on first open (Cris, Nov 2026: "the quiz
+    // took a while to load"): the agency's widget only starts loading on the
+    // click. Two head starts, neither loading anything for visitors who never
+    // go near a button:
+    //  - open the connection to the agency's server now (no request, no
+    //    cookies, just DNS + TLS);
+    //  - start the iframe as soon as a pointer, finger or keyboard focus
+    //    reaches a survey or Schedule button, usually a few hundred ms before
+    //    the click lands. (Not the quiz card's Next button: it hands the
+    //    survey an answer, which reloads the iframe with that answer picked.)
+    try {
+      var origin = new URL(modal.getAttribute('data-ds-survey-src')).origin;
+      var hint = document.createElement('link');
+      hint.rel = 'preconnect';
+      hint.href = origin;
+      document.head.appendChild(hint);
+    } catch (err) { /* old browser: the click still loads it */ }
+
+    var WARM = '[data-ds-survey],[data-ds-schedule],a[href$="#quiz"],a[href*="gform=1"],[data-modal-form]';
+    function warm(e) {
+      var t = e.target && e.target.closest ? e.target.closest(WARM) : null;
+      if (!t) return;
+      mount('');
+      ['pointerover', 'focusin', 'touchstart'].forEach(function (type) {
+        document.removeEventListener(type, warm, true);
+      });
+    }
+    ['pointerover', 'focusin', 'touchstart'].forEach(function (type) {
+      document.addEventListener(type, warm, { capture: true, passive: true });
+    });
   }
 
   if (document.readyState === 'loading') {
