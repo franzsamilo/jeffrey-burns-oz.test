@@ -1,9 +1,9 @@
 /**
  * Eligibility survey modal (GoHighLevel).
  *
- * Opened by the homepage quiz card's Next button and by every quiz-style CTA
- * ([data-ds-survey]: "Take the Quiz", "See if you're eligible", ...). The
- * "Schedule" CTAs keep the schedule modal.
+ * Opened by the homepage quiz card's Next button, by every quiz-style CTA
+ * ([data-ds-survey]: "Take the Quiz", "See if you're eligible", ...) and, since
+ * Nov 2026, by every "Schedule" CTA too (schedule-modal.js).
  *
  * The survey iframe is only created on first open (or on load, on a page
  * that shows it inline — see [data-ds-survey-inline]), so the agency's widget

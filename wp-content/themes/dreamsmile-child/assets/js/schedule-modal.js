@@ -19,191 +19,65 @@ window.dsTrackLead = function (formName) {
   });
 };
 
+/*
+ * Every "Schedule" CTA opens the eligibility survey (lead-embeds.js).
+ *
+ * Until Nov 2026 these opened the theme's own "Book Your DreamSmile Visit"
+ * form. The practice asked for every "Schedule Your Free Assessment" button to
+ * lead to the agency's survey instead (embed code in ds_lead_tools()), so this
+ * keeps catching the same buttons and links and hands them to window.DSSurvey.
+ * On a town page, where the survey is shown inline, that scrolls to it.
+ */
 (function () {
   'use strict';
 
-  /**
-   * Modal copy variants.
-   *
-   * One modal serves every CTA on the site, but the CTAs do not all promise
-   * the same thing. "GET THE FREE GUIDE" used to open a modal headed "Book
-   * Your DreamSmile Visit" with a "Book My Free Assessment" button — the
-   * visitor asked for a guide and was handed a booking form. A trigger can
-   * now carry data-ds-modal-variant to re-dress the modal for what it
-   * actually offers. Fields stay the same; only the promise changes.
-   * (The guide itself now comes from the agency's funnel page, see
-   * ds_lead_tools(), so only the assessment dress is left.)
-   */
-  var VARIANTS = {
-    assessment: {
-      asideLabel: 'BOOK YOUR VISIT',
-      label:      'SCHEDULE YOUR FREE ASSESSMENT',
-      heading:    'Book Your <span class="ds-modal__title-accent">DreamSmile<sup class="ds-tm">&trade;</sup></span> Visit',
-      sub:        'Dr. Burns will personally review your case &mdash; no pressure, no obligation.',
-      submit:     'Book My Free Assessment',
-      subject:    'New DreamSmile Assessment Request'
+  function openSurvey() {
+    if (window.DSSurvey && typeof window.DSSurvey.open === 'function') {
+      window.DSSurvey.open();
+      return true;
+    }
+    return false;
+  }
+
+  // Kept so older callers (quiz.js's fallback, inline scripts) still work.
+  window.DSScheduleModal = {
+    open: openSurvey,
+    close: function () {
+      if (window.DSSurvey && typeof window.DSSurvey.close === 'function') window.DSSurvey.close();
     }
   };
 
-  function init() {
-    var modal = document.querySelector('[data-ds-modal]');
+  // Every Schedule-style link across the site, including the old site's
+  // gform=1 links and editor content that still links to #quiz.
+  var triggers = [
+    'a[href="#quiz"]',
+    'a[href="/#quiz"]',
+    'a[href$="#quiz"]',
+    'a[href*="gform=1"]',
+    '[data-ds-schedule]',
+    '[data-modal-form]'
+  ].join(',');
 
-    // Always expose the API so callers (quiz.js etc.) can rely on it; the
-    // methods no-op when the modal markup isn't on the page.
-    window.DSScheduleModal = { open: open, close: close };
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest(triggers);
+    if (!trigger) return;
+    // Clicks inside the quiz card belong to the quiz flow (quiz.js), and
+    // [data-ds-survey] CTAs are already handled by lead-embeds.js.
+    if (trigger.closest('[data-ds-quiz]') || trigger.closest('[data-ds-survey]')) return;
+    if (openSurvey()) e.preventDefault();
+  }, true);
 
-    if (!modal) return;
-
-    var form    = modal.querySelector('[data-ds-modal-form]');
-    var success = modal.querySelector('[data-ds-modal-success]');
-
-    function applyVariant(name) {
-      var v = VARIANTS[name] || VARIANTS.assessment;
-      var set = function (sel, html) {
-        var el = modal.querySelector(sel);
-        if (el) el.innerHTML = html;
-      };
-      set('[data-ds-modal-aside-label]', v.asideLabel);
-      set('[data-ds-modal-label]', v.label);
-      set('[data-ds-modal-heading]', v.heading);
-      set('[data-ds-modal-sub]', v.sub);
-      set('[data-ds-modal-submit]', v.submit);
-      var subject = modal.querySelector('[data-ds-modal-subject]');
-      if (subject) subject.value = v.subject;
-    }
-
-    function open(variant) {
-      if (!modal) return;
-      applyVariant(variant);
-      modal.removeAttribute('hidden');
-      requestAnimationFrame(function () { modal.classList.add('is-open'); });
-      document.documentElement.style.overflow = 'hidden';
-      // Stamp which page the lead came from so the practice knows the context.
-      var src = form && form.querySelector('[data-ds-source]');
-      if (src) src.value = window.location.pathname + window.location.search;
-      var firstField = form && form.querySelector('input:not([type="hidden"]):not([type="checkbox"]), select, textarea');
-      if (firstField) setTimeout(function () { firstField.focus(); }, 120);
-    }
-
-    function close() {
-      if (!modal) return;
-      modal.classList.remove('is-open');
-      document.documentElement.style.overflow = '';
-      setTimeout(function () {
-        modal.setAttribute('hidden', '');
-        resetState();
-      }, 260);
-    }
-
-    function resetState() {
-      if (form)    form.hidden = false;
-      if (success) success.hidden = true;
-      if (form)    form.reset();
-    }
-
-    function showSuccess() {
-      if (form)    form.hidden = true;
-      if (success) success.hidden = false;
-    }
-
-    // Hijack every Schedule-style link across the site (including legacy gform=1 triggers)
-    var triggers = [
-      'a[href="#quiz"]',
-      'a[href="/#quiz"]',
-      'a[href$="#quiz"]',
-      'a[href*="gform=1"]',
-      '[data-ds-schedule]',
-      '[data-modal-form]'
-    ].join(',');
-
-    document.addEventListener('click', function (e) {
-      var trigger = e.target.closest(triggers);
-      if (!trigger) return;
-      // Clicks inside the quiz card belong to the quiz flow (quiz.js), and
-      // quiz-style CTAs open the eligibility survey (lead-embeds.js).
-      if (trigger.closest('[data-ds-quiz]') || trigger.closest('[data-ds-survey]')) return;
-      e.preventDefault();
-      open(trigger.getAttribute('data-ds-modal-variant'));
-    }, true);
-
-    // Auto-open modal on direct legacy links like /?gform=1&modal
-    if (window.location.search && (window.location.search.indexOf('gform=1') !== -1 || window.location.search.indexOf('modal') !== -1)) {
-      setTimeout(function () { open(); }, 350);
-    }
-
-    // Close via X, backdrop, ESC
-    modal.addEventListener('click', function (e) {
-      if (e.target.closest('[data-ds-modal-close]') || e.target === modal.querySelector('.ds-modal__backdrop')) {
-        e.preventDefault();
-        close();
-      }
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
-    });
-
-    // Form submission — POSTs to a configured endpoint (Web3Forms / Formspree /
-    // Getform). Any provider that accepts multipart FormData and returns JSON or
-    // a 2xx works. Until an endpoint is configured it falls back to a simulated
-    // confirmation so the preview keeps working. Setup lives in parts/footer.html.
-    if (form) {
-      var errorEl = modal.querySelector('[data-ds-modal-error]');
-
-      function resolveEndpoint() {
-        var key = (form.getAttribute('data-ds-access-key') || '').trim();
-        var url = (form.getAttribute('data-ds-endpoint') || '').trim();
-        if (url) return { url: url, key: key };            // explicit endpoint (Formspree/Getform/custom)
-        if (key) return { url: 'https://api.web3forms.com/submit', key: key }; // Web3Forms via key only
-        return { url: '/wp-admin/admin-ajax.php', key: '' }; // Native WordPress + Gravity Forms lead delivery
-      }
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (errorEl) errorEl.hidden = true;
-
-        var btn   = form.querySelector('button[type="submit"]');
-        var label = btn ? btn.textContent : '';
-        if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
-
-        function fail() {
-          if (btn) { btn.disabled = false; btn.textContent = label; }
-          if (errorEl) errorEl.hidden = false;
-        }
-
-        var target = resolveEndpoint();
-
-        var data = new FormData(form);
-        if (target.key && !data.get('access_key')) data.append('access_key', target.key);
-        if (!data.get('action')) data.append('action', 'ds_schedule_submit');
-
-        fetch(target.url, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: data
-        }).then(function (res) {
-          var ok = res.ok;
-          return res.json().then(
-            function (json) { return { ok: ok, json: json }; },
-            function ()     { return { ok: ok, json: null }; }
-          );
-        }).then(function (r) {
-          // Success = HTTP 2xx and the provider didn't explicitly report failure.
-          var explicitFail = r.json && r.json.success === false;
-          if (r.ok && !explicitFail) {
-            showSuccess();
-            window.dsTrackLead('assessment_request');
-          } else {
-            fail();
-          }
-        }).catch(fail);
-      });
+  // Direct legacy links like /?gform=1&modal open the survey on arrival.
+  function openFromUrl() {
+    var q = window.location.search;
+    if (q && (q.indexOf('gform=1') !== -1 || q.indexOf('modal') !== -1)) {
+      setTimeout(openSurvey, 350);
     }
   }
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', openFromUrl);
   } else {
-    init();
+    openFromUrl();
   }
 })();
 
